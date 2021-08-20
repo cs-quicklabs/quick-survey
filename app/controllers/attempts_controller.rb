@@ -20,8 +20,7 @@ class AttemptsController < ApplicationController
 
   def submit
     @attempt = Survey::Attempt.find(params[:id])
-    @attempt.submit
-    #redirect_to checklist_report_path(@attempt, format: :pdf)
+    redirect_to checklist_report_path(@attempt, format: :pdf)
   end
 
   private

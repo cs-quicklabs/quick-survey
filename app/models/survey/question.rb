@@ -22,7 +22,10 @@ class Survey::Question < ActiveRecord::Base
   end
 
   def attempted_option(attempt)
-    option_id = Survey::Answer.where(:attempt => attempt, :question => self).first.option_id
+    answer = attempted_answer(attempt)
+    return nil if answer.nil?
+
+    option_id = answer.option_id
     Survey::Option.find(option_id)
   end
 
