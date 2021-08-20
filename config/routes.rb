@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "/reports/checklist/:id", to: "reports#checklist", as: "checklist_report"
   get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
 
-  get "/:id/search/surveys", to: "search#surveys"
+  get "/search/surveys", to: "search#surveys"
 end
