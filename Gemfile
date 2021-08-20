@@ -60,3 +60,5 @@ gem "tailwindcss-rails", "~> 0.4.1"
 gem "stimulus_reflex", "~> 3.4"
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
+gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
+gem "hiredis"
