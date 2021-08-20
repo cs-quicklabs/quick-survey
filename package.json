@@ -9,7 +9,7 @@
     "stimulus": "^2.0.0",
     "stimulus_reflex": "3.4.1",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.46.0"
+    "webpack": "^5.51.1"
   },
   "version": "0.1.0",
   "devDependencies": {
