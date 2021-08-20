@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_105252) do
     t.boolean "finished", default: false
     t.boolean "active", default: false
     t.integer "winning_score", default: 0
-    t.integer "type", default: 0
+    t.integer "survey_type", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
