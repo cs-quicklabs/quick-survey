@@ -18,6 +18,11 @@ class AttemptsController < ApplicationController
     @attempt = Survey::Attempt.find(params[:id])
   end
 
+  def submit
+    @attempt = Survey::Attempt.find(params[:id])
+    redirect_to checklist_report_path(@attempt, format: :pdf)
+  end
+
   private
 
   def set_survey

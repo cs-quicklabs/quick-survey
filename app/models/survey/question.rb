@@ -20,4 +20,16 @@ class Survey::Question < ActiveRecord::Base
   def incorrect_options
     return options.incorrect
   end
+
+  def attempted_option(attempt)
+    answer = attempted_answer(attempt)
+    return nil if answer.nil?
+
+    option_id = answer.option_id
+    Survey::Option.find(option_id)
+  end
+
+  def attempted_answer(attempt)
+    Survey::Answer.where(:attempt => attempt, :question => self).first
+  end
 end

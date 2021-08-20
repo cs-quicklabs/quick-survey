@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
   get "/reports/checklist/:id", to: "reports#checklist", as: "checklist_report"
+  get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
 
   get "/:id/search/surveys", to: "search#surveys"
 end
