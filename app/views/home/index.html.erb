@@ -44,7 +44,7 @@
             <% @surveys.each do |survey| %>
               <tr class="bg-white">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  <a href="<%= new_attempt_path(survey.id) %>">
+                  <a href="<%= new_attempt_path(survey.id) %>" class="hover:underline ">
                     <%= survey.name %>
                   </a>
                 </td>
