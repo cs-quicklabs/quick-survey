@@ -1,6 +1,9 @@
 <h2><%= @attempt.participant.name %></h2>
 <h4><%= @attempt.participant.email %></h4>
 <h4><%= @attempt.survey.name %></h4>
+<h4>Score:</h4>
+<h4><%= @attempt.survey.questions.count %></h4>
+<h4><%= @attempt.correct_answers.count %></h4>
 <table class="table mt-5">
   <thead>
     <tr>
