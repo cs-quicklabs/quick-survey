@@ -17,12 +17,14 @@
         </div>
         <% question.options.each do |option| %>
           <div class="flex items-center text-sm">
-            <input type="radio" data-reflex="click->Attempt#answer" data-attempt-id="<%= @attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="pricing-plan" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+            <!-- <input type="radio" data-reflex="click->Attempt#answer" data-attempt-id="<%= @attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="pricing-plan" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1"> %>
+            -->
+            <input type="radio" data-reflex="click->Attempt#answer" data-attempt-id="<%= @attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
             <span id="pricing-plans-0-label" class="ml-3 font-medium"><%= option.text %></span>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</fieldset>
-<%= link_to "DOWNLOAD PDF", checklist_report_path(@attempt, format: :pdf) %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </fieldset>
+  <%= link_to "DOWNLOAD PDF", checklist_report_path(@attempt, format: :pdf) %>
 </div>

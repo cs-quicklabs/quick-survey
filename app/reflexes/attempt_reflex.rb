@@ -6,5 +6,6 @@ class AttemptReflex < ApplicationReflex
     @question = Survey::Question.find(element.dataset[:question_id])
     @option = Survey::Option.find(element.dataset[:option_id])
     Survey::Answer.create(attempt: @attempt, question: @question, option: @option)
+    morph :nothing
   end
 end
