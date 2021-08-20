@@ -1,8 +1,8 @@
 <div class="flex items-center text-sm" id="<%= dom_id(option)%>">
   <% if question.attempted_option(attempt) == option %>
-    <input type="radio" checked data-reflex="click->Attempt#answer" data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+    <input type="radio" checked data-reflex="click->Attempt#answer" data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="ml-4 h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
   <% else %>
-    <input type="radio" data-reflex="click->Attempt#answer" data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+    <input type="radio" data-reflex="click->Attempt#answer" data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="ml-4 h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
   <% end %>
-  <span id="pricing-plans-0-label" class="ml-3 font-medium"><%= option.text %></span>
+  <span id="pricing-plans-0-label" class="ml-1 font-medium"><%= option.text %></span>
 </div>
