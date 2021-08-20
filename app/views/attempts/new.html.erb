@@ -9,6 +9,7 @@
       </p>
     </div>
     <%= form_with(url: new_attempt_path(@survey.id)) do |form| %>
+
       <div class="mt-8 space-y-6">
         <input type="hidden" name="remember" value="true">
         <div class="-space-y-px">
@@ -16,13 +17,13 @@
             <label for="first-name" class="block text-sm font-medium text-gray-700">
               Full Name
             </label>
-              <input type="text" name="name" id="name" autocomplete="off" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+              <input type="text" name="name" id="name" autocomplete="off" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required= true>
             </div>
         <div class="sm:col-span-4 pt-6">
             <label for="email" class="block text-sm font-medium text-gray-700">
               Email address
             </label>
-              <input id="email" name="email" type="email" autocomplete="off" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+              <input id="email" name="email" type="email" autocomplete="off" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required=true>
           </div>
       </div>
       
