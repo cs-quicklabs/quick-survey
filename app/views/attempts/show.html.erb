@@ -1,17 +1,21 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-white shadow overflow-hidden sm:rounded-lg">
-  <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg leading-6 font-medium text-gray-900">
-      <%= @attempt.participant.name %>
-    </h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-      <%= @attempt.survey.name %>
-    </p>
+<div class="min-h-full flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl w-full space-y-8 overflow-y-hidden">
+    <div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900 text-center">
+        <%= @attempt.participant.name %>
+      </h3>
+      <p class="mt-1 w-full text-sm text-gray-500 text-center">
+        <%= @attempt.survey.name %>
+      </p>
+    </div>
+    <div class="mt-24">
+      <fieldset class="space-y-5">
+        <% @attempt.survey.questions.each do |question| %>
+          <%= render partial: 'question', locals: { question: question, attempt: @attempt } %>
+        <% end %>
+      </fieldset>
+      <%= link_to "Submit and Download Report", submit_attempt_path %>
+    </div>
   </div>
-  <fieldset class="space-y-5">
-    <% @attempt.survey.questions.each do |question| %>
-      <%= render partial: 'question', locals: { question: question, attempt: @attempt } %>
-    <% end %>
-  </fieldset>
-  <%= link_to "Submit and Download Report", submit_attempt_path %>
 </div>

@@ -1,4 +1,4 @@
-class Survey < ActiveRecord::Migration[6.1]
+class CreateSurvey < ActiveRecord::Migration[6.1]
   def change
     # survey surveys logic
     create_table :survey_surveys do |t|
