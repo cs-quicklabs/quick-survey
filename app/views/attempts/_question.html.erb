@@ -3,7 +3,9 @@
     <label for="comments" class="font-medium text-gray-700"><%= question.text %></label>
     <p id="comments-description" class="text-gray-500"><%= question.description %></p>
   </div>
-  <% question.options.each do |option| %>
-    <%= render partial: 'option', locals: { option: option, question: question, attempt: attempt } %>
-  <% end %>
+  <div class="flex justify-self-end">
+    <% question.options.each do |option| %>
+      <%= render partial: 'option', locals: { option: option, question: question, attempt: attempt } %>
+    <% end %>
+  </div>
 </div>
