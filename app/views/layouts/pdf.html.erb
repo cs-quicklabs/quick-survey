@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>PDFs - Ruby on Rails</title>
-    <%= stylesheet_link_tag "tailwind" %>
-    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= wicked_pdf_stylesheet_link_tag "tailwind.min" %>
+    <%= wicked_pdf_stylesheet_link_tag "bootstrap.min" %>
   </head>
   <body>
     <%= yield %>
