@@ -31,10 +31,6 @@ export default class extends Controller {
         if (typeof this.inputTarget.getAttribute('autofocus') === 'string') {
             this.inputTarget.focus()
         }
-
-        let element = document.querySelector("meta[name='current-account']")
-        if (element == null) return
-        this.current_account = element.getAttribute('content')
     }
 
     disconnect() {
@@ -218,7 +214,7 @@ export default class extends Controller {
 
         const headers = { 'X-Requested-With': 'XMLHttpRequest' }
         const url = new URL(
-            '/' + this.current_account + this.urlValue,
+            '/'  + this.urlValue,
             window.location.href
         )
         const params = new URLSearchParams(url.search.slice(1))
