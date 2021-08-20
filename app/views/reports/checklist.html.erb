@@ -1,0 +1,20 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      <%= @attempt.participant.name %>
+    </h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+      <%= @attempt.survey.name %>
+    </p>
+  </div>
+  <fieldset class="space-y-5">
+    <% @attempt.survey.questions.each do |question| %>
+      <div class="relative flex items-start">
+        <div class="ml-3 text-sm">
+          <label for="comments" class="font-medium text-gray-700"><%= question.text %></label>
+          <p id="comments-description" class="text-gray-500"><%= question.description %></p>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+</div>
