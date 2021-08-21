@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Invoice No. #{@attempt.id}",
+        render pdf: "#{@attempt.survey.name}",
                page_size: "A4",
                template: "reports/checklist.html.erb",
                layout: "pdf.html",
