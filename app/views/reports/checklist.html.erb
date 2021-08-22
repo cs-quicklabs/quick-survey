@@ -1,7 +1,11 @@
-<h2><%= @attempt.participant.name %></h2>
-<h4><%= @attempt.participant.email %></h4>
-<h4><%= @attempt.survey.name %></h4>
-<h1>Score: <%= @attempt.correct_answers.count %>/<%= @attempt.survey.questions.count %></h1>
+<div class="d-inline-block">
+<h2  class="bold"><%= @attempt.participant.name.capitalize %></h2>
+<h4><%= @attempt.participant.email.capitalize %></h4>
+<h4><%= @attempt.survey.name.capitalize %></h4>
+</div>
+<div class="d-inline-block float-end  align-top pb-4 pr-4">
+<h1 class="bold">Score: <%= @attempt.correct_answers.count %>/<%= @attempt.survey.questions.count %></h1>
+</div>
 <table class="table mt-5">
   <thead>
     <tr>
