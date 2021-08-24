@@ -12,6 +12,13 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.5/dist/alpine.min.js" defer></script>
   </head>
   <body>
+    <% flash.each do |type, msg| %>
+      <div class="rounded-md bg-green-50">
+        <p class="text-sm text-center font-medium text-green-800">
+          <%= msg %>
+        </p>
+      </div>
+    <% end %>
     <%= render "shared/navbar" %>
     <%= yield %>
   </body>

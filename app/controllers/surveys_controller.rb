@@ -14,18 +14,22 @@ class SurveysController < ApplicationController
   end
 
   def destroy
+    @survey.destroy
+    redirect_to surveys_path
   end
 
   def update
+    @survey.update(survey_params)
+    redirect_to survey_path(@survey)
   end
 
   def create
     @survey = Survey::Survey.new(survey_params)
-    binding.irb
-    redirect_to(:action => :index) if @survey.save
+    redirect_to survey_path(@survey) if @survey.save
   end
 
   def show
+    @question = Survey::Question.new
   end
 
   private

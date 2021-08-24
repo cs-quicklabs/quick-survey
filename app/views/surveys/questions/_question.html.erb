@@ -1,0 +1,12 @@
+<li class="pb-2 flex border-b border-gray-200" id="<%= dom_id question %>">
+  <div class="ml-3 w-full">
+    <p class="text-sm font-medium text-gray-900"><%= question.text %></p>
+    <p class="text-sm text-gray-500"><%= question.description %></p>
+  </div>
+  <div class="flex alight-right">
+    <div class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <%= link_to "Edit", edit_survey_question_path(@survey, question), class: "text-indigo-600 hover:text-indigo-900" %>
+      <%= link_to "Delete", survey_question_path(@survey, question), method: :delete,  class: "ml-4 text-red-600 hover:text-indigo-900", data: {confirm: "Are you sure?"} %>
+    </div>
+  </div>
+</li>
