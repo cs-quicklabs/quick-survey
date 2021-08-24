@@ -32,4 +32,11 @@ class Survey::Question < ActiveRecord::Base
   def attempted_answer(attempt)
     Survey::Answer.where(:attempt => attempt, :question => self).first
   end
+
+  def marked_score(attempt)
+    answer = attempted_answer(attempt)
+    return 0 if answer.nil?
+
+    answer.score
+  end
 end

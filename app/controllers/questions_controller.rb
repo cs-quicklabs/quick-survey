@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
   private
 
   def add_options(question, survey)
-    if survey.survey_type == 1
+    if survey.survey_type == 0 #checklist
       Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
       Survey::Option.new(text: "No", question: question, correct: false, weight: 0).save
     else
