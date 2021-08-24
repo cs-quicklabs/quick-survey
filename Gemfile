@@ -62,4 +62,3 @@ gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
 gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
-gem "rails-patterns"
