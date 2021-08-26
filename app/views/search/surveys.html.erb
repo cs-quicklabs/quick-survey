@@ -1,5 +1,5 @@
 <% @surveys.each do |survey|%>
-  <a href="<%= new_attempt_path(survey.id) %>">
+  <a href="<%= survey_path(survey.id) %>">
     <li role="option"  id="add-skill"  class="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900 cursor-pointer">
       <%= survey.name %>
     </li>
