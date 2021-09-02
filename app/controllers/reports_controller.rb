@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+
+
   def checklist
     @attempt = Survey::Attempt.find(params[:id])
     respond_to do |format|
@@ -30,4 +32,18 @@ class ReportsController < ApplicationController
       end
     end
   end
+  def submit
+    @attempt = Survey::Attempt.find(params[:id])
+    if ( @attempt.update(attempt_params) && @attempt.survey.survey_type == 0)
+      redirect_to checklist_pdf_path(@attempt, format: :pdf)
+    else
+      redirect_to score_pdf_path(@attempt, format: :pdf)
+    end
+  end
+
+  private
+   def attempt_params
+    params.permit( :id, :comment)
+  end
+
 end
