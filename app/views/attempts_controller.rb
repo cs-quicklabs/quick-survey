@@ -21,9 +21,9 @@ class AttemptsController < ApplicationController
   def submit
     @attempt = Survey::Attempt.find(params[:id])
     if @attempt.survey.survey_type == 0
-      redirect_to checklist_report_path(@attempt, format: :html)
+      redirect_to checklist_report_path(@attempt, format: :pdf)
     else
-      redirect_to score_report_path(@attempt, format: :html)
+      redirect_to score_report_path(@attempt, format: :pdf)
     end
   end
 

@@ -1,28 +1,39 @@
-<div class="d-inline-block">
-  <h2  class="bold"><%= @attempt.participant.name.capitalize %></h2>
-  <h4><%= @attempt.participant.email.capitalize %></h4>
-  <h4><%= @attempt.survey.name.capitalize %></h4>
-</div>
-<div class="d-inline-block float-end  align-top pb-4 pr-4">
-  <h1 class="bold">Score: <%= @attempt.correct_answers.count %>/<%= @attempt.survey.questions.count %></h1>
-</div>
-<table class="table mt-5">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Question</th>
-      <th scope="col">Answer</th>
-      <th scope="col">Verdict</th>
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+  <!-- Page title & actions -->
+  <div class="px-10 py-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+    <div class=" items-baseline px-12">
+      <h1 class="text-lg leading-tight text-gray-900">
+              <%= @attempt.participant.name.titleize %></h1>
+            <h4 class="text-lg  leading-tight text-gray-900"><%= @attempt.participant.email %></h4>
+           <h4 class="text-lg leading-tight text-gray-900"><%= @attempt.survey.name.titleize %></h4>
+      </div>
+    <div class=" px-52">
+     <h4 class="text-lg leading-tight text-gray-900 ">
+      Score: <%= @attempt.correct_answers.count %>/<%= @attempt.survey.questions.count %></h4>
+             
+    </div>
+  </div>
+<div class=" w-full ">
+    <div class="pb-8">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-20 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+    #</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verdict</th>
     </tr>
   </thead>
-  <tbody>
-    <% @attempt.survey.questions.each_with_index do |question, index| %>
-      <tr>
-        <th scope="row"><%= index + 1  %></th>
-        <td><%= question.text %></td>
-        <% attempted_option = question.attempted_option(@attempt)%>
-        <td><%= attempted_option.nil? ? "" : attempted_option.text %></td>
-        <td>
+   <tbody class="bg-white divide-y divide-gray-200">
+         <% @attempt.survey.questions.each_with_index do |question, index| %>
+      <tr class="bg-white ">
+              <td class="py-3  px-20 text-sm font-medium text-gray-900">
+             <%= index + 1  %></td>
+         <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
+         <% attempted_option = question.attempted_option(@attempt)%>
+         <td class="py-3 px-6 text-sm font-medium text-gray-900"><%= attempted_option.nil? ? "" : attempted_option.text %></td>
+         <td class="py-3  px-6 text-sm font-medium text-gray-900">
           <% if question.attempted_answer(@attempt).nil? %>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
@@ -36,8 +47,12 @@
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
             </svg>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
+        </td>  
+     </tr>
+     <% end %>
   </tbody>
-</table>
+  </table>
+  </div>
+<%= render partial: 'download_pdf', locals: {  attempt: @attempt } %>
+   </div>
+</main>

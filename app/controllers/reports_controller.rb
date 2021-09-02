@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
       format.pdf do
         render pdf: "#{@attempt.survey.name}",
                page_size: "A4",
-               template: "reports/checklist.html.erb",
+               template: "pdf/checklist.html.erb",
                layout: "pdf.html",
                lowquality: true,
                zoom: 1,
@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
       format.pdf do
         render pdf: "#{@attempt.survey.name}",
                page_size: "A4",
-               template: "reports/score.html.erb",
+               template: "pdf/score.html.erb",
                layout: "pdf.html",
                lowquality: true,
                zoom: 1,
