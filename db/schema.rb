@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_130746) do
+ActiveRecord::Schema.define(version: 2021_09_03_051001) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "survey_answers", force: :cascade do |t|
@@ -68,8 +67,6 @@ ActiveRecord::Schema.define(version: 2021_09_01_130746) do
     t.integer "survey_type", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.tsvector "searchable", default: -> { "setweight(to_tsvector('english'::regconfig, (COALESCE(name, ''::character varying))::text), 'A'::\"char\")" }
-    t.index ["searchable"], name: "index_survey_surveys_on_searchable", using: :gin
   end
 
 end

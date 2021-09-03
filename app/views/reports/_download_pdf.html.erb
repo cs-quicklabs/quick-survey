@@ -1,16 +1,15 @@
 <div class="overflow-y-auto w-full">
- <%= form_with(url: submit_report_path(@attempt), model: @attempt) do |form| %>
+  <%= form_with(url: submit_report_path(@attempt), model: @attempt) do |form| %>
     <div class="pt-6 px-32">
-            <label for="comment" class="block text-sm  py-4 font-medium text-gray-700">
-           Comments (optional)
-            </label>
-            <textarea  id="comment" name="comment"  rows="4" autocomplete="off" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-11/12 sm:text-sm border-gray-300 rounded-md">
-              </textarea>
-          </div>
+      <label for="comment" class="block text-sm  py-4 font-medium text-gray-700">
+        Comments (optional)
+      </label>
+      <textarea  id="comment" name="comment"  rows="4" autocomplete="off" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-11/12 sm:text-sm border-gray-300 rounded-md"></textarea>
+    </div>
     <div class=" sm:col-span-4 px-6 flex justify-end mr-48 overflow-y-auto py-6">
       <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-             Submit Download PDF
-            </button>
-      </div>
-      <% end %>
+        Submit and Download PDF
+      </button>
+    </div>
+  <% end %>
 </div>
