@@ -30,7 +30,7 @@ class Survey::Question < ActiveRecord::Base
   end
 
   def attempted_answer(attempt)
-    Survey::Answer.where(:attempt => attempt, :question => self).first
+    attempt.answers.select { |a| a.question_id == id }.first
   end
 
   def marked_score(attempt)
