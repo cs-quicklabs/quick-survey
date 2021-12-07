@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
-  get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
+  #get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
