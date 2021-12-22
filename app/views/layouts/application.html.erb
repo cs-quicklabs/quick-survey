@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "inter-font" %>
-    <%= stylesheet_link_tag "tailwind" %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.5/dist/alpine.min.js" defer></script>
+    <%= action_cable_meta_tag %>
+    <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
   </head>
   <body>
     <% flash.each do |type, msg| %>
