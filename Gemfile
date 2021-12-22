@@ -40,6 +40,7 @@ gem "stimulus_reflex", "= 3.5.0.pre8"
 gem "wkhtmltopdf-binary"
 gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
+gem "json"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false

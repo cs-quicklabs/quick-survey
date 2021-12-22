@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Angular Developer",
+        "trainee": "/resume",
+        "developer": "/vendor",
+        "senior": "/resume",
+        "associate": "/resume",
+        "lead": "/resume"
+    },
+    {
+        "name": "Android Developer",
+        "trainee": "/resume",
+        "developer": "/resume",
+        "senior": "/resume",
+        "associate": "/resume",
+        "lead": "/resume"
+    }
+]
