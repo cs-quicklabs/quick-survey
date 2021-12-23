@@ -4,19 +4,19 @@
     <% unselected = "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" %>
     <nav class="-mb-px flex space-x-8" aria-label="Tabs">
       <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-      <a href="#" class="<%= current_page?("/resume") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+      <a href="/resume" class="<%= current_page?("/resume") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
         Resume
       </a>
-      <a href="#" class="<%= current_page?("/telephonic") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+      <a href="/telephonic" class="<%= current_page?("/telephonic") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
         Telephonic
       </a>
-      <a href="#" class="<%= current_page?("/interviews") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+      <a href="/interview" class="<%= current_page?("/interview") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
         Interview
       </a>
-      <a href="#" class="<%= current_page?("/hr") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+      <a href="/hr" class="<%= current_page?("/hr") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
         HR
       </a>
-      <a href="#" class="<%= current_page?("/vendor") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+      <a href="/vendor" class="<%= current_page?("/vendor") ? selected : unselected %>  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
         Vendor
       </a>
     </nav>
