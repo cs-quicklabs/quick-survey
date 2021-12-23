@@ -4,7 +4,7 @@
         "roles": {
             "trainee": "/surveys/1/attempts/new",
             "developer": "/surveys/1/attempts/new",
-            "senior": "/surveys/1/attempts/new",
+            "senior": "/surveys/30/attempts/new",
             "associate": "/surveys/1/attempts/new",
             "teamLead": "/surveys/1/attempts/new"
         }
