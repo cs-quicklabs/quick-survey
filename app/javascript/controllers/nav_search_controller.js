@@ -218,7 +218,7 @@ export default class extends Controller {
 
         const headers = { 'X-Requested-With': 'XMLHttpRequest' }
         const url = new URL(
-            '/' + this.current_account + this.urlValue,
+            '/' + this.urlValue,
             window.location.href
         )
         const params = new URLSearchParams(url.search.slice(1))

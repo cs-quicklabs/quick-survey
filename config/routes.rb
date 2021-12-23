@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
-  #get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
+  get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
 
   get "/resume", to: "screening/resume#index", as: "resume"
   get "/telephonic", to: "screening/telephonic#index", as: "telephonic"
