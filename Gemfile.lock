@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/mileszs/wicked_pdf.git
+  revision: 769f9df487f3c1e31dc91431666baa78d2aa24fb
+  branch: master
+  specs:
+    wicked_pdf (2.1.0)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -93,7 +101,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jsbundling-rails (1.0.0)
       railties (>= 6.0.0)
-    json (2.5.1)
+    json (2.6.1)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -229,6 +237,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
+  wicked_pdf!
   wkhtmltopdf-binary
 
 RUBY VERSION

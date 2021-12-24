@@ -36,7 +36,7 @@ gem "stimulus-rails", "1.0.0"
 gem "stimulus_reflex", "= 3.5.0.pre8"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
