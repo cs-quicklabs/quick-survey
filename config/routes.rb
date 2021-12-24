@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/vendor", to: "screening/vendor#index", as: "vendor"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
+  get "/attempts", to: "attempts#index", as: "survey_attempts"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
   get "/pdf/checklist/:id", to: "reports#checklist", as: "checklist_pdf"
   get "/pdf/score/:id", to: "reports#score", as: "score_pdf"

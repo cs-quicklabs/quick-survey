@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
   def submit
     @attempt = Survey::Attempt.find(params[:id])
     @attempt.update_attribute("comment", params[:comment])
-    redirect_to root_path, notice: "Thank you for submitting your survey."
+    redirect_to survey_attempts_path, notice: "Thank you for submitting your survey."
   end
 
   private
