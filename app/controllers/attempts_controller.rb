@@ -2,7 +2,7 @@ class AttemptsController < ApplicationController
   before_action :set_survey, only: [:new, :create]
 
   def index
-    @pagy, @attempts = pagy(Survey::Attempt.all)
+    @pagy, @attempts =  pagy( Survey::Attempt.all, items: 10)
     render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
