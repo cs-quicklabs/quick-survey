@@ -5,7 +5,6 @@ class ReportsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@attempt.participant.name}_#{@attempt.survey.name}",
-               page_size: "A4",
                template: "pdf/checklist",
                layout: "pdf",
                formats: [:html]
@@ -19,8 +18,9 @@ class ReportsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@attempt.participant.name}_#{@attempt.survey.name}",
-               page_size: "A4",
-               template: "pdf/score.pdf.erb"
+               template: "pdf/score",
+               layout: "pdf",
+               formats: [:html]
       end
     end
   end
