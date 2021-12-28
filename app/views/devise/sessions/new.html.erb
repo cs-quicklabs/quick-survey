@@ -1,0 +1,62 @@
+<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <img class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+    <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+      Sign in to your account
+    </h1>
+    <p class="mt-2 text-sm text-center text-gray-600 max-w">
+      Or
+      <a href="<%= new_user_registration_path %>" class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
+        Sign Up
+      </a>
+    </p>
+  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= hidden_field_tag :redirect_to, params[:redirect_to] %>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="px-4 py-8 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email Address
+          </label>
+          <div class="mt-1">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+        </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+              <label for="remember_me" class="block ml-2 text-sm text-gray-900">
+                Remember me
+              </label>
+            </div>
+          <% end %>
+          <% if devise_mapping.recoverable? && controller_name != "passwords" && controller_name != "registrations" %>
+            <div class="text-sm">
+              <a href="<%= new_password_path(resource_name) %>" class="font-medium text-indigo-500 hover:text-indigo-600 hover:underline">
+                Forgot your password?
+              </a>
+            </div>
+          </div>
+        <% end %>
+        <div>
+          <%= f.submit "Log In", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+        <% if devise_mapping.confirmable? && controller_name != "confirmations" %>
+          <div class="text-xs text-center ">
+            <a href="<%= new_confirmation_path(resource_name) %>" class="font-medium text-indigo-500 hover:text-indigo-600 hover:underline">
+              Didn't receive email confirmation instructions?
+            </a>
+          </div>
+        <% end %>
+      <% end %>
+    </div>

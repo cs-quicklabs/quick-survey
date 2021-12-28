@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_115925) do
+ActiveRecord::Schema.define(version: 2021_12_26_132622) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -69,8 +70,8 @@ ActiveRecord::Schema.define(version: 2021_12_24_115925) do
     t.boolean "winner"
     t.integer "score"
     t.string "comment"
-    t.datetime "created_at", precision: 6, default: "2021-12-24 12:01:17", null: false
-    t.datetime "updated_at", precision: 6, default: "2021-12-24 12:01:17", null: false
+    t.datetime "created_at", precision: 6, default: "2021-12-24 12:39:55", null: false
+    t.datetime "updated_at", precision: 6, default: "2021-12-24 12:39:55", null: false
   end
 
   create_table "survey_options", force: :cascade do |t|
@@ -107,6 +108,26 @@ ActiveRecord::Schema.define(version: 2021_12_24_115925) do
     t.integer "survey_type", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.virtual "searchable", type: :tsvector, as: "setweight(to_tsvector('english'::regconfig, (COALESCE(name, ''::character varying))::text), 'A'::\"char\")", stored: true
+    t.index ["searchable"], name: "index_survey_surveys_on_searchable", using: :gin
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at", precision: 6
+    t.datetime "confirmation_sent_at", precision: 6
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

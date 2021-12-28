@@ -10,16 +10,14 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <%= turbo_include_tags %>
   </head>
   <body>
-    <% flash.each do |type, msg| %>
-      <div class="rounded-md bg-green-50">
-        <p class="text-sm text-center font-medium text-green-800">
-          <%= msg %>
-        </p>
-      </div>
-    <% end %>
     <%= render "shared/navbar" %>
-    <%= yield %>
+   <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
+    <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
+ <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

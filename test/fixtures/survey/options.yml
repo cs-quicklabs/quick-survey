@@ -1,0 +1,11 @@
+one:
+  question: one
+  weight: 1
+  text: yes
+  correct: true
+
+one:
+  question: one
+  weight: 0
+  text: no
+  correct: false

@@ -1,0 +1,9 @@
+user:
+  participant: regular
+  survey: user
+  participant: regular
+
+one:
+  participant: regular
+  survey: user
+  participant: actor

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :user
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: redirect("/resume", status: 303)
-
   resources :surveys do
     resources :questions
   end
@@ -27,4 +28,10 @@ Rails.application.routes.draw do
   patch "/attempts/:id/submit", to: "reports#submit", as: "submit_report"
 
   get "/search/surveys", to: "search#surveys"
+  scope "/settings" do
+    get "/profile", to: "user#profile", as: "profile"
+    get "/password", to: "user#password", as: "setting_password"
+    patch "/password", to: "user#update_password", as: "change_password"
+    get "/preferences", to: "user#preferences", as: "user_preferences"
+  end
 end

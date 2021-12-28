@@ -1,0 +1,86 @@
+<main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/settings_menu" %>
+    <main class="max-w-xl pb-12 px-4 lg:col-span-6">
+      <div>
+        <div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Notifications
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            We'll always let you know about important changes, but you pick what else you want to hear about.
+          </p>
+        </div>
+        <div class="mt-6">
+          <fieldset>
+            <legend class="text-base font-medium text-gray-900">
+              By Email
+            </legend>
+            <div class="mt-4 space-y-4">
+              <div class="relative flex items-start">
+                <div class="flex items-center h-5">
+                  <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="comments" class="font-medium text-gray-700">Comments</label>
+                  <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                </div>
+              </div>
+              <div class="relative flex items-start">
+                <div class="flex items-center h-5">
+                  <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="candidates" class="font-medium text-gray-700">Candidates</label>
+                  <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                </div>
+              </div>
+              <div class="relative flex items-start">
+                <div class="flex items-center h-5">
+                  <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="offers" class="font-medium text-gray-700">Offers</label>
+                  <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="mt-6">
+            <div>
+              <legend class="text-base font-medium text-gray-900">
+                Push Notifications
+              </legend>
+              <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
+            </div>
+            <div class="mt-4 space-y-4">
+              <div class="flex items-center">
+                <input id="push_everything" name="push_notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                <label for="push_everything" class="ml-3 block text-sm font-medium text-gray-700">
+                  Everything
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input id="push_email" name="push_notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                <label for="push_email" class="ml-3 block text-sm font-medium text-gray-700">
+                  Same as email
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input id="push_nothing" name="push_notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                <label for="push_nothing" class="ml-3 block text-sm font-medium text-gray-700">
+                  No push notifications
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="mt-8 flex justify-end">
+          <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500">
+            Save
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</main>

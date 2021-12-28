@@ -7,7 +7,6 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.2"
-
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "7.0.0"
 
@@ -16,13 +15,14 @@ gem "sprockets-rails", "3.4.2"
 
 # Use postgresql as the database for Active Record
 gem "pg", "1.2.3"
-
+gem "draper"
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma", "5.5.1"
-
+gem "devise", github: "ghiculescu/devise", branch: "patch-2"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.0"
-
+gem "devise-pwned_password"
+gem 'letter_opener_web', group: :development
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.0.0"
 
@@ -31,7 +31,7 @@ gem "turbo-rails", "1.0.0"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.0.0"
-
+gem "pundit"
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
 gem "stimulus_reflex", "= 3.5.0.pre8"
 # Use Active Storage variant
@@ -45,7 +45,7 @@ gem "pagy"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
-
+gem "rexml"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

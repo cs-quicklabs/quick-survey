@@ -1,0 +1,21 @@
+<main class="pb-10 mx-auto max-w-7xl lg:py-12 lg:px-8">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/settings_menu" %>
+    <main class="max-w-xl px-4 pb-12 lg:col-span-6">
+      <%= render "shared/form_header", title: "Personal Preferences", subtitle: "Setup your personal preferences." %>
+      <ul class="mt-2 divide-y divide-gray-200">
+        <li class="flex items-center py-4">
+          <%= check_box_tag "email_enabled", nil, @user.email_enabled, data: { reflex: "click->EmployeeNotificationReflex#toggle_email_notification", id: @user.id }, class: "mr-5 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
+          <div class="flex flex-col">
+            <p class="text-sm font-medium text-gray-900" id="privacy-option-1-label">
+              Enable email notifications
+            </p>
+            <p class="text-sm text-gray-500" id="privacy-option-1-description">
+              Turning it off will disbale all email notifications meant for you.
+            </p>
+          </div>
+        </ul>
+      </li>
+    </main>
+  </div>
+</main>

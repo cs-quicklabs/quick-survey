@@ -1,7 +1,19 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
+<script>
+  window.dropdowns = function() {
+      return {
+          show: false, // controls tabs menu dropdown
+          open: false, //controls profile menu dropdown
+          displayMobileDropdown() { return  this.show ? "block" : "hidden"},
+          hideMobileDropdown() { return  this.show ? "hidden" : "block" },
+          toggle() {this.show = !this.show} //toggles mobile dropdown menu
+      }
+  }
+</script>
 <nav class="bg-gray-800">
   <div class="px-2 mx-auto sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-12">
+        
       <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
         <div class="flex items-center flex-shrink-0">
           <a href="<%= root_path %>">
@@ -9,14 +21,48 @@
             <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Survey">
           </a>
         </div>
+          <% if user_signed_in? %>
         <div class="hidden sm:block sm:ml-6 pl-4">
           <div class="flex space-x-6">
-            <a href=<%= root_path %> class= "<%= current_page?(root_path) ?   "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>">Home</a>
-            <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ?  "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>"> Surveys </a>
-            <a href="/attempts" class="<%= current_page?("/attempts") ?  "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>">Attempts</a>
+            <a href=<%= root_path %> class= "<%= current_page?(root_path) ?   "nav-selected" : "nav-unselected" %>">Home</a>
+            <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ?  "nav-selected" : "nav-unselected" %>"> Surveys </a>
+            <a href="/attempts" class="<%= current_page?("/attempts") ?  "nav-selected" : "nav-unselected" %>">Attempts</a>
           </div>
-        </div>
+           </div>
       </div>
+      <div data-reflex-permanent>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <nav x-data="dropdowns()" @keydown.window.escape="open = false" class="bg-gray-800" id="menubar">
+      <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <!-- Profile dropdown -->
+            <div @click.away="open = false" class="relative z-10 ml-3" x-data="{ open: false }">
+              <div>
+                <button @click="open = !open" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                  <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
+                </button>
+              </div>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+                <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                  <div class= "px-4 py-3">
+                    <p class="text-sm">Signed in as</p>
+                    <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.email %></p>
+                  </div>
+                  <div class="border-t border-gray-100">
+                    <div>
+                      <a><%= link_to "Settings", profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                      <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% else %>
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+           <a href=<%= new_user_registration_path %> class="<%= current_page?(new_user_registration_path) ? "nav-selected" : "nav-unselected" %>">Sign up </a>
+          <a href=<%= new_user_session_path %> class="<%= current_page?(new_user_session_path) ? "nav-selected" : "nav-unselected" %>"  >Sign in</a>
+       </div>
+        <% end %> 
     </div>
   </div>
 </nav>
