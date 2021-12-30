@@ -12,7 +12,7 @@ gem "rails", "7.0.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
-
+gem 'devise_invitable', '~> 2.0.0'
 # Use postgresql as the database for Active Record
 gem "pg", "1.2.3"
 gem "draper"
