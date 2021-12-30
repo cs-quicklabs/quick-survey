@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   patch "/attempts/:id/submit", to: "reports#submit", as: "submit_report"
 
   get "/search/surveys", to: "search#surveys"
+  
 end
