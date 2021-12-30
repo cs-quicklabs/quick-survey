@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :timeoutable, timeout_in: 5.days,invite_for: 2.weeks
 
 
-         validates_presence_of :first_name, :last_name, :email
+         validates_presence_of  :email
          
 end

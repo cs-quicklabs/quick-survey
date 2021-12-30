@@ -1,22 +1,31 @@
-<h2><%= t "devise.invitations.edit.header" %></h2>
+<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <a href="http://www.skia.me">
+      <img class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+    </a>
+    <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+     <%= t "devise.invitations.edit.header" %>
+    </h2>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+ <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="px-4 py-8 mt-4 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
+        <div>
   <%= f.hidden_field :invitation_token, readonly: true %>
 
   <% if f.object.class.require_password_on_accepting %>
-    <div class="field">
       <%= f.label :password %><br />
-      <%= f.password_field :password %>
+      <%= f.password_field :password , class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"%>
     </div>
-
-    <div class="field">
+<div>
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation , class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"%>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit t("devise.invitations.edit.submit_button") %>
+  <div class="text-sm text-center">
+    <%= f.submit t("devise.invitations.edit.submit_button"), class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"%>
   </div>
 <% end %>
