@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :timeoutable, timeout_in: 5.days,invite_for: 2.weeks
 
-
-         validates_presence_of  :email
+         enum permission: [:telephonic_screener, :resume_screener, :interviewer, :hr, :admin]
+  
          
 end

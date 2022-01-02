@@ -69,4 +69,13 @@ class UserTest < ApplicationSystemTestCase
     assert_text "Original password is not correct"
     assert_text "New password is too short (minimum is 6 characters)"
   end
+
+  test "can send invite to user" do
+    visit new_user_invitation_url
+    email = "john.doe@crownstack.com"
+    fill_in "user_email", with: email
+    click_on "Send an invitation"
+    take_screenshot
+    assert_selector "p.notice", text: "An invitation email has been sent to #{email}"
+  end
 end

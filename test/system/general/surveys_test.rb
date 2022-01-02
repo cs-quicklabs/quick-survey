@@ -19,7 +19,7 @@ class SurveysTest < ApplicationSystemTestCase
     visit page_url
     take_screenshot
     assert_selector "h1", text: "Select Survey"
-    assert_text "New Survey"
+    assert_text "Add New Survey"
   end
 
   test "can not show index if not logged in" do
@@ -30,7 +30,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can show survey detail page" do
     visit page_url
-    find(id: dom_id(@survey)).click
+    find(id: dom_id(@survey)).click_link("Show")
     within "#survey-header" do
       assert_text "Attempt"
       assert_text "Clone"
@@ -41,65 +41,59 @@ class SurveysTest < ApplicationSystemTestCase
   test "can create a new survey" do
     visit page_url
     click_on "New Survey"
-    fill_in "Name", with: "Survey Campaign"
-    fill_in "Description", with: "This is a sample Survey Description"
-    select "KPIs", from: "survey_survey_survey_type"
-    select "Employee", from: "survey_survey_survey_for"
+    fill_in "survey_survey_name", with: "Survey Campaign"
+    fill_in "survey_survey_description", with: "This is a sample Survey Description"
+    select "Score", from: "survey_survey_survey_type"
     click_on "Add Survey"
     take_screenshot
-    assert_selector "p.notice", text: "Survey was created successfully."
+    assert_text "Survey Campaign"
   end
 
-  test "can not create with empty Name Discription survey_type survey_for" do
+  test "can not create with empty Name Discription survey_type" do
     visit page_url
     click_on "New Survey"
-    assert_selector "h1", text: "Add New Survey"
+    assert_selector "h3", text: "Add New Survey"
     click_on "Add Survey"
     take_screenshot
-    assert_selector "h1", text: "Add New Survey"
+    assert_selector "h3", text: "Add New Survey"
   end
 
   test "can edit a survey" do
     visit page_url
-    find(id: dom_id(@survey)).click
-    within "#survey-header" do
-      click_on "Edit"
-    end
-    assert_selector "h1", text: "Edit Survey"
-    fill_in "Name", with: "Survey Campaigning"
+    find(id: dom_id(@survey)).click_link("Edit")
+    assert_selector "h3", text: "Edit Survey"
+    fill_in "survey_survey_name", with: "Survey Campaigning"
     click_on "Edit Survey"
-    assert_selector "p.notice", text: "Survey was updated successfully."
+    assert_text "Survey Campaigning"
   end
 
   test "can not edit a survey with invalid name" do
     visit page_url
-    find(id: dom_id(@survey)).click
-    within "#survey-header" do
-      click_on "Edit"
-    end
-    assert_selector "h1", text: "Edit Survey"
-    fill_in "Name", with: ""
+    find(id: dom_id(@survey)).click_link("Edit")
+    assert_selector "h3", text: "Edit Survey"
+    fill_in "survey_survey_name", with: ""
     click_on "Edit Survey"
     take_screenshot
   end
 
   test "can clone a survey" do
     visit page_url
-    find(id: dom_id(@survey)).click
+    find(id: dom_id(@survey)).click_link(@survey.name)
     within "#survey-header" do
-      click_on "Clone"
+      page.accept_confirm do
+        click_on "Clone"
+      end
     end
     take_screenshot
-    assert_selector "p.notice", text: "Survey was cloned successfully."
+    assert_text "#{@survey.name} (Copy)"
   end
 
   test "can delete survey" do
     visit page_url
-    find(id: dom_id(@survey)).click
-    within "#survey-header" do
-      click_on "Delete"
+    page.accept_confirm do
+      find(id: dom_id(@survey)).click_link("Delete")
     end
+    assert_no_text @survey.name
     take_screenshot
-    assert_selector "p.notice", text: "Survey was removed successfully."
   end
 end

@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  #rescue_from Pundit::NotDefinedError, with: :record_not_found
+  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
 
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {
@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    redirect_to(request.referrer || root_path)
+    redirect_to(root_path)
   end
 
   def signed_in_root_path(resource)

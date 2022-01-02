@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
   before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone]
 
   def index
+    authorize :Survey
     @title = "Home"
     @surveys = Survey::Survey.all
   end
@@ -14,8 +15,7 @@ class SurveysController < ApplicationController
   end
 
   def destroy
-    @survey.destroy
-    redirect_to surveys_path
+    redirect_to surveys_path, status:303 if @survey.destroy
   end
 
   def update
