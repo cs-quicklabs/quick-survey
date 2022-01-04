@@ -6,5 +6,11 @@ class User < ApplicationRecord
 
          enum permission: [:telephonic_screener, :resume_screener, :interviewer, :hr, :admin]
   
-         
+         Permissions = [
+    ["Telephonic Screener", "telephonic_screener"],
+    ["Resume Screener", "resume_screener"],
+    ["Interviewer", "interviewer"],
+    ["HR", "hr"],
+    ["Admin", "admin"],
+  ]
 end

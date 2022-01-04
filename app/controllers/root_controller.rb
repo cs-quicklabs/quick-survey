@@ -11,6 +11,8 @@ class RootController < ApplicationController
             vendor_path
         when 'hr'
           hr_path
+        else
+            vendor_path
       end
   
       redirect_to path     

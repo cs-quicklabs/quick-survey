@@ -1,6 +1,6 @@
 class Screening::HrPolicy < Screening::BaseScreeningPolicy
   def index?
-    user.hr?
+    user.admin? || user.hr?
   end
 
 

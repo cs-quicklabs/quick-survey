@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_114617) do
     t.string "confirmation_token"
     t.datetime "confirmed_at", precision: 6
     t.datetime "confirmation_sent_at", precision: 6
-    t.integer "permission", default: 0, null: false
+    t.integer "permission"
     t.string "invitation_token"
     t.datetime "invitation_created_at", precision: 6
     t.datetime "invitation_sent_at", precision: 6

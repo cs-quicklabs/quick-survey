@@ -12,13 +12,44 @@ regular:
   last_name: Dhawan
   email: aashishdhawan@crownstack.com
   confirmed_at: 2021-03-18
+  permission: null
   
   
-actor:
+resume_screener:
   first_name: Rachita
-  last_name: Agnihotri
-  email: rachita@crownstack.com
+  last_name: Agnihotri(Resume Screener)
+  email: resume_screener@crownstack.com
   confirmed_at: 2021-03-18
+  permission: resume_screener
 
+  
+telephonic_screener:
+  first_name: Rachita
+  last_name: Agnihotri(Telephonic Screener)
+  email: telephonic_screening@crownstack.com
+  confirmed_at: 2021-03-18
+  permission: telephonic_screener
+
+interviewer:
+  first_name: Rachita
+  last_name: Agnihotri(Interviewer)
+  email: interviewer@crownstack.com
+  confirmed_at: 2021-03-18
+  permission: interviewer  
+
+hr:
+  first_name: Rachita
+  last_name: Agnihotri(HR)
+  email: hr@crownstack.com
+  confirmed_at: 2021-03-18
+  permission: hr 
+
+
+admin:
+  first_name: Rachita
+  last_name: Agnihotri(Admin)
+  email: admin@crownstack.com
+  confirmed_at: 2021-03-18
+  permission: admin 
 
 # column: value

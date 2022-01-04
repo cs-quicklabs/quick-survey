@@ -1,0 +1,28 @@
+<%= turbo_frame_tag dom_id(user) do %>
+<% user=user.decorate  %>
+  <li class="border-b border-gray-200 py-2">
+   <div class="flex items-center px-2 sm:px-6">
+      <div class="flex items-center flex-1 min-w-0">
+        <div class="flex-1 min-w-0 md:grid md:grid-cols-4 md:gap-4">
+         <div class="flex">
+                <a href="<%= user_path(user.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
+                  <%= user.display_name %>
+                </a>
+                </div>
+                <div class="flex">
+                  <p class="text-sm font-medium text-gray-900 truncate">
+                  <%= user.email %>
+                  </p>
+                  </div>
+                   <div class="flex">
+                  <%= user.permission.nil? ? "not-assigned": user.display_permission %>
+                  </div>
+ <div class="flex  space-x-2 items-center">
+                <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+                <%= styled_delete_button(user_path(user), "text-indigo-600 hover:text-indigo-900 ml-4") %>
+        </div>
+        </div>
+        </div>
+        </div>
+        </li>
+          <% end %>

@@ -34,4 +34,5 @@ Rails.application.routes.draw do
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
+  patch ":id/permission", to: "user#update_permission", as: "set_permission"
 end

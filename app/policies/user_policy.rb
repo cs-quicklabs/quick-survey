@@ -8,7 +8,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.admin?
   end
 
   def show?
@@ -17,6 +17,9 @@ class UserPolicy < ApplicationPolicy
 
   def profile?
     true
+  end
+  def edit?
+    user.admin?
   end
 
   def password?
@@ -29,5 +32,8 @@ class UserPolicy < ApplicationPolicy
 
   def update_password?
     true
+  end
+  def update_permission?
+    user.admin?
   end
 end

@@ -78,4 +78,21 @@ class UserTest < ApplicationSystemTestCase
     take_screenshot
     assert_selector "p.notice", text: "An invitation email has been sent to #{email}"
   end
+
+  test "can update permission to user" do
+    sign_out @user
+    @user= users(:admin)
+    sign_in @user
+    visit user_index_url
+    take_screenshot
+    p= users(:regular)
+    find(id:dom_id(p)).click_link("Edit")
+    assert_text "Edit #{p.decorate.display_name}'s Permission"
+    select "HR", from: "user_permission"
+    click_on "Save"
+    take_screenshot
+    within "##{dom_id(p)}" do
+      assert_text "Hr"
+    end
+  end
 end

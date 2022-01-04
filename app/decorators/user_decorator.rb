@@ -11,6 +11,10 @@ class UserDecorator < Draper::Decorator
     "#{first_name} #{last_name}".titleize + " (" + display_role_title + " " + display_job_title + ")".titleize
   end
 
+  def display_permission
+    permission.gsub("_", " ").titleize
+  end
+
   def name
     display_name
   end

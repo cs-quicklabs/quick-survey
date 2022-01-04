@@ -1,6 +1,27 @@
 class UserController < ApplicationController
-  before_action :set_user
+  before_action :set_user , only: [:update_password, :update, :profile, :password]
+  before_action :find_user , only: [:update_permission, :edit]
   before_action :build_form, only: [:update_password, :password]
+
+  def index
+    authorize :user
+    @title = "Users"
+    @users = User.all
+  end
+  def edit
+    authorize  @user
+  end
+  
+  def update_permission
+    authorize @user
+    respond_to do |format|
+      if @user.update(permission)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/user", locals: { message: "Permission was updated successfully", user: @user }) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/edit", locals: { user: @user }) }
+      end
+    end
+  end
 
   def update
     authorize @user
@@ -24,9 +45,6 @@ class UserController < ApplicationController
     end
   end
 
-  def preferences
-    authorize @user
-  end
 
   def profile
     authorize @user
@@ -40,6 +58,15 @@ class UserController < ApplicationController
 
   def set_user
     @user ||= current_user
+  end
+
+  def find_user
+    @user ||= User.find(params[:id])
+
+  end
+
+  def permission
+    params.require(:user).permit(:permission)
   end
 
   def user_params

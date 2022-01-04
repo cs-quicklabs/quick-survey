@@ -1,6 +1,6 @@
 class Screening::InterviewPolicy < Screening::BaseScreeningPolicy
     def index?
-      user.interviewer?
+      user.admin? ||  user.interviewer?
     end
   
   

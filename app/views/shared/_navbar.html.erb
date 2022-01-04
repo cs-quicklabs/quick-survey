@@ -29,6 +29,9 @@
             <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ?  "nav-selected" : "nav-unselected" %>"> Surveys </a>
             <a href="/attempts" class="<%= current_page?("/attempts") ?  "nav-selected" : "nav-unselected" %>">Attempts</a>
             <% end %>
+             <% if policy(:User).index? %>
+             <a href=<%= user_index_path %> class= "<%= current_page?("/user") ?  "nav-selected" : "nav-unselected" %>"> Users </a>
+          <% end %>
           </div>
            </div>
       </div>
