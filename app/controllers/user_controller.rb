@@ -1,26 +1,19 @@
 class UserController < ApplicationController
   before_action :set_user , only: [:update_password, :update, :profile, :password]
-  before_action :find_user , only: [:update_permission, :edit]
+  before_action :find_user , only: [:update_permission]
   before_action :build_form, only: [:update_password, :password]
+  respond_to :html, :json
 
   def index
-    authorize :user
+    authorize :User
     @title = "Users"
-    @users = User.all
+    @users = User.all.order(:first_name).order(created_at: :desc)
   end
-  def edit
-    authorize  @user
-  end
+
   
   def update_permission
     authorize @user
-    respond_to do |format|
-      if @user.update(permission)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/user", locals: { message: "Permission was updated successfully", user: @user }) }
-      else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/edit", locals: { user: @user }) }
-      end
-    end
+   redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)
   end
 
   def update

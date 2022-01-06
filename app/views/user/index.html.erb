@@ -1,7 +1,31 @@
 <h1 class="text-2xl px-4 py-2  font-bold leading-tight text-gray-900">
   Users
 </h1>
-      <ul class="divide-y divide-gray-200" id="users">
-        <%= render partial: "user/user", collection: @users, cached: true %>
-       </ul>
-     
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto">
+    <div class="py-2 align-middle inline-block min-w-full s">
+      <div class="overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col"  class="table-head">
+                Name
+              </th>
+              <th scope="col"  class="table-head">
+                Email
+              </th>
+               <th scope="col"  class="table-head">
+                Permission
+              </th>
+               <th scope="col" class="table-head">
+                Action
+              </th>
+               </thead>
+          <tbody class="table-body">
+         <%= render partial: "user/user", collection: @users, as: :user, cached: true %>
+                       </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

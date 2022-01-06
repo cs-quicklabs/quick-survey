@@ -86,13 +86,13 @@ class UserTest < ApplicationSystemTestCase
     visit user_index_url
     take_screenshot
     p= users(:regular)
-    find(id:dom_id(p)).click_link("Edit")
-    assert_text "Edit #{p.decorate.display_name}'s Permission"
-    select "HR", from: "user_permission"
-    click_on "Save"
-    take_screenshot
     within "##{dom_id(p)}" do
-      assert_text "Hr"
+
+      assert_text p.decorate.display_name
+      assert_text p.email
+      select "HR", from: "user_permission"
+      assert_text "HR"
     end
+    take_screenshot
   end
 end

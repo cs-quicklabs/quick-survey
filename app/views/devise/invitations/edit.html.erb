@@ -12,6 +12,24 @@
  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="px-4 py-8 mt-4 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
+              <div class=flex>
+          <div>
+            <label for="first_name" class="block text-sm font-medium text-gray-700">
+              First Name
+            </label>
+            <div class="mt-1">
+              <%= f.text_field :first_name, autofocus: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+          </div>
+          <div class="ml-2">
+            <label for="last_name" class="block text-sm font-medium text-gray-700">
+              Last Name
+            </label>
+            <div class="mt-1">
+              <%= f.text_field :last_name, autofocus: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+          </div>
+        </div>
         <div>
   <%= f.hidden_field :invitation_token, readonly: true %>
 
