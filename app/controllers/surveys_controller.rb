@@ -15,7 +15,8 @@ class SurveysController < ApplicationController
   end
 
   def destroy
-    redirect_to surveys_path, status:303 if @survey.destroy
+    @survey.destroy
+    redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
   end
 
   def update
