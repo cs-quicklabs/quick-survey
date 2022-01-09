@@ -18,7 +18,7 @@ gem "pg", "1.2.3"
 gem "draper"
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma", "5.5.1"
-gem "devise", github: "ghiculescu/devise", branch: "patch-2"
+gem "devise", github: "heartcombo/devise", branch: "main"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.0"
 gem "devise-pwned_password"
