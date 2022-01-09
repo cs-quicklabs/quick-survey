@@ -43,6 +43,11 @@ gem "hiredis"
 gem "json"
 gem "pagy"
 
+# sidekiq gems, sinatra is used to build UI for /sidekiq
+gem "sidekiq"
+gem "sidekiq-scheduler"
+gem "sinatra", ">= 1.3.0", require: nil
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 gem "rexml"
