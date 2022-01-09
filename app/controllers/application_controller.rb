@@ -3,14 +3,15 @@ class ApplicationController < ActionController::Base
 
   after_action :verify_authorized, only: [:home]
   before_action :configure_permitted_parameters, if: :devise_controller?
+
   include Pagy::Backend
   include Pundit
 
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  #rescue_from Pundit::NotDefinedError, with: :record_not_found
-  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
 
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {
@@ -38,6 +39,7 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
   def set_redirect_path
     @redirect_path = request.path
   end
@@ -88,8 +90,6 @@ class ApplicationController < ActionController::Base
     user_not_authorized
   end
 
-
-
   def landing_path
     root_path
   end
@@ -98,8 +98,6 @@ class ApplicationController < ActionController::Base
     sign_out(current_user) if current_user
     redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
   end
-
-
 
   def render_timeline(partial, collection:, cached: true)
     respond_to do |format|
