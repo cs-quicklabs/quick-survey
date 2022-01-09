@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-
   etag {
     if Rails.env == "production" or Rails.env == "staging"
       heroku_version
