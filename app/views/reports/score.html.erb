@@ -9,10 +9,10 @@
     </div>
     <div class=" px-52">
       <h4 class="text-lg leading-tight text-gray-900 mr-10">
-        <%score = @attempt.correct_answers.reduce(0.0) { |sum, answer| sum + answer.score}%>
-        <%total = (@attempt.answers.count * 10) %>
-        <%percentage = (score/total) * 100.0 %></h4>
-      <h1 class="text-lg leading-tight text-gray-900" >Score: <%=  percentage.round(2) %>%</h1>
+        <% score = @attempt.correct_answers.reduce(0.0) { |sum, answer| sum + answer.score } %>
+        <% total = (@attempt.answers.count * 10) %>
+        <% percentage = (score / total) * 100.0 %></h4>
+      <h1 class="text-lg leading-tight text-gray-900" >Score: <%= percentage.round(2) %>%</h1>
     </div>
   </div>
   <div class=" w-full ">
@@ -31,7 +31,7 @@
           <% @attempt.survey.questions.each_with_index do |question, index| %>
             <tr class="bg-white ">
               <td class="py-3  px-20 text-sm font-medium text-gray-900">
-                <%= index + 1  %></td>
+                <%= index + 1 %></td>
               <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
               <td class="py-3 px-6 text-sm font-medium text-gray-900"><%= question.marked_score(@attempt).to_s %></td>
               <td class="py-3  px-6 text-sm font-medium text-gray-900">
@@ -58,6 +58,6 @@
         </tbody>
       </table>
     </div>
-    <%= render partial: 'download_pdf', locals: {  attempt: @attempt }%>
+    <%= render partial: "download_pdf", locals: { attempt: @attempt } %>
   </div>
 </main>

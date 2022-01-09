@@ -12,7 +12,7 @@ gem "rails", "7.0.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
-gem 'devise_invitable', '~> 2.0.0'
+gem "devise_invitable", "~> 2.0.0"
 # Use postgresql as the database for Active Record
 gem "pg", "1.2.3"
 gem "draper"
@@ -22,7 +22,7 @@ gem "devise", github: "ghiculescu/devise", branch: "patch-2"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.0"
 gem "devise-pwned_password"
-gem 'letter_opener_web', group: :development
+gem "letter_opener_web", group: :development
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.0.0"
 
@@ -72,4 +72,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-

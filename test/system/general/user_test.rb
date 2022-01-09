@@ -81,13 +81,12 @@ class UserTest < ApplicationSystemTestCase
 
   test "can update permission to user" do
     sign_out @user
-    @user= users(:admin)
+    @user = users(:admin)
     sign_in @user
     visit user_index_url
     take_screenshot
-    p= users(:regular)
+    p = users(:regular)
     within "##{dom_id(p)}" do
-
       assert_text p.decorate.display_name
       assert_text p.email
       select "HR", from: "user_permission"

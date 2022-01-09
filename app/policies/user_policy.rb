@@ -30,7 +30,7 @@ class UserPolicy < ApplicationPolicy
   def update_password?
     true
   end
-  
+
   def update_permission?
     user.admin?
   end

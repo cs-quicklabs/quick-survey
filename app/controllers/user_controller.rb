@@ -1,6 +1,6 @@
 class UserController < ApplicationController
-  before_action :set_user , only: [:update_password, :update, :profile, :password]
-  before_action :find_user , only: [:update_permission]
+  before_action :set_user, only: [:update_password, :update, :profile, :password]
+  before_action :find_user, only: [:update_permission]
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
 
@@ -10,10 +10,9 @@ class UserController < ApplicationController
     @users = User.all.order(:first_name).order(created_at: :desc)
   end
 
-  
   def update_permission
     authorize @user
-   redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)
+    redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)
   end
 
   def update
@@ -38,7 +37,6 @@ class UserController < ApplicationController
     end
   end
 
-
   def profile
     authorize @user
   end
@@ -55,7 +53,6 @@ class UserController < ApplicationController
 
   def find_user
     @user ||= User.find(params[:id])
-
   end
 
   def permission

@@ -2,9 +2,9 @@ class AttemptsController < ApplicationController
   before_action :set_survey, only: [:new, :create]
 
   def index
-      @attempts = Survey::Attempt.includes(:participant, :survey).order(updated_at: :desc).all   
-      @pagy, @attempts =  pagy( @attempts, items: 10)
-      render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
+    @attempts = Survey::Attempt.includes(:participant, :survey).order(updated_at: :desc).all
+    @pagy, @attempts = pagy(@attempts, items: 10)
+    render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
   def new

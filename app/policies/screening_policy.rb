@@ -1,9 +1,4 @@
 class ScreeningPolicy < Struct.new(:user, :screening)
-
-  
-    def index?
-
-    end
-
+  def index?
   end
-  
+end

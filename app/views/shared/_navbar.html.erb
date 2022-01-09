@@ -24,13 +24,13 @@
           <% if user_signed_in? %>
         <div class="hidden sm:block sm:ml-6 pl-4">
           <div class="flex space-x-6">
-            <a href=<%= root_path %> class= "<%= current_page?(root_path) ?   "nav-selected" : "nav-unselected" %>">Home</a>
+            <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Home</a>
             <% if policy(:Survey).index? %>
-            <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ?  "nav-selected" : "nav-unselected" %>"> Surveys </a>
-            <a href="/attempts" class="<%= current_page?("/attempts") ?  "nav-selected" : "nav-unselected" %>">Attempts</a>
+            <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ? "nav-selected" : "nav-unselected" %>"> Surveys </a>
+            <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
             <% end %>
              <% if policy(:User).index? %>
-             <a href=<%= user_index_path %> class= "<%= current_page?("/user") ?  "nav-selected" : "nav-unselected" %>"> Users </a>
+             <a href=<%= user_index_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
           <% end %>
           </div>
            </div>
