@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  require "sidekiq/web"
+  require "sidekiq-scheduler/web"
+
+  mount Sidekiq::Web => "/sidekiq"
+  mount ActionCable.server => "/cable"
+
   devise_for :users
   resources :user
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
