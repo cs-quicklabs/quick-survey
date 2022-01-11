@@ -14,4 +14,5 @@ class User < ApplicationRecord
     ["HR", "hr"],
     ["Admin", "admin"],
   ]
+  has_many :survey_attempts
 end
