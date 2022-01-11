@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :set_user, only: [:update_password, :update, :profile, :password]
+  before_action :set_user, only: [:update_password, :update, :profile, :password, :destroy]
   before_action :find_user, only: [:update_permission]
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
@@ -35,6 +35,11 @@ class UserController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/password", locals: { user: @user }) }
       end
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to user_index_path, status: 303, notice: "User has been deleted."
   end
 
   def profile
