@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
 
+  LIMIT = 1
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {
     if Rails.env == "production" or Rails.env == "staging"
@@ -107,6 +108,12 @@ class ApplicationController < ActionController::Base
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
+  end
+
+  def pagy_nil_safe(params, collection, vars = {})
+    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection
   end
 
   protected
