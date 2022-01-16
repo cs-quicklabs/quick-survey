@@ -13,7 +13,7 @@ class AttemptsController < ApplicationController
 
   def create
     @participant = Survey::Participant.create(name: params[:name], email: params[:email])
-    @attempt = Survey::Attempt.create(survey: @survey, participant: @participant, actor: current_user)
+    @attempt = Survey::Attempt.create(survey: @survey, participant: @participant, actor: current_user, created_at: DateTime.now)
     redirect_to new_survey_attempt_path(@attempt)
   end
 
