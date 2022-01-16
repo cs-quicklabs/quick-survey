@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
 
-  LIMIT = 1
+  LIMIT = 30
+
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {
     if Rails.env == "production" or Rails.env == "staging"
