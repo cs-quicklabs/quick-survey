@@ -31,35 +31,26 @@
     </div>
   </div>
   <div class="sm:block">
-    <div class="inline-block min-w-full align-middle ">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Name
-            </th>
-            <th scope="col" class="relative px-6 py-3">
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <% @surveys.each do |survey| %>
-            <tr class="bg-white" id="<%= dom_id(survey) %>">
-              <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900">
-                <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
-                  <%= survey.name %>
-                </a>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-  
-                <%= link_to "Edit", edit_survey_path(survey), class: "text-indigo-600 hover:text-indigo-900" %>
-                <%= link_to "Show", survey_path(survey), class: "ml-4 text-indigo-600 hover:text-indigo-900" %>
-                <%= styled_delete_button(survey_path(survey), "text-indigo-600 hover:text-indigo-900 ml-4") %>
-              </td>
+    <div class="inline-block min-w-full align-middle " data-controller="infinite-scroll">
+      <div>
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Name
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+              </th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries">
+            <%= render partial: "survey", collection: @surveys, as: :survey, cached: false %>
+          </tbody>
+        </table>
+        <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+          <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
