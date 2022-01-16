@@ -3,6 +3,8 @@ class RootController < ApplicationController
     path = case current_user.permission
       when "resume_screener"
         resume_path
+      when "team_lead"
+        resume_path
       when "interview_screener"
         interview_path
       when "telephonic_screener"

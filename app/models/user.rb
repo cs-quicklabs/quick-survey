@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
 
-  enum permission: [:telephonic_screener, :resume_screener, :interviewer, :hr, :admin]
+  enum permission: [:telephonic_screener, :resume_screener, :interviewer, :hr, :admin, :team_lead]
 
   validates_presence_of :first_name, :last_name
   Permissions = [
@@ -12,6 +12,7 @@ class User < ApplicationRecord
     ["Resume Screener", "resume_screener"],
     ["Interviewer", "interviewer"],
     ["HR", "hr"],
+    ["Team Lead ", "team_lead"],
     ["Admin", "admin"],
   ]
   has_many :survey_attempts
