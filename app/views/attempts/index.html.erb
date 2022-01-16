@@ -6,16 +6,19 @@
     <table class="table">
       <thead class="bg-gray-50">
         <tr>
-          <th scope="col" class="w-full  table-head">
+          <th scope="col" class="w-full table-head">
             Participant
           </th>
-          <th scope="col" class="w-full  table-head">
+          <th scope="col" class="w-full table-head">
+            Submitted by
+          </th>
+          <th scope="col" class="w-full table-head">
             Email
           </th>
-          <th scope="col" class=" table-head ">
+          <th scope="col" class="table-head">
             Survey
           </th>
-          <th scope="col" class=" table-head ">
+          <th scope="col" class="table-head">
             Date
           </th>
           <th scope="col" class="table-head">
@@ -28,7 +31,7 @@
       </tbody>
     </table>
     <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
-     <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+      <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
     </div>
   </div>
 </div>
