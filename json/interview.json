@@ -2,7 +2,7 @@
     {
         "name": "Android Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/74/attempts/new",
             "developer": "/surveys/1/attempts/new",
             "senior": "/surveys/1/attempts/new",
             "associate": "/surveys/1/attempts/new",
@@ -52,7 +52,7 @@
     {
         "name": "Laravel Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/66/attempts/new",
             "developer": "/surveys/67/attempts/new",
             "senior": "/surveys/68/attempts/new",
             "associate": "/surveys/1/attempts/new",
@@ -62,7 +62,7 @@
     {
         "name": "Node Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/70/attempts/new",
             "developer": "/surveys/71/attempts/new",
             "senior": "/surveys/72/attempts/new",
             "associate": "/surveys/1/attempts/new",
@@ -73,7 +73,7 @@
         "name": "Project Manager",
         "roles": {
             "trainee": "/surveys/1/attempts/new",
-            "senior": "/surveys/1/attempts/new",
+            "senior": "/surveys/98/attempts/new",
             "associate": "/surveys/1/attempts/new",
             "Delivery": "/surveys/1/attempts/new"
         }
@@ -91,7 +91,7 @@
     {
         "name": "Quality Analyst",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/93/attempts/new",
             "developer": "/surveys/88/attempts/new",
             "senior": "/surveys/1/attempts/new",
             "associate": "/surveys/1/attempts/new",
@@ -101,7 +101,7 @@
     {
         "name": "React Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/75/attempts/new",
             "developer": "/surveys/80/attempts/new",
             "senior": "/surveys/81/attempts/new",
             "associate": "/surveys/1/attempts/new",
@@ -111,7 +111,7 @@
     {
         "name": "React Native Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/76/attempts/new",
             "developer": "/surveys/77/attempts/new",
             "senior": "/surveys/78/attempts/new",
             "associate": "/surveys/1/attempts/new",
