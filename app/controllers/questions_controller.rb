@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to survey_path(@survey), alert: "Question was Deleted"
+    redirect_to survey_path(@survey), alert: "Question was Deleted", status: 303
   end
 
   def update
