@@ -32,10 +32,10 @@
     {
         "name": "iOS Developer",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/61/attempts/new",
             "developer": "/surveys/62/attempts/new",
             "senior": "/surveys/63/attempts/new",
-            "associate": "/surveys/1/attempts/new",
+            "associate": "/surveys/130/attempts/new",
             "teamLead": "/surveys/64/attempts/new"
         }
     },
@@ -65,7 +65,7 @@
             "trainee": "/surveys/70/attempts/new",
             "developer": "/surveys/71/attempts/new",
             "senior": "/surveys/72/attempts/new",
-            "associate": "/surveys/1/attempts/new",
+            "associate": "/surveys/132/attempts/new",
             "teamLead": "/surveys/73/attempts/new"
         }
     },
@@ -114,7 +114,7 @@
             "trainee": "/surveys/76/attempts/new",
             "developer": "/surveys/77/attempts/new",
             "senior": "/surveys/78/attempts/new",
-            "associate": "/surveys/79/attempts/new",
+            "associate": "/surveys/131/attempts/new",
             "teamLead": "/surveys/79/attempts/new"
         }
     },
