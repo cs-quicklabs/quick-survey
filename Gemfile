@@ -1,29 +1,47 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
 ruby "3.0.2"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 6.1.4"
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-# Use Puma as the app server
-gem "puma", "~> 5.0"
-# Use SCSS for stylesheets
-gem "sass-rails", ">= 6"
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 5.0"
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem "turbolinks", "~> 5"
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.7"
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
+gem "rails", "7.0.0"
 
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails", "3.4.2"
+
+# Use postgresql as the database for Active Record
+gem "pg", "1.2.3"
+
+# Use Puma as the app server [https://github.com/puma/puma]
+gem "puma", "5.5.1"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails", "1.0.0"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails", "1.0.0"
+
+# Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
+gem "turbo-rails", "1.0.0"
+
+# Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
+gem "stimulus-rails", "1.0.0"
+
+# Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
+gem "stimulus_reflex", "= 3.5.0.pre8"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
+gem "wkhtmltopdf-binary"
+gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
+gem "hiredis"
+gem "json"
+gem "pagy"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
@@ -55,10 +73,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "tailwindcss-rails", "~> 0.4.1"
-
-gem "stimulus_reflex", "~> 3.4"
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
-gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
-gem "hiredis"

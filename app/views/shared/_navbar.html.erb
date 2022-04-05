@@ -1,20 +1,22 @@
-<div data-reflex-permanent>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav  class="bg-gray-800" id="menubar">
-    <div class="px-2 mx-auto sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between h-12">
-        <div  class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        </div>
-        <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-          <div class="flex items-center flex-shrink-0">
+<!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="px-2 mx-auto sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-12">
+      <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+        <div class="flex items-center flex-shrink-0">
           <a href="<%= root_path %>">
             <img class="block w-auto h-8 lg:hidden" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Survey">
             <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Survey">
           </a>
+        </div>
+        <div class="hidden sm:block sm:ml-6 pl-4">
+          <div class="flex space-x-6">
+            <a href=<%= root_path %> class= "<%= current_page?(root_path) ?   "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>">Home</a>
+            <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ?  "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>"> Surveys </a>
+            <a href="/attempts" class="<%= current_page?("/attempts") ?  "bg-gray-900 text-white hover:bg-gray-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium" : " text-white text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>">Attempts</a>
           </div>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 </nav>
-</div>

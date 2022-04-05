@@ -2,6 +2,9 @@ class AttemptsController < ApplicationController
   before_action :set_survey, only: [:new, :create]
 
   def index
+      @attempts = Survey::Attempt.includes(:participant, :survey).order(updated_at: :desc).all   
+      @pagy, @attempts =  pagy( @attempts, items: 10)
+      render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
   def new
@@ -21,9 +24,9 @@ class AttemptsController < ApplicationController
   def submit
     @attempt = Survey::Attempt.find(params[:id])
     if @attempt.survey.survey_type == 0
-      redirect_to checklist_report_path(@attempt, format: :html)
+      redirect_to checklist_report_path(@attempt)
     else
-      redirect_to score_report_path(@attempt, format: :html)
+      redirect_to score_report_path(@attempt)
     end
   end
 

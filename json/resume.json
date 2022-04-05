@@ -1,0 +1,131 @@
+[
+    {
+        "name": "Android Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/28/attempts/new",
+            "senior": "/surveys/27/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/26/attempts/new"
+        }
+    },
+    {
+        "name": "Angular Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/23/attempts/new",
+            "senior": "/surveys/22/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/5/attempts/new"
+        }
+    },
+    {
+        "name": "DevOps Engineer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/51/attempts/new",
+            "senior": "/surveys/33/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/50/attempts/new"
+        }
+    },
+    {
+        "name": "iOS Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/34/attempts/new",
+            "senior": "/surveys/65/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/32/attempts/new"
+        }
+    },
+    {
+        "name": "Java Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/1/attempts/new",
+            "senior": "/surveys/1/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/1/attempts/new"
+        }
+    },
+    {
+        "name": "Laravel Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/40/attempts/new",
+            "senior": "/surveys/39/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/38/attempts/new"
+        }
+    },
+    {
+        "name": "Node Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/19/attempts/new",
+            "senior": "/surveys/18/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/7/attempts/new"
+        }
+    },
+    {
+        "name": "Project Manager",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "senior": "/surveys/48/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "Delivery": "/surveys/47/attempts/new"
+        }
+    },
+    {
+        "name": "Python/Django Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/1/attempts/new",
+            "senior": "/surveys/1/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/1/attempts/new"
+        }
+    },
+    {
+        "name": "Quality Analyst",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/46/attempts/new",
+            "senior": "/surveys/45/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/44/attempts/new"
+        }
+    },
+    {
+        "name": "React Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/13/attempts/new",
+            "senior": "/surveys/12/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/1/attempts/new"
+        }
+    },
+    {
+        "name": "React Native Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/11/attempts/new",
+            "senior": "/surveys/10/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/3/attempts/new"
+        }
+    },
+    {
+        "name": "RoR Developer",
+        "roles": {
+            "trainee": "/surveys/1/attempts/new",
+            "developer": "/surveys/1/attempts/new",
+            "senior": "/surveys/1/attempts/new",
+            "associate": "/surveys/1/attempts/new",
+            "teamLead": "/surveys/1/attempts/new"
+        }
+    }
+]
