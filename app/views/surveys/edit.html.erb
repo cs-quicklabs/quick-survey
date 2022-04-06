@@ -21,6 +21,12 @@
             </label>
             <%= form.text_area :description, required: true, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
           </div>
+           <div class="sm:col-span-4 pt-6">
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Survey Stage
+            </label>
+            <%= form.select(:survey_stage, [["Resume", 0], ["Telephonic", 1],["Interview 1", 1],["Interview 2", 1],["HR", 1]], { selected: params["survey_stage"] }, :class => "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1") %>
+          </div>
         </div>
         <div class="pt-5">
           <div class="flex justify-end">

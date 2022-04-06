@@ -17,8 +17,50 @@ class Survey::SurveyDecorator < Draper::Decorator
     end
   end
 
+  def survey_type_color
+    if self.survey_type?
+      "green"
+    else
+      "indigo"
+    end
+  end
+
   def display_survey_type
-    survey_type.titleize
+    if self.survey_type?
+      "Score"
+    else
+      "Checklist"
+    end
+  end
+  def survey_stage_color
+    if self.survey_stage==0
+      "indigo"
+    elsif self.survey_stage==1
+      "gray"
+    elsif self.survey_stage==2
+      "green"
+    elsif self.survey_stage==3
+      "red"
+    elsif self.survey_stage==4
+      "purple"
+    else
+      ""
+    end
+  end
+  def display_survey_stage
+    if self.survey_stage==0
+      "Resume"
+    elsif self.survey_stage==1
+      "Telephonic Interview"
+    elsif self.survey_stage==2
+      "Interview 1"
+    elsif self.survey_stage==3
+      "Interview 2"
+    elsif self.survey_stage==4
+      "HR Interview"
+    else
+      ""
+    end
   end
 
   def display_survey_for
