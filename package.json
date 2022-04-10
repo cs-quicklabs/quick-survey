@@ -20,8 +20,8 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
   "engines": {
-    "node": "12.16.2",
+    "node": "16.12.0",
     "npm": "7.6.0",
-    "yarn": "1.22.11"
+    "yarn": "1.22.18"
   }
 }
