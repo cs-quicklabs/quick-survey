@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :surveys do
     resources :questions
   end
-
+  get "/sections/dashboard" => "sections#dashboard"
+  get "/sections/content" => "sections#content"
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
   get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
 

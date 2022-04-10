@@ -1,9 +1,20 @@
  
+<% survey=survey.decorate%>
 <tr class="bg-white" id="<%= dom_id(survey) %>">
-  <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900">
+  <td class="w-full py-3 whitespace-nowrap text-sm font-medium text-gray-900">
     <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
       <%= survey.name %>
     </a>
+  </td>
+  <td class="px-6 py-3 ">
+  <span class="inline-flex  items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-<%= survey.survey_stage_color %>-100 text-<%= survey.survey_stage_color %>-800  whitespace-nowrap">
+      <%= survey.display_survey_stage %>
+      <span>
+  </td>
+  <td class="px-10 py-3">
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-<%= survey.survey_type_color %>-100 text-<%= survey.survey_type_color %>-800  whitespace-nowrap">
+      <%= survey.display_survey_type %>
+      </span>
   </td>
   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
     <%= link_to "Edit", edit_survey_path(survey), class: "text-indigo-600 hover:text-indigo-900" %>

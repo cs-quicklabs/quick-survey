@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_173217) do
+ActiveRecord::Schema.define(version: 2022_04_06_135411) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -69,9 +70,9 @@ ActiveRecord::Schema.define(version: 2022_01_10_173217) do
     t.boolean "winner"
     t.integer "score"
     t.string "comment"
-    t.datetime "created_at", precision: 6, default: "2021-12-24 12:01:17", null: false
-    t.datetime "updated_at", precision: 6, default: "2021-12-24 12:01:17", null: false
-    t.integer "actor_id", null: false
+    t.datetime "created_at", precision: 6, default: "2021-12-29 11:51:36", null: false
+    t.datetime "updated_at", precision: 6, default: "2021-12-29 11:51:36", null: false
+    t.integer "actor_id"
   end
 
   create_table "survey_options", force: :cascade do |t|
@@ -108,6 +109,9 @@ ActiveRecord::Schema.define(version: 2022_01_10_173217) do
     t.integer "survey_type", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.virtual "searchable", type: :tsvector, as: "setweight(to_tsvector('english'::regconfig, (COALESCE(name, ''::character varying))::text), 'A'::\"char\")", stored: true
+    t.integer "survey_stage"
+    t.index ["searchable"], name: "index_survey_surveys_on_searchable", using: :gin
   end
 
   create_table "users", force: :cascade do |t|
