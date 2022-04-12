@@ -73,8 +73,9 @@
         "name": "Project Manager",
         "roles": {
             "trainee": "/surveys/1/attempts/new",
+            "manager": "/surveys/47/attempts/new",
             "senior": "/surveys/48/attempts/new",
-            "associate": "/surveys/1/attempts/new",
+            "associate": "/surveys/49/attempts/new",
             "Delivery": "/surveys/47/attempts/new"
         }
     },
@@ -104,7 +105,7 @@
             "trainee": "/surveys/1/attempts/new",
             "developer": "/surveys/13/attempts/new",
             "senior": "/surveys/12/attempts/new",
-            "associate": "/surveys/1/attempts/new",
+            "associate": "/surveys/112/attempts/new",
             "teamLead": "/surveys/1/attempts/new"
         }
     },
@@ -114,7 +115,7 @@
             "trainee": "/surveys/1/attempts/new",
             "developer": "/surveys/11/attempts/new",
             "senior": "/surveys/10/attempts/new",
-            "associate": "/surveys/112/attempts/new",
+            "associate": "/surveys/3/attempts/new",
             "teamLead": "/surveys/113/attempts/new"
         }
     },
