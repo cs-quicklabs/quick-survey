@@ -2,6 +2,11 @@
 <% participant = attempt.participant %>
 <tr class="bg-white " id="<%= dom_id(attempt) %>">
   <td class=" whitespace-nowrap  table-cell">
+    <a href="/reports/score/<%= attempt.id %>" class="hover:underline">
+      <p> <%= survey.name.upcase_first %></p>
+    </a>
+  </td>
+  <td class=" whitespace-nowrap  table-cell">
     <p> <%= participant.name.upcase_first %></p>
   </td>
   <td class=" whitespace-nowrap  table-cell">
@@ -9,9 +14,6 @@
   </td>
   <td class=" whitespace-nowrap  table-cell">
     <p> <%= attempt.actor.decorate.display_name %></p>
-  </td>
-  <td class=" whitespace-nowrap  table-cell">
-    <p> <%= survey.name.upcase_first %></p>
   </td>
   <td class=" whitespace-nowrap  table-cell">
     <p> <%= attempt.created_at.to_date.to_formatted_s(:long) %></p>

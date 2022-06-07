@@ -1,5 +1,5 @@
 class SurveyPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    true
   end
 end
