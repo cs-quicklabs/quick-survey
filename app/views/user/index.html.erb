@@ -1,43 +1,45 @@
   <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
-
- <!-- Page title & actions -->
+  <!-- Page title & actions -->
   <div class="px-4 py-4    border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
     <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
       <h1 class="text-3xl font-bold leading-tight text-gray-900">
         Users
       </h1>
     </div>
-    <div class="flex mt-4 sm:mt-0 sm:ml-4">
-      <%= link_to "Invite New User", new_user_invitation_path, class: "ml-3  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    </div>
+    <% if current_user.admin? %>
+      <div class="flex mt-4 sm:mt-0 sm:ml-4">
+        <%= link_to "Invite New User", new_user_invitation_path, class: "ml-3  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+    <% end %>
   </div>
-
-<div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto">
-    <div class="py-2 align-middle inline-block min-w-full s">
-      <div class="overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col"  class="table-head">
-                Name
-              </th>
-              <th scope="col"  class="table-head">
-                Email
-              </th>
-              <th scope="col"  class="table-head">
-                Permission
-              </th>
-              <th scope="col" class="table-head">
-                Action
-              </th>
-            </thead>
-            <tbody class="table-body">
-              <%= render partial: "user/user", collection: @users, as: :user, cached: false %>
-            </tbody>
-          </table>
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto">
+      <div class="py-2 align-middle inline-block min-w-full s">
+        <div class="overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col"  class="table-head">
+                  Name
+                </th>
+                <th scope="col"  class="table-head">
+                  Email
+                </th>
+                <th scope="col"  class="table-head">
+                  Permission
+                </th>
+                <% if current_user.admin? %>
+                  <th scope="col" class="table-head">
+                    Action
+                  </th>
+                <% end %>
+              </thead>
+              <tbody class="table-body">
+                <%= render partial: "user/user", collection: @users, as: :user, cached: false %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
