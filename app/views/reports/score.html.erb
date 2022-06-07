@@ -4,15 +4,15 @@
     <div class=" items-baseline px-12">
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
-      <h4 class="text-md  leading-tight text-gray-900"><%= @attempt.participant.email %></h4>
-      <h4 class="text-md leading-tight text-gray-900"><%= @attempt.survey.name.titleize %></h4>
+      <h4 class="text-sm  leading-tight text-gray-600"><%= @attempt.participant.email %></h4>
+      <h4 class="text-sm leading-tight text-gray-600"><%= @attempt.survey.name.titleize %></h4>
     </div>
-    <div class=" px-52">
+    <div class="pr-12">
       <h4 class="text-lg leading-tight text-gray-900 mr-10">
         <% score = @attempt.correct_answers.reduce(0.0) { |sum, answer| sum + answer.score } %>
         <% total = (@attempt.answers.count * 10) %>
         <% percentage = (score / total) * 100.0 %></h4>
-      <h1 class="text-lg leading-tight text-gray-900" >Score: <%= percentage.round(2) %>%</h1>
+      <h1 class="text-2xl font-bold leading-tight text-gray-900" >Score: <%= percentage.round(2) %>%</h1>
     </div>
   </div>
   <div class=" w-full ">

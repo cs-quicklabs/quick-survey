@@ -13,6 +13,8 @@ class RootController < ApplicationController
         vendor_path
       when "hr"
         hr_path
+      when "admin"
+        resume_path
       else
         vendor_path
       end
