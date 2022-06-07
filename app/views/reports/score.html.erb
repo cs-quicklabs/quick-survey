@@ -1,13 +1,14 @@
-<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none px-32">
   <!-- Page title & actions -->
-  <div class="px-8 py-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
-    <div class=" items-baseline px-12">
+  <div class="py-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+    <div class=" items-baseline">
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
-      <h4 class="text-sm  leading-tight text-gray-600"><%= @attempt.participant.email %></h4>
-      <h4 class="text-sm leading-tight text-gray-600"><%= @attempt.survey.name.titleize %></h4>
+      <h4 class="text-sm  leading-tight text-gray-400"><%= @attempt.participant.email %></h4>
+      <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4>
+      <h4 class="text-sm leading-tight text-gray-400">Submitted By: <%= @attempt.actor.decorate.display_name %> on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
     </div>
-    <div class="pr-12">
+    <div class="">
       <h4 class="text-lg leading-tight text-gray-900 mr-10">
         <% score = @attempt.correct_answers.reduce(0.0) { |sum, answer| sum + answer.score } %>
         <% total = (@attempt.answers.count * 10) %>
@@ -16,11 +17,11 @@
     </div>
   </div>
   <div class=" w-full ">
-    <div class="pb-8">
+    <div class="">
       <table class="min-w-full divide-y divide-gray-200 pb-8">
         <thead class="bg-gray-50">
           <tr>
-            <th scope="col" class="px-20 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               #         </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
@@ -30,7 +31,7 @@
         <tbody class="bg-white divide-y divide-gray-200">
           <% @attempt.survey.questions.each_with_index do |question, index| %>
             <tr class="bg-white ">
-              <td class="py-3  px-20 text-sm font-medium text-gray-900">
+              <td class="py-3  px-6 text-sm font-medium text-gray-900">
                 <%= index + 1 %></td>
               <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
               <td class="py-3 px-6 text-sm font-medium text-gray-900"><%= question.marked_score(@attempt).to_s %></td>

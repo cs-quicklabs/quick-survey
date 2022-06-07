@@ -2,6 +2,7 @@
   <h2  class="bold"><%= @attempt.participant.name.titleize %></h2>
   <h4><%= @attempt.participant.email %></h4>
   <h4 ><%= @attempt.survey.name.titleize %></h4>
+  <h4 >Submitted By: <%= @attempt.actor.decorate.display_name %> on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
 </div>
 <div class="d-inline-block float-end  align-top pb-4 pr-4">
   <h2  class="bold">Score: <%= @attempt.correct_answers.count %>/<%= @attempt.survey.questions.count %></h1>
