@@ -4,10 +4,13 @@
   <div class="max-w-4xl w-full space-y-8 ">
     <div>
       <h3 class="text-lg leading-6 font-medium text-gray-900 text-center">
-        <%= @attempt.participant.name %>
+        <%= @attempt.participant.name.titleize %>
       </h3>
       <p class="mt-1 w-full text-sm text-gray-500 text-center">
-        <%= survey.name %>
+        <%= survey.name.titleize %>
+      </p>
+      <p class="mt-1 w-full text-sm text-gray-500 text-center">
+        Note: Please try to cover all the questions and add comments explaining your findings before submitting the form in next step.
       </p>
     </div>
     <div class="">
