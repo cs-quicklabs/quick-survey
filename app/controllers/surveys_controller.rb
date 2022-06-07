@@ -9,32 +9,43 @@ class SurveysController < ApplicationController
   end
 
   def new
+    authorize :Survey
+
     @survey = Survey::Survey.new
   end
 
   def edit
+    authorize :Survey
   end
 
   def destroy
+    authorize :Survey
+
     @survey.destroy
     redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
   end
 
   def update
+    authorize :Survey
+
     @survey.update(survey_params)
     redirect_to survey_path(@survey)
   end
 
   def create
+    authorize :Survey
     @survey = Survey::Survey.new(survey_params)
     redirect_to survey_path(@survey) if @survey.save
   end
 
   def show
+    authorize :Survey
     @question = Survey::Question.new
   end
 
   def clone
+    authorize :Survey
+
     @clone = Survey::Survey.new
     @clone.name = @survey.name + " (Copy)"
     @clone.survey_type = @survey.survey_type
