@@ -73,9 +73,9 @@
         "name": "Project Manager",
         "roles": {
             "trainee": "/surveys/1/attempts/new",
-            "manager": "/surveys/1/attempts/new",
+            "manager": "/surveys/127/attempts/new",
             "senior": "/surveys/98/attempts/new",
-            "associate": "/surveys/1/attempts/new",
+            "associate": "/surveys/142/attempts/new",
             "Delivery": "/surveys/1/attempts/new"
         }
     },
