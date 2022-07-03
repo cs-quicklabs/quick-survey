@@ -7,33 +7,43 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.2"
+
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.0"
+gem "rails", "7.0.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
-gem "devise_invitable", "~> 2.0.0"
+
 # Use postgresql as the database for Active Record
 gem "pg", "1.2.3"
-gem "draper"
+
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "5.5.1"
-gem "devise", github: "heartcombo/devise", branch: "main"
+gem "puma", "5.6.4"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.0.0"
-gem "devise-pwned_password"
-gem "letter_opener_web", group: :development
+gem "jsbundling-rails", "1.0.3"
+
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.0.0"
+gem "cssbundling-rails", "1.1.1"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.0.0"
+gem "turbo-rails", "1.1.1"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.0.0"
-gem "pundit"
+gem "stimulus-rails", "1.0.4"
+
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre8"
+gem "stimulus_reflex", "= 3.5.0.pre9"
+
+
+gem "devise_invitable", "~> 2.0.0"
+# Use postgresql as the database for Active Record
+
+gem "draper"
+gem "devise", github: "heartcombo/devise", branch: "main"
+gem "devise-pwned_password"
+gem "letter_opener_web", group: :development
+gem "pundit"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"

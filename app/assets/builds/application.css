@@ -1023,10 +1023,6 @@ select {
   margin-left: 2rem;
 }
 
-.mr-48 {
-  margin-right: 12rem;
-}
-
 .mr-10 {
   margin-right: 2.5rem;
 }
@@ -1141,10 +1137,6 @@ select {
 
 .w-4 {
   width: 1rem;
-}
-
-.w-11\/12 {
-  width: 91.666667%;
 }
 
 .w-5 {
@@ -1543,29 +1535,14 @@ select {
   padding-bottom: 3rem;
 }
 
-.px-32 {
-  padding-left: 8rem;
-  padding-right: 8rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+.px-32 {
+  padding-left: 8rem;
+  padding-right: 8rem;
 }
 
 .py-8 {
@@ -1578,14 +1555,9 @@ select {
   padding-right: 3rem;
 }
 
-.px-52 {
-  padding-left: 13rem;
-  padding-right: 13rem;
-}
-
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .py-3 {
@@ -1593,9 +1565,9 @@ select {
   padding-bottom: 0.75rem;
 }
 
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .px-3 {
@@ -1616,10 +1588,6 @@ select {
   padding-top: 1.5rem;
 }
 
-.pt-5 {
-  padding-top: 1.25rem;
-}
-
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1630,6 +1598,14 @@ select {
 
 .pb-12 {
   padding-bottom: 3rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .pb-8 {
@@ -1674,10 +1650,6 @@ select {
 
 .pb-10 {
   padding-bottom: 2.5rem;
-}
-
-.pt-4 {
-  padding-top: 1rem;
 }
 
 .text-left {
@@ -1796,6 +1768,11 @@ select {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .text-red-400 {
   --tw-text-opacity: 1;
   color: rgb(248 113 113 / var(--tw-text-opacity));
@@ -1809,11 +1786,6 @@ select {
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .text-blue-600 {
