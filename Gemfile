@@ -33,7 +33,7 @@ gem "turbo-rails", "1.1.1"
 gem "stimulus-rails", "1.0.4"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre9"
+gem "stimulus_reflex", "= 3.5.0.pre8"
 
 
 gem "devise_invitable", "~> 2.0.0"
