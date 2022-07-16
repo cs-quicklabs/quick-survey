@@ -5,15 +5,15 @@
     "@hotwired/stimulus": "3.0.1",
     "@hotwired/turbo": "7.1.0",
     "@rails/actiontext": "^7.0.0",
-    "@tailwindcss/forms": "0.4.0",
-    "@tailwindcss/line-clamp": "0.3.0",
+    "@tailwindcss/forms": "0.5.2",
+    "@tailwindcss/line-clamp": "0.4.0",
     "autoprefixer": "10.4.0",
-    "esbuild": "^0.14.7",
-    "postcss": "8.4.4",
+    "esbuild": "^0.14.49",
+    "postcss": "8.4.14",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre8",
-    "tailwindcss": "3.0.1",
-    "trix": "^1.3.1"
+    "tailwindcss": "3.1.6",
+    "trix": "1.3.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
