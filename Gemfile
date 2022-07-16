@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.2"
+ruby "3.1.2"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "7.0.3"
@@ -59,7 +59,7 @@ gem "sidekiq-scheduler"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.4.4", require: false
+gem "bootsnap", "1.12.0", require: false
 gem "rexml"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
