@@ -48,8 +48,8 @@ gem "pundit"
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
-gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
+gem "redis", ">= 4.0"
 gem "json"
 gem "pagy"
 
