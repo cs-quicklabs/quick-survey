@@ -2,11 +2,11 @@
     {
         "name": "Android Developer",
         "roles": {
-            "trainee": "/surveys/74/attempts/new",
-            "developer": "/surveys/1/attempts/new",
-            "senior": "/surveys/1/attempts/new",
-            "associate": "/surveys/1/attempts/new",
-            "teamLead": "/surveys/1/attempts/new"
+            "trainee": "/surveys/151/attempts/new",
+            "developer": "/surveys/150/attempts/new",
+            "senior": "/surveys/149/attempts/new",
+            "associate": "/surveys/147/attempts/new",
+            "teamLead": "/surveys/148/attempts/new"
         }
     },
     {
@@ -72,11 +72,11 @@
     {
         "name": "Project Manager",
         "roles": {
-            "trainee": "/surveys/1/attempts/new",
+            "trainee": "/surveys/145/attempts/new",
             "manager": "/surveys/127/attempts/new",
             "senior": "/surveys/98/attempts/new",
             "associate": "/surveys/142/attempts/new",
-            "Delivery": "/surveys/1/attempts/new"
+            "Delivery": "/surveys/144/attempts/new"
         }
     },
     {
