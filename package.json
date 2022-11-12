@@ -2,17 +2,17 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@hotwired/stimulus": "3.0.1",
-    "@hotwired/turbo": "7.1.0",
-    "@rails/actiontext": "^7.0.0",
-    "@tailwindcss/forms": "0.5.2",
-    "@tailwindcss/line-clamp": "0.4.0",
-    "autoprefixer": "10.4.0",
-    "esbuild": "^0.14.49",
-    "postcss": "8.4.14",
+    "@hotwired/stimulus": "3.1.1",
+    "@hotwired/turbo": "7.2.4",
+    "@rails/actiontext": "7.0.4",
+    "@tailwindcss/forms": "0.5.3",
+    "@tailwindcss/line-clamp": "0.4.2",
+    "autoprefixer": "10.4.13",
+    "esbuild": "0.15.13",
+    "postcss": "8.4.19",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre8",
-    "tailwindcss": "3.1.6",
+    "tailwindcss": "3.2.3",
     "trix": "1.3.1"
   },
   "scripts": {
@@ -20,8 +20,22 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
   "engines": {
-    "node": "16.12.0",
-    "npm": "7.6.0",
+    "node": "19.0.1",
+    "npm": "8.19.3",
     "yarn": "1.22.19"
+  },
+  "comments": {
+    "@hotwired/stimulus": "https://github.com/hotwired/stimulus",
+    "@hotwired/turbo": "https://github.com/hotwired/turbo",
+    "@rails/actiontext": "7.0.4",
+    "@tailwindcss/forms": "https://github.com/tailwindlabs/tailwindcss-forms",
+    "@tailwindcss/line-clamp": "https://github.com/tailwindlabs/tailwindcss-line-clamp",
+    "autoprefixer": "https://github.com/postcss/autoprefixer",
+    "esbuild": "https://github.com/evanw/esbuild",
+    "postcss": "https://github.com/postcss/postcss",
+    "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
+    "stimulus_reflex": "https://github.com/stimulusreflex/stimulus_reflex",
+    "tailwindcss": "https://github.com/tailwindlabs/tailwindcss",
+    "trix": "https://github.com/basecamp/trix"
   }
 }

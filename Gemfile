@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.3"
+gem "rails", "7.0.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
@@ -18,7 +18,7 @@ gem "sprockets-rails", "3.4.2"
 gem "pg", "1.2.3"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "5.6.4"
+gem "puma", "6.0.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.3"
@@ -27,10 +27,10 @@ gem "jsbundling-rails", "1.0.3"
 gem "cssbundling-rails", "1.1.1"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.1.1"
+gem "turbo-rails", "1.3.2"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.0.4"
+gem "stimulus-rails", "1.1.1"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
 gem "stimulus_reflex", "= 3.5.0.pre8"
@@ -59,7 +59,7 @@ gem "sidekiq-scheduler"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "1.12.0", require: false
+gem "bootsnap", "1.13.0", require: false
 gem "rexml"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -79,7 +79,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 3.26"
+  gem "capybara", ">= 3.38"
   gem "selenium-webdriver"
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
