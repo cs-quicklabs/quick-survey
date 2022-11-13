@@ -49,13 +49,13 @@ gem "pundit"
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "hiredis"
-gem "redis", ">= 4.0"
+gem "redis", "5.0.5"
 gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq"
-gem "sidekiq-scheduler"
+gem "sidekiq", "7.0.1"
+gem "sidekiq-scheduler", "4.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
