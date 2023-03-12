@@ -35,13 +35,13 @@ gem "stimulus-rails", "1.1.1"
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
 gem "stimulus_reflex", "= 3.5.0.pre8"
 
-
+gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
-# Use postgresql as the database for Active Record
+gem "devise-pwned_password"
+
+
 
 gem "draper"
-gem "devise", github: "heartcombo/devise", branch: "main"
-gem "devise-pwned_password"
 gem "letter_opener_web", group: :development
 gem "pundit"
 # Use Active Storage variant
