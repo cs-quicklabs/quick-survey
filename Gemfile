@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.2.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "7.0.4"
@@ -15,7 +15,7 @@ gem "rails", "7.0.4"
 gem "sprockets-rails", "3.4.2"
 
 # Use postgresql as the database for Active Record
-gem "pg", "1.2.3"
+gem "pg"
 
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma", "6.0.0"
