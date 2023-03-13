@@ -49,7 +49,7 @@ gem "pundit"
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "hiredis"
-gem "redis", "4.8.0"
+gem "redis", "4.8.1"
 gem "json"
 gem "pagy"
 
