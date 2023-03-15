@@ -27,7 +27,7 @@ gem "jsbundling-rails", "1.0.3"
 gem "cssbundling-rails", "1.1.1"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.3.2"
+gem "turbo-rails", "1.4.0"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.1.1"
@@ -49,13 +49,13 @@ gem "pundit"
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "hiredis"
-gem "redis", "4.8.0"
+gem "redis", "4.8.1"
 gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq", "6.5.8"
-gem "sidekiq-scheduler", "4.0.2"
+gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -71,7 +71,7 @@ group :development do
   gem "web-console", ">= 4.1.0"
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 2.0"
+  gem "rack-mini-profiler", "~> 3.0"
   gem "listen", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
