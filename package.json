@@ -8,16 +8,18 @@
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/line-clamp": "0.4.2",
     "autoprefixer": "10.4.13",
-    "esbuild": "0.15.13",
+    "esbuild": "0.17.11",
     "postcss": "8.4.21",
-    "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre10",
     "tailwindcss": "3.2.3",
-    "trix": "2.0.4"
+    "trix": "2.0.4",
+    "cable_ready": "5.0.0-pre10",
+    "esbuild-rails": "^1.0.3"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+    "build": "node esbuild.config.mjs",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
   },
   "engines": {
     "node": "19.0.1",

@@ -1,4 +1,5 @@
 import { Application } from "@hotwired/stimulus"
+import consumer from "../channels/consumer"
 
 const application = Application.start()
 

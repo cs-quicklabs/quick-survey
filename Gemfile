@@ -18,7 +18,7 @@ gem "sprockets-rails", "3.4.2"
 gem "pg"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.0.0"
+gem "puma", "6.1.1"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.3"
@@ -33,7 +33,7 @@ gem "turbo-rails", "1.4.0"
 gem "stimulus-rails", "1.1.1"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre8"
+gem "stimulus_reflex", "= 3.5.0.pre10"
 
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
@@ -54,7 +54,7 @@ gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "6.5.8"
+gem "sidekiq", "7.0.7"
 gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
@@ -74,7 +74,7 @@ group :development do
   gem "rack-mini-profiler", "~> 3.0"
   gem "listen", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
+#   gem "spring"
 end
 
 group :test do
@@ -87,3 +87,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "action-cable-redis-backport", "~> 1"
