@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.4"
+gem "rails", "7.0.4.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
