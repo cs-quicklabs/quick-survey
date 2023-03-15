@@ -55,7 +55,7 @@ gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq", "6.5.8"
-gem "sidekiq-scheduler", "4.0.2"
+gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
