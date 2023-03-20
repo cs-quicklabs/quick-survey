@@ -118,7 +118,7 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
-    cssbundling-rails (1.1.1)
+    cssbundling-rails (1.1.2)
       railties (>= 6.0.0)
     date (3.3.3)
     devise-pwned_password (0.1.9)
@@ -329,7 +329,7 @@ DEPENDENCIES
   bootsnap (= 1.13.0)
   byebug
   capybara (>= 3.38)
-  cssbundling-rails (= 1.1.1)
+  cssbundling-rails (= 1.1.2)
   devise!
   devise-pwned_password
   devise_invitable (~> 2.0.0)
