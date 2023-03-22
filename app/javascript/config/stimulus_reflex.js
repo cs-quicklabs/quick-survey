@@ -5,5 +5,5 @@ import StimulusReflex from "stimulus_reflex"
 StimulusReflex.initialize(application, { controller, isolate: true })
 
 // consider removing these options in production
-StimulusReflex.debug = true
+StimulusReflex.debug = false
 // end remove
