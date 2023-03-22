@@ -7,7 +7,7 @@
     "@rails/actiontext": "7.0.4",
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/line-clamp": "0.4.2",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.14",
     "esbuild": "0.17.12",
     "postcss": "8.4.21",
     "stimulus_reflex": "3.5.0-pre10",
