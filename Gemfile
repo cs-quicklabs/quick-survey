@@ -39,8 +39,6 @@ gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
 gem "devise-pwned_password"
 
-
-
 gem "draper"
 gem "letter_opener_web", group: :development
 gem "pundit"
