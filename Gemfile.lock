@@ -146,7 +146,7 @@ GEM
     hiredis (0.6.3)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    jsbundling-rails (1.0.3)
+    jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.6.3)
     launchy (2.5.2)
@@ -335,7 +335,7 @@ DEPENDENCIES
   devise_invitable (~> 2.0.0)
   draper
   hiredis
-  jsbundling-rails (= 1.0.3)
+  jsbundling-rails (= 1.1.1)
   json
   letter_opener_web
   listen (~> 3.3)
