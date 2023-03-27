@@ -259,6 +259,13 @@ cable_ready@5.0.0-pre10:
   dependencies:
     morphdom "2.6.1"
 
+cable_ready@5.0.0-rc1:
+  version "5.0.0-rc1"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-rc1.tgz#d755f793ef963af18f2696dc07588b616ef76fc6"
+  integrity sha512-Zg964GzT4lNxLoZWR51R7SJub0u/8gYbO7yZPgc3rT/IuOROwEg8/kf5c9/nTYluaFciCNo4Wy9XIeZRzpPhRg==
+  dependencies:
+    morphdom "2.6.1"
+
 camelcase-css@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/camelcase-css/-/camelcase-css-2.0.1.tgz#ee978f6947914cc30c6b44741b6ed1df7f043fd5"
