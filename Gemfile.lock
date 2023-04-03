@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: 7d1dc56fdba2402c452c4224567077b23184637e
+  revision: 4b72064bfcf076478c5c87818b9536b203f6584f
   branch: main
   specs:
-    devise (4.9.0)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -161,7 +161,7 @@ GEM
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.19.1)
+    loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
