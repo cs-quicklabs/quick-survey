@@ -52,7 +52,7 @@ gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.0.7"
+gem "sidekiq", "7.0.8"
 gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
