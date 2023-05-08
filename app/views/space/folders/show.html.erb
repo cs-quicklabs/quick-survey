@@ -1,0 +1,58 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20" >
+  <div class="px-4 py-4  sm:px-6 lg:px-8" id="message-header" >
+    <%= render partial: "shared/messages/title", locals: { message: @message } %>
+  </div>
+  <% cache @message do %>
+    <div class="text-sm  sm:px-6 lg:px-8 py-6 border-b border-gray-200  text-gray-700"  >
+      <p class=""><%= @message.body %></p>
+    </div>
+  <% end %>
+  <!-- Comments-->
+  <section aria-labelledby="notes-title">
+    <div class="bg-white sm:rounded-lg   ">
+      <div class="relative h-max " data-controller="comments">
+        <% display_comments = @comments.last(10) %>
+        <% hidden_comments = @comments - display_comments %>
+        <div   >
+          <div class="relative py-6" id="load-comments">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center">
+              <%= link_to "Show older Comments", "#", data: { action: "click->comments#toggleComments" }, class: "inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+            </div>
+          </div>
+          <ul role="list" >
+            <%= render partial: "message_comments/hidden_comment", collection: hidden_comments, as: :comment, cached: false %>
+          </ul>
+        </div>
+        <ul role="list" class="relative z-0 divide-y divide-gray-200 " id="comments" >
+          <%= render partial: "message_comments/message_comment", collection: display_comments, as: :comment, cached: false %>
+        </ul>
+      </div>
+      <div  class="px-6" id="comment-form">
+        <% if policy([@space, @message]).comment? %>
+          <div >
+            <%= render partial: "message_comments/new", locals: { space_message: @message, comment: @comment } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="fixed right-8 bottom-8 hidden flex-col gap-3 md:flex">
+  <button  data-controller="scroll-to"
+  data-scroll-to-target="#message-header" data-action ="click->scroll-to#scroll" id="scroll-top"aria-label="Scroll To bottom" type="button" class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+    </svg>
+  </button>
+  <button data-controller="scroll-to"
+  data-scroll-to-target="#comment-form" data-action ="click->scroll-to#scroll" id="scroll-bottom" aria-label="Scroll To bottom" type="button" class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+    </svg>
+  </button>
+</div>

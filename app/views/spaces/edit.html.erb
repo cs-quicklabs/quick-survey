@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "space_form", target: "_top" do %>
+  <%= render partial: "spaces/form", locals: { space: @space, title: "Edit Space", subtitle: "Please update the details of already existing space.", url: space_path(@space), method: "patch", users: @users, space_users: @space_users } %>
+<% end %>

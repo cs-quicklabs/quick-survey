@@ -1,0 +1,59 @@
+ <main class="bg-gray-50 relative z-0 flex-1 overflow-x-scroll focus:outline-none h-screen">
+  <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
+      <h1 class="text-3xl font-bold leading-tight text-gray-600">
+        Spaces
+      </h1>
+      <p class="mt-1 ml-1 text-sm text-gray-500 truncate"><%= "(" + (@my_spaces.size + @shared_spaces.size).to_s + " spaces)" %></p>
+    </div>
+    <div class="flex mt-4 sm:mt-0 sm:ml-4">
+      <%= link_to "Add New Space", new_space_path, class: "btn-blue  " %>
+    </div>
+  </div>
+  <div class="relative px-6 grid  gap-10 pb-16" id="release_notes">
+    <% if @pinned_spaces.load.size > 0 %>
+      <div>
+        <h1 class="text-sm font-bold leading-6 text-gray-600 uppercase inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 mb-4">Pinned spaces</h1>
+        <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          <%= render partial: "space", collection: @pinned_spaces, as: :space, cached: false %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @my_spaces.size > 0 %>
+      <div id="created-spaces">
+        <h1 class="text-sm font-bold leading-6 text-gray-600 uppercase inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 mb-4">Created by you</h1>
+        <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          <%= render partial: "space", collection: @my_spaces, as: :space, cached: false %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @shared_spaces.size > 0 %>
+      <div id="shared-spaces">
+        <h1 class="text-sm font-bold leading-6 text-gray-600 uppercase inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 mb-4">Shared with you  </h1>
+        <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          <%= render partial: "space", collection: @shared_spaces, as: :space, cached: false %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @archived_spaces.size > 0 %>
+      <div id="archived-spaces">
+        <h1 class="text-sm font-bold leading-6 text-gray-600 uppercase inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 mb-4">Archived spaces</h1>
+        <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          <%= render partial: "space", collection: @archived_spaces, as: :space, cached: false %>
+        </ul>
+      </div>
+    <% end %>
+    <% if !(@my_spaces.size > 0 or @pinned_spaces.size > 0 or @shared_spaces.size > 0 or @archived_spaces.size > 0) %>
+      <div class="w-full text-center sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg font-medium leading-6 text-center text-gray-600">
+            No result found
+          </h3>
+          <div class="mt-2 text-sm text-center text-gray-500">
+            <p>No space has been created yet.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>
