@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/mileszs/wicked_pdf.git
-  revision: 87405ecc52cf0c9e036f3dd9c9942299e5cccfb3
+  revision: 4abf255f47f7b3e10eaf5adedb5ada4b5b49ca2e
   branch: master
   specs:
     wicked_pdf (2.6.3)
@@ -144,7 +144,7 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hiredis (0.6.3)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
