@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
   LIMIT = 30
 
   before_action :set_redirect_path, unless: :user_signed_in?
+  before_action :set_current_account
+
+  def set_current_account
+    Current.account = current_user.account if current_user
+  end
+
   etag {
     if Rails.env == "production" or Rails.env == "staging"
       heroku_version
