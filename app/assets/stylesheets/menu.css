@@ -1,0 +1,48 @@
+/* app/assets/stylesheets/application.css */
+.menu {
+    margin-bottom: 20px;
+  }
+  
+  .menu h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .menu .option {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .menu .submenu {
+    display: none;
+  }
+  
+  .menu .submenu.active {
+    display: block;
+  }
+  
+  .submenu h1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .submenu .option {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .submenu .option:last-child {
+    margin-bottom: 0;
+  }
+  
+  .submenu .go-back {
+    cursor: pointer;
+    color: #999;
+  }
+  
+  .submenu .go-back:hover {
+    text-decoration: underline;
+  }
+  

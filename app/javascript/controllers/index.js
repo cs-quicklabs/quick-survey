@@ -18,6 +18,28 @@ application.register("modal", ModalController)
 import NavSearchController from "./nav_search_controller"
 application.register("nav-search", NavSearchController)
 
+
+import StimulusSlimSelect from "./slim_select_controller"
+application.register('slimselect', StimulusSlimSelect)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)
+
+import ScrollToController from "./scroll_to_controller"
+application.register("scroll-to", ScrollToController)
+
+import SwapController from "./swap_controller"
+application.register("swap", SwapController)
+
+import CopyUrlController from "./copy_url_controller"
+application.register("copy-url", CopyUrlController)
+
+import CommentsController from "./comments_controller"
+application.register("comments", CommentsController)
+
+import SlideoverController from "./slideover_controller"
+application.register("slideover", SlideoverController)
+
 import ConfirmationController from "./confirmation_controller"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'

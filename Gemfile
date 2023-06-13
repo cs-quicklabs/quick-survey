@@ -33,7 +33,7 @@ gem "turbo-rails", "1.3.2"
 gem "stimulus-rails", "1.1.1"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre8"
+gem "stimulus_reflex", "3.5.0.rc2"
 
 
 gem "devise_invitable", "~> 2.0.0"
@@ -60,6 +60,7 @@ gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "1.13.0", require: false
+gem "rails-patterns"
 gem "rexml"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

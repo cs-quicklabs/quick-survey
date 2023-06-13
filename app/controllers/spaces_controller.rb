@@ -16,12 +16,12 @@ class SpacesController < ApplicationController
   def new
     authorize :spaces
     @space = Space.new(user_id: current_user.id)
-    @users = User.for_current_account.active
+    @users = User.all
   end
 
   def edit
     authorize @space
-    @users = User.for_current_account.active
+    @users = User.all
     @space_users = @space.users.pluck(:user_id)
   end
 
@@ -33,7 +33,7 @@ class SpacesController < ApplicationController
       if @space.persisted?
         format.html { redirect_to space_folders_path(@space), notice: "Space was created successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Space.new, partial: "spaces/form", locals: { space: @space, users: User.for_current_account.active, title: "Add New Space", subtitle: "Please fill in the details of your new space. A space is a groupd of similar threads.", url: spaces_path, method: "post", space_users: params[:space][:users] }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Space.new, partial: "spaces/form", locals: { space: @space, users: User.all, title: "Add New Space", subtitle: "Please fill in the details of your new space. A space is a groupd of similar threads.", url: spaces_path, method: "post", space_users: params[:space][:users] }) }
       end
     end
   end
@@ -45,7 +45,7 @@ class SpacesController < ApplicationController
       if @space.errors.empty?
         format.html { redirect_to space_folders_path(@space), notice: "Space was updated successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@space, partial: "spaces/form", locals: { space: @space, users: User.for_current_account.active, title: "Edit Space", subtitle: "Please update the details of already existing space.", url: spaces_path, method: "post", space_users: params[:space][:users] }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@space, partial: "spaces/form", locals: { space: @space, users: User.all, title: "Edit Space", subtitle: "Please update the details of already existing space.", url: spaces_path, method: "post", space_users: params[:space][:users] }) }
       end
     end
   end

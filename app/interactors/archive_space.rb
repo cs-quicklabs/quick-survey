@@ -6,7 +6,6 @@ class ArchiveSpace < Patterns::Service
 
   def call
     begin
-      delete_drafts
       archive_space
       send_email
     rescue
@@ -16,10 +15,6 @@ class ArchiveSpace < Patterns::Service
   end
 
   private
-
-  def delete_drafts
-    space.messages.draft.destroy_all
-  end
 
   def archive_space
     actor.pinned.destroy @space

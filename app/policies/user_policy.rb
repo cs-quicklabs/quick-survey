@@ -34,4 +34,8 @@ class UserPolicy < ApplicationPolicy
   def update_permission?
     user.admin?
   end
+
+  def deactivated?
+    user.admin?
+  end
 end

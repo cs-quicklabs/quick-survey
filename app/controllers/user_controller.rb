@@ -1,13 +1,13 @@
 class UserController < ApplicationController
   before_action :set_user, only: [:update_password, :update, :profile, :password]
-  before_action :find_user, only: [:update_permission, :destroy]
+  before_action :find_user, only: [:update_permission, :destroy, :deactivate_user, :activate_user]
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
 
   def index
     authorize :User
     @title = "Users"
-    @users = User.all.order(:first_name).order(created_at: :desc)
+    @users = User.all.active.order(:first_name).order(created_at: :desc)
   end
 
   def update_permission
@@ -48,6 +48,29 @@ class UserController < ApplicationController
 
   def password
     authorize @user
+  end
+
+  def deactivate_user
+    @user.active = false
+    @user.deactivated_on = DateTime.now.utc
+    @user.save!
+
+    redirect_to deactivated_users_path, notice: "User has been deactivated."
+  end
+
+  def activate_user
+    authorize @user, :update?
+
+    @user.update(active: true, deactivated_on: nil)
+    redirect_to user_index_path
+  end
+
+  def deactivated
+    authorize :User
+
+    users = User.all.inactive.order(deactivated_on: :desc)
+    @pagy, @users = pagy_nil_safe(params, users, items: LIMIT)
+    render_partial("users/deactivated_user", collection: @users, cached: true) if stale?(@users)
   end
 
   private

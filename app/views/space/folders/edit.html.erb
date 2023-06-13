@@ -1,11 +1,10 @@
-<%= tailwind_form_with(model: @space_message, id: dom_id(@space_message), url: space_message_path(@space, @message), method: :patch) do |form| %>
-  <main class="max-w-3xl px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
-    <%= render "shared/form_messages", resource: @space_message, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Edit Thread", subtitle: "Please update thread in existing space titled #{@message.space.title}" %>
+<%= tailwind_form_with(model: @space_folder, id: dom_id(@space_folder), url: space_message_path(@space, @folder), method: :patch) do |form| %>
+  <main class="max-w-xl px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: @space_folder, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Edit Thread", subtitle: "Please update thread in existing space titled #{@folder.space.title}" %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
-    <%= form.rich_text_area :body, "Description" %>
-    <input type="hidden" name="message[user_id]" value="<%= current_user.id %>">
-    <input type="hidden" name="message[space_id]" value="<%= @space.id %>">
+    <input type="hidden" name="folder[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="folder[space_id]" value="<%= @space.id %>">
     <div class="relative flex items-start">
       <div class="flex h-5 items-center">
         <input id="send_email" aria-describedby="comments-description" name="send_email" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked="checked">
@@ -18,30 +17,12 @@
     </div>
     <div class="flex justify-between">
       <div class="flex justify-start inline-flex">
-        <%= link_to "Cancel", space_messages_path(@space), class: "btn-normal mr-2" %>
-        <% if policy([@space, @space_message]).delete_draft? %>
-          <%= link_to "Delete Draft", space_message_path(@space, @space_message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-red ml-2" %>
-        <% end %>
+        <%= link_to "Cancel", space_folders_path(@space), class: "btn-normal mr-2" %>
       </div>
       <div>
       </div>
       <div class="flex  inline-flex">
-        <% if policy([@space, @space_message]).draft? %>
-          <%= form.submit "Save as draft", class: "btn-normal mr-2", name: "draft" %>
-        <% else %>
-          <%= form.submit "Update", class: "btn-blue ", data: {
-                                      controller: "confirmation",
-                                      "confirmation-message-value": "Are you sure you want to update this thread?",
-                                      action: "confirmation#confirm",
-                                    } %>
-        <% end %>
-        <% if policy([@space, @space_message]).publish? %>
-          <%= form.submit "Publish", class: "btn-blue", data: {
-                                       controller: "confirmation",
-                                       "confirmation-message-value": "Are you sure you want to submit it? After this members added to this space will be able to see this thread.",
-                                       action: "confirmation#confirm",
-                                     } %>
-        <% end %>
+        <%= form.submit "Save", class: "btn-blue" %>
       </div>
     </div>
   </main>

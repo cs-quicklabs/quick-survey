@@ -17,10 +17,10 @@
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus-webpack-helpers/-/stimulus-webpack-helpers-1.0.1.tgz#4cd74487adeca576c9865ac2b9fe5cb20cef16dd"
   integrity sha512-wa/zupVG0eWxRYJjC1IiPBdt3Lruv0RqGN+/DTMmUWUyMAEB27KXmVY6a8YpUVTM7QwVuaLNGW4EqDgrS2upXQ==
 
-"@hotwired/stimulus@3.1.1", "@hotwired/stimulus@^3.0.0":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.1.1.tgz#652f08a8e1d5edcb407340e58818fcff463b5848"
-  integrity sha512-e0JpzIaYLsRRXevRDVs0yevabiCvieIWWCwh7VqVXjXM5AOHdjb7AjaKIj34zYFmY1N6HIRRfk915WVMYlHnDA==
+"@hotwired/stimulus@3.2.1", "@hotwired/stimulus@>= 3.0, < 4", "@hotwired/stimulus@^3.0.0":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
+  integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
 
 "@hotwired/turbo@7.2.4":
   version "7.2.4"
@@ -48,7 +48,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rails/actioncable@>= 6.0":
+"@rails/actioncable@7.0.4", "@rails/actioncable@>= 6.0, < 8":
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.4.tgz#70a3ca56809f7aaabb80af2f9c01ae51e1a8ed41"
   integrity sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ==
@@ -145,12 +145,12 @@ browserslist@^4.21.4:
     node-releases "^2.0.6"
     update-browserslist-db "^1.0.9"
 
-cable_ready@5.0.0-pre8:
-  version "5.0.0-pre8"
-  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-pre8.tgz#fa1b4d6f980f631ff3c895f3007a6789b2e47de7"
-  integrity sha512-5TyAp0DcYiv15YGlAI4WqEBw8Mz/lARSz/pIwEEVWWUnqWQhbsMqCIYIsQoV3IXudKOowaSbukbPRYFN0PYzKg==
+cable_ready@5.0.0-pre10:
+  version "5.0.0-pre10"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-pre10.tgz#e92ca5b481335dfff95ae148b7b0da86e98001c0"
+  integrity sha512-NevHcu5N5zzUKxyS/cYtkIY6mm7y1anQr9zxu65fqptMOBZS2fukXpz9YEn659yGKyqtCMVNrzkNtkICkBoGAQ==
   dependencies:
-    morphdom "^2.6.1"
+    morphdom "2.6.1"
 
 camelcase-css@^2.0.1:
   version "2.0.1"
@@ -469,7 +469,7 @@ minimist@^1.2.6:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.7.tgz#daa1c4d91f507390437c6a8bc01078e7000c4d18"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
 
-morphdom@^2.6.1:
+morphdom@2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.6.1.tgz#e868e24f989fa3183004b159aed643e628b4306e"
   integrity sha512-Y8YRbAEP3eKykroIBWrjcfMw7mmwJfjhqdpSvoqinu8Y702nAwikpXcNFDiIkyvfCLxLM9Wu95RZqo4a9jFBaA==
@@ -617,6 +617,11 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+slim-select@2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.3.3.tgz#8bdfd891124cf5f2329c204088ba5f43a58e450b"
+  integrity sha512-BZNgU1DWDPtfSKKVfEdVMhLDCurzTTdX7n0AFuR/MNy2BzVYHN3WfkceAK1rttLqGgzFAHotq7Qm2JdrhOH5Ag==
+
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
@@ -627,6 +632,11 @@ spark-md5@^3.0.1:
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
+stimulus-scroll-to@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-scroll-to/-/stimulus-scroll-to-4.1.0.tgz#22b24d768d673f029ab0f68100556e113075fa95"
+  integrity sha512-bKltfECyU8y/ck8yXy77hlK/vv85igW7LPtZpgkUBFuAGz+Ou7EnMPpKrSJiYoK+TXS2COFilb/PGND/xISxJA==
+
 "stimulus@https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz":
   version "3.0.0"
   resolved "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz#7d0c2c81ab6301751eacae4900405c9e5858aa51"
@@ -634,13 +644,14 @@ spark-md5@^3.0.1:
     "@hotwired/stimulus" "^3.0.0"
     "@hotwired/stimulus-webpack-helpers" "^1.0.0"
 
-stimulus_reflex@3.5.0-pre8:
-  version "3.5.0-pre8"
-  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-pre8.tgz#e33c33c639d87b67accbe839b962e054337bb9f6"
-  integrity sha512-9nGNTeMf3URG3VsgCVt53E22H4N1DzGoyQ99NxAloxe++hbXUwsR/Lfw29uSQXSHXvzWI+waOhjZxesCIlWxPQ==
+stimulus_reflex@3.5.0-pre10:
+  version "3.5.0-pre10"
+  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-pre10.tgz#5d907af1647d6fe49e4ee6b228867b9af817682e"
+  integrity sha512-Y4EeAvcXTa4Kkso8EVRh7ZqYAYO6PerAhmoV0i7KJ4nEAxwPQ7/z5ez8597qD2SnhR+/nsVAxj6yF5LcdNBb3Q==
   dependencies:
-    "@rails/actioncable" ">= 6.0"
-    cable_ready "5.0.0-pre8"
+    "@hotwired/stimulus" ">= 3.0, < 4"
+    "@rails/actioncable" ">= 6.0, < 8"
+    cable_ready "5.0.0-pre10"
 
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"

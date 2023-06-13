@@ -1,3 +1,7 @@
-<%= turbo_frame_tag "message", target: "_top" do %>
-  <%= render partial: "form", locals: { space_message: @space_message, space: @space, title: "Add New Thread", subtitle: "Threads are messages or discussion which can be added inside a space", url: space_messages_path, method: "post" } %>
+<%= turbo_frame_tag "form_modal" do %>
+  <turbo-stream target="folder_form" action="replace">
+    <template>
+  <%= render partial: "form", locals: { space_folder: @space_folder, space: @space, title: "Add New Folder", subtitle: "Folders group which can be added inside a space", url: space_folders_path, method: "post" } %>
+    </template>
+  </turbo-stream>
 <% end %>

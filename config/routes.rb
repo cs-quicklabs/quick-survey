@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get "/interview", to: "screening/interview#index", as: "interview"
   get "/hr", to: "screening/hr#index", as: "hr"
   get "/vendor", to: "screening/vendor#index", as: "vendor"
+  get "/folders", to: "space/folders#folders", as: "folders"
+  get "/change_folder/:survey_id/:folder_id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts", to: "attempts#index", as: "survey_attempts"
@@ -33,7 +35,19 @@ Rails.application.routes.draw do
   get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
   patch "/attempts/:id/submit", to: "reports#submit", as: "submit_report"
 
+  scope "archive" do
+    get "/surveys", to: "surveys#archived", as: "archived_surveys"
+    get "/survey/:id", to: "surveys#archive_survey", as: "archive_survey"
+    get "/survey/:id/restore", to: "surveys#unarchive_survey", as: "unarchive_survey"
+    get "/users", to: "user#deactivated", as: "deactivated_users"
+    get "/users/:id", to: "user#deactivate_user", as: "deactivate_user"
+    get "/users/:id/restore", to: "user#activate_user", as: "activate_user"
+  end
+
   get "/search/surveys", to: "search#surveys"
+  get "/search/spaces-surveys-and-folders", to: "search#spaces_surveys_and_folders"
+  get "/search/archived_surveys", to: "search#archived_surveys"
+  get "/search/archived_users", to: "search#archived_users"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "profile"
     get "/password", to: "user#password", as: "setting_password"
@@ -41,4 +55,13 @@ Rails.application.routes.draw do
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "set_permission"
+  resources :spaces do
+    resources :folders, module: "space"
+  end
+  scope "/spaces" do
+    get ":id/pin", to: "spaces#pin", as: "space_pin"
+    get ":id/unpin", to: "spaces#unpin", as: "space_unpin"
+    get ":id/archive", to: "spaces#archive", as: "space_archive"
+    get ":id/unarchive", to: "spaces#unarchive", as: "space_unarchive"
+  end
 end

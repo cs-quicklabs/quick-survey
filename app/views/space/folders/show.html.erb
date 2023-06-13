@@ -1,50 +1,108 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20" >
-  <div class="px-4 py-4  sm:px-6 lg:px-8" id="message-header" >
-    <%= render partial: "shared/messages/title", locals: { message: @message } %>
-  </div>
-  <% cache @message do %>
-    <div class="text-sm  sm:px-6 lg:px-8 py-6 border-b border-gray-200  text-gray-700"  >
-      <p class=""><%= @message.body %></p>
+  <div class="px-4 py-4  sm:px-6 lg:px-8" id="folder-header" >
+  <div class="flex flex-col">
+  <div class="flex justify-between " >
+    <div>
+      <%= link_to "Back", "javascript:history.back()", class: "btn-normal flex-none" %>
     </div>
-  <% end %>
-  <!-- Comments-->
-  <section aria-labelledby="notes-title">
-    <div class="bg-white sm:rounded-lg   ">
-      <div class="relative h-max " data-controller="comments">
-        <% display_comments = @comments.last(10) %>
-        <% hidden_comments = @comments - display_comments %>
-        <div   >
-          <div class="relative py-6" id="load-comments">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center">
-              <%= link_to "Show older Comments", "#", data: { action: "click->comments#toggleComments" }, class: "inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-            </div>
-          </div>
-          <ul role="list" >
-            <%= render partial: "message_comments/hidden_comment", collection: hidden_comments, as: :comment, cached: false %>
-          </ul>
+    <div>
+      <h3 class="text-2xl font-bold leading-tight text-align-center px-16 ">
+        <%= highlight_hashtag(@folder.title.upcase_first) %>
+      </h3>
+    </div>
+    <div  x-on:click.outside="open = false" class="relative  " x-data="{ open: false }">
+      <% if policy([@space, @folder]).edit? || policy([@space, @folder]).destroy? %>
+        <div>
+          <button @click="open = !open" id="message-menu" class=" flex-auto mt-1 ml-4 border border-gray-400 text-sm rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+              <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
+            </svg>
+          </button>
         </div>
-        <ul role="list" class="relative z-0 divide-y divide-gray-200 " id="comments" >
-          <%= render partial: "message_comments/message_comment", collection: display_comments, as: :comment, cached: false %>
-        </ul>
-      </div>
-      <div  class="px-6" id="comment-form">
-        <% if policy([@space, @message]).comment? %>
-          <div >
-            <%= render partial: "message_comments/new", locals: { space_message: @message, comment: @comment } %>
+        <div x-show="open"    x-transition.opacity class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+          <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+            <div>
+              <% if policy([@space, @folder]).edit? %>
+                <a href=<%= edit_space_folder_path(@space, @folder) %> class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  role= "menuitem">Edit</a>
+              <% end %>
+              <% if policy([@space, @folder]).destroy? %>
+                <%= styled_delete_button(space_folder_path(@space, @folder), "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100") %>
+              <% end %>
+            </div>
           </div>
-        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex justify-center">
+    <% if @space.archive? %>
+      <span class="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-sm font-medium text-red-800 mb-2">Parent space archived on <%= display_date(@space.archive_at) %></span>
+    <% end %>
+  </div>
+  <div class="flex space-x-2 flex-row  justify-center">
+    <div class="flex justify-center">
+      <p class="font-normal text-xs line-clamp-2 text-gray-500 pr-1"> Folder created by <%= @space.user.decorate.name %> on <%= display_date(@folder.created_at) %> in </p>
+      <%= link_to @space.title, space_folders_path(@space), class: "font-bold text-xs underline text-indigo-500 line-clamp-2 text-gray-500  cursor-pointer" %>
+    </div>
+  </div>
+  <% users = @space.users %>
+  <div class="flex justify-center py-4" title="<%= users.pluck(:first_name, :last_name).map { |names| names.join(" ") }.join(", ") %>">
+    <div class="flex   ">
+      <% users.load.first(20).each do |user| %>
+        <div>
+          <%= display_small_avatar(user) %>
+        </div>
+      <% end %>
+      <% if users.size > 20 %>
+        <span class="inline-flex h-7 w-7 relative z-0 text-sm ml-1 text-gray-400 font-semibold items-center"  > + <%= users.size - 20 %>  </span>
+      <% elsif users.size == 0 %>
+        <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
+      <% end %>
+             <div class="flex " data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+               <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "modal" %>
+                  </div>
+              <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap ",  data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
+          </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  </div>
+    <div class="flex  w-full  lg:ml-6 py-6 pr-12"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="search/surveys?folder_id=<%= @folder.id %>">
+      <div class="w-full  ">
+        <div class="relative ">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
+            <!-- Heroicon name: solid/search -->
+            <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input id="search" name="search" class="pl-10 pr-3 max-w-4xl block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-4xl sm:text-sm border-gray-300 rounded-md" placeholder="Search Survey" type="search" data-nav-search-target="input">
+        </div>
+        <div class="relative">
+          <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <ul data-nav-search-target="results">
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+     <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries">
+            <%= render partial: "survey", collection: @surveys, as: :survey, cached: false %>
+          </tbody>
+        </table>
+        <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+          <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+        </div>
 </main>
-
+<!--
 <div class="fixed right-8 bottom-8 hidden flex-col gap-3 md:flex">
   <button  data-controller="scroll-to"
-  data-scroll-to-target="#message-header" data-action ="click->scroll-to#scroll" id="scroll-top"aria-label="Scroll To bottom" type="button" class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600">
+  data-scroll-to-target="#folder-header" data-action ="click->scroll-to#scroll" id="scroll-top"aria-label="Scroll To bottom" type="button" class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
     </svg>
@@ -55,4 +113,4 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
     </svg>
   </button>
-</div>
+</div>-->

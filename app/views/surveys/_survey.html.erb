@@ -8,6 +8,6 @@
   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
     <%= link_to "Edit", edit_survey_path(survey), class: "text-indigo-600 hover:text-indigo-900" %>
     <%= link_to "Show", survey_path(survey), class: "ml-4 text-indigo-600 hover:text-indigo-900" %>
-    <%= styled_delete_button(survey_path(survey), "text-indigo-600 hover:text-indigo-900 ml-4") %>
+    <%=confirm_button(archive_survey_path(survey), "Archive", "Are you sure you want to archive this survey?", "text-indigo-600 hover:text-indigo-900 ml-4")%>
   </td>
 </tr>

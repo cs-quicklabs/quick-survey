@@ -1,0 +1,47 @@
+<% @surveys.each do |result| %>
+  <a href="<%= survey_path(result) %>">
+    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= result.name %>
+    </li>
+  </a>
+<% end %>
+<% if @surveys.size > 0 && @spaces.size > 0 %>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="relative">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-start">
+      <span class="px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white">
+        Spaces
+      </span>
+    </div>
+  </div>
+<% end %>
+<% @spaces.each do |result| %>
+  <a href="<%= space_folders_path(result) %>">
+    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= result.title.upcase_first %>
+    </li>
+  </a>
+<% end %>
+<% if (@surveys.size > 0 or @spaces.size > 0)  && @folders.size > 0 %>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="relative">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-start">
+      <span class="px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white">
+        Folders
+      </span>
+    </div>
+  </div>
+<% end %>
+<% @folders.each do |result| %>
+  <a href="<%= space_folder_path(result.space, result) %>">
+    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= result.title.upcase_first %>
+    </li>
+  </a>
+<% end %>

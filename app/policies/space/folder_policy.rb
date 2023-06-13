@@ -1,13 +1,15 @@
 class Space::FolderPolicy < Space::BaseSpacePolicy
   def index?
-    space = record.first
-    space.users.include?(user) || space.user == user
+    #space = record.first
+    #space.users.include?(user) || space.user == user
+    true
   end
 
   def new?
-    space = record.first
-    return false if space.archive
-    space.users.include?(user)
+    #space = record.first
+    #return false if space.archive
+    #space.users.include?(user)
+    true
   end
 
   def create?
@@ -15,18 +17,21 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def show?
-    space = record.first
-    message = record.last
-    message.published? ? space.users.include?(user) : message.user == user
+    #space = record.first
+    #message = record.last
+    #message.published? ? space.users.include?(user) : message.user == user
+    true
   end
 
   def comment?
-    show? && !record.first.archive
+    #show? && !record.first.archive
+    true
   end
 
   def edit?
-    space = record.first
-    space.users.include?(user) && !space.archive
+    #space = record.first
+    #space.users.include?(user) && !space.archive
+    true
   end
 
   def update?
@@ -38,9 +43,10 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def publish?
-    space = record.first
-    message = record.last
-    space.users.include?(user) && !space.archive && !message.published?
+    #space = record.first
+    #message = record.last
+    #space.users.include?(user) && !space.archive && !message.published?
+    true
   end
 
   def delete_draft?
@@ -49,16 +55,27 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def draft?
-    space = record.first
-    message = record.last
-    space.users.include?(user) && !message.published?
+    #space = record.first
+    #message = record.last
+    #space.users.include?(user) && !message.published?
+    true
   end
 
   def edit_comment?
-    !record.first.archive?
+    #!record.first.archive?
+    true
   end
 
   def destroy_comment?
-    !record.first.archive? and record.first.user == user
+    #!record.first.archive? and record.first.user == user
+    true
+  end
+
+  def folders?
+    true
+  end
+
+  def change_folder?
+    true
   end
 end

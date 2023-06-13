@@ -1,3 +1,4 @@
+   <%= turbo_frame_tag "form_modal" %>
  <main class="max-w-4xl px-4 pt-10 pb-12 mx-auto  lg:pb-16">
   <div class="h-full">
     <div class="flex justify-center">
@@ -11,7 +12,7 @@
           <div class="w-16"></div>
           <div class="flex flex-1 justify-center ">
             <a href="<%= spaces_path %>">
-              <h1 id="message-heading" class="font-bold line-clamp-1 text-2xl leading-tight text-align-center"><%= highlight_hashtag(@space.title.upcase_first) %></h1>
+              <h1 id="folder-heading" class="font-bold line-clamp-1 text-2xl leading-tight text-align-center"><%= highlight_hashtag(@space.title.upcase_first) %></h1>
             </a>
           </div>
           <div class="flex justify-end">
@@ -56,9 +57,9 @@
         <div class="flex justify-center mt-2">
           <p class="font-normal text-xs line-clamp-2 text-gray-500"> Created by <%= @space.user.decorate.name %> on <%= display_date(@space.created_at) %></p>
         </div>
-        <% users = @space.users.includes(avatar_attachment: :blob) %>
+        <% users = @space.users %>
         <div class="flex justify-center py-4" title="<%= users.pluck(:first_name, :last_name).map { |names| names.join(" ") }.join(", ") %>">
-          <div class="flex   ">
+          <div class="flex  space-x-.5 ">
             <% users.load.first(10).each do |user| %>
               <div>
                 <%= display_small_avatar(user) %>
@@ -70,30 +71,33 @@
               <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
             <% end %>
           </div>
-          <div class="">
-            <% if @messages.load.size > 0 %>
-              <select class="form-text-field w-56 inline-flex ml-4" name="direction" id="sort" onchange="window.location.href = '<%= space_messages_path(@space) %>?direction=' + this.value;">
-                <%= options_for_select([["Sort Threads By Newest", "DESC"], ["Sort Threads By Oldest", "ASC"]], prompt: "DESC", :selected => (params["direction"] if !params["direction"].blank?)) %>
+          <div class="flex " data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+            <% if @folders.load.size > 0 %>
+              <select class="form-text-field w-56 inline-flex ml-4" name="direction" id="sort" onchange="window.location.href = '<%= space_folders_path(@space) %>?direction=' + this.value;">
+                <%= options_for_select([["Sort Folders By Newest", "DESC"], ["Sort Folders By Oldest", "ASC"]], prompt: "DESC", :selected => (params["direction"] if !params["direction"].blank?)) %>
               </select>
             <% end %>
-            <% if policy([@space, Message]).new? %>
-              <%= link_to "Add New Thread", new_space_message_path(@space.id), class: "btn-blue inline-flex " %>
+            <% if policy([@space, Folder]).new? %>
+               <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "modal" %>
+                  </div>
+              <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ",  data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-    <div class="relative " id="threads">
-      <% if @messages.size > 0 %>
+    <div class="relative py-4 " id="folders">
+      <% if @folders.size > 0 %>
         <ul role="list" class="">
-          <%= render partial: "message", collection: @messages, as: :message, cached: false %>
+          <%= render partial: "folder", collection: @folders, as: :folder, cached: false %>
         </ul>
       <% else %>
         <div class="flex justify-center items-center h-28">
           <div class="text-center">
-            <h1 class="text-sm text-gray-400">No Threads Added Yet</h1>
+            <h1 class="text-sm text-gray-400">No Folders Added Yet</h1>
             <% if !@space.archive? %>
-              <p class="text-gray-400 text-sm">Add a new thread to get started</p>
+              <p class="text-gray-400 text-sm">Add a new folder to get started</p>
             <% end %>
           </div>
         </div>

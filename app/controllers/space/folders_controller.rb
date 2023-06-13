@@ -1,5 +1,4 @@
 class Space::FoldersController < Space::BaseController
-  helper TrixAttachmentsHelper
   before_action :set_folder, only: %i[ show edit update destroy ]
 
   def index
@@ -20,13 +19,12 @@ class Space::FoldersController < Space::BaseController
 
   def create
     authorize [@space, Folder]
-    @folder = AddFolderToSpace.call(@space, Folder.new(folder_params), current_user, params[:draft], params[:send_email]).result
-
+    @folder = AddFolderToSpace.call(@space, folder_params, params[:send_email]).result
     respond_to do |format|
-      if @folder.persisted?
-        format.html { redirect_to space_folders_path(@space), notice: "Thread was created successfully." }
+      if @folder.errors.empty?
+        format.html { redirect_to space_folders_path(@space), notice: "Folder was created successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Folder.new, partial: "space/folders/form", locals: { space_folder: @folder, title: "Add New Thread", subtitle: "Threads are folders or discussion which can be added inside a space", space: @space, url: space_folders_path, method: "post" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("folder_form", partial: "space/folders/form", locals: { space_folder: @folder, title: "Add New Folder", subtitle: "Threads are folders or discussion which can be added inside a space", space: @space, url: space_folders_path, method: "post" }) }
       end
     end
   end
@@ -38,11 +36,8 @@ class Space::FoldersController < Space::BaseController
 
   def show
     authorize [@space, @folder]
-
-    @comments = @folder.folder_comments.includes(:user).order(created_at: :asc)
-    @comment = FolderComment.new
-
-    fresh_when [@folder] + @comments + [@space]
+    @pagy, @surveys = pagy_nil_safe(params, @folder.survey_surveys.order("created_at desc"), items: 10)
+    fresh_when [@folder] + [@space] + @surveys
   end
 
   def update
@@ -50,9 +45,9 @@ class Space::FoldersController < Space::BaseController
     @folder = UpdateFolder.call(@space, @folder, current_user, params[:draft], params[:send_email], folder_params).result
     respond_to do |format|
       if @folder.errors.empty?
-        format.html { redirect_to space_folders_path(@space), notice: "Thread was updated successfully." }
+        format.html { redirect_to space_folders_path(@space), notice: "Folder was updated successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@folder, partial: "space/folders/form", locals: { space_folder: @folder, title: "Edit Thread", subtitle: "Please update thread in existing space titled #{@folder.space.title}", space: @space, url: space_folder_path(@space, @folder), method: "patch" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@folder, partial: "space/folders/form", locals: { space_folder: @folder, title: "Edit Folder", subtitle: "Please update thread in existing space titled #{@folder.space.title}", space: @space, url: space_folder_path(@space, @folder), method: "patch" }) }
       end
     end
   end
@@ -61,8 +56,22 @@ class Space::FoldersController < Space::BaseController
     authorize [@space, @folder]
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to space_folders_path(@space), notice: "Thread was removed successfully." }
+      format.html { redirect_to space_folders_path(@space), notice: "Folder was removed successfully." }
     end
+  end
+
+  def folders
+    authorize [Space, Folder]
+    @folders = Folder.all
+    render json: @folders
+  end
+
+  def change_folder
+    authorize [Space, Folder]
+    @survey = Survey::Survey.find(params[:survey_id])
+    @folder = Folder.find(params[:folder_id])
+    @survey.update(folder_id: @folder.id)
+    redirect_to space_folder_path(@folder.space, @folder), notice: "Folder was changed successfully."
   end
 
   def set_folder

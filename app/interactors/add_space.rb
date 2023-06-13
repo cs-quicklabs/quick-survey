@@ -37,7 +37,7 @@ class AddSpace < Patterns::Service
   end
 
   def deliver_email?(employee)
-    (actor != employee) and employee.email_enabled and employee.account.email_enabled
+    (actor != employee) and employee.email_enabled
   end
 
   attr_reader :space, :actor, :users

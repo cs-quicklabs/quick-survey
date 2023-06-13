@@ -10,7 +10,7 @@
         Select people who can see this space
       </label>
       <select name="space[users][]" class="form-text-field mt-1 capitalize" data-controller="slimselect" multiple>
-        <%= options_for_select(users.decorate.map { |user| [user.display_name_job_title, user.id] }, space_users) %>
+        <%= options_for_select(users.decorate.map { |user| [user.display_name, user.id] }, space_users) %>
       </select>
     </div>
     <div class="flex justify-end">
