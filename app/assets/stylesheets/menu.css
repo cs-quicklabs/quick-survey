@@ -46,3 +46,6 @@
     text-decoration: underline;
   }
   
+  .visible {
+    display: block;
+  }

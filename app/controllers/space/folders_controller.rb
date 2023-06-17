@@ -60,10 +60,10 @@ class Space::FoldersController < Space::BaseController
     end
   end
 
-  def folders
+  def space_folders
     authorize [Space, Folder]
-    @folders = Folder.all
-    render json: @folders
+    @spaces = Space.all.includes(:folders).where.not(folders: { id: nil })
+    render json: @spaces, include: [:folders]
   end
 
   def change_folder

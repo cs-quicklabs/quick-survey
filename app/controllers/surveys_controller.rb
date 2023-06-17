@@ -4,7 +4,8 @@ class SurveysController < ApplicationController
   def index
     authorize :Survey
     @title = "Home"
-    @pagy, @surveys = pagy_nil_safe(params, Survey::Survey.all.active, items: LIMIT)
+    surveys = Survey::Survey.all.active.where(folder_id: nil)
+    @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
     render_partial("surveys/survey", collection: @surveys, cached: true) if stale?(@surveys)
   end
 

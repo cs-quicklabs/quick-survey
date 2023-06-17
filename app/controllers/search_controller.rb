@@ -2,10 +2,9 @@ class SearchController < ApplicationController
   def surveys
     like_keyword = "%#{params[:q]}%"
     if params[:folder_id].present?
-      @surveys = Survey::Survey.where("name ILIKE ? AND folder_id = ?", like_keyword, params[:folder_id])
+      @surveys = Survey::Survey.active.where("name ILIKE ? AND folder_id = ?", like_keyword, params[:folder_id]).limit(10).order(:name)
     else
-      @surveys = Survey::Survey.where("name ILIKE ?", like_keyword)
-        .limit(10).order(:name)
+      @surveys = Survey::Survey.all.active.where(folder_id: nil).where("name ILIKE ?", like_keyword).limit(10).order(:name)
     end
     render layout: false
   end

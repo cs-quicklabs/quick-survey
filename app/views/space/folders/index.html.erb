@@ -89,7 +89,7 @@
     </div>
     <div class="relative py-4 " id="folders">
       <% if @folders.size > 0 %>
-        <ul role="list" class="">
+        <ul role="list ">
           <%= render partial: "folder", collection: @folders, as: :folder, cached: false %>
         </ul>
       <% else %>

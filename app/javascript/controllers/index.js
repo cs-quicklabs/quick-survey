@@ -6,6 +6,9 @@ import { application } from "./application"
 import ApplicationController from "./application_controller"
 application.register("application", ApplicationController)
 
+import NestedDropdownController from "./nested_dropdown_controller"
+application.register("nested-dropdown", NestedDropdownController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 

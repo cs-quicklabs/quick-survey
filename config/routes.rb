@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "/interview", to: "screening/interview#index", as: "interview"
   get "/hr", to: "screening/hr#index", as: "hr"
   get "/vendor", to: "screening/vendor#index", as: "vendor"
-  get "/folders", to: "space/folders#folders", as: "folders"
+  get "/space_folders", to: "space/folders#space_folders", as: "space_folders"
   get "/change_folder/:survey_id/:folder_id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"

@@ -71,7 +71,7 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
     true
   end
 
-  def folders?
+  def space_folders?
     true
   end
 
