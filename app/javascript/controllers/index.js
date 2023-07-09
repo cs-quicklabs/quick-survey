@@ -43,6 +43,13 @@ application.register("comments", CommentsController)
 import SlideoverController from "./slideover_controller"
 application.register("slideover", SlideoverController)
 
+import select from "./select_controller"
+application.register("select", select)
+
+
+
+
+
 import ConfirmationController from "./confirmation_controller"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'

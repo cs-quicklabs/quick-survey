@@ -30,7 +30,7 @@
                        <%=confirm_button(archive_survey_path(@survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50")%>
 
                       <%else%>
-                                            <%=confirm_button(unarchive_survey_path(survey), "Activate", "Are you sure you want to activate this survey?", "btn-inline-edit mr-2")%>
+                                            <%=confirm_button(unarchive_survey_path(@survey), "Activate", "Are you sure you want to activate this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50")%>
                      
                       <% end %>
                     </div>

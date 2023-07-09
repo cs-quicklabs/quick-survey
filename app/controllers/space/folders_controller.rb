@@ -60,18 +60,26 @@ class Space::FoldersController < Space::BaseController
     end
   end
 
-  def space_folders
+  def folders
     authorize [Space, Folder]
-    @spaces = Space.all.includes(:folders).where.not(folders: { id: nil })
-    render json: @spaces, include: [:folders]
+
+    @space = Space.find(params[:space])
+    @folders = @space.folders.order("title asc")
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "space/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id", selected_folder_id: params[:folder_id] }) }
+    end
   end
 
   def change_folder
     authorize [Space, Folder]
-    @survey = Survey::Survey.find(params[:survey_id])
+    @survey = Survey::Survey.find(params[:id])
     @folder = Folder.find(params[:folder_id])
-    @survey.update(folder_id: @folder.id)
-    redirect_to space_folder_path(@folder.space, @folder), notice: "Folder was changed successfully."
+    if @survey.update(folder_id: @folder.id)
+      flash[:notice] = "Folder was changed successfully."
+      render json: { success: true, notice: flash[:notice] }, status: :ok
+    else
+      render json: { success: false }, status: :unprocessable_entity
+    end
   end
 
   def set_folder

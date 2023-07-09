@@ -71,11 +71,15 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
     true
   end
 
-  def space_folders?
+  def change
     true
   end
 
   def change_folder?
+    true
+  end
+
+  def folders?
     true
   end
 end

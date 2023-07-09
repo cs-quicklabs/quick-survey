@@ -1,5 +1,10 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20" >
+ <%= turbo_frame_tag "change_folder_modal"%>
+<main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20"  data-controller=" slideover" data-slideover-target-prevent-default-action-opening="false">
+          <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "space_folders",  selected_folder: @folder %>
+                  </div>
+                  
   <div class="px-4 py-4  sm:px-6 lg:px-8" id="folder-header" >
   <div class="flex flex-col">
   <div class="flex justify-between " >
@@ -59,12 +64,7 @@
       <% elsif users.size == 0 %>
         <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
       <% end %>
-             <div class="flex " data-controller="slideover" data-slideover-prevent-default-action-opening="false">
-               <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <%= render "modal" %>
-                  </div>
-              <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap ",  data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
-          </div>
+        <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap " %>
     </div>
   </div>
 </div>
@@ -80,7 +80,7 @@
               <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
             </svg>
           </div>
-          <input id="search" name="search" class="pl-10 pr-3 max-w-4xl block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-4xl sm:text-sm border-gray-300 rounded-md" placeholder="Search Survey" type="search" data-nav-search-target="input">
+          <input id="survey-search" name="search" class="pl-10 pr-3 max-w-4xl block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-4xl sm:text-sm border-gray-300 rounded-md" placeholder="Search Survey" type="search" data-nav-search-target="input">
         </div>
         <div class="relative">
           <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
@@ -91,7 +91,8 @@
       </div>
     </div>
      <table class="min-w-full divide-y divide-gray-200">
-          <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries">
+     
+          <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries" >
             <%= render partial: "survey", collection: @surveys, as: :survey, cached: false %>
           </tbody>
         </table>
