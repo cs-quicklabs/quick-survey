@@ -18,7 +18,7 @@ gem "sprockets-rails", "3.4.2"
 gem "pg"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.1.1"
+gem "puma", "6.3.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.1.1"
@@ -33,7 +33,7 @@ gem "turbo-rails", "1.4.0"
 gem "stimulus-rails", "1.2.1"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre10"
+gem "stimulus_reflex", "= 3.5.0.rc3"
 
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
