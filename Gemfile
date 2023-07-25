@@ -24,7 +24,7 @@ gem "puma", "6.3.0"
 gem "jsbundling-rails", "1.1.1"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.1.2"
+gem "cssbundling-rails", "1.2.0"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
 gem "turbo-rails", "1.4.0"
