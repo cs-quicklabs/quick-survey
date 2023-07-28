@@ -15,5 +15,13 @@ class User < ApplicationRecord
     ["Team Lead ", "team_lead"],
     ["Admin", "admin"],
   ]
+
+  scope :inactive, -> { where(active: false) }
+  scope :active, -> { where(active: true) }
+
   has_many :survey_attempts
+
+  has_many :pinned_spaces, dependent: :destroy
+  has_many :pinned, through: :pinned_spaces, source: :space
+  has_and_belongs_to_many :spaces
 end

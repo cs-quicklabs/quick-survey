@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "space", target: "_top" do %>
+  <%= render partial: "form", locals: { space: @space, users: @users, title: "Add New Space", subtitle: "Please fill in the details of your new space. A space is a group of similar threads.", url: spaces_path, method: "post", space_users: [] } %>
+<% end %>

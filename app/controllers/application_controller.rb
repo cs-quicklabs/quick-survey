@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include Pagy::Backend
-  include Pundit
+  include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -39,6 +39,16 @@ class ApplicationController < ActionController::Base
       format.html
       format.json {
         render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+    end
+  end
+
+  def render_partial_as(partial, collection:, cached: true, as:)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, as: as, cached: cached),
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
