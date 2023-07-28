@@ -192,6 +192,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.3-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (6.0.4)
     pg (1.5.3)
@@ -336,6 +338,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   action-cable-redis-backport (~> 1)
