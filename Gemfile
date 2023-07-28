@@ -24,7 +24,7 @@ gem "puma", "6.3.0"
 gem "jsbundling-rails", "1.1.1"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.1.2"
+gem "cssbundling-rails", "1.2.0"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
 gem "turbo-rails", "1.4.0"
@@ -33,7 +33,7 @@ gem "turbo-rails", "1.4.0"
 gem "stimulus-rails", "1.2.1"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.pre10"
+gem "stimulus_reflex", "= 3.5.0.rc3"
 
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
@@ -52,7 +52,7 @@ gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.0.7"
+gem "sidekiq", "7.1.2"
 gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", ">= 1.3.0", require: nil
 
