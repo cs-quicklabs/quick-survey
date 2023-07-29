@@ -1,8 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ["form", "errors"]
-  static targets = ['container']
+  static targets = ["form", "errors", "container"]
   static values = {
     backdropColor: { type: String, default: 'rgb(107 114 128);' },
     restoreScroll: { type: Boolean, default: true }
