@@ -20,8 +20,4 @@ export default class extends Controller {
   disconnect() {
     this.slimselect.destroy();
   }
-
-  disconnect() {
-    this.slimselect.destroy();
-  }
 }

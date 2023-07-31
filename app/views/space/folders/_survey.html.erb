@@ -18,11 +18,17 @@
   <div class="absolute ml-60  z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="menu">
     <!-- Dropdown menu items -->
 <ul class="list-none">
-  <li  data-survey-id=<%=survey.id%> class=" cursor-pointer bg-white block w-full px-4 py-2  text-left text-gray-700 hover:bg-gray-50 inline-flex" >
- <p class="inline-flex">
- <%=link_to "Change Folder", "#", class: "cursor-pointer bg-white block w-full  text-sm text-left text-gray-700 hover:bg-gray-50",data: {action: "click->slideover#open",'turbo-frame': "change_folder_modal"} %>
- <svg aria-hidden="true" class="w-5 h-5 mt-0.5 ml-2 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-</p>
+  <li data-action="mouseenter->nested-dropdown#loadData" data-survey-id=<%= survey.id %> class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex"> 
+  <p class="inline-flex"><span>
+  Change Folder</span>
+  <span>
+  <svg aria-hidden="true" class="w-4 h-4 mt-1 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+ <span></p>
+  <div class="absolute z-10  -mt-3 ml-36  w-36 origin-top-right bg-white rounded-lg shadow ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="submenu">
+    <!-- Submenu items will be dynamically populated here -->
+
+  </div>
+
    </li>
   <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
    <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>

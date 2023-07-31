@@ -1,17 +1,3 @@
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      redirect
-    else
-      super
-    end
-  end
-
-  def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
-  end
-end
-
 # frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -28,12 +14,12 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '498b7ba19c099dc3a695ef83222cfe26c19a1f1a5b21ce1a523639f89b19bfdf56e55e1bf1be043884bc81dc7fd82fb0e4eb41a5e9e1bf1cb316f6fa89f0bee1'
+  # config.secret_key = '3e60904e7a89a55cff3f0f6f3a982ac93e37e56131f035a1351e8f1bbc50fa06ccc020aa39af38575a570c8080fa8ae3f7cd97bde24f0a718b693bf4036f9726'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  #config.parent_controller = 'DeviseController'
-  config.parent_controller = "TurboController"
+  # config.parent_controller = 'DeviseController'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -41,7 +27,7 @@ Devise.setup do |config|
   config.mailer_sender = "admin@skia.me"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = "Devise::Mailer"
+  # config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -140,62 +126,13 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '34c3547c44c6689820169ebdef8680a0bf79f29569e49634ae0a3469fe5bc65bec3a6c428354752a701027442dda5cdc69289230072dbb448ee52924aa6b4cc2'
+  # config.pepper = '4826c20a3ee1f5d1cc9c88f40f88fab408b608a4d11707f4afb71c8c9b04fe9e70b5665a6dae9c2efafea51aeb368b30875e48f6284d311a5d41a08826383c94'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
 
   # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false
-
-  # ==> Configuration for :invitable
-  # The period the generated invitation token is valid.
-  # After this period, the invited resource won't be able to accept the invitation.
-  # When invite_for is 0 (the default), the invitation won't expire.
-  # config.invite_for = 2.weeks
-
-  # Number of invitations users can send.
-  # - If invitation_limit is nil, there is no limit for invitations, users can
-  # send unlimited invitations, invitation_limit column is not used.
-  # - If invitation_limit is 0, users can't send invitations by default.
-  # - If invitation_limit n > 0, users can send n invitations.
-  # You can change invitation_limit column for some users so they can send more
-  # or less invitations, even with global invitation_limit = 0
-  # Default: nil
-  # config.invitation_limit = 5
-
-  # The key to be used to check existing users when sending an invitation
-  # and the regexp used to test it when validate_on_invite is not set.
-  # config.invite_key = { email: /\A[^@]+@[^@]+\z/ }
-  # config.invite_key = { email: /\A[^@]+@[^@]+\z/, username: nil }
-
-  # Ensure that invited record is valid.
-  # The invitation won't be sent if this check fails.
-  # Default: false
-  # config.validate_on_invite = true
-
-  # Resend invitation if user with invited status is invited again
-  # Default: true
-  # config.resend_invitation = false
-
-  # The class name of the inviting model. If this is nil,
-  # the #invited_by association is declared to be polymorphic.
-  # Default: nil
-  # config.invited_by_class_name = 'User'
-
-  # The foreign key to the inviting model (if invited_by_class_name is set)
-  # Default: :invited_by_id
-  # config.invited_by_foreign_key = :invited_by_id
-
-  # The column name used for counter_cache column. If this is nil,
-  # the #invited_by association is declared without counter_cache.
-  # Default: nil
-  # config.invited_by_counter_cache = :invitations_count
-
-  # Auto-login after the user accepts the invite. If this is false,
-  # the user will need to manually log in after accepting the invite.
-  # Default: true
-  # config.allow_insecure_sign_in_after_accept = false
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -206,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  config.allow_unconfirmed_access_for = 2.days
+  # config.allow_unconfirmed_access_for = 2.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -220,7 +157,7 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = false
+  config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
@@ -251,7 +188,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 30.minutes
+  # config.timeout_in = 30.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -319,14 +256,14 @@ Devise.setup do |config|
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
-  # :html, should redirect to the sign in page when the user does not have
+  # :html should redirect to the sign in page when the user does not have
   # access, but formats like :xml or :json, should return 401.
   #
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = ["*/*", :html, :turbo_stream]
+  # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -340,11 +277,10 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  config.warden do |manager|
-    manager.failure_app = TurboFailureApp
-    #manager.intercept_401 = false
-    #manager.default_strategies(scope: :user).unshift :some_external_strategy
-  end
+  # config.warden do |manager|
+  #   manager.intercept_401 = false
+  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
+  # end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -360,12 +296,14 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  # ==> Turbolinks configuration
-  # If your app is using Turbolinks, Turbolinks::Controller needs to be included to make redirection work correctly:
-  #
-  # ActiveSupport.on_load(:devise_failure_app) do
-  #   include Turbolinks::Controller
-  # end
+  # ==> Hotwire/Turbo configuration
+  # When using Devise with Hotwire/Turbo, the http status for error responses
+  # and some redirects must match the following. The default in Devise for existing
+  # apps is `200 OK` and `302 Found respectively`, but new apps are generated with
+  # these new defaults that match Hotwire/Turbo behavior.
+  # Note: These might become the new default in future versions of Devise.
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
 
   # ==> Configuration for :registerable
 

@@ -64,7 +64,12 @@
       <% elsif users.size == 0 %>
         <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
       <% end %>
-        <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap " %>
+             <div class="flex " data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+               <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "modal" %>
+                  </div>
+              <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
+          </div>
     </div>
   </div>
 </div>

@@ -8,3 +8,5 @@ import '@tailwindcss/line-clamp'
 import '@tailwindcss/forms'
 import "trix"
 import "@rails/actiontext"
+import "./config"
+import "./channels"
