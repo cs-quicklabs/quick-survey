@@ -18,6 +18,7 @@
   },
   "resolutions": {
     "@hotwired/stimulus": "3.2.1",
+    "@rails/actioncable": "7.0.4"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",
