@@ -23,17 +23,20 @@
         <% if user_signed_in? %>
           <div class="hidden sm:block sm:ml-2 pl-4">
             <div class="flex space-x-2">
-              <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
-              <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
-              <% if policy(:Survey).index? %>
+              <a href="#" class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
+              <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Board</a>
+      <% if policy(:spaces).index? %>
+        <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
+      <% end %>
+         <% if policy(:Survey).index? %>
                 <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ? "nav-selected" : "nav-unselected" %>"> Surveys </a>
               <% end %>
+              <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
+           
               <% if policy(:User).index? %>
                 <a href=<%= user_index_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
               <% end %>
-                      <% if policy(:spaces).index? %>
-        <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
-      <% end %>
+   
             </div>
           </div>
         </div>
@@ -77,7 +80,7 @@
                       <div>
 
                         <a><%= link_to "Settings", profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                       <a><%= link_to "Archived", archived_surveys_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                       <a><%= link_to "Archive", archived_surveys_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                         <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                       </div>
                     </div>

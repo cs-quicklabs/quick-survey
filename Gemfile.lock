@@ -92,12 +92,6 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
-    cable_ready (5.0.1)
-      actionpack (>= 5.2)
-      actionview (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
-      thread-local (>= 1.1.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -289,18 +283,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    stimulus_reflex (3.5.0.rc3)
-      actioncable (>= 5.2, < 8)
-      actionpack (>= 5.2, < 8)
-      actionview (>= 5.2, < 8)
-      activesupport (>= 5.2, < 8)
-      cable_ready (~> 5.0)
-      nokogiri (~> 1.0)
-      rack (>= 2, < 4)
-      railties (>= 5.2, < 8)
-      redis (>= 4.0, < 6.0)
     thor (1.2.2)
-    thread-local (1.1.0)
     thread_safe (0.3.6)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -335,6 +318,7 @@ GEM
     zeitwerk (2.6.10)
 
 PLATFORMS
+  x86_64-darwin-20
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -367,7 +351,6 @@ DEPENDENCIES
   sinatra (>= 1.3.0)
   sprockets-rails (= 3.4.2)
   stimulus-rails (= 1.2.1)
-  stimulus_reflex (= 3.5.0.rc3)
   turbo-rails (= 1.4.0)
   tzinfo-data
   web-console (>= 4.1.0)

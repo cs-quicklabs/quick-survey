@@ -16,14 +16,14 @@ Rails.application.routes.draw do
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
   get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
+  get "/answer", to: "attempts#answer", as: "answer_attempt"
 
   get "/resume", to: "screening/resume#index", as: "resume"
   get "/telephonic", to: "screening/telephonic#index", as: "telephonic"
   get "/interview", to: "screening/interview#index", as: "interview"
   get "/hr", to: "screening/hr#index", as: "hr"
   get "/vendor", to: "screening/vendor#index", as: "vendor"
-  get "/space_folders", to: "space/folders#space_folders", as: "space_folders"
-  get "/change_folder/:survey_id/:folder_id", to: "space/folders#change_folder", as: "change_folder"
+  post "/change_folder/:id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts", to: "attempts#index", as: "survey_attempts"
@@ -56,7 +56,11 @@ Rails.application.routes.draw do
   end
   put ":id/permission", to: "user#update_permission", as: "set_permission"
   resources :spaces do
-    resources :folders, module: "space"
+    resources :folders, module: "space" do
+      collection do
+        get "folders"
+      end
+    end
   end
   scope "/spaces" do
     get ":id/pin", to: "spaces#pin", as: "space_pin"

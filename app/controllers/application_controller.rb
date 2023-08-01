@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include CableReady::Broadcaster
   before_action :authenticate_user!
 
   after_action :verify_authorized, only: [:home]
@@ -8,11 +7,11 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit::Authorization
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  #rescue_from Pundit::NotDefinedError, with: :record_not_found
+  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
 
   LIMIT = 30
 

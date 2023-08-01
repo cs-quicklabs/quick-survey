@@ -1,4 +1,4 @@
- 
+
 <tr class="bg-white" id="<%= dom_id(survey) %>">
   <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900">
     <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
@@ -7,8 +7,9 @@
   </td>
   <td class=" px-6 whitespace-nowrap  text-sm font-medium text-right ">
 
-<div class="relative" data-controller="nested-dropdown">
-  <button type="button" class="btn" data-action="click->nested-dropdown#toggle">
+<div class="relative"  data-controller="nested-dropdown"> 
+ 
+  <button type="button" class="btn"  data-action="click->nested-dropdown#toggle">
  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
 </svg>
@@ -29,9 +30,9 @@
   </div>
 
    </li>
-  <li data-action="mouseenter->nested-dropdown#close">  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
-   <li  data-action="mouseenter->nested-dropdown#close"> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
-   <li  data-action="mouseenter->nested-dropdown#close"> <%= styled_delete_button(survey_path(survey), " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %></li>
+  <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+   <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+   <li> <%= styled_delete_button(survey_path(survey), " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %></li>
 </ul>
 </div>
 

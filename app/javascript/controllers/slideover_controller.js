@@ -34,6 +34,10 @@ export default class extends Controller {
     if (this.preventDefaultActionOpening) {
       e.preventDefault();
     }
+    if (e.target.closest('li').dataset.surveyId) {
+    const id=e.target.closest('li').dataset.surveyId;
+    this.containerTarget.querySelector('form').action=`/change_folder/${id}`;
+    }
 
     if (e.target.blur) {
       e.target.blur();

@@ -32,9 +32,6 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.1"
 
-# Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.rc3"
-
 gem "devise"
 gem "devise_invitable", "~> 2.0.0"
 gem "devise-pwned_password"
