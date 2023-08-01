@@ -9,3 +9,6 @@ controllers.forEach((controller) => {
 
 import StimulusSlimSelect from "./slim_select_controller"
 application.register('slimselect', StimulusSlimSelect)
+
+import Attempt from "./attempt_controller"
+application.register('attempt', Attempt)

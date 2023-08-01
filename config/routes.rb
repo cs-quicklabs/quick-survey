@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
   get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
+  get "/answer", to: "attempts#answer", as: "answer_attempt"
 
   get "/resume", to: "screening/resume#index", as: "resume"
   get "/telephonic", to: "screening/telephonic#index", as: "telephonic"

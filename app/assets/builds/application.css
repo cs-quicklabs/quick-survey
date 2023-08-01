@@ -1122,10 +1122,6 @@ select {
   right: 2rem;
 }
 
-.isolate {
-  isolation: isolate;
-}
-
 .z-0 {
   z-index: 0;
 }
