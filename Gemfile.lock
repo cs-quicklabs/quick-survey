@@ -196,8 +196,8 @@ GEM
     pwned (2.0.2)
     raabro (1.4.0)
     racc (1.7.1)
-    rack (2.2.7)
-    rack-mini-profiler (3.1.0)
+    rack (2.2.8)
+    rack-mini-profiler (3.1.1)
       rack (>= 1.2.0)
     rack-protection (3.0.6)
       rack
@@ -250,7 +250,7 @@ GEM
     rubyzip (2.3.2)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
-    selenium-webdriver (4.11.0)
+    selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -340,7 +340,7 @@ DEPENDENCIES
   pg
   puma (= 6.3.0)
   pundit
-  rack-mini-profiler (~> 3.0)
+  rack-mini-profiler (~> 3.1)
   rails (= 7.0.6)
   redis (= 5.0.6)
   rexml
