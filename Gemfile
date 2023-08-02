@@ -21,7 +21,7 @@ gem "pg"
 gem "puma", "6.3.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.1.1"
+gem "jsbundling-rails", "1.1.2"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.2.0"
@@ -50,7 +50,7 @@ gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq", "7.1.2"
-gem "sidekiq-scheduler", "5.0.2"
+gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -67,7 +67,7 @@ group :development do
   gem "web-console", ">= 4.1.0"
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 3.0"
+  gem "rack-mini-profiler", "~> 3.1"
   gem "listen", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #   gem "spring"
