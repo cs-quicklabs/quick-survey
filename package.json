@@ -17,8 +17,7 @@
     "trix": "2.0.4"
   },
   "resolutions": {
-    "@hotwired/stimulus": "3.2.1",
-    "@rails/actioncable": "7.0.4"
+    "@hotwired/stimulus": "3.2.1"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",

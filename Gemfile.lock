@@ -9,8 +9,6 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    action-cable-redis-backport (1.0.2)
-      actioncable (>= 5.0, < 7.1)
     actioncable (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -325,7 +323,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  action-cable-redis-backport (~> 1)
   bootsnap (= 1.16.0)
   byebug
   capybara (>= 3.38)
