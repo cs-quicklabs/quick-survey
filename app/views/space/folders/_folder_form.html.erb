@@ -1,14 +1,14 @@
 
 
 
-        <div class="flex flex-col p-4 space-y-4" data-controller="select"   data-select-url-value=<%=  folders_space_folders_path(:folder_id=>selected_folder.id)%>>
+        <div class="flex flex-col p-4 space-y-4" data-controller="select"   data-select-url-value=<%= folders_space_folders_path(:folder_id => selected_folder.id) %>>
         <input type="hidden" name="authenticity_token" value="YOUR_AUTHENTICITY_TOKEN">
 
           <div class="flex flex-col space-y-1">
             <label for="spaces" class="text-sm font-medium text-gray-900 text-left">Select Folder</label>
             <select name="space_id" id="space_id" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1"
             data-action="change->select#change" >
-            <%spaces=Space.all.includes(:folders).where.not(folders: { id: nil }).order(:title) %>
+            <% spaces = Space.all.includes(:folders).where.not(folders: { id: nil }).order(:title) %>
               <% spaces.each do |space| %>
                 <option value="<%= space.id %>"><%= space.title.upcase_first %></option>
               <% end %>
@@ -19,7 +19,7 @@
       <select name="folder_id" id="folder_id"  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1"
       data-select-target="select" >
            <option value="">Select Folder</option>
-           <%spaces.first.folders.each do |folder|%>
+           <% spaces.first.folders.each do |folder| %>
             <option value="<%= folder.id %>"><%= folder.title %></option>
             <% end %>
                         </select>

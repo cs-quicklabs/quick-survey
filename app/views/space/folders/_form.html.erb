@@ -1,4 +1,4 @@
-<%= tailwind_form_with(model: space_folder, id: "folder_form", url: url, method: method,data: { slideover_target: "form", controller: "validate" }, html: { novalidate: true }) do |form| %>
+<%= tailwind_form_with(model: space_folder, id: "folder_form", url: url, method: method, data: { slideover_target: "form", controller: "validate" }, html: { novalidate: true }) do |form| %>
   <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: space_folder, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: title, subtitle: subtitle %>
