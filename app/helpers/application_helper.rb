@@ -8,6 +8,10 @@ module ApplicationHelper
     highlight(title, hashtags.map { |tag| "#" + tag })
   end
 
+  def display_created_at(resource)
+    display_date(resource.created_at)
+  end
+
   def auto_link_urls_in_text(text)
     auto_link(text, html: { class: "text-indigo-700 hover:underline", target: "_blank" })
   end

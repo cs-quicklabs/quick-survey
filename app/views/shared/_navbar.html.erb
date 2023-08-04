@@ -34,7 +34,7 @@
               <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
            
               <% if policy(:User).index? %>
-                <a href=<%= user_index_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
+                <a href=<%= users_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
               <% end %>
    
             </div>
