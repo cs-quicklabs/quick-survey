@@ -17,7 +17,8 @@ export default class extends Controller {
 
   generateSubmenu(event) {
     //this.submenuTarget.classList.toggle('hidden');
-    const url = "/space_folders?survey_id=" + event.target.closest("li").dataset.surveyId;
+    const url =
+      "/space_folders?survey_id=" + event.target.closest("li").dataset.surveyId;
 
     fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
       .then((response) => response.text())
@@ -30,7 +31,7 @@ export default class extends Controller {
         event.stopPropagation();
       });
   }
-  
+
   generateNestedDropdown(event) {
     //this.submenuTarget.classList.toggle('hidden');
     const url = "/folders/" + event.target.closest("li").dataset.spaceIdValue;
@@ -38,7 +39,13 @@ export default class extends Controller {
       .then((response) => response.text())
       .then((html) => {
         if (this.nestedDropdownTargets.length > 0) {
-          this.nestedDropdownTargets.find((element) => element.dataset.spaceId == event.target.closest("li").dataset.spaceIdValue).classList.toggle("hidden");
+          this.nestedDropdownTargets
+            .find(
+              (element) =>
+                element.dataset.spaceId ==
+                event.target.closest("li").dataset.spaceIdValue
+            )
+            .classList.toggle("hidden");
 
           event.stopPropagation();
         }

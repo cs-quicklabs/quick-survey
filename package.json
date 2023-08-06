@@ -14,7 +14,8 @@
     "postcss": "8.4.27",
     "slim-select": "2.3.3",
     "tailwindcss": "3.3.3",
-    "trix": "2.0.4"
+    "trix": "2.0.4",
+    "prettier": "2.5.1"
   },
   "resolutions": {
     "@hotwired/stimulus": "3.2.1"
@@ -22,7 +23,8 @@
   "scripts": {
     "build": "node esbuild.config.mjs",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
-    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
+    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "format": "prettier --write app/javascript/**/*.js"
   },
   "engines": {
     "node": "20.5.0",
