@@ -1,5 +1,5 @@
 class Screening::BaseScreeningPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    true
   end
 end
