@@ -30,7 +30,7 @@ gem "cssbundling-rails", "1.2.0"
 gem "turbo-rails", "1.4.0"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.2.1"
+gem "stimulus-rails", "1.2.2"
 
 # Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
 gem "stimulus_reflex", "= 3.5.0.rc3"
