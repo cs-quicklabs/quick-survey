@@ -39,6 +39,9 @@ export default class extends Controller {
   submit(event) {
     event.preventDefault();
     const url=event.target.closest('form').action;
+    if (this.selectTarget.value==="") {
+      return;
+    }
     const folderId = this.selectTarget.value;
     const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
     const requestBody = JSON.stringify({
@@ -57,13 +60,22 @@ export default class extends Controller {
     })   .then(response => {
       if (response.ok) {
         // Handle the redirect based on the response or redirect to a default URL
-        const notice=response.notice;
-        window.location.href = "/spaces/" + this.spaceIdValue+"/folders/"+folderId;
+        return response.json();
       } else {
         console.error('An error occurred during the POST request.');
+        const location = response.headers.get("Location");
+        window.location.href=location;
+
       }
-    })
-    .catch(error => {
+    }).then((data) => {
+      
+  if (data.location) {
+    window.location.href=data.location;
+     } else {
+      const location = response.headers.get("Location");
+      window.location.href=location;
+     }
+      })  .catch(error => {
       console.error(error);
     });
   }

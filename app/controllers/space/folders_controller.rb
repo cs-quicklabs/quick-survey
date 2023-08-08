@@ -74,11 +74,14 @@ class Space::FoldersController < Space::BaseController
     authorize [Space, Folder]
     @survey = Survey::Survey.find(params[:id])
     @folder = Folder.find(params[:folder_id])
-    if @survey.update(folder_id: @folder.id)
-      flash[:notice] = "Folder was changed successfully."
-      render json: { success: true, notice: flash[:notice] }, status: :ok
-    else
-      render json: { success: false }, status: :unprocessable_entity
+    respond_to do |format|
+      if @survey.update(folder_id: @folder.id)
+        flash[:notice] = "Folder was changed successfully."
+
+        format.json { render json: { success: true, notice: flash[:notice], location: space_folder_path(@folder.space, @folder) } }
+      else
+        render json: { success: false }, status: :unprocessable_entity
+      end
     end
   end
 

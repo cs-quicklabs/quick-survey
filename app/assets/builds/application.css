@@ -1122,6 +1122,10 @@ select {
   right: 2rem;
 }
 
+.isolate {
+  isolation: isolate;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1472,6 +1476,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .min-w-0 {
