@@ -1,0 +1,20 @@
+<%= tailwind_form_with(model: user, id: dom_id(user), url: user_path(user), method: :patch) do |form| %>
+  <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: user, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Edit User Details", subtitle: "Please update detail of existing user." %>
+    <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
+    <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
+    <%= form.text_field :email, "Email", autocomplete: "off" %>
+      <%= form.text_field :phone, "Phone", autocomplete: "off" %>
+    <div>
+      <label for="ends" class="block mt-4 text-sm font-medium text-gray-700">
+        Select Role
+      </label>
+      <%= form.select(:role, User::ROLES,{}, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }) %>
+    </div>
+    <div class="flex justify-end">
+      <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
+      <%= form.submit "Save", class: "btn-blue" %>
+    </div>
+  </main>
+<% end %>

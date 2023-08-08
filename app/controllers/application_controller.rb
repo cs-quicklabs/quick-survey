@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_invite_path_for(resource)
+    users_path
+  end
+
   def render_partial_as(partial, collection:, cached: true, as:)
     respond_to do |format|
       format.html

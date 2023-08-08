@@ -39,9 +39,9 @@ Rails.application.routes.draw do
     get "/surveys", to: "surveys#archived", as: "archived_surveys"
     get "/survey/:id", to: "surveys#archive_survey", as: "archive_survey"
     get "/survey/:id/restore", to: "surveys#unarchive_survey", as: "unarchive_survey"
-    get "/users", to: "user#deactivated", as: "deactivated_users"
-    get "/users/:id", to: "user#deactivate_user", as: "deactivate_user"
-    get "/users/:id/restore", to: "user#activate_user", as: "activate_user"
+    get "/users", to: "users#deactivated", as: "deactivated_users"
+    get "/users/:id", to: "users#deactivate_user", as: "deactivate_user"
+    get "/users/:id/restore", to: "users#activate_user", as: "activate_user"
   end
 
   get "/search/surveys", to: "search#surveys"
