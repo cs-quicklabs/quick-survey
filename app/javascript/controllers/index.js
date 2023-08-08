@@ -1,14 +1,13 @@
-import { application } from "./application"
+import { application } from "./application";
 
-import controllers from "./**/*_controller.js"
+import controllers from "./**/*_controller.js";
 
 controllers.forEach((controller) => {
-  application.register(controller.name, controller.module.default)
-})
+  application.register(controller.name, controller.module.default);
+});
 
+import StimulusSlimSelect from "./slim_select_controller";
+application.register("slimselect", StimulusSlimSelect);
 
-import StimulusSlimSelect from "./slim_select_controller"
-application.register('slimselect', StimulusSlimSelect)
-
-import Attempt from "./attempt_controller"
-application.register('attempt', Attempt)
+import Attempt from "./attempt_controller";
+application.register("attempt", Attempt);

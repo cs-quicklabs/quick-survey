@@ -6,33 +6,26 @@ export default class extends Controller {
   static values = {
     url: String,
     param: String,
-    spaceId: String
+    spaceId: String,
   };
 
   connect() {
-    if (this.selectTarget.id==="") {
+    if (this.selectTarget.id === "") {
       this.selectTarget.id = Math.random().toString(36).substring(7);
     }
   }
 
-
   change(event) {
     let params = new URLSearchParams();
-    
-    const spaceId=event.target.selectedOptions[0].value;
 
-
-
-
+    const spaceId = event.target.selectedOptions[0].value;
 
     get(`${this.urlValue}&space=${spaceId}`, {
       responseKind: "turbo-stream",
     })
       .then((response) => response.text)
       .then((html) => {
-
         this.selectTarget.innerHTML = html;
-
       });
   }
 
@@ -43,18 +36,18 @@ export default class extends Controller {
       return;
     }
     const folderId = this.selectTarget.value;
-    const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
+    const authenticityToken = document.querySelector(
+      'meta[name="csrf-token"]'
+    ).content;
     const requestBody = JSON.stringify({
-      folder_id: folderId
+      folder_id: folderId,
     });
 
-
-    
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": authenticityToken
+        "X-CSRF-Token": authenticityToken,
       },
       body: requestBody
     })   .then(response => {

@@ -1,30 +1,34 @@
-import { Controller } from '@hotwired/stimulus';
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["form", "errors", "container"]
+  static targets = ["form", "errors", "container"];
   static values = {
-    backdropColor: { type: String, default: 'rgb(107 114 128);' },
-    restoreScroll: { type: Boolean, default: true }
-  }
+    backdropColor: { type: String, default: "rgb(107 114 128);" },
+    restoreScroll: { type: Boolean, default: true },
+  };
 
   connect() {
     // The class we should toggle on the container
-    this.toggleClass = this.data.get('class') || 'hidden';
+    this.toggleClass = this.data.get("class") || "hidden";
 
     // The ID of the background to hide/remove
-    this.backgroundId = this.data.get('backgroundId') || 'modal-background';
+    this.backgroundId = this.data.get("backgroundId") || "modal-background";
 
     // The HTML for the background element
-    this.backgroundHtml = this.data.get('backgroundHtml') || this._backgroundHTML();
+    this.backgroundHtml =
+      this.data.get("backgroundHtml") || this._backgroundHTML();
 
     // Let the user close the modal by clicking on the background
-    this.allowBackgroundClose = (this.data.get('allowBackgroundClose') || 'true') === 'true';
+    this.allowBackgroundClose =
+      (this.data.get("allowBackgroundClose") || "true") === "true";
 
     // Prevent the default action of the clicked element (following a link for example) when opening the modal
-    this.preventDefaultActionOpening = (this.data.get('preventDefaultActionOpening') || 'true') === 'true';
+    this.preventDefaultActionOpening =
+      (this.data.get("preventDefaultActionOpening") || "true") === "true";
 
     // Prevent the default action of the clicked element (following a link for example) when closing the modal
-    this.preventDefaultActionClosing = (this.data.get('preventDefaultActionClosing') || 'true') === 'true';
+    this.preventDefaultActionClosing =
+      (this.data.get("preventDefaultActionClosing") || "true") === "true";
   }
   disconnect() {
     this.close();
@@ -53,7 +57,7 @@ export default class extends Controller {
 
     // Insert the background
     if (!this.data.get("disable-backdrop")) {
-      document.body.insertAdjacentHTML('beforeend', this.backgroundHtml);
+      document.body.insertAdjacentHTML("beforeend", this.backgroundHtml);
       this.background = document.querySelector(`#${this.backgroundId}`);
     }
   }
@@ -70,7 +74,9 @@ export default class extends Controller {
     this.containerTarget.classList.add(this.toggleClass);
 
     // Remove the background
-    if (this.background) { this.background.remove() }
+    if (this.background) {
+      this.background.remove();
+    }
   }
 
   closeBackground(e) {
@@ -80,7 +86,10 @@ export default class extends Controller {
   }
 
   closeWithKeyboard(e) {
-    if (e.keyCode === 27 && !this.containerTarget.classList.contains(this.toggleClass)) {
+    if (
+      e.keyCode === 27 &&
+      !this.containerTarget.classList.contains(this.toggleClass)
+    ) {
       this.close(e);
     }
   }
@@ -92,16 +101,17 @@ export default class extends Controller {
   lockScroll() {
     // Add right padding to the body so the page doesn't shift
     // when we disable scrolling
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
     document.body.style.paddingRight = `${scrollbarWidth}px`;
 
     // Add classes to body to fix its position
-    document.body.classList.add('fixed', 'inset-x-0', 'overflow-hidden');
+    document.body.classList.add("fixed", "inset-x-0", "overflow-hidden");
 
-    if(this.restoreScrollValue) {
+    if (this.restoreScrollValue) {
       // Save the scroll position
       this.saveScrollPosition();
-      
+
       // Add negative top position in order for body to stay in place
       document.body.style.top = `-${this.scrollPosition}px`;
     }
@@ -112,12 +122,12 @@ export default class extends Controller {
     document.body.style.paddingRight = null;
 
     // Remove classes from body to unfix position
-    document.body.classList.remove('fixed', 'inset-x-0', 'overflow-hidden');
+    document.body.classList.remove("fixed", "inset-x-0", "overflow-hidden");
 
     // Restore the scroll position of the body before it got locked
-    if(this.restoreScrollValue) {
+    if (this.restoreScrollValue) {
       this.restoreScrollPosition();
-      
+
       // Remove the negative top inline style from body
       document.body.style.top = null;
     }
@@ -135,15 +145,15 @@ export default class extends Controller {
 
   handleSuccess({ detail: { success } }) {
     if (success) {
-      super.close()
-      this.clearErrors()
-      this.formTarget.reset()
+      super.close();
+      this.clearErrors();
+      this.formTarget.reset();
     }
   }
 
   clearErrors() {
     if (this.hasErrorsTarget) {
-      this.errorsTarget.remove()
+      this.errorsTarget.remove();
     }
   }
 }
