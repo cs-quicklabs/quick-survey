@@ -66,7 +66,7 @@
       <% end %>
              <div class="flex " >
                <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <%= render "modal" %>
+                   
                   </div>
               <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap " %>
           </div>
@@ -95,7 +95,7 @@
         </div>
       </div>
     </div>
-     <table class="min-w-full divide-y divide-gray-200"
+     <table class="min-w-full divide-y divide-gray-200">
      
           <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries" >
             <%= render partial: "survey", collection: @surveys, as: :survey, cached: false %>

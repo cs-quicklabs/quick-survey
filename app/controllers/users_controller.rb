@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     authorize :User
     @title = "Users"
+    @resource_name = :invitation_user
     @users = User.all.active.order(:first_name).order(created_at: :desc)
   end
 

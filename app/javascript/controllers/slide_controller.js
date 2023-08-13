@@ -95,7 +95,7 @@ export default class extends Controller {
   }
 
   _backgroundHTML() {
-    return `<div id="${this.backgroundId}" class=" inset-0 w-full  bg-opacity-75 transition-opacity" style=" z-index: 9998; backdrop-filter: brightness(.5);;"></div>`;
+    return `<div id="${this.backgroundId}" class="fixed inset-0 w-full  bg-opacity-75 transition-opacity" style=" z-index: 9998; backdrop-filter: brightness(.5);;"></div>`;
   }
 
   lockScroll() {
