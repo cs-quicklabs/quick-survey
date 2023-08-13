@@ -27,7 +27,6 @@ class SpacesController < ApplicationController
 
   def create
     authorize :spaces
-    binding.irb
     @space = AddSpace.call(space_params, current_user, params[:space][:users]).result
     respond_to do |format|
       if @space.persisted?
