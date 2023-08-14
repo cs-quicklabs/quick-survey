@@ -4,7 +4,7 @@ class SpacesController < ApplicationController
 
   def index
     authorize :spaces
-    @all_spaces = current_user.spaces.order(created_at: :desc)
+    @all_spaces = current_user.spaces.includes(:users).order(created_at: :desc)
     @pinned_spaces = current_user.pinned.order(created_at: :desc)
     @my_spaces = @all_spaces.select { |space| space.user_id == current_user.id && space.archive == false }
     @archived_spaces = @all_spaces.select { |space| space.archive == true }
@@ -27,7 +27,6 @@ class SpacesController < ApplicationController
 
   def create
     authorize :spaces
-
     @space = AddSpace.call(space_params, current_user, params[:space][:users]).result
     respond_to do |format|
       if @space.persisted?
