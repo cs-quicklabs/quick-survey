@@ -31,8 +31,8 @@ export default class extends Controller {
 
   submit(event) {
     event.preventDefault();
-    const url=event.target.closest('form').action;
-    if (this.selectTarget.value==="") {
+    const url = event.target.closest("form").action;
+    if (this.selectTarget.value === "") {
       return;
     }
     const folderId = this.selectTarget.value;
@@ -49,27 +49,28 @@ export default class extends Controller {
         "Content-Type": "application/json",
         "X-CSRF-Token": authenticityToken,
       },
-      body: requestBody
-    })   .then(response => {
-      if (response.ok) {
-        // Handle the redirect based on the response or redirect to a default URL
-        return response.json();
-      } else {
-        console.error('An error occurred during the POST request.');
-        const location = response.headers.get("Location");
-        window.location.href=location;
-
-      }
-    }).then((data) => {
-      
-  if (data.location) {
-    window.location.href=data.location;
-     } else {
-      const location = response.headers.get("Location");
-      window.location.href=location;
-     }
-      })  .catch(error => {
-      console.error(error);
-    });
+      body: requestBody,
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Handle the redirect based on the response or redirect to a default URL
+          return response.json();
+        } else {
+          console.error("An error occurred during the POST request.");
+          const location = response.headers.get("Location");
+          window.location.href = location;
+        }
+      })
+      .then((data) => {
+        if (data.location) {
+          window.location.href = data.location;
+        } else {
+          const location = response.headers.get("Location");
+          window.location.href = location;
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-  }
+}

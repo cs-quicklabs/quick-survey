@@ -10,8 +10,7 @@ import StimulusSlimSelect from "./slim_select_controller";
 application.register("slimselect", StimulusSlimSelect);
 
 import Slideover from "./slideover_controller";
-application.register("slideover", Slideover)
-
+application.register("slideover", Slideover);
 
 import Attempt from "./attempt_controller";
 application.register("attempt", Attempt);
