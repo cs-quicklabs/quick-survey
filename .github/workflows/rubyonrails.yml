@@ -38,7 +38,7 @@ jobs:
         run: bin/rails db:schema:load
       # Run any pending migrations
       - name: Run migratins
-        run: bin/rails db:migrate
+        run: bin/rails db:migrate RAILS_ENV=test
 
       # Add or replace test runners here
       - name: Run tests
