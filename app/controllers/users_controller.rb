@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :destroy, :deactivate_user, :activate_user, :edit]
+  before_action :set_user, only: [:update, :destroy, :deactivate_user, :activate_user, :edit, :show]
 
   def index
     authorize :User
     @title = "Users"
-    @resource_name = :invitation_user
+
     @users = User.all.active.order(:first_name).order(created_at: :desc)
   end
 
   def edit
+    authorize @user
+  end
+
+  def show
     authorize @user
   end
 

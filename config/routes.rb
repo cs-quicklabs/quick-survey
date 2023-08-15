@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  resources :users do
+    get "/surveys", to: "user/surveys#index", as: "surveys"
+  end
+
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
   get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
   get "/answer", to: "attempts#answer", as: "answer_attempt"
