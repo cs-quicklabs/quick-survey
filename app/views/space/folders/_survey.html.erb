@@ -1,0 +1,44 @@
+
+<tr class="bg-white" id="<%= dom_id(survey) %>">
+  <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900">
+    <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
+      <%= survey.name.titleize %>
+    </a>
+  </td>
+  <td class=" px-6 whitespace-nowrap  text-sm font-medium text-right ">
+
+<div class="relative"  data-controller="nested-dropdown"> 
+ 
+  <button type="button" class="btn"  data-action="click->nested-dropdown#toggle">
+ <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+</svg>
+
+  </button>
+  <div class="absolute ml-60  z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="menu">
+    <!-- Dropdown menu items -->
+<ul class="list-none">
+  <li  data-action= "click->slideover#open", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>">
+  <p class="inline-flex"><span>
+  Change Folder</span>
+  <span>
+  <svg aria-hidden="true" class="w-4 h-4 mt-1 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+ <span></p>
+  <div class="absolute z-10  -mt-3 ml-36  w-36 origin-top-right bg-white rounded-lg shadow ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="submenu">
+    <!-- Submenu items will be dynamically populated here -->
+
+  </div>
+
+   </li>
+  <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+   <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+   <li> <%= styled_delete_button(survey_path(survey), " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %></li>
+</ul>
+</div>
+
+  
+</div>
+  </td>
+</tr>
+
+

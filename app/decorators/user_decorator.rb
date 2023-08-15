@@ -15,6 +15,10 @@ class UserDecorator < Draper::Decorator
     permission.gsub("_", " ").titleize
   end
 
+  def display_deactivated_on
+    "#{deactivated_on.to_formatted_s(:long)}"
+  end
+
   def name
     display_name
   end

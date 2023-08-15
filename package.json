@@ -4,22 +4,27 @@
   "dependencies": {
     "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo": "7.3.0",
+    "esbuild-rails": "^1.0.4",
+    "@rails/request.js": "^0.0.8",
     "@rails/actiontext": "7.0.7",
     "@tailwindcss/forms": "0.5.4",
     "@tailwindcss/line-clamp": "0.4.4",
     "autoprefixer": "10.4.14",
     "esbuild": "0.19.0",
     "postcss": "8.4.27",
-    "stimulus_reflex": "3.5.0-rc3",
+    "slim-select": "2.3.3",
     "tailwindcss": "3.3.3",
-    "trix": "2.0.5",
-    "cable_ready": "5.0.1",
-    "esbuild-rails": "^1.0.4"
+    "trix": "2.0.4",
+    "prettier": "2.5.1"
+  },
+  "resolutions": {
+    "@hotwired/stimulus": "3.2.1"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
-    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
+    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "format": "prettier --write app/javascript/**/*.js"
   },
   "engines": {
     "node": "20.5.0",

@@ -1,0 +1,26 @@
+  <main class="max-w-lg px-4  mx-auto space-y-6 ">
+<%= tailwind_form_with(model: resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post } ) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="p-4 sm:p-7">
+        <div class="text-center">
+          <h2 class="block text-2xl font-bold text-gray-800 "><%=t("devise.invitations.new.header")%></h2>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+             Invite this user to join Screener. User will be sent an invitation email to confirm.
+          </p>
+        </div>
+
+
+   <div class="grid gap-y-4">
+              <!-- Form Group -->
+              <div>
+  <% resource.class.invite_key_fields.each do |field| -%>
+      <%= form.text_field :email, "Email" %>
+  <% end %>
+</div>
+   <div class="flex justify-end">
+    <%= form.submit t("devise.invitations.new.submit_button"), class: "btn-blue" %>
+  </div>
+    </div>
+    </div>
+<% end %>
+</main>

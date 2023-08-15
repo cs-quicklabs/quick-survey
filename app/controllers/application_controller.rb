@@ -1,19 +1,17 @@
 class ApplicationController < ActionController::Base
-
-  include CableReady::Broadcaster
   before_action :authenticate_user!
 
   after_action :verify_authorized, only: [:home]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include Pagy::Backend
-  include Pundit
+  include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
   rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
 
   LIMIT = 30
 
@@ -39,6 +37,20 @@ class ApplicationController < ActionController::Base
       format.html
       format.json {
         render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+    end
+  end
+
+  def after_invite_path_for(resource)
+    users_path
+  end
+
+  def render_partial_as(partial, collection:, cached: true, as:)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, as: as, cached: cached),
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end

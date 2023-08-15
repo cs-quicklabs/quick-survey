@@ -21,19 +21,44 @@
           </a>
         </div>
         <% if user_signed_in? %>
-          <div class="hidden sm:block sm:ml-6 pl-4">
-            <div class="flex space-x-6">
-              <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Home</a>
-              <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
-              <% if policy(:Survey).index? %>
+          <div class="hidden sm:block sm:ml-2 pl-4">
+            <div class="flex space-x-2">
+              <a href="#" class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
+              <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Board</a>
+      <% if policy(:spaces).index? %>
+        <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
+      <% end %>
+         <% if policy(:Survey).index? %>
                 <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ? "nav-selected" : "nav-unselected" %>"> Surveys </a>
               <% end %>
+              <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
+           
               <% if policy(:User).index? %>
-                <a href=<%= user_index_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
+                <a href=<%= users_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
               <% end %>
+   
             </div>
           </div>
         </div>
+        <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="search/spaces-surveys-and-folders">
+  <div class="w-full max-w-xs lg:max-w-sm justify-end">
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
+        <!-- Heroicon name: solid/search -->
+        <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <input id="search" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Surveys or Spaces or Folders" type="search" data-nav-search-target="input">
+    </div>
+    <div class="relative">
+      <div class="absolute left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+        <ul data-nav-search-target="results">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
         <div data-reflex-permanent>
           <!-- This example requires Tailwind CSS v2.0+ -->
           <nav x-data="dropdowns()" @keydown.window.escape="open = false" class="bg-gray-800" id="menubar">
@@ -53,7 +78,9 @@
                     </div>
                     <div class="border-t border-gray-100">
                       <div>
+
                         <a><%= link_to "Settings", profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                       <a><%= link_to "Archive", archived_surveys_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                         <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                       </div>
                     </div>
@@ -69,4 +96,5 @@
           <% end %>
         </div>
       </div>
+    </div>
     </nav>

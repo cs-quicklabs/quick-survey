@@ -18,5 +18,8 @@ module Screener
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << "#{Rails.root}/lib"
+    config.autoload_paths << "#{Rails.root}/interactors"
+    config.autoload_paths << "#{Rails.root}/presenters"
   end
 end

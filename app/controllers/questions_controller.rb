@@ -22,10 +22,15 @@ class QuestionsController < ApplicationController
 
     add_options(@question, @survey)
 
-    if @question.persisted?
-      redirect_to survey_path(@survey), notice: "Question was added"
-    else
-      redirect_to survey_path(@survey), alert: "Unable to add question"
+    respond_to do |format|
+      if @question.persisted?
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend(:questions, partial: "surveys/questions/question", locals: { question: @question }) +
+                               turbo_stream.replace(Survey::Question.new, partial: "surveys/questions/form", locals: { survey: @survey, question: Survey::Question.new, message: "Question was added successfully." })
+        }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Survey::Question.new, partial: "surveys/questions/form", locals: { survey: @survey, question: @question }) }
+      end
     end
   end
 

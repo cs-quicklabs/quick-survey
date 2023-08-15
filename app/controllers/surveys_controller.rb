@@ -1,10 +1,11 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone]
+  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey]
 
   def index
     authorize :Survey
     @title = "Home"
-    @pagy, @surveys = pagy_nil_safe(params, Survey::Survey.all, items: LIMIT)
+    surveys = Survey::Survey.all.active.where(folder_id: nil)
+    @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
     render_partial("surveys/survey", collection: @surveys, cached: true) if stale?(@surveys)
   end
 
@@ -35,7 +36,14 @@ class SurveysController < ApplicationController
   def create
     authorize :Survey
     @survey = Survey::Survey.new(survey_params)
-    redirect_to survey_path(@survey) if @survey.save
+    if @survey.save
+      if @survey.folder_id.present?
+        @folder = Folder.find(@survey.folder_id)
+        redirect_to space_folder_path(@folder.space, @folder) and return
+      else
+        redirect_to survey_path(@survey)
+      end
+    end
   end
 
   def show
@@ -67,6 +75,28 @@ class SurveysController < ApplicationController
     redirect_to survey_path(@clone)
   end
 
+  def archived
+    authorize :survey, :index?
+
+    surveys = Survey::Survey.inactive.order(archived_on: :desc)
+    @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
+
+    render_partial_as("surveys/archived_survey", collection: @surveys, as: :survey, cached: true) if stale?(@surveys)
+  end
+
+  def archive_survey
+    authorize :survey, :update?
+
+    @survey.update(active: false, archived_on: DateTime.now.utc)
+    redirect_to archived_surveys_path, notice: "Survey has been archived."
+  end
+
+  def unarchive_survey
+    authorize :survey, :update?
+    @survey.update(active: true, archived_on: nil)
+    redirect_to survey_path(@survey), notice: "Survey has been restored."
+  end
+
   private
 
   def set_survey
@@ -74,6 +104,6 @@ class SurveysController < ApplicationController
   end
 
   def survey_params
-    params.require(:survey_survey).permit(:name, :survey_type, :description)
+    params.require(:survey_survey).permit(:name, :survey_type, :description, :folder_id)
   end
 end

@@ -1,0 +1,7 @@
+<% @surveys.each do |result| %>
+  <a href="<%= survey_path(result) %>">
+    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= result.decorate.display_name %>
+    </li>
+  </a>
+<% end %>

@@ -14,7 +14,7 @@
       </p>
     </div>
     <div class="">
-      <fieldset class="space-y-5">
+      <fieldset class="space-y-5" >
         <% survey.questions.each do |question| %>
           <% if survey.survey_type == 0 %>
             <%= render partial: "checklist_question", locals: { question: question, attempt: @attempt } %>

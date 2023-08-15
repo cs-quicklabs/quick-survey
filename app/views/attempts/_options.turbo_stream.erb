@@ -1,0 +1,11 @@
+ <% question.options.each do |option| %>
+<div class="flex items-center text-sm" >
+  <% if question.attempted_option(attempt) == option %>
+    <input  type="radio"   data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="ml-4 h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1" required="required" checked="true"data-action="click->attempt#checked"/>
+  <% else %>
+    <input type="radio"  data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.id %>" name="<%= question.id %>" value="Startup" class="ml-4 h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1" required="required"  data-action="click->attempt#checked" />
+  <% end %>
+  <span id="pricing-plans-0-label" class="ml-1 font-medium"><%= option.text %></span>
+</div>
+<% end %>
+

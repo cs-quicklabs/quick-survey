@@ -32,9 +32,6 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.2"
 
-# Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
-gem "stimulus_reflex", "= 3.5.0.rc3"
-
 gem "devise"
 gem "devise_invitable", "~> 2.0.0"
 gem "devise-pwned_password"
@@ -58,6 +55,7 @@ gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "1.16.0", require: false
+gem "rails-patterns"
 gem "rexml"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -72,7 +70,7 @@ group :development do
   gem "rack-mini-profiler", "~> 3.1"
   gem "listen", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-#   gem "spring"
+  #   gem "spring"
 end
 
 group :test do
@@ -85,5 +83,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "action-cable-redis-backport", "~> 1"
