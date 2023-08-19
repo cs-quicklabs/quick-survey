@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    get "/attempts", to: "user/attempts#index", as: "attempts"
     get "/surveys", to: "user/surveys#index", as: "surveys"
   end
 
