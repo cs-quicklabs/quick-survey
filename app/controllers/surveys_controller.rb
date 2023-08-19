@@ -36,6 +36,7 @@ class SurveysController < ApplicationController
   def create
     authorize :Survey
     @survey = Survey::Survey.new(survey_params)
+    @survey.user = current_user
     if @survey.save
       if @survey.folder_id.present?
         @folder = Folder.find(@survey.folder_id)

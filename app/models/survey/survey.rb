@@ -1,6 +1,7 @@
 class Survey::Survey < ActiveRecord::Base
   self.table_name = "survey_surveys"
   belongs_to :folder, optional: true
+  belongs_to :user
 
   #   acceptable_attributes :name, :description,
   #     :finished,
