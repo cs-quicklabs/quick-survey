@@ -9,8 +9,6 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    action-cable-redis-backport (1.0.2)
-      actioncable (>= 5.0, < 7.1)
     actioncable (7.0.7)
       actionpack (= 7.0.7)
       activesupport (= 7.0.7)
@@ -80,20 +78,18 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.4)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
-    cable_ready (5.0.1)
-      actionpack (>= 5.2)
-      actionview (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
-      thread-local (>= 1.1.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -103,12 +99,16 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
     date (3.3.3)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -140,6 +140,7 @@ GEM
     hiredis (0.6.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
     json (2.6.3)
@@ -181,15 +182,15 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.3-x86_64-darwin)
+    nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.3-x86_64-linux)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (6.0.4)
     pg (1.5.3)
     public_suffix (5.0.3)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     pundit (2.3.1)
       activesupport (>= 3.0.0)
@@ -217,13 +218,18 @@ GEM
       activesupport (= 7.0.7)
       bundler (>= 1.15.0)
       railties (= 7.0.7)
-    rails-dom-testing (2.1.1)
+    rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-patterns (0.11.0)
+      actionpack (>= 4.2.6)
+      activerecord (>= 4.2.6)
+      ruby2_keywords
+      virtus
     railties (7.0.7)
       actionpack (= 7.0.7)
       activesupport (= 7.0.7)
@@ -237,7 +243,7 @@ GEM
       ffi (~> 1.0)
     redis (5.0.7)
       redis-client (>= 0.9.0)
-    redis-client (0.14.1)
+    redis-client (0.15.0)
       connection_pool
     regexp_parser (2.8.1)
     request_store (1.5.1)
@@ -277,18 +283,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
-    stimulus_reflex (3.5.0.rc3)
-      actioncable (>= 5.2, < 8)
-      actionpack (>= 5.2, < 8)
-      actionview (>= 5.2, < 8)
-      activesupport (>= 5.2, < 8)
-      cable_ready (~> 5.0)
-      nokogiri (~> 1.0)
-      rack (>= 2, < 4)
-      railties (>= 5.2, < 8)
-      redis (>= 4.0, < 6.0)
     thor (1.2.2)
-    thread-local (1.1.0)
+    thread_safe (0.3.6)
     tilt (2.2.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
@@ -297,6 +293,10 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    virtus (2.0.0)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -322,7 +322,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  action-cable-redis-backport (~> 1)
   bootsnap (= 1.16.0)
   byebug
   capybara (>= 3.38)
@@ -338,10 +337,11 @@ DEPENDENCIES
   listen (~> 3.3)
   pagy
   pg
-  puma (= 6.3.0)
+  puma (= 6.3.1)
   pundit
   rack-mini-profiler (~> 3.1)
   rails (= 7.0.7)
+  rails-patterns
   redis (= 5.0.7)
   rexml
   selenium-webdriver
@@ -350,7 +350,6 @@ DEPENDENCIES
   sinatra (>= 1.3.0)
   sprockets-rails (= 3.4.2)
   stimulus-rails (= 1.2.2)
-  stimulus_reflex (= 3.5.0.rc3)
   turbo-rails (= 1.4.0)
   tzinfo-data
   web-console (>= 4.1.0)
@@ -362,4 +361,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.6
+   2.4.10

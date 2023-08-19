@@ -8,6 +8,7 @@
     <%= form_with(model: @survey, id: dom_id(@survey), url: surveys_path) do |form| %>
       <div class="mt-8 space-y-6">
         <input type="hidden" name="remember" value="true">
+          <input type="hidden" name="survey_survey[folder_id]" value=<%= params["folder_id"] ? params["folder_id"].to_i : "" %>>
         <div class=" -space-y-px">
           <div>
             <label for="first-name" class="block text-sm font-medium text-gray-700">
