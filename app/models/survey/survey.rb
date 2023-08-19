@@ -22,8 +22,8 @@ class Survey::Survey < ActiveRecord::Base
   scope :inactive, -> { where(:active => false) }
 
   # validations
-  validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }
-  validates :description, :name, :presence => true, :allow_blank => false
+  validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }, on: :create
+  validates :description, :name, :presence => true, :allow_blank => false, on: :create
   validate :check_active_requirements, :on => :create
 
   # returns all the correct options for current surveys

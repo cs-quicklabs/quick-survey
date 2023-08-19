@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_121644) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_19_121423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -150,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_121644) do
     t.bigint "folder_id"
     t.date "archived_on"
     t.integer "user_id"
+    t.boolean "pin", default: false
     t.index ["folder_id"], name: "index_survey_surveys_on_folder_id"
   end
 

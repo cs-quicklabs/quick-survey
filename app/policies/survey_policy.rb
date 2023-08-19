@@ -30,4 +30,12 @@ class SurveyPolicy < ApplicationPolicy
   def show?
     index?
   end
+
+  def pin?
+    index?
+  end
+
+  def unpin?
+    index?
+  end
 end

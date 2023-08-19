@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
   get "/surveys/:id/clone", to: "surveys#clone", as: "clone_survey"
+  get "/surveys/:id/pin", to: "surveys#pin", as: "pin_survey"
+  get "/surveys/:id/unpin", to: "surveys#unpin", as: "unpin_survey"
   get "/answer", to: "attempts#answer", as: "answer_attempt"
 
   get "/resume", to: "screening/resume#index", as: "resume"
@@ -67,6 +69,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
   scope "/spaces" do
     get ":id/pin", to: "spaces#pin", as: "space_pin"
     get ":id/unpin", to: "spaces#unpin", as: "space_unpin"

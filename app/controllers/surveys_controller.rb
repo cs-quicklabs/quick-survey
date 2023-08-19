@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey]
+  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
 
   def index
     authorize :Survey
@@ -50,6 +50,21 @@ class SurveysController < ApplicationController
   def show
     authorize :Survey
     @question = Survey::Question.new
+  end
+
+  def pin
+    authorize :Survey
+    binding.irb
+    @survey.update(pin: true)
+    redirect_to survey_path(@survey) and return
+  end
+
+  def unpin
+    authorize :Survey
+    @survey.update(pin: false)
+    respond_to do |format|
+      format.turbo_stream { redirect_to survey_path(@survey) }
+    end
   end
 
   def clone
