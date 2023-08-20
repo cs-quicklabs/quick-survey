@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  get "/dashboard", to: "dashboard#index", as: "dashboard"
+  get :events, controller: :dashboard
+
   resources :users do
     get "/attempts", to: "user/attempts#index", as: "attempts"
     get "/surveys", to: "user/surveys#index", as: "surveys"

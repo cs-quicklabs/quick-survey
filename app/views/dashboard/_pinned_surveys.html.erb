@@ -1,0 +1,14 @@
+<% if pinned_surveys.count > 0 %>
+  <section aria-labelledby="leaderboard_section">
+    <div class="overflow-hidden bg-white  pb-4">
+      <div class="flex flex-wrap ">
+        <p class=" text-sm font-medium text-gray-900 truncate"><%= title %></p>
+      </div>
+      <div class=" flex   bg-white font-sans py-2   w-full">
+        <ul role="list" class="" style="grid-template-columns: repeat(10, 40px); gap: 0.5rem;  display: grid;" id="side-menu">
+          <%= render partial: "survey", collection: pinned_surveys, as: :survey, cached: true %>
+        </ul>
+      </div>
+    </div>
+  </section>
+<% end %>

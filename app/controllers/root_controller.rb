@@ -19,6 +19,6 @@ class RootController < ApplicationController
         vendor_path
       end
 
-    redirect_to path
+    redirect_to dashboard_path
   end
 end

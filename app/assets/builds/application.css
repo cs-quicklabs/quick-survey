@@ -1218,6 +1218,10 @@ select {
   margin-left: -0.5rem;
 }
 
+.-ml-px {
+  margin-left: -1px;
+}
+
 .-mr-1 {
   margin-right: -0.25rem;
 }
@@ -1304,6 +1308,10 @@ select {
 
 .mt-20 {
   margin-top: 5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .mt-4 {
@@ -1668,6 +1676,10 @@ select {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-x-4 {
@@ -2171,6 +2183,10 @@ select {
 
 .align-text-bottom {
   vertical-align: text-bottom;
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-2xl {
@@ -2886,6 +2902,10 @@ select {
 
   .lg\:justify-end {
     justify-content: flex-end;
+  }
+
+  .lg\:gap-2 {
+    gap: 0.5rem;
   }
 
   .lg\:gap-x-5 {
