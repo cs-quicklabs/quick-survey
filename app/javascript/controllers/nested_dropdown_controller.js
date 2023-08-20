@@ -43,7 +43,7 @@ export default class extends Controller {
             .find(
               (element) =>
                 element.dataset.spaceId ==
-                event.target.closest("li").dataset.spaceIdValue
+                event.target.closest("li").dataset.spaceIdValue,
             )
             .classList.toggle("hidden");
 

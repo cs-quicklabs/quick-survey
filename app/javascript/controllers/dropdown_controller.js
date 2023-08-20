@@ -23,7 +23,7 @@ export default class extends Controller {
     if (this.hasButtonTarget) {
       this.buttonTarget.removeEventListener(
         "keydown",
-        this._onMenuButtonKeydown
+        this._onMenuButtonKeydown,
       );
     }
   }
@@ -48,14 +48,14 @@ export default class extends Controller {
         this._enteringClassList[0].forEach(
           ((klass) => {
             this.menuTarget.classList.add(klass);
-          }).bind(this)
+          }).bind(this),
         );
 
         this._activeClassList[0].forEach((klass) => {
           this.activeTarget.classList.add(klass);
         });
         this._invisibleClassList[0].forEach((klass) =>
-          this.menuTarget.classList.remove(klass)
+          this.menuTarget.classList.remove(klass),
         );
         this._visibleClassList[0].forEach((klass) => {
           this.menuTarget.classList.add(klass);
@@ -63,14 +63,14 @@ export default class extends Controller {
         setTimeout(
           (() => {
             this._enteringClassList[0].forEach((klass) =>
-              this.menuTarget.classList.remove(klass)
+              this.menuTarget.classList.remove(klass),
             );
           }).bind(this),
-          this.enterTimeout[0]
+          this.enterTimeout[0],
         );
 
         if (typeof cb == "function") cb();
-      }).bind(this)
+      }).bind(this),
     );
   }
 
@@ -79,29 +79,29 @@ export default class extends Controller {
       (() => {
         this.element.setAttribute("aria-expanded", "false");
         this._invisibleClassList[0].forEach((klass) =>
-          this.menuTarget.classList.add(klass)
+          this.menuTarget.classList.add(klass),
         );
         this._visibleClassList[0].forEach((klass) =>
-          this.menuTarget.classList.remove(klass)
+          this.menuTarget.classList.remove(klass),
         );
         this._activeClassList[0].forEach((klass) =>
-          this.activeTarget.classList.remove(klass)
+          this.activeTarget.classList.remove(klass),
         );
         this._leavingClassList[0].forEach((klass) =>
-          this.menuTarget.classList.add(klass)
+          this.menuTarget.classList.add(klass),
         );
         setTimeout(
           (() => {
             this._leavingClassList[0].forEach((klass) =>
-              this.menuTarget.classList.remove(klass)
+              this.menuTarget.classList.remove(klass),
             );
             if (typeof cb == "function") cb();
 
             this.menuTarget.classList.add(this.toggleClass);
           }).bind(this),
-          this.leaveTimeout[0]
+          this.leaveTimeout[0],
         );
-      }).bind(this)
+      }).bind(this),
     );
   }
 

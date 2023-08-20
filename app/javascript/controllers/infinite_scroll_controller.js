@@ -10,7 +10,7 @@ export default class extends Controller {
 
     this.intersectionObserver = new IntersectionObserver(
       (entries) => this.processIntersectionEntries(entries),
-      options
+      options,
     );
   }
 
