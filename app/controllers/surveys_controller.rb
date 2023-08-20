@@ -54,17 +54,14 @@ class SurveysController < ApplicationController
 
   def pin
     authorize :Survey
-    binding.irb
     @survey.update(pin: true)
-    redirect_to survey_path(@survey) and return
+    redirect_to survey_path(@survey), notice: "Survey has been pinned."
   end
 
   def unpin
     authorize :Survey
     @survey.update(pin: false)
-    respond_to do |format|
-      format.turbo_stream { redirect_to survey_path(@survey) }
-    end
+    redirect_to survey_path(@survey), notice: "Survey has been unpinned."
   end
 
   def clone
