@@ -1218,10 +1218,6 @@ select {
   margin-left: -0.5rem;
 }
 
-.-ml-px {
-  margin-left: -1px;
-}
-
 .-mr-1 {
   margin-right: -0.25rem;
 }
@@ -1308,10 +1304,6 @@ select {
 
 .mt-20 {
   margin-top: 5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .mt-4 {
