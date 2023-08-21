@@ -23,11 +23,10 @@
           <section aria-labelledby="add-participant-section">
             <div class="overflow-hidden bg-white">
               <div class="p-4">
-                <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate">Pinned Surveys</p>
-                </div>
-                <%= render partial: "pinned_surveys", locals: { pinned_surveys: @pinned_surveys } %>
-              </div>
+
+                <%= render partial: "listing", locals: { leaders: @pinned_surveys , title: "Pinned Surveys" } %>
+<%=render partial: "listing", locals: { leaders: @recent_surveys , title: "Recent Surveys" } %>
+</div>
             </div>
           </section>
         </div>

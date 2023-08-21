@@ -50,6 +50,11 @@ class SurveysController < ApplicationController
   def show
     authorize :Survey
     @question = Survey::Question.new
+    if RecentSurvey.where(user: current_user, survey_surveys: @survey).exists?
+      RecentSurvey.where(user: current_user, survey_surveys: @survey).first.increment!(:count)
+    else
+      RecentSurvey.create(user: current_user, survey_surveys: @survey, count: 1)
+    end
   end
 
   def pin
