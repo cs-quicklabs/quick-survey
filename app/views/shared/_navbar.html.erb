@@ -23,7 +23,7 @@
         <% if user_signed_in? %>
           <div class="hidden sm:block sm:ml-2 pl-4">
             <div class="flex space-x-2">
-              <a href=<%=dashboard_path%> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
+              <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
               <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Board</a>
       <% if policy(:spaces).index? %>
         <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
