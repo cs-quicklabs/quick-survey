@@ -1,0 +1,12 @@
+<turbo-frame id="attempts">
+  <ul>
+    <% @attempts.each do |attempt| %>
+          <%= render partial: 'attempt', locals: { attempt: attempt } %>
+      <% end %>
+  </ul>
+  <% if @attempts.size > 0 %>
+    <p class="pr-4 mt-2 text-sm text-right text-gray-500">Showing <%= 50.to_s %> recently done attempts only.</p>
+  <% else %>
+    <p class="pr-4 mt-6 text-sm text-center text-gray-500">No record found.</p>
+  <% end %>
+</turbo-frame>

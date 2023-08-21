@@ -9,9 +9,9 @@
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Recent Activities" %></p>
+                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Recent Attempts" %></p>
                 </div>
-                <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+                <%= turbo_frame_tag "attempts", src: attempts_path, target: "_top", loading: :lazy do %>
                   <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
                 <% end %>
               </div>
@@ -19,12 +19,12 @@
           </section>
         </div>
         <!-- Right column -->
-        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
+        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-screen">
           <section aria-labelledby="add-participant-section">
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "90 days' goals/milestones window" %></p>
+                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate">Pinned Surveys</p>
                 </div>
                 <%= render partial: "pinned_surveys", locals: { pinned_surveys: @pinned_surveys } %>
               </div>

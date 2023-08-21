@@ -4,9 +4,8 @@ class DashboardController < ApplicationController
     @pinned_surveys = Survey::Survey.all.active.where(pin: true).order("created_at DESC")
   end
 
-  def events
+  def attempts
     authorize :dashboard, :index?
-
-    @events = Event.includes(:eventable, :trackable, :user).order(created_at: :desc).limit(50).decorate
+    @attempts = Survey::Attempt.all.includes(:participant, :survey, :actor).where(actor_id: current_user.id).order("created_at DESC")
   end
 end
