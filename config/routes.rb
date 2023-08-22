@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get :attempts, controller: :dashboard
-
+  get "/questions/reorder", to: "questions#reorder", as: "reorder_questions"
   resources :users do
     get "/attempts", to: "user/attempts#index", as: "attempts"
     get "/surveys", to: "user/surveys#index", as: "surveys"

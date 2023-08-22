@@ -7,13 +7,13 @@
     <section aria-labelledby="participants_section">
       <div class="overflow-hidden bg-white">
         <div class="w-full overflow-hidden" >
-          <div class="p-4">
+          <div class="p-4" data-controller="drag-item">
             <div class="flex flex-wrap">
               <p class="pb-2 mt-1 text-sm pl-4 font-medium text-gray-900 truncate"><%= "Survey Questions (" + @survey.questions.load.size.to_s + ")" %></p>
             </div>
-            <ul class="space-y-6 pl-1" id="questions">
-              <%= render partial: "surveys/questions/question", collection: @survey.questions.order(updated_at: :desc) %>
-            </ul>
+                   <div  id="survey_questions">
+              <%= render partial: "surveys/questions/question", locals: { survey: @survey, questions: @survey.questions.order(:order) }, formats: [:turbo_stream] %>
+           </div>
           </div>
         </div>
       </section>
