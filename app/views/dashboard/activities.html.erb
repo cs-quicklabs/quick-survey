@@ -1,7 +1,7 @@
 <turbo-frame id="attempts">
   <ul>
     <% @attempts.each do |attempt| %>
-          <%= render partial: 'attempt', locals: { attempt: attempt } %>
+          <%= render partial: 'activity', locals: { attempt: attempt } %>
       <% end %>
   </ul>
   <% if @attempts.size > 0 %>
