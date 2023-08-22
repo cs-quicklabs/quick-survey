@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
-  get :attempts, controller: :dashboard
+  get :events, controller: :dashboard
+  get :activities, controller: :dashboard
+
 
   resources :users do
     get "/attempts", to: "user/attempts#index", as: "attempts"

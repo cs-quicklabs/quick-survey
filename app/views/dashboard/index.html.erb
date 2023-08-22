@@ -11,7 +11,7 @@
                 <div class="flex flex-wrap">
                   <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Recent Attempts" %></p>
                 </div>
-                <%= turbo_frame_tag "attempts", src: attempts_path, target: "_top", loading: :lazy do %>
+                <%= turbo_frame_tag "attempts", src: activities_path, target: "_top", loading: :lazy do %>
                   <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
                 <% end %>
               </div>

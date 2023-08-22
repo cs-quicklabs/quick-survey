@@ -1,5 +1,5 @@
 class DashboardPolicy < Struct.new(:user, :home)
   def index?
-    user.admin?
+    true
   end
 end

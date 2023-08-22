@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     @recent_surveys = current_user.recent.order("created_at DESC").limit(5)
   end
 
-  def attempts
+  def activities
     authorize :dashboard, :index?
     @attempts = Survey::Attempt.all.includes(:participant, :survey, :actor).where(actor_id: current_user.id).order("created_at DESC")
   end
