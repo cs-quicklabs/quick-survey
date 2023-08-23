@@ -43,7 +43,7 @@ export default class extends Controller {
       const id = e.target.closest("li").dataset.surveyId;
 
       this.containerTarget.querySelector(
-        "form"
+        "form",
       ).action = `/change_folder/${id}`;
     }
 

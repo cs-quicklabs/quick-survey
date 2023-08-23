@@ -14,3 +14,6 @@ application.register("slideover", Slideover);
 
 import Attempt from "./attempt_controller";
 application.register("attempt", Attempt);
+
+import DragItem from "./drag_item_controller";
+application.register("drag-item", DragItem);

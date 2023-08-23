@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey]
+  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
 
   def index
     authorize :Survey
@@ -36,6 +36,7 @@ class SurveysController < ApplicationController
   def create
     authorize :Survey
     @survey = Survey::Survey.new(survey_params)
+    @survey.user = current_user
     if @survey.save
       if @survey.folder_id.present?
         @folder = Folder.find(@survey.folder_id)
@@ -49,6 +50,23 @@ class SurveysController < ApplicationController
   def show
     authorize :Survey
     @question = Survey::Question.new
+    if RecentSurvey.where(user: current_user, survey_surveys: @survey).exists?
+      RecentSurvey.where(user: current_user, survey_surveys: @survey).first.increment!(:count)
+    else
+      RecentSurvey.create(user: current_user, survey_surveys: @survey, count: 1)
+    end
+  end
+
+  def pin
+    authorize :Survey
+    @survey.update(pin: true)
+    redirect_to survey_path(@survey), notice: "Survey has been pinned."
+  end
+
+  def unpin
+    authorize :Survey
+    @survey.update(pin: false)
+    redirect_to survey_path(@survey), notice: "Survey has been unpinned."
   end
 
   def clone

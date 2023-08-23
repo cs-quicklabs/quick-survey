@@ -4,7 +4,7 @@ export default class extends Controller {
   scroll(event) {
     event.preventDefault();
     const target = document.querySelector(
-      event.currentTarget.dataset.scrollToTarget
+      event.currentTarget.dataset.scrollToTarget,
     );
     const elementPosition = target.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({

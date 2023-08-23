@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_101421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
     t.bigint "space_id", null: false
     t.index ["space_id"], name: "index_pinned_spaces_on_space_id"
     t.index ["user_id"], name: "index_pinned_spaces_on_user_id"
+  end
+
+  create_table "recent_surveys", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "survey_surveys_id", null: false
+    t.integer "count", default: 0
+    t.index ["survey_surveys_id"], name: "index_recent_surveys_on_survey_surveys_id"
+    t.index ["user_id"], name: "index_recent_surveys_on_user_id"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -130,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order", default: 0, null: false
   end
 
   create_table "survey_surveys", force: :cascade do |t|
@@ -145,6 +154,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
     t.integer "survey_stage"
     t.bigint "folder_id"
     t.date "archived_on"
+    t.integer "user_id"
+    t.boolean "pin", default: false
     t.index ["folder_id"], name: "index_survey_surveys_on_folder_id"
   end
 
@@ -173,6 +184,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
     t.boolean "active", default: true, null: false
     t.date "deactivated_on"
     t.boolean "email_enabled", default: true
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.integer "role", default: 0
+    t.string "phone"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
@@ -187,6 +205,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_124253) do
   add_foreign_key "folders", "users"
   add_foreign_key "pinned_spaces", "spaces"
   add_foreign_key "pinned_spaces", "users"
+  add_foreign_key "recent_surveys", "survey_surveys", column: "survey_surveys_id"
+  add_foreign_key "recent_surveys", "users"
   add_foreign_key "spaces", "users"
   add_foreign_key "survey_surveys", "folders"
 end

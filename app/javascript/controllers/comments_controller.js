@@ -26,7 +26,7 @@ export default class extends Controller {
       });
     }
     const hiddenComments = this.commentTargets.filter((comment) =>
-      comment.querySelector("li").classList.contains("hidden")
+      comment.querySelector("li").classList.contains("hidden"),
     );
     if (hiddenComments.length > 1) {
       document.getElementById("load-comments").style.display = "block";
@@ -37,7 +37,7 @@ export default class extends Controller {
   toggleComments(event) {
     event.preventDefault();
     const hiddenComments = this.commentTargets.filter((comment) =>
-      comment.querySelector("li").classList.contains("hidden")
+      comment.querySelector("li").classList.contains("hidden"),
     );
     this.counter = 0;
     hiddenComments.reverse().forEach((comments, index) => {
@@ -49,7 +49,7 @@ export default class extends Controller {
     });
     if (
       this.commentTargets.filter((comment) =>
-        comment.querySelector("li").classList.contains("hidden")
+        comment.querySelector("li").classList.contains("hidden"),
       ).length < 1
     ) {
       document.getElementById("load-comments").style.display = "none";

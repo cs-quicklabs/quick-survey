@@ -1,6 +1,7 @@
 class Survey::Survey < ActiveRecord::Base
   self.table_name = "survey_surveys"
   belongs_to :folder, optional: true
+  belongs_to :user, optional: true
 
   #   acceptable_attributes :name, :description,
   #     :finished,
@@ -11,6 +12,7 @@ class Survey::Survey < ActiveRecord::Base
   # relations
   has_many :attempts, :dependent => :destroy
   has_many :questions, :dependent => :destroy
+  has_many :RecentSurveys, :dependent => :destroy
 
   accepts_nested_attributes_for :questions,
     :reject_if => ->(q) { q[:text].blank? },
@@ -21,8 +23,8 @@ class Survey::Survey < ActiveRecord::Base
   scope :inactive, -> { where(:active => false) }
 
   # validations
-  validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }
-  validates :description, :name, :presence => true, :allow_blank => false
+  validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }, on: :create
+  validates :description, :name, :presence => true, :allow_blank => false, on: :create
   validate :check_active_requirements, :on => :create
 
   # returns all the correct options for current surveys

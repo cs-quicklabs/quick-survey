@@ -47,7 +47,7 @@ export default class extends Controller {
     if (this.hasResultsTarget) {
       this.resultsTarget.removeEventListener(
         "mousedown",
-        this.onResultsMouseDown
+        this.onResultsMouseDown,
       );
       this.resultsTarget.removeEventListener("click", this.onResultsClick);
     }
@@ -56,8 +56,8 @@ export default class extends Controller {
   sibling(next) {
     const options = Array.from(
       this.resultsTarget.querySelectorAll(
-        '[role="option"]:not([aria-disabled])'
-      )
+        '[role="option"]:not([aria-disabled])',
+      ),
     );
     const selected = this.resultsTarget.querySelector('[aria-selected="true"]');
     const index = options.indexOf(selected);
@@ -68,7 +68,7 @@ export default class extends Controller {
 
   select(target) {
     for (const el of this.resultsTarget.querySelectorAll(
-      '[aria-selected="true"]'
+      '[aria-selected="true"]',
     )) {
       el.removeAttribute("aria-selected");
       el.classList.remove("bg-gray-100");
@@ -106,7 +106,7 @@ export default class extends Controller {
       case "Tab":
         {
           const selected = this.resultsTarget.querySelector(
-            '[aria-selected="true"]'
+            '[aria-selected="true"]',
           );
           if (selected) {
             this.commit(selected);
@@ -116,7 +116,7 @@ export default class extends Controller {
       case "Enter":
         {
           const selected = this.resultsTarget.querySelector(
-            '[aria-selected="true"]'
+            '[aria-selected="true"]',
           );
           if (selected && !this.resultsTarget.hidden) {
             this.click(selected);
@@ -162,7 +162,7 @@ export default class extends Controller {
       new CustomEvent("autocomplete.change", {
         bubbles: true,
         detail: { value: value, textValue: textValue },
-      })
+      }),
     );
   }
 
@@ -185,7 +185,7 @@ export default class extends Controller {
     this.resultsTarget.addEventListener(
       "mouseup",
       () => (this.mouseDown = false),
-      { once: true }
+      { once: true },
     );
   }
 
@@ -197,7 +197,7 @@ export default class extends Controller {
   identifyOptions() {
     let id = 0;
     for (const el of this.resultsTarget.querySelectorAll(
-      '[role="option"]:not([id])'
+      '[role="option"]:not([id])',
     )) {
       el.id = `${this.resultsTarget.id}-option-${id++}`;
     }
@@ -249,7 +249,7 @@ export default class extends Controller {
     this.element.dispatchEvent(
       new CustomEvent("toggle", {
         detail: { input: this.input, results: this.results },
-      })
+      }),
     );
   }
 
@@ -261,7 +261,7 @@ export default class extends Controller {
     this.element.dispatchEvent(
       new CustomEvent("toggle", {
         detail: { input: this.input, results: this.results },
-      })
+      }),
     );
   }
 

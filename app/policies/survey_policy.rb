@@ -1,6 +1,6 @@
 class SurveyPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    true
   end
 
   def edit?
@@ -28,6 +28,14 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def show?
+    index?
+  end
+
+  def pin?
+    index?
+  end
+
+  def unpin?
     index?
   end
 end
