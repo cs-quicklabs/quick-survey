@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :set_user, only: [:update_password, :update, :profile, :password]
+  before_action :set_user, only: [:update_password, :update_profile, :profile, :password]
   before_action :find_user, only: [:update_permission, :destroy, :deactivate_user, :activate_user]
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
@@ -15,7 +15,7 @@ class UserController < ApplicationController
     redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)
   end
 
-  def update
+  def update_profile
     authorize @user
     respond_to do |format|
       if @user.update(user_params)
