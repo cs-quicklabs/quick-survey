@@ -1,5 +1,5 @@
 class UserPolicy < ApplicationPolicy
-  def update?
+  def update_profile?
     true
   end
 

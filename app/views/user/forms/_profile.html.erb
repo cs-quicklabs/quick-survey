@@ -1,4 +1,4 @@
-  <%= tailwind_form_with(model: user, id: dom_id(user)) do |form| %>
+  <%= tailwind_form_with(model: user, id: dom_id(user), url: update_profile_path, method: :patch) do |form| %>
   <div>
     <div class="space-y-6">
       <%= render "shared/form_messages", resource: user, message: local_assigns[:message] %>

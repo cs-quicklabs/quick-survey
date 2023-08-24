@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     get "/profile", to: "user#profile", as: "profile"
     get "/password", to: "user#password", as: "setting_password"
     patch "/password", to: "user#update_password", as: "change_password"
+    patch "/profile", to: "user#update_profile", as: "update_profile"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "set_permission"
