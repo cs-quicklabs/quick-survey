@@ -41,6 +41,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Survey::Question.new(question_params)
     @question.survey = @survey
+    @question.order = @survey.questions.size + 1
     @question.save
 
     add_options(@question, @survey)
@@ -48,7 +49,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:questions, partial: "surveys/questions/question", locals: { question: @question }) +
+          render turbo_stream: turbo_stream.append(:questions, partial: "surveys/questions/question", locals: { questions: @survey.questions.order(:order), survey: @survey }, formats: [:turbo_stream]) +
                                turbo_stream.replace(Survey::Question.new, partial: "surveys/questions/form", locals: { survey: @survey, question: Survey::Question.new, message: "Question was added successfully." })
         }
       else
