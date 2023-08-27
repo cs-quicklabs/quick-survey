@@ -33,6 +33,9 @@
   </td>
   <% if current_user.admin? %>
     <td class="table-cell space-x-6">
+       <% if user.sign_in_count == 0 %>
+        <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+      <% end %>
     <%= link_to "View", user_surveys_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
         <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
           <%= link_to "Deactivate", deactivate_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>

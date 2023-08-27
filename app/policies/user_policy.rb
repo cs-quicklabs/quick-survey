@@ -36,6 +36,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def deactivated?
-    true
+    user.admin?
+  end
+
+  def resend_invitation?
+    user.admin?
   end
 end
