@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class UsersPolicy < ApplicationPolicy
   def update_profile?
     true
   end
