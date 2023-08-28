@@ -1,9 +1,11 @@
 user:
   participant: regular
   survey: user
-  participant: regular
+  participant: participant
+  actor: member
 
 one:
   participant: regular
   survey: user
-  participant: actor
+  participant: participant
+  actor: member

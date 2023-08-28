@@ -1,30 +1,8 @@
-   <% @user = @user.decorate %>
-<div class="px-4 pt-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="user-header">
-  <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
-    <h1 class="text-3xl font-bold leading-tight text-gray-900">
-         <%= !@user.first_name.blank? ?
-       @user.decorate.display_name : @user.email
-        %>
-    </h1>
-    <% if current_user.admin? or current_user.lead? %>
-      <p class="mt-1 ml-2 text-sm text-gray-500 truncate">(<%= @user.role.upcase_first %>)</p>
-    <% end %>
-     </div>
-     <div>
-            <%= link_to "Edit", edit_user_path(@user), class: " btn-normal" %>
-      
-          <% if @user.active %>
-            
-              <%= confirm_button(deactivate_user_path(@user), "Deactivate", "Are you sure?", "ml-4 btn-normal") %>
-            
-          <% else %>
-            
-              <%= confirm_button(activate_user_path(@user), "Activate", "Are you sure?", "ml-4  btn-normal") %>
-            
-          <% end %>
-        </div>
-    </div>
-    <%= render partial: "user/tabs", locals: { user: @user } %>
+<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header">
+<%= render partial: "surveys/title", locals: { survey: @survey } %>
+
+</div>
+  <%= render partial: "tabs", locals: { survey: @survey } %>
 
   <div class="sm:block">
     <div class="inline-block min-w-full align-middle " data-controller="infinite-scroll">
@@ -33,7 +11,7 @@
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="w-full table-head">
-              Survey
+              User
               </th>
                <th scope="col" class=" table-head">
             Participant
@@ -58,3 +36,4 @@
         </div>
       </div>
     </div>
+  

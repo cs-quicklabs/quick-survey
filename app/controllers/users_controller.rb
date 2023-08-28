@@ -30,8 +30,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to user_index_path, status: 303, notice: "User has been deleted."
+    authorize @user
+    if DestroyUser.call(@user).result
+      redirect_to users_path, status: 303, notice: "User has been deleted."
+    end
   end
 
   def deactivate_user

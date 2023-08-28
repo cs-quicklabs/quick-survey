@@ -3,6 +3,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
   def create?
     true
   end
@@ -41,5 +45,9 @@ class UserPolicy < ApplicationPolicy
 
   def resend_invitation?
     user.admin?
+  end
+
+  def destroy?
+    true
   end
 end

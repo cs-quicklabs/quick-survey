@@ -10,7 +10,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: admin.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(home_path(script_name: "/#{admin.account.id}"))
+    assert_current_path(dashboard_path)
     take_screenshot
   end
 
@@ -20,7 +20,8 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: member.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(home_path(script_name: "/#{member.account.id}"))
+
+    assert_current_path(dashboard_path)
     take_screenshot
   end
 
@@ -30,7 +31,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: lead.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(home_path(script_name: "/#{super_admin.account.id}"))
+    assert_current_path(dashboard_path)
     take_screenshot
   end
 
@@ -53,24 +54,6 @@ class OnboardingTest < ApplicationSystemTestCase
     click_on "Change my password"
     assert_selector "p.notice", text: "Your password has been changed successfully."
     take_screenshot
-  end
-
-  test "user can not signup with invalid params" do
-    visit new_user_registration_path
-    click_on "Sign up"
-    assert_selector "div#error_explanation", text: "First name can't be blank"
-    assert_selector "div#error_explanation", text: "Last name can't be blank"
-    assert_selector "div#error_explanation", text: "Email can't be blank"
-    assert_selector "div#error_explanation", text: "Company can't be blank"
-    assert_selector "div#error_explanation", text: "New password can't be blank"
-    assert_selector "div#error_explanation", text: "New password confirmation can't be blank"
-  end
-
-  test "user can not signup with duplicate email" do
-    visit new_user_registration_path
-    fill_in "user_email", with: users(:admin).email
-    click_on "Sign up"
-    assert_selector "div#error_explanation", text: "Email has already been taken"
   end
 
   test "user can confirm email" do

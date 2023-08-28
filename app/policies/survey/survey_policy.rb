@@ -1,4 +1,4 @@
-class SurveyPolicy < ApplicationPolicy
+class Survey::SurveyPolicy < ApplicationPolicy
   def index?
     true
   end

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root :to => "root#index"
+
   resources :surveys do
+    get "/attempts", to: "surveys#attempts", as: "attempts"
     resources :questions
   end
 
@@ -38,7 +40,7 @@ Rails.application.routes.draw do
   post "/change_folder/:id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
-  get "/attempts", to: "attempts#index", as: "survey_attempts"
+  get "/attempts", to: "attempts#index", as: "attempts"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
   get "/pdf/checklist/:id", to: "reports#checklist", as: "checklist_pdf"
   get "/pdf/score/:id", to: "reports#score", as: "score_pdf"

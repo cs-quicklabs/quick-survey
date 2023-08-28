@@ -38,4 +38,8 @@ class UsersPolicy < ApplicationPolicy
   def deactivated?
     true
   end
+
+  def destroy?
+    true
+  end
 end

@@ -4,7 +4,7 @@
     <div class="flex items-center">
       <div class="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
         <div>
-          <a href="<%= user_path(user) %>" class="truncate hover:text-gray-600 hover:underline">
+          <a href="<%= user_attempts_path(user) %>" class="truncate hover:text-gray-600 hover:underline">
             <div class="flex text-sm font-medium text-gray-600 truncate">
               <p>      <%= !user.first_name.blank? ?
        user.decorate.display_name : user.email

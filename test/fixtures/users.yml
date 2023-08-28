@@ -11,6 +11,15 @@ member:
   confirmed_at: 2021-03-18
   role:  member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+
+participant:
+  first_name: Aashish
+  last_name: Dhawan(Participant)
+  email: participant@crownstack.com
+  confirmed_at: 2021-03-18
+  role:  member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %> 
   
   
 admin:
@@ -36,7 +45,6 @@ invited:
   last_name: C. Dhawan (Invited)
   active: false
   email: invite@crownstack.com
-  account: crownstack
   role: member
 
 
@@ -46,7 +54,6 @@ unconfirmed:
   last_name: C. Dhawan (Member)
   active: true
   email: unconfirmed@crownstack.com
-  account: crownstack
   role: member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 # column: value

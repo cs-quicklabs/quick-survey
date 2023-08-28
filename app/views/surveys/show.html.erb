@@ -1,6 +1,8 @@
-<div class="px-2 py-2  sm:flex sm:items-center sm:justify-between sm:px-4 border-b border-gray-200" id="survey-header">
+<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header">
 <%= render partial: "surveys/title", locals: { survey: @survey } %>
+
 </div>
+  <%= render partial: "tabs", locals: { survey: @survey } %>
 <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
   <!-- Left column -->
   <div class="grid grid-cols-1 gap-4 lg:col-span-2">

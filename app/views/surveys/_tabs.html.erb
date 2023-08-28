@@ -1,0 +1,14 @@
+<div id="user-tabs">
+  <div class="hidden sm:block">
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px space-x-8 lg:px-6" aria-label="Tabs">
+  <a href="<%= survey_path(survey) %>" class="<%= current_page?(survey_path(survey)) ? "selected-tab" : "unselected-tab" %>">
+            Questions
+          </a>
+             <a href="<%= survey_attempts_path(survey) %>" class="<%= current_page?(survey_attempts_path(survey)) ? "selected-tab" : "unselected-tab" %>">
+            Attempts
+          </a>
+      </nav>
+    </div>
+  </div>
+</div>
