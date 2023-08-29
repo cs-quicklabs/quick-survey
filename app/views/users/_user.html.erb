@@ -10,7 +10,7 @@
    <td class="table-cell ">
     <%= display_created_at(user) %>
   </td>
-   <td class="table-cell ">
+   <td class="table-cell status ">
     <div class="text-sm text-gray-500"><%= user.role %></div>
     <% if user.sign_in_count > 0 %>
       <p class="flex items-center text-sm text-gray-500">
@@ -21,21 +21,13 @@
         </svg>
       </p>
     <% elsif user.invitation_created_at.nil? %>
-      <a data-reflex="click->InviteEmployee#invite" data-employee-id=<%= user.id %> class="text-blue-600 cursor-pointer hover:underline btn-inline-edit">Invite</a>
+      <a  href="<%=resend_invitation_user_path(user)%>" class="text-blue-600 cursor-pointer hover:underline btn-inline-edit">Invite</a>
     <% else %>
-      <p class="flex items-center text-sm text-gray-500 ">
-        Invited
-        <!-- Heroicon name: solid/check-circle -->
-        <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
-        </svg>      </p>
+      <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
     <% end %>
   </td>
   <% if current_user.admin? %>
     <td class="table-cell space-x-6">
-       <% if user.sign_in_count == 0 %>
-        <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
-      <% end %>
     <%= link_to "View", user_attempts_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
         <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
           <%= link_to "Deactivate", deactivate_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>

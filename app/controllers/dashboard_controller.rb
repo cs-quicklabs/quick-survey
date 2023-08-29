@@ -8,6 +8,5 @@ class DashboardController < ApplicationController
   def activities
     authorize :dashboard, :index?
     @attempts = Survey::Attempt.all.includes(:participant, :survey, :actor).where(actor_id: current_user.id).order("created_at DESC")
-    binding.irb
   end
 end

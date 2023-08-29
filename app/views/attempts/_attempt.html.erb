@@ -13,7 +13,9 @@
     <p> <%= participant.email %></p>
   </td>
   <td class=" whitespace-nowrap  table-cell">
+   <a href="<%=user_attempts_path(attempt.actor)%>" class="text-indigo-600 hover:text-indigo-900">
     <p> <% if attempt.actor %><%= attempt.actor.decorate.display_name %><% end %></p>
+    </a>
   </td>
   <td class=" whitespace-nowrap  table-cell">
     <p> <%= attempt.created_at.to_date.to_formatted_s(:long) %></p>

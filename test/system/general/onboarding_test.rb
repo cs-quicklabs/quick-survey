@@ -28,7 +28,7 @@ class OnboardingTest < ApplicationSystemTestCase
   test "super admin can login" do
     super_admin = users(:super_admin)
     visit new_user_session_path
-    fill_in "user_email", with: lead.email
+    fill_in "user_email", with: super_admin.email
     fill_in "user_password", with: "password"
     click_on "Log In"
     assert_current_path(dashboard_path)
@@ -56,32 +56,15 @@ class OnboardingTest < ApplicationSystemTestCase
     take_screenshot
   end
 
-  test "user can confirm email" do
-    visit new_user_session_path
-    click_on "Didn't receive email confirmation instructions?"
-    fill_in "user_email", with: users(:unconfirmed).email
-    assert_emails 1 do
-      click_on "Resend confirmation instructions"
-      sleep(0.5)
-    end
-    take_screenshot
-
-    assert_selector "p.notice", text: "You will receive an email with instructions for how to confirm your email address in a few minutes."
-    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
-    link = doc.css("a").first.values.first
-    visit link
-    assert_selector "p.notice", text: "Your email address has been successfully confirmed."
-  end
-
   test "admin can invite a new user" do
     admin = users(:admin)
+    sign_in admin
+    visit users_path
     visit users_path
     click_on "Invite New User"
     fill_in "user_email", with: "new_user@crownstack.com"
-    click_on "Send an invitation"
-
     assert_emails 1 do
-      find("tr", id: dom_id(user)).find("a", text: "Invite").click
+      click_on "Send an invitation"
       sleep(0.5)
     end
     sign_out admin
@@ -94,15 +77,42 @@ class OnboardingTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
   end
 
-  test "email invite can be sent to a new user" do
+  test "email invite can be sent to a any user who has not accepted the invite" do
     admin = users(:admin)
+    sign_in admin
     visit users_path
-
     invited = users(:invited)
     within("tr", id: dom_id(invited)) do
       assert_emails 1 do
-        click_on "Resend Invitation"
+        within("td", class: "status") do
+          find("a", text: "Invite").click
+        end
         sleep(0.5)
+      end
+    end
+    sign_out admin
+    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
+    link = doc.css("a").first.values.first
+    visit link
+    fill_in "user_password", with: "password"
+    fill_in "user_password_confirmation", with: "password"
+    click_on "Set password and login"
+    assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
+  end
+
+  test "email invite can be sent to a any user who has not joined" do
+    admin = users(:admin)
+    sign_in admin
+    visit users_path
+
+    not_joined = users(:not_joined)
+
+    within("tr", id: dom_id(not_joined)) do
+      assert_emails 1 do
+        within("td", class: "status") do
+          click_on "Resend Invitation"
+          sleep(0.5)
+        end
       end
     end
     assert_selector "p.notice", text: "Invitation has been resent successfully."
