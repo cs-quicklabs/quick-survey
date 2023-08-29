@@ -62,4 +62,12 @@ unconfirmed:
   email: unconfirmed@crownstack.com
   role: member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+deactivated:
+  first_name: Aashish
+  last_name: C. Dhawan (Inactive)
+  active: false
+  email: deactivated@crownstack.com
+  role: member  
+  deactivated_on: 2021-03-18  
 # column: value

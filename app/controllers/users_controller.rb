@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.update(user_params)
-        format.turbo_stream { redirect_to users_path, status: 303, notice: "User has been updated." }
+        format.turbo_stream { redirect_to users_path, status: 303, notice: "User has been updated successfully." }
       else
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { user: @user })
