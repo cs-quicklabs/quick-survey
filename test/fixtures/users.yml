@@ -12,7 +12,13 @@ member:
   role:  member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-
+actor:
+  first_name: Aashish
+  last_name: Dhawan (Actor)
+  email: actor@crownstack.com
+  confirmed_at: 2021-03-18
+  role:  member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
   
   
