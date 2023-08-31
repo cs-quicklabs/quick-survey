@@ -1,11 +1,11 @@
-user:
+one:
   participant: regular
-  survey: user
+  survey: one
   participant: one
   actor: member
 
-one:
+two:
   participant: regular
-  survey: user
+  survey: one
   participant: one
   actor: member
