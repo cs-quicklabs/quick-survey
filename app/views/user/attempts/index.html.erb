@@ -6,7 +6,7 @@
        @user.decorate.display_name : @user.email
         %>
     </h1>
-    <% if current_user.admin? or current_user.lead? %>
+    <% if current_user.admin? %>
       <p class="mt-1 ml-2 text-sm text-gray-500 truncate">(<%= @user.role.upcase_first %>)</p>
     <% end %>
      </div>

@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-bold leading-tight text-gray-900">
       <%= @user.display_name %>
     </h1>
-    <% if current_user.admin? or current_user.lead? %>
+    <% if current_user.admin? %>
       <p class="mt-1 ml-2 text-sm text-gray-500 truncate">(<%= @user.role.upcase_first %>)</p>
     <% end %>
      </div>
