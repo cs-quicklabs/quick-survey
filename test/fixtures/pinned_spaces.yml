@@ -1,0 +1,7 @@
+one:
+  user: admin
+  space: five
+
+two:
+  user: member
+  space: pinned
