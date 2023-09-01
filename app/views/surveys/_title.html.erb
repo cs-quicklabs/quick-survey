@@ -1,8 +1,8 @@
 
   <div class="flex-wrap p-4 items-baseline -mt-2" >
-    <h3 class="text-2xl font-bold leading-tight text-gray-900">
+    <h1 class="text-2xl font-bold leading-tight text-gray-900">
       <%= @survey.name.titleize %>
-    </h3>
+    </h1>
     <p class="mt-1 text-sm text-gray-500 truncate"><%= @survey.description %></p>
   </div>
   <div class="flex mt-2 sm:mt-0 sm:ml-4">
@@ -14,7 +14,7 @@
                
                 <span class="relative block -ml-px">
                   <button data-action="click->dropdown#toggle click@window->dropdown#hide"  type="button"  value="Submit" class="inline-flex bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
-                    <span>Action</span>
+                    <span>Actions</span>
                     <!-- Heroicon name: solid/chevron-down -->
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -36,7 +36,7 @@
                        <%= confirm_button(archive_survey_path(@survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
 
                       <% else %>
-                                            <%= confirm_button(unarchive_survey_path(@survey), "Unarchive", "Are you sure you want to activate this survey?", "btn-inline-edit mr-2") %>
+                                            <%= confirm_button(unarchive_survey_path(@survey), "Unarchive", "Are you sure you want to activate this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
                      
                       <% end %>
                     </div>

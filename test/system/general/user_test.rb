@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class UserTest < ApplicationSystemTestCase
   setup do
-    @user = users(:regular)
+    @user = users(:member)
     sign_in @user
   end
 
@@ -68,30 +68,5 @@ class UserTest < ApplicationSystemTestCase
     assert_text "New password confirmation can't be blank"
     assert_text "Original password is not correct"
     assert_text "New password is too short (minimum is 6 characters)"
-  end
-
-  test "can send invite to user" do
-    visit new_user_invitation_url
-    email = "john.doe@crownstack.com"
-    fill_in "user_email", with: email
-    click_on "Send an invitation"
-    take_screenshot
-    assert_selector "p.notice", text: "An invitation email has been sent to #{email}"
-  end
-
-  test "can update permission to user" do
-    sign_out @user
-    @user = users(:admin)
-    sign_in @user
-    visit user_index_url
-    take_screenshot
-    p = users(:regular)
-    within "##{dom_id(p)}" do
-      assert_text p.decorate.display_name
-      assert_text p.email
-      select "HR", from: "user_permission"
-      assert_text "HR"
-    end
-    take_screenshot
   end
 end

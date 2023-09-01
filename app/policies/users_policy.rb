@@ -1,9 +1,5 @@
-class UserPolicy < ApplicationPolicy
+class UsersPolicy < ApplicationPolicy
   def update_profile?
-    true
-  end
-
-  def update?
     true
   end
 
@@ -40,11 +36,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def deactivated?
-    user.admin?
-  end
-
-  def resend_invitation?
-    user.admin?
+    true
   end
 
   def destroy?

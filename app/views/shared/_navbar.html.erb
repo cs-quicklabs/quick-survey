@@ -15,7 +15,7 @@
     <div class="relative flex items-center justify-between h-12">
       <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
         <div class="flex items-center flex-shrink-0">
-          <a href="<%= root_path %>">
+          <a href="<%= dashboard_path %>">
             <img class="block w-auto h-8 lg:hidden" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Survey">
             <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Survey">
           </a>
@@ -24,7 +24,7 @@
           <div class="hidden sm:block sm:ml-2 pl-4">
             <div class="flex space-x-2">
               <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
-              <a href=<%= root_path %> class= "<%= current_page?(root_path) ? "nav-selected" : "nav-unselected" %>">Board</a>
+              <a href=<%= resume_path %> class= "<%= current_page?(resume_path) ? "nav-selected" : "nav-unselected" %>">Board</a>
       <% if policy(:spaces).index? %>
         <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
       <% end %>

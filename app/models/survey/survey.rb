@@ -12,7 +12,6 @@ class Survey::Survey < ActiveRecord::Base
   # relations
   has_many :attempts, :dependent => :destroy
   has_many :questions, :dependent => :destroy
-  has_many :RecentSurveys, :dependent => :destroy
 
   accepts_nested_attributes_for :questions,
     :reject_if => ->(q) { q[:text].blank? },
@@ -25,7 +24,7 @@ class Survey::Survey < ActiveRecord::Base
   # validations
   validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }, on: :create
   validates :description, :name, :presence => true, :allow_blank => false, on: :create
-  validate :check_active_requirements, :on => :create
+  #validate :check_active_requirements, :on => :create
 
   # returns all the correct options for current surveys
   def correct_options

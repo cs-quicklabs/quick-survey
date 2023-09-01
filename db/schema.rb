@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_22_101421) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_055601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -146,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_22_101421) do
     t.text "description"
     t.integer "attempts_number", default: 0
     t.boolean "finished", default: false
-    t.boolean "active", default: false
+    t.boolean "active", default: true
     t.integer "winning_score", default: 0
     t.integer "survey_type", default: 0
     t.datetime "created_at", null: false

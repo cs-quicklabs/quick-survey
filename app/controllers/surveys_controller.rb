@@ -20,10 +20,11 @@ class SurveysController < ApplicationController
   end
 
   def destroy
-    authorize :Survey
+    authorize @survey
 
-    @survey.destroy
-    redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
+    if DestroySurvey.call(@survey).result
+      redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
+    end
   end
 
   def update
@@ -55,6 +56,14 @@ class SurveysController < ApplicationController
     else
       RecentSurvey.create(user: current_user, survey_surveys: @survey, count: 1)
     end
+  end
+
+  def attempts
+    authorize :Survey
+    @survey = Survey::Survey.find(params[:survey_id])
+    attempts = Survey::Attempt.where(survey_id: params[:survey_id]).includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
+    @pagy, @attempts = pagy(attempts, items: 10)
+    render_partial("surveys/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
   def pin

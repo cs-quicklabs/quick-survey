@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :destroy, :deactivate_user, :activate_user, :edit, :show]
+  before_action :set_user, only: %i[update destroy deactivate_user activate_user edit show resend_invitation]
 
   def index
     authorize :User
@@ -20,16 +20,20 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.update(user_params)
-        format.turbo_stream { redirect_to users_path, status: 303, notice: "User has been updated." }
+        format.turbo_stream { redirect_to users_path, status: 303, notice: "User has been updated successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { user: @user }) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { user: @user })
+        end
       end
     end
   end
 
   def destroy
-    @user.destroy
-    redirect_to user_index_path, status: 303, notice: "User has been deleted."
+    authorize @user
+    if DestroyUser.call(@user).result
+      redirect_to users_path, status: 303, notice: "User has been deleted."
+    end
   end
 
   def deactivate_user
@@ -48,11 +52,17 @@ class UsersController < ApplicationController
   end
 
   def deactivated
-    authorize :User
+    authorize :users
 
     users = User.all.inactive.order(deactivated_on: :desc)
     @pagy, @users = pagy_nil_safe(params, users, items: LIMIT)
     render_partial("users/deactivated_user", collection: @users, cached: true) if stale?(@users)
+  end
+
+  def resend_invitation
+    authorize @user
+    @user.invite!
+    redirect_to users_path, notice: "Invitation has been resent successfully."
   end
 
   private

@@ -10,13 +10,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root :to => "root#index"
+
   resources :surveys do
+    get "/attempts", to: "surveys#attempts", as: "attempts"
     resources :questions
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get "/questions/reorder", to: "questions#reorder", as: "reorder_questions"
   get :activities, controller: :dashboard
+  get "resend_invitation/:id", to: "users#resend_invitation", as: "resend_invitation_user"
 
   resources :users do
     get "/attempts", to: "user/attempts#index", as: "attempts"
@@ -37,7 +40,7 @@ Rails.application.routes.draw do
   post "/change_folder/:id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"
-  get "/attempts", to: "attempts#index", as: "survey_attempts"
+  get "/attempts", to: "attempts#index", as: "attempts"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
   get "/pdf/checklist/:id", to: "reports#checklist", as: "checklist_pdf"
   get "/pdf/score/:id", to: "reports#score", as: "score_pdf"
@@ -63,6 +66,7 @@ Rails.application.routes.draw do
     get "/profile", to: "user#profile", as: "profile"
     get "/password", to: "user#password", as: "setting_password"
     patch "/password", to: "user#update_password", as: "change_password"
+    patch "/profile", to: "user#update_profile", as: "update_profile"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "set_permission"

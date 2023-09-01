@@ -28,6 +28,7 @@ class SearchController < ApplicationController
     like_keyword = "%#{params[:q]}%"
     @users = User.inactive.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(User.inactive.where("last_name iLIKE ANY ( array[?] )", like_keyword))
+      .or(User.inactive.where("email iLIKE ANY ( array[?] )", like_keyword))
       .order(:first_name)
     render layout: false
   end

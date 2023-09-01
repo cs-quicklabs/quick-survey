@@ -4,49 +4,70 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-regular: 
+member:
   first_name: Aashish
   last_name: Dhawan
   email: aashishdhawan@crownstack.com
   confirmed_at: 2021-03-18
-  permission: null
+  role:  member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+actor:
+  first_name: Aashish
+  last_name: Dhawan (Actor)
+  email: actor@crownstack.com
+  confirmed_at: 2021-03-18
+  role:  member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
   
   
-resume_screener:
-  first_name: Rachita
-  last_name: Agnihotri(Resume Screener)
-  email: resume_screener@crownstack.com
-  confirmed_at: 2021-03-18
-  permission: resume_screener
-
-  
-telephonic_screener:
-  first_name: Rachita
-  last_name: Agnihotri(Telephonic Screener)
-  email: telephonic_screening@crownstack.com
-  confirmed_at: 2021-03-18
-  permission: telephonic_screener
-
-interviewer:
-  first_name: Rachita
-  last_name: Agnihotri(Interviewer)
-  email: interviewer@crownstack.com
-  confirmed_at: 2021-03-18
-  permission: interviewer  
-
-hr:
-  first_name: Rachita
-  last_name: Agnihotri(HR)
-  email: hr@crownstack.com
-  confirmed_at: 2021-03-18
-  permission: hr 
-
-
 admin:
   first_name: Rachita
   last_name: Agnihotri(Admin)
-  email: admin@crownstack.com
+  email: resume_screener@crownstack.com
   confirmed_at: 2021-03-18
-  permission: admin 
+  role: admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+    
+super_admin:  
+  first_name: Rachita
+  last_name: Agnihotri(super_admin)
+  email: super_admin@crownstack.com
+  confirmed_at: 2021-03-18
+  role: super_admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
+
+not_joined:
+  first_name: Aashish
+  last_name: C. Dhawan (Invited)
+  active: true
+  email: not_joined@crownstack.com
+  role: member  
+  invitation_created_at: 2021-03-18
+
+
+invited:
+  first_name: Aashish
+  last_name: C. Dhawan (Invited)
+  active: true
+  email: invited@crownstack.com
+  role: member
+
+unconfirmed:
+  first_name: Aashish
+  last_name: C. Dhawan (Member)
+  active: true
+  email: unconfirmed@crownstack.com
+  role: member
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+deactivated:
+  first_name: Aashish
+  last_name: C. Dhawan (Inactive)
+  active: false
+  email: deactivated@crownstack.com
+  role: member  
+  deactivated_on: 2021-03-18  
 # column: value
