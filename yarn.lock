@@ -721,10 +721,10 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-slim-select@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.3.3.tgz#8bdfd891124cf5f2329c204088ba5f43a58e450b"
-  integrity sha512-BZNgU1DWDPtfSKKVfEdVMhLDCurzTTdX7n0AFuR/MNy2BzVYHN3WfkceAK1rttLqGgzFAHotq7Qm2JdrhOH5Ag==
+slim-select@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.6.0.tgz#d588aedaaf18c74f6508d62ec7ef3a5533de37f0"
+  integrity sha512-ubIyC+IOaLpq+Ls5Eo5sXq2QSPfAGNkfKKqHzUuTSKvaDKkCn+4rK+GrBqvnpXk5YYwidluSCG0X6pwJlOKhtw==
 
 source-map-js@^1.0.2:
   version "1.0.2"
