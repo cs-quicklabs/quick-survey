@@ -1,4 +1,4 @@
-<%= tailwind_form_with(model: @space_folder, id: dom_id(@space_folder), url: space_message_path(@space, @folder), method: :patch) do |form| %>
+<%= tailwind_form_with(model: @space_folder, id: dom_id(@space_folder), url: space_folder_path(@space, @folder), method: :patch) do |form| %>
   <main class="max-w-xl px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: @space_folder, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Edit Thread", subtitle: "Please update thread in existing space titled #{@folder.space.title}" %>
