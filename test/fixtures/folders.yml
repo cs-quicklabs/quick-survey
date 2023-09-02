@@ -1,0 +1,70 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: This is a folder
+  space: pinned
+  user: member
+
+nine:
+  title: This is a nine folder
+  space: pinned
+  user: member
+
+two:
+  title: This is a archived folder
+  space: six
+  user: admin
+
+three:
+  title: This is a three folder
+  space: seven
+  user: admin
+ 
+
+ten:
+  title: This is a ten folder
+  space: seven
+  user: member
+
+ 
+
+eleven:
+  title: This is a eleven folder
+  space: seven
+  user: member
+ 
+
+four:
+  title: This is a four folder
+  space: seven
+  user: admin
+
+five:
+  title: This is a five folder
+  space: eight
+  user: admin
+ 
+
+six:
+  title: This is a six folder
+  space: eight
+  user: admin
+  
+
+seven:
+  title: This is a seven folder
+  space: nine
+  user: admin
+    
+
+eight:
+  title: This is a eight folder
+  space: ten
+  user: member
+
+nine:
+  title: This is a nines folder
+  space: ten
+  user: admin  
+    
+
