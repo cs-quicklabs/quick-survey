@@ -5,9 +5,9 @@ class UnarchiveSpace < Patterns::Service
   end
 
   def call
-    unarchive_space
-    send_email
     begin
+      unarchive_space
+      send_email
     rescue
       space
     end

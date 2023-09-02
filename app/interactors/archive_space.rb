@@ -5,9 +5,9 @@ class ArchiveSpace < Patterns::Service
   end
 
   def call
-    archive_space
-    send_email
     begin
+      archive_space
+      send_email
     rescue
       space
     end
