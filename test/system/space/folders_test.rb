@@ -67,9 +67,7 @@ class FoldersTest < ApplicationSystemTestCase
     end
     assert_selector "h1", text: "Edit Folder"
     fill_in "folder_title", with: "Folder"
-    page.accept_confirm do
-      click_on "Update"
-    end
+    click_on "Update"
     assert_selector "p.notice", text: "Folder was updated successfully."
   end
 
@@ -81,10 +79,8 @@ class FoldersTest < ApplicationSystemTestCase
     end
     assert_selector "h1", text: "Edit Folder"
     fill_in "folder_title", with: ""
-    page.accept_confirm do
-      click_on "Update"
-    end
-    take_screenshot
+    click_on "Update"
+    assert_selector "div#error_explanation", text: "Title can't be blank"
   end
 
   test "can delete folder" do
