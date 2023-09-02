@@ -12,7 +12,7 @@ eight:
   archive: false
 
 ten:
-  title: This is a eight space
+  title: This is a ten space
   description: This is eight
   user: member
   archive: false  

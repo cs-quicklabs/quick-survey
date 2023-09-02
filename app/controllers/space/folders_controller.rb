@@ -36,7 +36,7 @@ class Space::FoldersController < Space::BaseController
 
   def show
     authorize [@space, @folder]
-    @pagy, @surveys = pagy_nil_safe(params, @folder.survey_surveys.order("created_at desc"), items: 10)
+    @pagy, @surveys = pagy_nil_safe(params, @folder.survey_surveys.active.order("created_at desc"), items: 10)
     fresh_when [@folder] + [@space] + @surveys
   end
 

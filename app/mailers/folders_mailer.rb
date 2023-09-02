@@ -1,17 +1,17 @@
 class FoldersMailer < ApplicationMailer
-  def message_email
+  def folder_email
     @actor = params[:actor]
-    @employee = params[:employee]
-    @message = params[:message]
+    @user = params[:user]
+    @folder = params[:folder]
     @space = params[:space]
-    mail(to: @employee.email, subject: "New Thread added into space", template_path: "mailers/messages_mailer")
+    mail(to: @user.email, subject: "New folder added into space", template_path: "mailers/folders_mailer")
   end
 
-  def update_message_email
+  def update_folder_email
     @actor = params[:actor]
-    @employee = params[:employee]
-    @message = params[:message]
+    @user = params[:user]
+    @folder = params[:folder]
     @space = params[:space]
-    mail(to: @employee.email, subject: "Updated thread into space", template_path: "mailers/messages_mailer")
+    mail(to: @user.email, subject: "Updated folder into space", template_path: "mailers/folders_mailer")
   end
 end
