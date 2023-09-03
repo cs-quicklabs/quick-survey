@@ -1,10 +1,8 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
  <%= turbo_frame_tag "change_folder_modal" %>
-<main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20"  data-controller=" slideover" data-slideover-target-prevent-default-action-opening="false">
-          <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <%= render "space_folders", selected_folder: @folder %>
-                  </div>
-                  
+    <%= turbo_frame_tag "form_modal" %>
+<main class="max-w-4xl px-4 pt-10 pb-20 mx-auto  lg:pb-20"  >
+
   <div class="px-4 py-4  sm:px-6 lg:px-8" id="folder-header" >
   <div class="flex flex-col">
   <div class="flex justify-between " >
@@ -12,14 +10,14 @@
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal flex-none" %>
     </div>
     <div>
-      <h3 class="text-2xl font-bold leading-tight text-align-center px-16 ">
+      <h1 class="text-2xl font-bold leading-tight text-align-center px-16 ">
         <%= highlight_hashtag(@folder.title.upcase_first) %>
-      </h3>
+      </h1>
     </div>
     <div  x-on:click.outside="open = false" class="relative  " x-data="{ open: false }">
       <% if policy([@space, @folder]).edit? || policy([@space, @folder]).destroy? %>
         <div>
-          <button @click="open = !open" id="message-menu" class=" flex-auto mt-1 ml-4 border border-gray-400 text-sm rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
+          <button @click="open = !open" id="folder-menu" class=" flex-auto mt-1 ml-4 border border-gray-400 text-sm rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
               <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
             </svg>
@@ -27,9 +25,13 @@
         </div>
         <div x-show="open"    x-transition.opacity class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
           <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-            <div>
+            <div data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
               <% if policy([@space, @folder]).edit? %>
-                <a href=<%= edit_space_folder_path(@space, @folder) %> class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  role= "menuitem">Edit</a>
+
+                      <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "edit_folder_modal", folder: @folder %>
+                  </div>
+                <a href="<%= edit_space_folder_path(@space, @folder) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  role= "menuitem" data-action= "click->slideover#open", data-turbo-frame= "form_modal" >Edit</a>
               <% end %>
               <% if policy([@space, @folder]).destroy? %>
                 <%= styled_delete_button(space_folder_path(@space, @folder), "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100") %>
@@ -65,9 +67,6 @@
         <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
       <% end %>
              <div class="flex " >
-               <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                   
-                  </div>
               <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap " %>
           </div>
     </div>
@@ -95,6 +94,10 @@
         </div>
       </div>
     </div>
+    <div data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
+              <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <%= render "space_folders", selected_folder: @folder %>
+                  </div>
      <table class="min-w-full divide-y divide-gray-200">
      
           <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries" >
@@ -103,6 +106,7 @@
         </table>
         <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
           <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+        </div>
         </div>
 </main>
 <!--

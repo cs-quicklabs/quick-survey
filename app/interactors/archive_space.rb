@@ -22,13 +22,13 @@ class ArchiveSpace < Patterns::Service
   end
 
   def send_email
-    (space.users - [actor]).each do |user|
-      SpacesMailer.with(space: space, employee: user, actor: actor).archived_email.deliver_later if deliver_email?(user)
+    (space.users).each do |user|
+      SpacesMailer.with(space: space, user: user, actor: actor).archived_email.deliver_later if deliver_email?(user)
     end
   end
 
-  def deliver_email?(employee)
-    employee.email_enabled and employee.account.email_enabled and employee.sign_in_count > 0
+  def deliver_email?(user)
+    (actor != user) and user.email_enabled and user.sign_in_count > 0
   end
 
   attr_reader :space, :actor

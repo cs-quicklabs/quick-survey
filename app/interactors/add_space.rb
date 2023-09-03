@@ -30,14 +30,14 @@ class AddSpace < Patterns::Service
       @space_users = User.where("id IN (?)", users)
       @space_users.each do |user|
         if deliver_email?(user)
-          SpacesMailer.with(actor: actor, employee: user, space: space).space_email.deliver_later
+          SpacesMailer.with(actor: actor, user: user, space: space).space_email.deliver_later
         end
       end
     end
   end
 
-  def deliver_email?(employee)
-    (actor != employee) and employee.email_enabled
+  def deliver_email?(user)
+    (actor != user) and user.email_enabled and user.sign_in_count > 0
   end
 
   attr_reader :space, :actor, :users

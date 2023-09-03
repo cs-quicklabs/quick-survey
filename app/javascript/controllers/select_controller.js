@@ -36,9 +36,6 @@ export default class extends Controller {
       return;
     }
     const folderId = this.selectTarget.value;
-    const authenticityToken = document.querySelector(
-      'meta[name="csrf-token"]',
-    ).content;
     const requestBody = JSON.stringify({
       folder_id: folderId,
     });
@@ -47,7 +44,6 @@ export default class extends Controller {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": authenticityToken,
       },
       body: requestBody,
     })

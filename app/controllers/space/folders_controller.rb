@@ -36,18 +36,18 @@ class Space::FoldersController < Space::BaseController
 
   def show
     authorize [@space, @folder]
-    @pagy, @surveys = pagy_nil_safe(params, @folder.survey_surveys.order("created_at desc"), items: 10)
+    @pagy, @surveys = pagy_nil_safe(params, @folder.survey_surveys.active.order("created_at desc"), items: 10)
     fresh_when [@folder] + [@space] + @surveys
   end
 
   def update
     authorize [@space, @folder]
-    @folder = UpdateFolder.call(@space, @folder, current_user, params[:draft], params[:send_email], folder_params).result
+    @folder = UpdateFolder.call(@space, @folder, current_user, params[:send_email], folder_params).result
     respond_to do |format|
       if @folder.errors.empty?
-        format.html { redirect_to space_folders_path(@space), notice: "Folder was updated successfully." }
+        format.html { redirect_to space_folder_path(@space, @folder), notice: "Folder was updated successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@folder, partial: "space/folders/form", locals: { space_folder: @folder, title: "Edit Folder", subtitle: "Please update thread in existing space titled #{@folder.space.title}", space: @space, url: space_folder_path(@space, @folder), method: "patch" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("edit_folder_form", partial: "space/folders/edit_folder_form", locals: { folder: @folder, space: @space }) }
       end
     end
   end
