@@ -27,7 +27,7 @@
     "format": "prettier --write app/javascript/**/*.js"
   },
   "engines": {
-    "node": "20.5.0",
+    "node": "20.6.0",
     "npm": "10.0.0",
     "yarn": "1.22.19"
   },
