@@ -85,6 +85,7 @@ class OnboardingTest < ApplicationSystemTestCase
     within("tr", id: dom_id(invited)) do
       assert_emails 1 do
         within("td", class: "status") do
+          binding.irb
           find("a", text: "Invite").click
         end
         sleep(0.5)

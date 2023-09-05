@@ -55,7 +55,7 @@ class UserTest < ApplicationSystemTestCase
     assert_text "Email can't be blank"
   end
 
-  test "can not edit user with duplicate email" do
+  test "can not edit user detail with duplicate email" do
     visit page_url
     within "tr##{dom_id(@member)}" do
       click_on "Edit"

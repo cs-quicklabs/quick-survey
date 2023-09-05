@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     authorize @user
     @user.invite! do |user|
       user.skip_invitation = true
-      UserMailer.invitation_instructions(user).deliver_later(wait: 5.seconds, from: current_user.email)
+      UserMailer.invitation_email(user).deliver_later(wait: 5.seconds, from: current_user.email)
     end
     redirect_to users_path, notice: "Invitation has been resent successfully."
   end
