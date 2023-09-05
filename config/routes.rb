@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
 
-  devise_for :users
+  devise_for :users, controllers: { invitations: "invitations" }
 
   resources :users, only: [:index, :show, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
