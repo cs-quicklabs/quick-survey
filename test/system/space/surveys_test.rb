@@ -44,6 +44,7 @@ class SurveysTest < ApplicationSystemTestCase
     fill_in "survey_survey_description", with: "This is a sample Survey Description"
     select "Score", from: "survey_survey_survey_type"
     click_on "Add Survey"
+    sleep(0.5)
     take_screenshot
     assert_text @folder.title
     assert_text "Survey Campaign"
