@@ -5,8 +5,11 @@
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
       <h4 class="text-sm  leading-tight text-gray-400"><%= @attempt.participant.email %></h4>
-      <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4>
-      <h4 class="text-sm leading-tight text-gray-400">Submitted By: <%= @attempt.actor.decorate.display_name %> on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
+       <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-gray-400 hover:underline">
+      <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4></a>
+      <h4 class="text-sm leading-tight text-gray-400">Submitted By: 
+        <a href="<%=user_attempts_path(@attempt.actor)%>" class="hover:underline">
+      <%= @attempt.actor.decorate.display_name %> </a>on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
     </div>
     <div class="">
       <h4 class="text-2xl font-bold leading-tight text-gray-900 ">

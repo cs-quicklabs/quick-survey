@@ -35,7 +35,7 @@ class FoldersTest < ApplicationSystemTestCase
       page.execute_script("arguments[0].click();", find("a", text: @folder.title))
     end
     within "div#folder-header" do
-      assert_selector "h3", text: @folder.title
+      assert_selector "h1", text: @folder.title
     end
     take_screenshot
   end

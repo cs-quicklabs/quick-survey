@@ -46,6 +46,7 @@ not_joined:
   email: not_joined@crownstack.com
   role: member  
   invitation_created_at: 2021-03-18
+  invitation_token: <%= Devise.friendly_token %>
 
 
 invited:
