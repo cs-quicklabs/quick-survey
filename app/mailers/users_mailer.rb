@@ -1,7 +1,8 @@
-class UserMailer < ActionMailer::Base
-  def invitation_email(user)
-    @resource = user
-    mail(to: user.email, subject: "Invitation Instructions", template_path: "devise/mailer", template_name: "invitation_instructions")
+class UsersMailer < ApplicationMailer
+  def invitation_email
+    @resource = params[:user]
+    @token = params[:token]
+    mail(to: @resource.email, subject: "Invitation Instructions", template_path: "devise/mailer", template_name: "invitation_instructions")
   end
 end
 
