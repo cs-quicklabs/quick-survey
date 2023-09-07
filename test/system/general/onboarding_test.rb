@@ -124,5 +124,13 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_password_confirmation", with: "password"
     click_on "Set password and login"
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
+    sign_out not_joined
+    sign_in admin
+    visit users_path
+    within("tr", id: dom_id(not_joined)) do
+      within("td", class: "status") do
+        assert_text "Joined"
+      end
+    end
   end
 end

@@ -61,7 +61,11 @@ class UsersController < ApplicationController
 
   def resend_invitation
     authorize @user
-    @user.invite!
+    @user.invite! do |user|
+      user.skip_invitation = true
+    end
+
+    UsersMailer.with(user: @user, token: @user.raw_invitation_token).invitation_email.deliver_later
     redirect_to users_path, notice: "Invitation has been resent successfully."
   end
 

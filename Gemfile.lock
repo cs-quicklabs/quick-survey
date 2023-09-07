@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/mileszs/wicked_pdf.git
-  revision: 4abf255f47f7b3e10eaf5adedb5ada4b5b49ca2e
+  revision: edcd80e7a96b5fe79476f7984e5ff8f3765f220d
   branch: master
   specs:
-    wicked_pdf (2.6.3)
+    wicked_pdf (2.7.0)
       activesupport
 
 GEM
@@ -299,7 +299,7 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
     warden (1.2.9)
       rack (>= 2.0.9)
-    web-console (4.2.0)
+    web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)

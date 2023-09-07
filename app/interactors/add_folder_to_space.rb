@@ -30,7 +30,7 @@ class AddFolderToSpace < Patterns::Service
   end
 
   def deliver_email?(user)
-    (actor != user) and user.email_enabled and and user.sign_in_count > 0
+    (actor != user) and user.email_enabled and user.sign_in_count > 0
   end
 
   attr_reader :space, :folder, :actor, :send_email

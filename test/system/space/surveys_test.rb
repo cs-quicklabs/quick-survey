@@ -24,13 +24,7 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Add New Survey"
   end
 
-  test "can not show index if not logged in" do
-    sign_out @user
-    visit page_url
-    assert_selector "h1", text: "Sign in to your account"
-  end
-
-  test "can show survey detail page" do
+  test "can show survey detail page from space details" do
     visit page_url
     within "tr##{dom_id(@survey)}" do
       find("button", id: "survey-menu").click
@@ -50,21 +44,13 @@ class SurveysTest < ApplicationSystemTestCase
     fill_in "survey_survey_description", with: "This is a sample Survey Description"
     select "Score", from: "survey_survey_survey_type"
     click_on "Add Survey"
+    sleep(0.5)
     take_screenshot
     assert_text @folder.title
     assert_text "Survey Campaign"
   end
 
-  test "can not create with empty Name Discription survey_type" do
-    visit page_url
-    click_on "Add New Survey"
-    assert_selector "h3", text: "Add New Survey"
-    click_on "Add Survey"
-    take_screenshot
-    assert_selector "h3", text: "Add New Survey"
-  end
-
-  test "can edit a survey" do
+  test "can edit a survey from space details" do
     visit page_url
     within "tr##{dom_id(@survey)}" do
       find("button", id: "survey-menu").click
@@ -76,7 +62,7 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Survey Campaigning"
   end
 
-  test "can pin a survey" do
+  test "can pin a survey from space details" do
     visit page_url
     within "tr##{dom_id(@survey)}" do
       find("button", id: "survey-menu").click
@@ -85,7 +71,7 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Survey has been pinned."
   end
 
-  test "can unpin a survey" do
+  test "can unpin a survey from space details" do
     pinned = survey_surveys(:four)
     visit page_url
     within "tr##{dom_id(pinned)}" do
@@ -95,19 +81,7 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Survey has been unpinned."
   end
 
-  test "can not edit a survey with invalid name" do
-    visit page_url
-    within "tr##{dom_id(@survey)}" do
-      find("button", id: "survey-menu").click
-      click_on("Edit")
-    end
-    assert_selector "h3", text: "Edit Survey"
-    fill_in "survey_survey_name", with: ""
-    click_on "Edit Survey"
-    take_screenshot
-  end
-
-  test "can archive a survey" do
+  test "can archive a survey from space details" do
     visit page_url
     survey = survey_surveys(:two)
     within "tr##{dom_id(@survey)}" do

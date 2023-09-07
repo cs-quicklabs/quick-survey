@@ -1,10 +1,10 @@
 <tr id="<%= dom_id(survey)%>">
-  <td class="w-full table-cell whitespace-nowrap">
+  <td class="w-full table-cell">
     <div class="flex items-center">
       <div class="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
         <div>
-          <a href="<%= survey_path(survey) %>" class="truncate hover:text-gray-600 hover:underline">
-            <div class="flex text-sm font-medium text-gray-600 truncate">
+          <a href="<%= survey_path(survey) %>" class="hover:text-gray-600 hover:underline">
+            <div class="flex text-sm font-medium text-gray-600 ">
               <p> <%= survey.name %> </p>
             </div>
           </a>

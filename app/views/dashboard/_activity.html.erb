@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500">
           You have attempted a survey titled 
-            <a href="<%= survey_path(attempt.survey) %>" class="font-medium text-gray-900 hover:underline"><%= attempt.survey.name %></a>
+            <a href="<%= survey_attempts_path(attempt.survey) %>" class="font-medium text-gray-900 hover:underline"><%= attempt.survey.name %></a>
             for participant named
           <%= attempt.participant.name.upcase_first %>
           </p>

@@ -38,7 +38,6 @@ class AttemptsTest < ApplicationSystemTestCase
     fill_in "name", with: "Test Attempt"
     fill_in "email", with: "test_attempt@crownstack.com"
     click_on "Start"
-
     click_on "Preview and Submit"
     take_screenshot
     fill_in "comment", with: "This is a comment"
