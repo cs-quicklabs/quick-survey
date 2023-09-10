@@ -19,7 +19,7 @@
     <a target="_blank" href="<%= survey.survey_type == 0 ? "/pdf/checklist/#{attempt.id}.pdf" : "/pdf/score/#{attempt.id}.pdf" %>" class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Download PDF
     </a>
-        <a href="<%=survey_path(survey)%>" class="text-indigo-600 hover:text-indigo-900">
+        <a href="<%= survey_path(survey) %>" class="text-indigo-600 hover:text-indigo-900">
       View Survey
     </a>
   </td>

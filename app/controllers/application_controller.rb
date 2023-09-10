@@ -17,19 +17,19 @@ class ApplicationController < ActionController::Base
 
   before_action :set_redirect_path, unless: :user_signed_in?
   etag do
-    if Rails.env == 'production' or Rails.env == 'staging'
+    if Rails.env == "production" or Rails.env == "staging"
       heroku_version
     else
-      'screener'
+      "screener"
     end
   end
 
   fragment_cache_key do
-    'screener'
+    "screener"
   end
 
   def heroku_version
-    ENV['HEROKU_RELEASE_VERSION'] if Rails.env == 'production' or Rails.env == 'staging'
+    ENV["HEROKU_RELEASE_VERSION"] if Rails.env == "production" or Rails.env == "staging"
   end
 
   def render_partial(partial, collection:, cached: true)
@@ -37,8 +37,8 @@ class ApplicationController < ActionController::Base
       format.html
       format.json do
         render json: { entries: render_to_string(partial:, formats: [:html], collection:, cached:),
-                       pagination: render_to_string(partial: 'shared/paginator', formats: [:html],
-                                                    locals: { pagy: @pagy }) }
+                      pagination: render_to_string(partial: "shared/paginator", formats: [:html],
+                                                   locals: { pagy: @pagy }) }
       end
     end
   end
@@ -52,8 +52,8 @@ class ApplicationController < ActionController::Base
       format.html
       format.json do
         render json: { entries: render_to_string(partial:, formats: [:html], collection:, as:, cached:),
-                       pagination: render_to_string(partial: 'shared/paginator', formats: [:html],
-                                                    locals: { pagy: @pagy }) }
+                      pagination: render_to_string(partial: "shared/paginator", formats: [:html],
+                                                   locals: { pagy: @pagy }) }
       end
     end
   end
@@ -65,20 +65,20 @@ class ApplicationController < ActionController::Base
   def show_referenced_alert(_exception)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('modal', partial: 'shared/modal',
-                                                           locals: { title: 'Unable to Delete Record', message: 'This record has been associated with other records in system therefore deleting this might result in unexpected behavior. If you want to delete this please make sure all assosications have been removed first.', main_button_visible: false })
+        render turbo_stream: turbo_stream.replace("modal", partial: "shared/modal",
+                                                           locals: { title: "Unable to Delete Record", message: "This record has been associated with other records in system therefore deleting this might result in unexpected behavior. If you want to delete this please make sure all assosications have been removed first.", main_button_visible: false })
       end
     end
   end
 
   def show_delete_confirmation_alert
-    show_confirmation_alert('Delete Record', 'Are you sure you want to delete this record?')
+    show_confirmation_alert("Delete Record", "Are you sure you want to delete this record?")
   end
 
   def show_confirmation_alert(title, message)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('modal', partial: 'shared/modal',
+        render turbo_stream: turbo_stream.replace("modal", partial: "shared/modal",
                                                            locals: { title:, message:, main_button_visible: true })
       end
     end
@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
 
   def invalid_token
     sign_out(current_user) if current_user
-    redirect_to new_user_session_path, alert: 'Your session has expired. Please login again.'
+    redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
   end
 
   def render_timeline(partial, collection:, cached: true)
@@ -124,8 +124,8 @@ class ApplicationController < ActionController::Base
       format.html
       format.json do
         render json: { entries: render_to_string(partial:, formats: [:html], collection:, as: :event, cached:),
-                       pagination: render_to_string(partial: 'shared/paginator', formats: [:html],
-                                                    locals: { pagy: @pagy }) }
+                      pagination: render_to_string(partial: "shared/paginator", formats: [:html],
+                                                   locals: { pagy: @pagy }) }
       end
     end
   end

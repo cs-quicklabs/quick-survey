@@ -8,7 +8,7 @@
        <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-gray-400 hover:underline">
       <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4></a>
       <h4 class="text-sm leading-tight text-gray-400">Submitted By: 
-        <a href="<%=user_attempts_path(@attempt.actor)%>" class="hover:underline">
+        <a href="<%= user_attempts_path(@attempt.actor) %>" class="hover:underline">
       <%= @attempt.actor.decorate.display_name %> </a>on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
     </div>
     <div class="">
