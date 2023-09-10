@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   after_action :verify_authorized, only: [:home]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
 
   include Pagy::Backend
   include Pundit::Authorization
