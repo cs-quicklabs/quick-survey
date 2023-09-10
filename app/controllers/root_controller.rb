@@ -1,4 +1,4 @@
-class RootController < ApplicationController
+class RootController < BaseController
   def index
     redirect_to dashboard_path
   end

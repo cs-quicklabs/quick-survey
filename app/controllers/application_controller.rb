@@ -1,21 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-
-  after_action :verify_authorized, only: [:home]
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  include Pagy::Backend
-  include Pundit::Authorization
-
+  include Pundit
+  
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
 
-  LIMIT = 30
-
   before_action :set_redirect_path, unless: :user_signed_in?
+  
   etag do
     if Rails.env == "production" or Rails.env == "staging"
       heroku_version

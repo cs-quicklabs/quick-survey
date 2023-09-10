@@ -1,4 +1,4 @@
-class AttemptsController < ApplicationController
+class AttemptsController < BaseController
   before_action :set_survey, only: [:new, :create]
 
   def index

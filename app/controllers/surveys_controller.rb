@@ -1,4 +1,4 @@
-class SurveysController < ApplicationController
+class SurveysController < BaseController
   before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
 
   def index

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < BaseController
   before_action :set_user, only: %i[update destroy deactivate_user activate_user edit show resend_invitation]
 
   def index
