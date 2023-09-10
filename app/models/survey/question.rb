@@ -11,7 +11,7 @@ class Survey::Question < ActiveRecord::Base
     :allow_destroy => true
 
   # validations
-  validates :text, :presence => true, :allow_blank => false
+  validates :text, :presence => true, :allow_blank => false, on: :create
 
   def correct_options
     return options.correct

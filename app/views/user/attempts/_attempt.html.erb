@@ -1,0 +1,26 @@
+<% survey = attempt.survey %>
+<% participant = attempt.participant %>
+<tr class="bg-white " id="<%= dom_id(attempt) %>">
+  <td class=" whitespace-nowrap  table-cell">
+    <a href="/reports/<%= attempt.survey.survey_type == 0 ? "checklist" : "score" %>/<%= attempt.id %>" class="hover:underline">
+      <p> <%= survey.name.upcase_first %></p>
+    </a>
+  </td>
+  <td class=" whitespace-nowrap  table-cell">
+    <p> <%= participant.name.upcase_first %></p>
+  </td>
+  <td class=" whitespace-nowrap  table-cell">
+    <p> <%= participant.email %></p>
+  </td>
+  <td class=" whitespace-nowrap  table-cell">
+    <p> <%= attempt.created_at.to_date.to_formatted_s(:long) %></p>
+  </td>
+  <td class="table-cell whitespace-nowrap space-x-4">
+    <a target="_blank" href="<%= survey.survey_type == 0 ? "/pdf/checklist/#{attempt.id}.pdf" : "/pdf/score/#{attempt.id}.pdf" %>" class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      Download PDF
+    </a>
+        <a href="<%=survey_path(survey)%>" class="text-indigo-600 hover:text-indigo-900">
+      View Survey
+    </a>
+  </td>
+</tr>

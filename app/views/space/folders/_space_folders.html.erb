@@ -1,0 +1,11 @@
+<div data-slideover-target="container" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center" 
+data-action="click->slideover#closeBackground keyup@window->slideover#closeWithKeyboard"style="z-index: 9999;">
+  <div class="max-w-lg max-h-screen w-full  bg-white transition-all transform shadow-xl rounded-lg relative ">
+    <div class="m-1 bg-white rounded  ">
+      <form id="change_folder_form"  >
+  <%= render partial: "folder_form", locals: { selected_folder: selected_folder } %>
+
+</form>
+    </div>
+  </div>
+</div>

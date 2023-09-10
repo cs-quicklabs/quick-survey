@@ -1,0 +1,39 @@
+<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header">
+<%= render partial: "surveys/title", locals: { survey: @survey } %>
+
+</div>
+  <%= render partial: "tabs", locals: { survey: @survey } %>
+
+  <div class="sm:block">
+    <div class="inline-block min-w-full align-middle " data-controller="infinite-scroll">
+      <div>
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="w-full table-head">
+              User
+              </th>
+               <th scope="col" class=" table-head">
+            Participant
+          </th>
+          <th scope="col" class=" table-head">
+            Email
+          </th>
+          <th scope="col" class="table-head">
+            Date
+          </th>
+              <th scope="col" class="table-head">
+              Action
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries">
+            <%= render partial: "attempt", collection: @attempts, as: :attempt, cached: false %>
+          </tbody>
+        </table>
+        <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+          <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+        </div>
+      </div>
+    </div>
+  

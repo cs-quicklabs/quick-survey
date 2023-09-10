@@ -2,26 +2,33 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@hotwired/stimulus": "3.1.1",
-    "@hotwired/turbo": "7.2.4",
-    "@rails/actiontext": "7.0.4",
-    "@tailwindcss/forms": "0.5.3",
-    "@tailwindcss/line-clamp": "0.4.2",
-    "autoprefixer": "10.4.13",
-    "esbuild": "0.15.13",
-    "postcss": "8.4.19",
-    "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
-    "stimulus_reflex": "3.5.0-pre8",
-    "tailwindcss": "3.2.3",
-    "trix": "1.3.1"
+    "@hotwired/stimulus": "3.2.2",
+    "@hotwired/turbo": "7.3.0",
+    "esbuild-rails": "^1.0.4",
+    "@rails/request.js": "^0.0.8",
+    "@rails/actiontext": "7.0.7",
+    "@tailwindcss/forms": "0.5.6",
+    "@tailwindcss/line-clamp": "0.4.4",
+    "autoprefixer": "10.4.15",
+    "esbuild": "0.19.2",
+    "postcss": "8.4.29",
+    "slim-select": "2.6.0",
+    "tailwindcss": "3.3.3",
+    "trix": "2.0.5",
+    "prettier": "3.0.3"
+  },
+  "resolutions": {
+    "@hotwired/stimulus": "3.2.2"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+    "build": "node esbuild.config.mjs",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "format": "prettier --write app/javascript/**/*.js"
   },
   "engines": {
-    "node": "19.0.1",
-    "npm": "8.19.3",
+    "node": "20.6.0",
+    "npm": "10.0.0",
     "yarn": "1.22.19"
   },
   "comments": {

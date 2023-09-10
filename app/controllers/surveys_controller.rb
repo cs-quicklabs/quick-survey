@@ -1,10 +1,11 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone]
+  before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
 
   def index
     authorize :Survey
     @title = "Home"
-    @pagy, @surveys = pagy_nil_safe(params, Survey::Survey.all, items: LIMIT)
+    surveys = Survey::Survey.all.active.where(folder_id: nil)
+    @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
     render_partial("surveys/survey", collection: @surveys, cached: true) if stale?(@surveys)
   end
 
@@ -19,10 +20,11 @@ class SurveysController < ApplicationController
   end
 
   def destroy
-    authorize :Survey
+    authorize @survey
 
-    @survey.destroy
-    redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
+    if DestroySurvey.call(@survey).result
+      redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
+    end
   end
 
   def update
@@ -35,12 +37,45 @@ class SurveysController < ApplicationController
   def create
     authorize :Survey
     @survey = Survey::Survey.new(survey_params)
-    redirect_to survey_path(@survey) if @survey.save
+    @survey.user = current_user
+    if @survey.save
+      if @survey.folder_id.present?
+        @folder = Folder.find(@survey.folder_id)
+        redirect_to space_folder_path(@folder.space, @folder) and return
+      else
+        redirect_to survey_path(@survey)
+      end
+    end
   end
 
   def show
     authorize :Survey
     @question = Survey::Question.new
+    if RecentSurvey.where(user: current_user, survey_surveys: @survey).exists?
+      RecentSurvey.where(user: current_user, survey_surveys: @survey).first.increment!(:count)
+    else
+      RecentSurvey.create(user: current_user, survey_surveys: @survey, count: 1)
+    end
+  end
+
+  def attempts
+    authorize :Survey
+    @survey = Survey::Survey.find(params[:survey_id])
+    attempts = Survey::Attempt.where(survey_id: params[:survey_id]).includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
+    @pagy, @attempts = pagy(attempts, items: 10)
+    render_partial("surveys/attempt", collection: @attempts, cached: true) if stale?(@attempts)
+  end
+
+  def pin
+    authorize :Survey
+    @survey.update(pin: true)
+    redirect_to survey_path(@survey), notice: "Survey has been pinned."
+  end
+
+  def unpin
+    authorize :Survey
+    @survey.update(pin: false)
+    redirect_to survey_path(@survey), notice: "Survey has been unpinned."
   end
 
   def clone
@@ -67,6 +102,28 @@ class SurveysController < ApplicationController
     redirect_to survey_path(@clone)
   end
 
+  def archived
+    authorize :survey, :index?
+
+    surveys = Survey::Survey.inactive.order(archived_on: :desc)
+    @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
+
+    render_partial_as("surveys/archived_survey", collection: @surveys, as: :survey, cached: true) if stale?(@surveys)
+  end
+
+  def archive_survey
+    authorize :survey, :update?
+
+    @survey.update(active: false, archived_on: DateTime.now.utc)
+    redirect_to archived_surveys_path, notice: "Survey has been archived."
+  end
+
+  def unarchive_survey
+    authorize :survey, :update?
+    @survey.update(active: true, archived_on: nil)
+    redirect_to survey_path(@survey), notice: "Survey has been restored."
+  end
+
   private
 
   def set_survey
@@ -74,6 +131,6 @@ class SurveysController < ApplicationController
   end
 
   def survey_params
-    params.require(:survey_survey).permit(:name, :survey_type, :description)
+    params.require(:survey_survey).permit(:name, :survey_type, :description, :folder_id)
   end
 end

@@ -1,6 +1,8 @@
 class Survey::Survey < ActiveRecord::Base
   self.table_name = "survey_surveys"
-
+  belongs_to :folder, optional: true
+  belongs_to :user, optional: true
+  enum survey_type: { checklist: 0, score: 1 }
   #   acceptable_attributes :name, :description,
   #     :finished,
   #     :active,
@@ -10,6 +12,7 @@ class Survey::Survey < ActiveRecord::Base
   # relations
   has_many :attempts, :dependent => :destroy
   has_many :questions, :dependent => :destroy
+
   accepts_nested_attributes_for :questions,
     :reject_if => ->(q) { q[:text].blank? },
     :allow_destroy => true
@@ -21,7 +24,7 @@ class Survey::Survey < ActiveRecord::Base
   # validations
   validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }
   validates :description, :name, :presence => true, :allow_blank => false
-  validate :check_active_requirements
+  #validate :check_active_requirements, :on => :create
 
   # returns all the correct options for current surveys
   def correct_options

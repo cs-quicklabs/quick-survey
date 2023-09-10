@@ -1,5 +1,40 @@
-user: 
+one: 
   name: Project Initiation Checklist
   description: Survey Description
   survey_type: checklist
+
+two: 
+  name: Project Initiation Score
+  description: Survey Description
+  survey_type: score
+
+archived: 
+  name: Project Initiation Checklist Archived
+  description: Survey Description
+  survey_type: checklist 
+  active: false
+  archived_on: <%= Time.now %>
+
+pinned: 
+  name: Project Initiation Score
+  description: Survey Description
+  survey_type: score  
+  pin: true
+
+
+three: 
+  name: Project Initiation Score Three
+  description: Survey Description
+  survey_type: score
+  user: member
+  folder: eight
+
+four:
+  name: Project Initiation Score Four
+  description: Survey Description
+  survey_type: score
+  user: member
+  folder: eight 
+  pin: true 
+
 

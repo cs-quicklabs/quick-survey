@@ -1,0 +1,66 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pinned:
+  title: This is a pinned space
+  description: This is pinned
+  user: member
+
+eight:
+  title: This is a eight space
+  description: This is eight
+  user: member
+  archive: false
+
+ten:
+  title: This is a ten space
+  description: This is eight
+  user: member
+  archive: false  
+
+nine:
+  title: This is a nine space
+  description: This is nine
+  user: admin  
+  archive: false  
+
+archived:
+  title: This is a archived space
+  description: This is nine
+  user: member
+  archive: true
+  archive_at: 2021-03-31
+
+six:
+  title: This is a archived space
+  description: This is archived
+  user: admin
+  archive: true
+  archive_at: 2021-03-31
+
+seven:
+  title: This is a some space
+  description: This is space
+  user: admin
+  archive: false
+
+two:
+  title: This is a space two
+  description: This is space two
+  user: admin
+
+three:
+  title: This is a archived space
+  description: This is archived
+  user: admin
+  archive: true
+  archive_at: 2021-03-31
+
+four:
+  title: This is a title four
+  description: This is four
+  user: admin
+
+five:
+  title: This is a pinned space
+  description: This is pinned
+  user: admin
