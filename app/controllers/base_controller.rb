@@ -1,7 +1,6 @@
 class BaseController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_account!
-  after_action :verify_authorized
+  #before_action :authenticate_account!
 
   LIMIT = 30
 
