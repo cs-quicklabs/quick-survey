@@ -1,4 +1,6 @@
 class AttemptsController < BaseController
+  include Pagy::Backend
+
   before_action :set_survey, only: [:new, :create]
 
   def index
