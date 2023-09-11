@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class QuestionsController < BaseController
   before_action :set_question, only: [:edit, :update, :destroy, :show]
   before_action :set_survey, only: [:create, :destroy, :update, :edit]
 

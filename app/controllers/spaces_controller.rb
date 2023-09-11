@@ -1,4 +1,4 @@
-class SpacesController < ApplicationController
+class SpacesController < BaseController
   include Pagy::Backend
   before_action :set_space, only: %i[ show edit update destroy pin unpin archive unarchive ]
 

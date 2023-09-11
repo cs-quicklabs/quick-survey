@@ -21,7 +21,7 @@
         </svg>
       </p>
     <% elsif user.invitation_created_at.nil? %>
-      <a  href="<%=resend_invitation_user_path(user)%>" class="text-blue-600 cursor-pointer hover:underline btn-inline-edit">Invite</a>
+      <a  href="<%= resend_invitation_user_path(user) %>" class="text-blue-600 cursor-pointer hover:underline btn-inline-edit">Invite</a>
     <% else %>
       <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
     <% end %>

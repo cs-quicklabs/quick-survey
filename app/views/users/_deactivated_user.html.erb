@@ -7,8 +7,7 @@
           <a href="<%= user_attempts_path(user) %>" class="truncate hover:text-gray-600 hover:underline">
             <div class="flex text-sm font-medium text-gray-600 truncate">
               <p>      <%= !user.first_name.blank? ?
-       user.decorate.display_name : user.email
-        %> </p>
+                             user.decorate.display_name : user.email %> </p>
             </div>
           </a>
           <div class="flex-1 w-full mt-2">

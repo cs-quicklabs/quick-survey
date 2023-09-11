@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class SearchController < BaseController
   def surveys
     like_keyword = "%#{params[:q]}%"
     if params[:folder_id].present?

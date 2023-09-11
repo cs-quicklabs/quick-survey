@@ -1,5 +1,5 @@
 <% survey = attempt.survey %>
-<%user=attempt.actor.decorate%>
+<% user = attempt.actor.decorate %>
 <% participant = attempt.participant %>
 <tr class="bg-white " id="<%= dom_id(attempt) %>">
   <td class=" whitespace-nowrap  table-cell">
@@ -20,7 +20,7 @@
     <a target="_blank" href="<%= survey.survey_type == 0 ? "/pdf/checklist/#{attempt.id}.pdf" : "/pdf/score/#{attempt.id}.pdf" %>" class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Download PDF
     </a>
-        <a href="<%=user_attempts_path(user)%>" class="text-indigo-600 hover:text-indigo-900">
+        <a href="<%= user_attempts_path(user) %>" class="text-indigo-600 hover:text-indigo-900">
       View User Details
     </a>
   </td>

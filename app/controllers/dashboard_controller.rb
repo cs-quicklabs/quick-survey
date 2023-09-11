@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class DashboardController < BaseController
   def index
     authorize :dashboard
     @pinned_surveys = Survey::Survey.all.active.where(pin: true).order("created_at DESC")

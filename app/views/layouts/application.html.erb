@@ -9,17 +9,16 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
-        <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.3.3/slimselect.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.6.0/slimselect.min.css", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "slim", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "menu", "data-turbo-track": "reload" %>
     <%= turbo_include_tags %>
   </head>
   <body>
-  
     <%= render "shared/navbar" %>
-   <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
+    <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
     <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
- <main>
+    <main>
       <%= yield %>
     </main>
   </body>

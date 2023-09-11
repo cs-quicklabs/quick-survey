@@ -1,52 +1,48 @@
  <main class="max-w-lg px-4  mx-auto space-y-6 " , id= "new_user">
-<%= tailwind_form_with(model: resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |form| %>
- 
- <% if defined?(message) && message.present? %>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="pt-4">
-  <div class="p-4 rounded-md bg-red-50 " id="error_explanation">
-    <div class="flex">
-      <div class="flex-shrink-0">
-        <!-- Heroicon name: solid/x-circle -->
-        <svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-        </svg>
+  <%= tailwind_form_with(model: resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |form| %>
+    <% if defined?(message) && message.present? %>
+      <!-- This example requires Tailwind CSS v2.0+ -->
+      <div class="pt-4">
+        <div class="p-4 rounded-md bg-red-50 " id="error_explanation">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <!-- Heroicon name: solid/x-circle -->
+              <svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                1 error prohibited this user from being invited:
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <ul class="pl-5 space-y-1 list-disc">
+                  <li><%= message %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ml-3">
-        <h3 class="text-sm font-medium text-red-800">
-          1 error prohibited this user from being invited:
-        </h3>
-        <div class="mt-2 text-sm text-red-700">
-          <ul class="pl-5 space-y-1 list-disc">
-              <li><%= message %></li>
-          </ul>
+    <% end %>
+    <div class="p-4 sm:p-7">
+      <div class="text-center">
+        <h2 class="block text-2xl font-bold text-gray-800 "><%= t("devise.invitations.new.header") %></h2>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          Invite this user to join Screener. User will be sent an invitation email to confirm.
+        </p>
+      </div>
+      <div class="grid gap-y-4 pt-6">
+        <!-- Form Group -->
+        <div>
+          <% resource.class.invite_key_fields.each do |field| -%>
+            <%= form.text_field :email, "Email", required: true, autofocus: true %>
+          <% end %>
+        </div>
+        <div class="flex justify-end">
+          <%= form.submit t("devise.invitations.new.submit_button"), class: "btn-blue" %>
         </div>
       </div>
     </div>
-  </div>
-   </div>
- <% end %>
-
-      <div class="p-4 sm:p-7">
-        <div class="text-center">
-          <h2 class="block text-2xl font-bold text-gray-800 "><%= t("devise.invitations.new.header") %></h2>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-             Invite this user to join Screener. User will be sent an invitation email to confirm.
-          </p>
-        </div>
-
-
-   <div class="grid gap-y-4 pt-6">
-              <!-- Form Group -->
-              <div>
-  <% resource.class.invite_key_fields.each do |field| -%>
-      <%= form.text_field :email, "Email", required: true, autofocus: true %>
   <% end %>
-</div>
-   <div class="flex justify-end">
-    <%= form.submit t("devise.invitations.new.submit_button"), class: "btn-blue" %>
-  </div>
-    </div>
-    </div>
-<% end %>
 </main>
