@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root :to => "root#index"
+  root :to => "dashboard#index"
 
   resources :surveys do
     get "/attempts", to: "surveys#attempts", as: "attempts"

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  acts_as_tenant :account
   belongs_to :account
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
