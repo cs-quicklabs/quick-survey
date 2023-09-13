@@ -2,29 +2,33 @@ class AttemptsController < BaseController
   include Pagy::Backend
 
   before_action :set_survey, only: [:new, :create]
+  before_action :set_attempt, only: [:show, :submit, :answer]
 
   def index
-    @attempts = Survey::Attempt.includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
+    authorize :Attempt
+    @attempts = Survey::Attempt.includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc)
     @pagy, @attempts = pagy(@attempts, items: 10)
     render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
   def new
+    authorize :Attempt
     @attempt = Survey::Attempt.new
   end
 
   def create
+    authorize :Attempt
     @participant = Survey::Participant.create(name: params[:name], email: params[:email])
     @attempt = Survey::Attempt.create(survey: @survey, participant: @participant, actor: current_user, created_at: DateTime.now)
     redirect_to new_survey_attempt_path(@attempt)
   end
 
   def show
-    @attempt = Survey::Attempt.find(params[:id])
+    authorize @attempt
   end
 
   def submit
-    @attempt = Survey::Attempt.find(params[:id])
+    authorize @attempt
     if @attempt.survey.survey_type == 0
       redirect_to checklist_report_path(@attempt)
     else
@@ -33,7 +37,7 @@ class AttemptsController < BaseController
   end
 
   def answer
-    attempt = Survey::Attempt.find(params[:attempt_id])
+    authorize @attempt
     question = Survey::Question.find(params[:question_id])
     option = Survey::Option.find(params[:option_id])
     answer = Survey::Answer.find_by(attempt: attempt, question: question)
@@ -52,5 +56,9 @@ class AttemptsController < BaseController
 
   def set_survey
     @survey ||= Survey::Survey.find(params[:id])
+  end
+
+  def set_attempt
+    @attempt ||= Survey::Attempt.find(params[:id])
   end
 end
