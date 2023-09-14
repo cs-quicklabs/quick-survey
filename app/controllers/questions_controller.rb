@@ -3,9 +3,11 @@ class QuestionsController < BaseController
   before_action :set_survey, only: [:create, :destroy, :update, :edit]
 
   def edit
+    authorize @question
   end
 
   def destroy
+    authorize @question
     @question.destroy
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@question) }
@@ -13,11 +15,13 @@ class QuestionsController < BaseController
   end
 
   def update
+    authorize @question
     @question.update(question_params)
     redirect_to survey_path(@survey), notice: "Question was updated"
   end
 
   def reorder
+    authorize :Question
     @question = Survey::Question.find(params[:question_id])
     @survey = Survey::Survey.find(params[:survey_id])
     @question.update(order: params[:order].to_i)
@@ -41,6 +45,7 @@ class QuestionsController < BaseController
   end
 
   def create
+    authorize :Question
     @question = Survey::Question.new(question_params)
     @question.survey = @survey
     @question.order = @survey.questions.size + 1

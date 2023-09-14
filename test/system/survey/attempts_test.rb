@@ -11,11 +11,7 @@ class AttemptsTest < ApplicationSystemTestCase
   end
 
   def page_url
-    survey_attempts_url(script_name: @account.id, survey_id: @survey.id)
-  end
-
-  def attempt_url
-    survey_attempt_url(script_name: @account.id, survey_id: @survey.id, id: @attempt.id)
+    survey_url(script_name: "/#{@account.id}", id: @survey.id)
   end
 
   test "can visit index page if logged in" do
@@ -46,10 +42,12 @@ class AttemptsTest < ApplicationSystemTestCase
     click_on "Submit"
     sleep(0.2)
     visit page_url
+    within "#survey-tabs" do
+      click_link "Attempts"
+    end
     attempt = @survey.attempts.last
     within "tr", id: dom_id(attempt) do
-      click_on @user.decorate.display_name
+      assert_selector "td", text: attempt.participant.name
     end
-    assert_selector "h1", text: attempt.participant.name
   end
 end

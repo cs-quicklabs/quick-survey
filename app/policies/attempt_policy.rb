@@ -22,4 +22,8 @@ class AttemptPolicy < ApplicationPolicy
   def answer?
     index?
   end
+
+  def submit?
+    index?
+  end
 end
