@@ -10,7 +10,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: admin.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(dashboard_path)
+    assert_current_path(dashboard_path(script_name: "/#{admin.account.id}"))
     take_screenshot
   end
 
@@ -21,7 +21,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_password", with: "password"
     click_on "Log In"
 
-    assert_current_path(dashboard_path)
+    assert_current_path(dashboard_path(script_name: "/#{member.account.id}"))
     take_screenshot
   end
 
@@ -31,7 +31,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: super_admin.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(dashboard_path)
+    assert_current_path(dashboard_path(script_name: "/#{super_admin.account.id}"))
     take_screenshot
   end
 
@@ -67,6 +67,7 @@ class OnboardingTest < ApplicationSystemTestCase
       click_on "Send an invitation"
       sleep(0.5)
     end
+    assert_text "User has been invited."
     sign_out admin
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
     link = doc.css("a").first.values.first

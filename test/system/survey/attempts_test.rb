@@ -3,17 +3,19 @@ require "application_system_test_case"
 class AttemptsTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     @survey = survey_surveys(:one)
     @attempt = survey_attempts(:one)
     sign_in @user
   end
 
   def page_url
-    survey_attempts_url(survey_id: @survey.id)
+    survey_attempts_url(script_name: @account.id, survey_id: @survey.id)
   end
 
   def attempt_url
-    survey_attempt_url(survey_id: @survey.id, id: @attempt.id)
+    survey_attempt_url(script_name: @account.id, survey_id: @survey.id, id: @attempt.id)
   end
 
   test "can visit index page if logged in" do

@@ -3,16 +3,18 @@ require "application_system_test_case"
 class SurveysTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     @survey = survey_surveys(:one)
     sign_in @user
   end
 
   def page_url
-    surveys_url
+    surveys_url(script_name: "/#{@account.id}")
   end
 
   def surveys_page_url
-    survey_url(@survey)
+    survey_url(script_name: "/#{@account.id}", id: @survey.id)
   end
 
   test "can show index if logged in" do
@@ -87,7 +89,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can unpin a survey" do
     pinned = survey_surveys(:pinned)
-    visit survey_url(pinned)
+    visit survey_url(script_name: "/#{pinned.account.id}", id: pinned.id)
     within "#survey-header" do
       click_on "Actions"
       click_on "Unpin Survey"
@@ -119,7 +121,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can restore archived survey" do
     archived = survey_surveys(:archived)
-    visit archived_surveys_path
+    visit archived_surveys_path(script_name: "/#{archived.account.id}")
     within "tr##{dom_id(archived)}" do
       page.accept_confirm do
         click_on "Unarchive"
@@ -141,7 +143,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can delete archived survey" do
     archived = survey_surveys(:archived)
-    visit archived_surveys_path
+    visit archived_surveys_path(script_name: "/#{archived.account.id}")
     within "tr##{dom_id(archived)}" do
       page.accept_confirm do
         click_on "Delete"

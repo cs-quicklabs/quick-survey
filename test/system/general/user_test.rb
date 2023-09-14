@@ -3,11 +3,13 @@ require "application_system_test_case"
 class UserTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     sign_in @user
   end
 
   def page_url
-    profile_url
+    profile_url(script_name: "/#{@account.id}")
   end
 
   test "can visit profile page if logged in" do
@@ -49,7 +51,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can not update password with pawned password" do
-    visit setting_password_url
+    visit setting_password_url(script_name: "/#{@account.id}")
     fill_in "Old Password", with: "random123"
     fill_in "New Password", with: "Home@123"
     fill_in "Confirm New Password", with: "Home@123"
@@ -60,7 +62,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can not update password with empty fields" do
-    visit setting_password_url
+    visit setting_password_url(script_name: "/#{@account.id}")
     click_on "Save"
     take_screenshot
     assert_text "Original password can't be blank"

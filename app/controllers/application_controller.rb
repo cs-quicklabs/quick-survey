@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  #rescue_from Pundit::NotDefinedError, with: :record_not_found
-  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  #rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
 
   before_action :set_redirect_path, unless: :user_signed_in?
 
@@ -85,6 +85,12 @@ class ApplicationController < ActionController::Base
 
   def script_name
     "/#{current_user.account.id}"
+  end
+
+  def pagy_nil_safe(params, collection, vars = {})
+    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection
   end
 
   def render_partial(partial, collection:, cached: true)

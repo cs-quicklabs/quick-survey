@@ -7,7 +7,7 @@ class AttemptsController < BaseController
   def index
     authorize :Attempt
     @attempts = Survey::Attempt.includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc)
-    @pagy, @attempts = pagy(@attempts, items: 10)
+    @pagy, @attempts = pagy_nil_safe(params, @attempts, items: LIMIT)
     render_partial("attempts/attempt", collection: @attempts, cached: true) if stale?(@attempts)
   end
 
