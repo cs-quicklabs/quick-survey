@@ -14,7 +14,13 @@ Rails.application.routes.draw do
 
   resources :surveys do
     get "/attempts", to: "surveys#attempts", as: "attempts"
-    resources :questions
+    resources :questions, module: "survey"
+    get "/pdf/checklist/:id", to: "survey/reports#checklist", as: "checklist_pdf"
+    get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"
+    get "/reports/checklist/:id", to: "survey/reports#checklist", as: "checklist_report"
+    get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
+    get "/attempts/:id/submit", to: "survey/attempts#submit", as: "submit_attempt"
+    patch "/attempts/:id/submit", to: "survey/reports#submit", as: "submit_report"
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
@@ -43,12 +49,6 @@ Rails.application.routes.draw do
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts", to: "attempts#index", as: "attempts"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
-  get "/pdf/checklist/:id", to: "reports#checklist", as: "checklist_pdf"
-  get "/pdf/score/:id", to: "reports#score", as: "score_pdf"
-  get "/reports/checklist/:id", to: "reports#checklist", as: "checklist_report"
-  get "/reports/score/:id", to: "reports#score", as: "score_report"
-  get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
-  patch "/attempts/:id/submit", to: "reports#submit", as: "submit_report"
 
   scope "archive" do
     get "/surveys", to: "surveys#archived", as: "archived_surveys"
