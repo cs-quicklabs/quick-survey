@@ -54,7 +54,7 @@ class SurveysTest < ApplicationSystemTestCase
       find("button", id: "survey-menu").click
       click_on("Edit")
     end
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: "Survey Campaigning"
     click_on "Edit Survey"
     assert_text "Survey Campaigning"

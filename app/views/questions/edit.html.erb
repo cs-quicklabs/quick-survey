@@ -1,0 +1,4 @@
+
+  <%= turbo_frame_tag dom_id(@question) do %>
+    <%= render partial: "questions/form", locals: { survey: @survey, question: @question } %>
+<% end %>

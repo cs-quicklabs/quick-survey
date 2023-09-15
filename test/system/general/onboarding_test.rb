@@ -59,8 +59,7 @@ class OnboardingTest < ApplicationSystemTestCase
   test "admin can invite a new user" do
     admin = users(:admin)
     sign_in admin
-    visit users_path
-    visit users_path
+    visit users_path(script_name: "/#{admin.account.id}")
     click_on "Invite New User"
     fill_in "user_email", with: "new_user@crownstack.com"
     assert_emails 1 do
@@ -81,7 +80,7 @@ class OnboardingTest < ApplicationSystemTestCase
   test "email invite can be sent to a any user who has not accepted the invite" do
     admin = users(:admin)
     sign_in admin
-    visit users_path
+    visit users_path(script_name: "/#{admin.account.id}")
     invited = users(:invited)
     within("tr", id: dom_id(invited)) do
       assert_emails 1 do
@@ -104,7 +103,7 @@ class OnboardingTest < ApplicationSystemTestCase
   test "email invite can be sent to a any user who has not joined" do
     admin = users(:admin)
     sign_in admin
-    visit users_path
+    visit users_path(script_name: "/#{admin.account.id}")
 
     not_joined = users(:not_joined)
 
@@ -127,7 +126,7 @@ class OnboardingTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
     sign_out not_joined
     sign_in admin
-    visit users_path
+    visit users_path(script_name: "/#{admin.account.id}")
     within("tr", id: dom_id(not_joined)) do
       within("td", class: "status") do
         assert_text "Joined"

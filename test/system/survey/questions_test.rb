@@ -36,11 +36,11 @@ class QuestionsTest < ApplicationSystemTestCase
     take_screenshot
   end
 
-  test "can not create question with empty Name category" do
+  test "can not create question with empty tet" do
     visit page_url
     click_on "Add Question"
     take_screenshot
-    assert_selector "h1", text: "Add New Question"
+    assert_selector "div#error_explanation", text: "Text can't be blank"
   end
 
   test "can edit a question" do
@@ -54,12 +54,15 @@ class QuestionsTest < ApplicationSystemTestCase
     take_screenshot
   end
 
-  test "can not edit a survey with invalid name" do
+  test "can not edit a survey with invalid text" do
     visit page_url
     @question = @survey.questions.first
     find("li", id: dom_id(@question)).click_link("Edit")
-    fill_in "survey_question_text", with: ""
-    click_on "Edit Question"
+    within "turbo-frame##{dom_id(@question)}" do
+      fill_in "survey_question_text", with: ""
+      click_on "Edit Question"
+    end
+    assert_selector "div#error_explanation", text: "Text can't be blank"
     take_screenshot
   end
 

@@ -14,12 +14,12 @@ Rails.application.routes.draw do
 
   resources :surveys do
     get "/attempts", to: "surveys#attempts", as: "attempts"
-    resources :questions, module: "survey"
+    resources :questions
     get "/pdf/checklist/:id", to: "survey/reports#checklist", as: "checklist_pdf"
     get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"
     get "/reports/checklist/:id", to: "survey/reports#checklist", as: "checklist_report"
     get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
-    get "/attempts/:id/submit", to: "survey/attempts#submit", as: "submit_attempt"
+    get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
     patch "/attempts/:id/submit", to: "survey/reports#submit", as: "submit_report"
   end
 

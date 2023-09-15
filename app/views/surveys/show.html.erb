@@ -14,7 +14,7 @@
               <p class="pb-2 mt-1 text-sm pl-4 font-medium text-gray-900 truncate"><%= "Survey Questions (" + @survey.questions.load.size.to_s + ")" %></p>
             </div>
                    <div  id="survey_questions">
-              <%= render partial: "surveys/questions/question", locals: { survey: @survey, questions: @survey.questions.order(:order) }, formats: [:turbo_stream] %>
+              <%= render partial: "surveys/questions/questions", locals: { survey: @survey, questions: @survey.questions.order(:order) }, formats: [:turbo_stream] %>
            </div>
           </div>
         </div>

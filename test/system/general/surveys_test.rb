@@ -63,16 +63,16 @@ class SurveysTest < ApplicationSystemTestCase
   test "can not create with empty Name Discription survey_type" do
     visit page_url
     click_on "New Survey"
-    assert_selector "h3", text: "Add New Survey"
+    assert_selector "h1", text: "Add New Survey"
     click_on "Add Survey"
+    assert_selector "p.notice", text: "Failed to create survey."
     take_screenshot
-    assert_selector "h3", text: "Add New Survey"
   end
 
   test "can edit a survey" do
     visit page_url
     find(id: dom_id(@survey)).click_link("Edit")
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: "Survey Campaigning"
     click_on "Edit Survey"
     assert_text "Survey Campaigning"
@@ -100,9 +100,10 @@ class SurveysTest < ApplicationSystemTestCase
   test "can not edit a survey with invalid name" do
     visit page_url
     find(id: dom_id(@survey)).click_link("Edit")
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: ""
     click_on "Edit Survey"
+    assert_selector "p.notice", text: "Failed to update survey."
     take_screenshot
   end
 
