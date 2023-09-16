@@ -2,7 +2,7 @@
 <% participant = attempt.participant %>
 <tr class="bg-white " id="<%= dom_id(attempt) %>">
   <td class=" whitespace-nowrap  table-cell">
-    <a href="surveys/<%=survey.id%>/reports/<%= attempt.survey.survey_type == 0 ? "checklist" : "score" %>/<%= attempt.id %>" class="hover:underline">
+    <a href="surveys/<%= survey.id %>/reports/<%= attempt.survey.survey_type == 0 ? "checklist" : "score" %>/<%= attempt.id %>" class="hover:underline">
       <p> <%= survey.name.upcase_first %></p>
     </a>
   </td>
