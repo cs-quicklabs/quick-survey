@@ -29,12 +29,12 @@
         <a href=<%= spaces_path %> class= "<%= current_page?(spaces_path) ? "nav-selected" : "nav-unselected" %>">Spaces</a>
       <% end %>
          <% if policy(:survey).index? %>
-                <a href=<%= surveys_path %> class= "<%= current_page?("/surveys") ? "nav-selected" : "nav-unselected" %>"> Surveys </a>
+                <a href=<%= surveys_path %> class= "<%= current_page?(surveys_path) ? "nav-selected" : "nav-unselected" %>"> Surveys </a>
               <% end %>
-              <a href="/attempts" class="<%= current_page?("/attempts") ? "nav-selected" : "nav-unselected" %>">Attempts</a>
+              <a href="<%= attempts_path %> " class="<%= current_page?(attempts_path) ? "nav-selected" : "nav-unselected" %>">Attempts</a>
            
               <% if policy(:User).index? %>
-                <a href=<%= users_path %> class= "<%= current_page?("/user") ? "nav-selected" : "nav-unselected" %>"> Users </a>
+                <a href=<%= users_path %> class= "<%= current_page?(users_path) ? "nav-selected" : "nav-unselected" %>"> Users </a>
               <% end %>
    
             </div>

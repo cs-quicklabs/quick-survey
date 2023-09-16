@@ -37,6 +37,7 @@ class UsersController < BaseController
   end
 
   def deactivate_user
+    authorize @user, :update?
     @user.active = false
     @user.deactivated_on = DateTime.now.utc
     @user.save!

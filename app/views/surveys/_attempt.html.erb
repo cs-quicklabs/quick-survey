@@ -3,7 +3,7 @@
 <% participant = attempt.participant %>
 <tr class="bg-white " id="<%= dom_id(attempt) %>">
   <td class=" whitespace-nowrap  table-cell">
-    <a href="/reports/<%= attempt.survey.survey_type == 0 ? "checklist" : "score" %>/<%= attempt.id %>" class="hover:underline">
+    <a href="/<%= attempt.account_id %>/surveys/<%= survey.id %>/reports/<%= attempt.survey.survey_type == 0 ? "checklist" : "score" %>/<%= attempt.id %>" class="hover:underline">
        <p> <% if user %><%= user.decorate.display_name %><% end %></p>
     </a>
   </td>

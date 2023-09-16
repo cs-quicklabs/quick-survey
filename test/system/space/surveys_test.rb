@@ -3,6 +3,8 @@ require "application_system_test_case"
 class SurveysTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     @space = @user.spaces.where(archive: false, user_id: @user.id).first
     @folder = @space.folders.where(user_id: @user.id).first
     @survey = @folder.survey_surveys.where(user_id: @user.id).first
@@ -10,11 +12,7 @@ class SurveysTest < ApplicationSystemTestCase
   end
 
   def page_url
-    space_folder_url(space_id: @space.id, id: @folder.id)
-  end
-
-  def surveys_page_url
-    survey_url(@survey)
+    space_folder_url(script_name: "/#{@account.id}", space_id: @space.id, id: @folder.id)
   end
 
   test "can show surveys if logged in" do
@@ -56,7 +54,7 @@ class SurveysTest < ApplicationSystemTestCase
       find("button", id: "survey-menu").click
       click_on("Edit")
     end
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: "Survey Campaigning"
     click_on "Edit Survey"
     assert_text "Survey Campaigning"
@@ -99,6 +97,7 @@ class SurveysTest < ApplicationSystemTestCase
       find("button", id: "survey-menu").click
       find("p", id: "change-folder").click
     end
+
     select @space.title, from: "space_id"
     second_option_text = find("#folder_id").all("option")[1].text
     select second_option_text, from: "folder_id"

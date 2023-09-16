@@ -5,15 +5,22 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   devise_for :users, controllers: { invitations: "invitations", registrations: "registrations" }
+  post "/register", to: "registrations#create"
 
   resources :users, only: [:index, :show, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root :to => "root#index"
+  root :to => "dashboard#index"
 
   resources :surveys do
     get "/attempts", to: "surveys#attempts", as: "attempts"
     resources :questions
+    get "/pdf/checklist/:id", to: "survey/reports#checklist", as: "checklist_pdf"
+    get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"
+    get "/reports/checklist/:id", to: "survey/reports#checklist", as: "checklist_report"
+    get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
+    get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
+    patch "/attempts/:id/submit", to: "survey/reports#submit", as: "submit_report"
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
@@ -42,12 +49,6 @@ Rails.application.routes.draw do
   post "/surveys/:id/attempts/new", to: "attempts#create"
   get "/attempts", to: "attempts#index", as: "attempts"
   get "/attempts/:id", to: "attempts#show", as: "new_survey_attempt"
-  get "/pdf/checklist/:id", to: "reports#checklist", as: "checklist_pdf"
-  get "/pdf/score/:id", to: "reports#score", as: "score_pdf"
-  get "/reports/checklist/:id", to: "reports#checklist", as: "checklist_report"
-  get "/reports/score/:id", to: "reports#score", as: "score_report"
-  get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
-  patch "/attempts/:id/submit", to: "reports#submit", as: "submit_report"
 
   scope "archive" do
     get "/surveys", to: "surveys#archived", as: "archived_surveys"

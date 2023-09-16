@@ -31,21 +31,30 @@ class SurveysController < BaseController
 
   def update
     authorize :Survey
-
-    @survey.update(survey_params)
-    redirect_to survey_path(@survey)
+    respond_to do |format|
+      if @survey.update(survey_params)
+        format.html { redirect_to survey_path(@survey), notice: "Survey was successfully updated." }
+      else
+        format.html { redirect_to edit_survey_path(@survey), notice: "Failed to update survey." }
+      end
+    end
   end
 
   def create
     authorize :Survey
     @survey = Survey::Survey.new(survey_params)
     @survey.user = current_user
-    if @survey.save
-      if @survey.folder_id.present?
-        @folder = Folder.find(@survey.folder_id)
-        redirect_to space_folder_path(@folder.space, @folder) and return
+
+    respond_to do |format|
+      if @survey.save
+        if @survey.folder_id.present?
+          @folder = Folder.find(@survey.folder_id)
+          format.html { redirect_to space_folder_path(@folder.space, @folder), notice: "Survey was successfully created." }
+        else
+          format.html { redirect_to survey_path(@survey), notice: "Survey was successfully created." }
+        end
       else
-        redirect_to survey_path(@survey)
+        format.html { redirect_to new_survey_path, notice: "Failed to create survey." }
       end
     end
   end

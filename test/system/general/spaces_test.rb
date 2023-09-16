@@ -3,16 +3,18 @@ require "application_system_test_case"
 class SpacesTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     @space = @user.spaces.where(archive: false, user_id: @user.id).first
     sign_in @user
   end
 
   def page_url
-    spaces_url
+    spaces_url(script_name: "/#{@account.id}")
   end
 
   def space_page_url
-    space_folders_url(space_id: @space.id)
+    space_folders_url(script_name: "/#{@account.id}", space_id: @space.id)
   end
 
   test "can show index if logged in" do

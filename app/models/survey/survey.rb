@@ -1,4 +1,5 @@
 class Survey::Survey < ActiveRecord::Base
+  acts_as_tenant :account
   self.table_name = "survey_surveys"
   belongs_to :folder, optional: true
   belongs_to :user, optional: true

@@ -11,6 +11,7 @@ member:
   confirmed_at: 2021-03-18
   role:  member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  account: crownstack
 
 actor:
   first_name: Aashish
@@ -19,6 +20,7 @@ actor:
   confirmed_at: 2021-03-18
   role:  member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  account: crownstack
 
   
   
@@ -29,6 +31,7 @@ admin:
   confirmed_at: 2021-03-18
   role: admin
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  account: crownstack
     
 super_admin:  
   first_name: Rachita
@@ -37,6 +40,7 @@ super_admin:
   confirmed_at: 2021-03-18
   role: super_admin
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  account: crownstack
 
 
 not_joined:
@@ -47,6 +51,7 @@ not_joined:
   role: member  
   invitation_created_at: 2021-03-18
   invitation_token: <%= Devise.friendly_token %>
+  account: crownstack
 
 
 invited:
@@ -55,6 +60,7 @@ invited:
   active: true
   email: invited@crownstack.com
   role: member
+  account: crownstack
 
 unconfirmed:
   first_name: Aashish
@@ -63,6 +69,7 @@ unconfirmed:
   email: unconfirmed@crownstack.com
   role: member
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  account: crownstack
 
 deactivated:
   first_name: Aashish
@@ -71,4 +78,5 @@ deactivated:
   email: deactivated@crownstack.com
   role: member  
   deactivated_on: 2021-03-18  
+  account: crownstack
 # column: value

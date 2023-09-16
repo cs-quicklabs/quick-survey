@@ -1,6 +1,8 @@
-class ReportsController < BaseController
+class Survey::ReportsController < Survey::BaseController
+  before_action :set_attempt, only: [:checklist, :score, :submit]
+
   def checklist
-    @attempt = Survey::Attempt.find(params[:id])
+    authorize [:survey, :report]
     respond_to do |format|
       format.html
       format.pdf do
@@ -13,7 +15,7 @@ class ReportsController < BaseController
   end
 
   def score
-    @attempt = Survey::Attempt.find(params[:id])
+    authorize [:survey, :report]
     respond_to do |format|
       format.html
       format.pdf do
@@ -26,7 +28,7 @@ class ReportsController < BaseController
   end
 
   def submit
-    @attempt = Survey::Attempt.find(params[:id])
+    authorize [:survey, :report]
     @attempt.update_attribute("comment", params[:comment])
     redirect_to attempts_path, notice: "Thank you for submitting your survey."
   end
@@ -35,5 +37,9 @@ class ReportsController < BaseController
 
   def attempt_params
     params.permit(:id, :comment)
+  end
+
+  def set_attempt
+    @attempt ||= Survey::Attempt.find(params[:id])
   end
 end

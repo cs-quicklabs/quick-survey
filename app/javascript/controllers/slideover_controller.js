@@ -41,10 +41,11 @@ export default class extends Controller {
 
     if (e.target.closest("li")) {
       const id = e.target.closest("li").dataset.surveyId;
+      const account = e.target.closest("li").dataset.accountId;
 
       this.containerTarget.querySelector(
         "form",
-      ).action = `/change_folder/${id}`;
+      ).action = `/${account}/change_folder/${id}`;
     }
 
     if (e.target.blur) {

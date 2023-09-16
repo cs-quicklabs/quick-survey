@@ -3,16 +3,18 @@ require "application_system_test_case"
 class SurveysTest < ApplicationSystemTestCase
   setup do
     @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     @survey = survey_surveys(:one)
     sign_in @user
   end
 
   def page_url
-    surveys_url
+    surveys_url(script_name: "/#{@account.id}")
   end
 
   def surveys_page_url
-    survey_url(@survey)
+    survey_url(script_name: "/#{@account.id}", id: @survey.id)
   end
 
   test "can show index if logged in" do
@@ -61,16 +63,16 @@ class SurveysTest < ApplicationSystemTestCase
   test "can not create with empty Name Discription survey_type" do
     visit page_url
     click_on "New Survey"
-    assert_selector "h3", text: "Add New Survey"
+    assert_selector "h1", text: "Add New Survey"
     click_on "Add Survey"
+    assert_selector "p.notice", text: "Failed to create survey."
     take_screenshot
-    assert_selector "h3", text: "Add New Survey"
   end
 
   test "can edit a survey" do
     visit page_url
     find(id: dom_id(@survey)).click_link("Edit")
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: "Survey Campaigning"
     click_on "Edit Survey"
     assert_text "Survey Campaigning"
@@ -87,7 +89,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can unpin a survey" do
     pinned = survey_surveys(:pinned)
-    visit survey_url(pinned)
+    visit survey_url(script_name: "/#{pinned.account.id}", id: pinned.id)
     within "#survey-header" do
       click_on "Actions"
       click_on "Unpin Survey"
@@ -98,9 +100,10 @@ class SurveysTest < ApplicationSystemTestCase
   test "can not edit a survey with invalid name" do
     visit page_url
     find(id: dom_id(@survey)).click_link("Edit")
-    assert_selector "h3", text: "Edit Survey"
+    assert_selector "h1", text: "Edit Survey"
     fill_in "survey_survey_name", with: ""
     click_on "Edit Survey"
+    assert_selector "p.notice", text: "Failed to update survey."
     take_screenshot
   end
 
@@ -119,7 +122,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can restore archived survey" do
     archived = survey_surveys(:archived)
-    visit archived_surveys_path
+    visit archived_surveys_path(script_name: "/#{archived.account.id}")
     within "tr##{dom_id(archived)}" do
       page.accept_confirm do
         click_on "Unarchive"
@@ -141,7 +144,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can delete archived survey" do
     archived = survey_surveys(:archived)
-    visit archived_surveys_path
+    visit archived_surveys_path(script_name: "/#{archived.account.id}")
     within "tr##{dom_id(archived)}" do
       page.accept_confirm do
         click_on "Delete"

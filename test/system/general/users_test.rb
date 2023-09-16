@@ -3,16 +3,18 @@ require "application_system_test_case"
 class UserTest < ApplicationSystemTestCase
   setup do
     @user = users(:admin)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     sign_in @user
     @member = users(:member)
   end
 
   def page_url
-    users_url
+    users_url(script_name: "/#{@account.id}")
   end
 
   def users_page_url
-    user_attempts_url(user_id: @member.id)
+    user_attempts_url(script_name: "/#{@account.id}", user_id: @member.id)
   end
 
   test "can visit users page if logged in" do
@@ -77,7 +79,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can activate user" do
-    visit deactivated_users_path
+    visit deactivated_users_path(script_name: "/#{@account.id}")
     deactivated = users(:deactivated)
     within "tr##{dom_id(deactivated)}" do
       click_on "Activate"
@@ -86,7 +88,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can delete deactivated user" do
-    visit deactivated_users_path
+    visit deactivated_users_path(script_name: "/#{@account.id}")
     deactivated = users(:deactivated)
     within "tr##{dom_id(deactivated)}" do
       page.accept_confirm do

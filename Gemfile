@@ -54,6 +54,7 @@ gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
+gem "acts_as_tenant"
 gem "bootsnap", "1.16.0", require: false
 gem "rails-patterns"
 gem "rexml"
