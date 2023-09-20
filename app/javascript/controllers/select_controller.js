@@ -35,6 +35,7 @@ export default class extends Controller {
     if (this.selectTarget.value === "") {
       return;
     }
+    const csrfToken = this.selectTarget.closest("form").querySelector("input[name=authenticity_token]").value;
     const folderId = this.selectTarget.value;
     const requestBody = JSON.stringify({
       folder_id: folderId,
@@ -43,6 +44,7 @@ export default class extends Controller {
     fetch(url, {
       method: "POST",
       headers: {
+        "X-CSRF-Token": csrfToken,
         "Content-Type": "application/json",
       },
       body: requestBody,
