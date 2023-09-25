@@ -5,7 +5,7 @@
     "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo": "7.3.0",
     "esbuild-rails": "^1.0.4",
-    "@rails/request.js": "^0.0.8",
+    "@rails/request.js": "^0.0.9",
     "@rails/actiontext": "7.0.8",
     "@tailwindcss/forms": "0.5.6",
     "@tailwindcss/line-clamp": "0.4.4",
