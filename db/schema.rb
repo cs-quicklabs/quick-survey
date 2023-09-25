@@ -91,6 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_074108) do
     t.string "description"
     t.boolean "archive", default: false
     t.datetime "archive_at"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_spaces_on_account_id"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 
@@ -217,6 +219,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_074108) do
   add_foreign_key "pinned_spaces", "users"
   add_foreign_key "recent_surveys", "survey_surveys", column: "survey_surveys_id"
   add_foreign_key "recent_surveys", "users"
+  add_foreign_key "spaces", "accounts"
   add_foreign_key "spaces", "users"
   add_foreign_key "survey_surveys", "folders"
 end

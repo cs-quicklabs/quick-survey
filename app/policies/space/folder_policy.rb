@@ -1,8 +1,7 @@
 class Space::FolderPolicy < Space::BaseSpacePolicy
   def index?
-    #space = record.first
-    #space.users.include?(user) || space.user == user
-    true
+    space = record.first
+    space.users.include?(user) || space.user == user
   end
 
   def new?

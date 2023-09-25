@@ -38,7 +38,7 @@ gem "devise-pwned_password"
 
 gem "draper"
 gem "letter_opener_web", group: :development
-gem "pundit"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
