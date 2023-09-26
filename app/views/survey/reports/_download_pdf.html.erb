@@ -1,17 +1,16 @@
+<%survey=@attempt.survey%>
 <div class="overflow-y-auto w-full">
-  <%= form_with(url: survey_submit_report_path(@attempt), model: @attempt) do |form| %>
-    <div class="pt-4">
-      <label for="comment" class="block text-sm font-medium text-gray-700">
-        Comments (optional)
-      </label>
-      <h4 class="text-sm leading-tight text-gray-400 pb-4">Please explain in detail why this candidate should move to next round or what is your general feedback or why candidate should be rejected or what is your comments based on questions answered above etc etc.</h4>
-      <textarea  id="comment" name="comment"  required="required" rows="6" autocomplete="off" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"><%= @attempt.comment %></textarea>
-    </div>
-    <div class=" sm:col-span-4 flex justify-end overflow-y-auto py-6">
-      <%= link_to "Back", "javascript:history.back()", class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-g-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 no-underline" %>
-      <button type="submit" class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Submit
-      </button>
-    </div>
-  <% end %>
+  <div class="pt-4">
+    <label for="comment" class="block text-sm font-medium text-gray-700">
+      Comments (optional)
+    </label>
+    <h4 class="text-sm leading-tight text-gray-400 pb-4">Please explain in detail why this candidate should move to next round or what is your general feedback or why candidate should be rejected or what is your comments based on questions answered above etc etc.</h4>
+    <span  id="comment" name="comment"  required="required" rows="6" autocomplete="off" class="   block w-full sm:text-sm  rounded-md"><%= @attempt.comment %></span>
+  </div>
+  <div class=" sm:col-span-4 flex justify-end overflow-y-auto py-6 pr-2">
+    <%= link_to "Back", "javascript:history.back()", class: "bg-white py-2 px-4 border  rounded-md shadow-sm text-sm font-medium text-g-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 no-underline" %>
+    <a target="_blank" href="<%= survey.survey_type == 0 ? "/#{attempt.account_id}/surveys/#{attempt.survey_id}/pdf/checklist/#{attempt.id}.pdf" : "/#{attempt.account_id}/surveys/#{attempt.survey_id}/pdf/score/#{attempt.id}.pdf" %>" class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      Download PDF
+    </a>
+  </div>
 </div>

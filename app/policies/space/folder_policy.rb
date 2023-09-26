@@ -1,7 +1,6 @@
 class Space::FolderPolicy < Space::BaseSpacePolicy
   def index?
     space = record.first
-    binding.irb
     space.users.include?(user) || space.user == user
   end
 

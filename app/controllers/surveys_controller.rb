@@ -116,7 +116,7 @@ class SurveysController < BaseController
   def archived
     authorize :survey, :index?
 
-    surveys = Survey::Survey.inactive.order(archived_on: :desc)
+    surveys = Survey::Survey.inactive.order(archived_on: :asc)
     @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
 
     render_partial_as("surveys/archived_survey", collection: @surveys, as: :survey, cached: true) if stale?(@surveys)

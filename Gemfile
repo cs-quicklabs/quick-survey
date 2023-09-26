@@ -18,13 +18,13 @@ gem "sprockets-rails", "3.4.2"
 gem "pg"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.3.1"
+gem "puma", "6.4.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.1.2"
+gem "jsbundling-rails", "1.2.1"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.2.0"
+gem "cssbundling-rails", "1.3.3"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
 gem "turbo-rails", "1.4.0"
@@ -38,7 +38,7 @@ gem "devise-pwned_password"
 
 gem "draper"
 gem "letter_opener_web", group: :development
-gem "pundit"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
@@ -49,7 +49,7 @@ gem "json"
 gem "pagy"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.1.2"
+gem "sidekiq", "7.1.4"
 gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", ">= 1.3.0", require: nil
 
