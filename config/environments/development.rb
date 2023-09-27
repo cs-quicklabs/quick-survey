@@ -9,13 +9,17 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.enable_reloading = true
+
 
   # Do not eager load code on boot.
   config.eager_load = false
 
   # Show full error reports.
   config.consider_all_requests_local = true
+
+  # Enable server timing
+  config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -25,7 +29,7 @@ Rails.application.configure do
 
     config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}",
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -35,7 +39,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-  Rails.application.config.active_storage.variant_processor = :mini_magick
+Rails.application.config.active_storage.variant_processor = :mini_magick
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -62,6 +66,8 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.active_job.verbose_enqueue_logs = true
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
@@ -77,6 +83,9 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  config.action_controller.raise_on_missing_callback_actions = true
+
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :letter_opener_web
