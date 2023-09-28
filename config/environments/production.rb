@@ -118,7 +118,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = { :host => "https://screening.crownstack.app" }
+  config.action_mailer.default_url_options = { :host => "https://checklist.quicklabs.in" }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -128,7 +128,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-      "survey.quicklabs.in",     # Allow requests from example.com      
+      "checklist.quicklabs.in",     # Allow requests from example.com      
     ]
     # Skip DNS rebinding protection for the default health check endpoint.
     config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
