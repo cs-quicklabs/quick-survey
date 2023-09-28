@@ -39,7 +39,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-Rails.application.config.active_storage.variant_processor = :mini_magick
+  Rails.application.config.active_storage.variant_processor = :mini_magick
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -60,6 +60,10 @@ Rails.application.config.active_storage.variant_processor = :mini_magick
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
+    # Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

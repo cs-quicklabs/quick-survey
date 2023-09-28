@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.public_file_server.enabled = true
 
   # Compress CSS using a preprocessor.
   #config.assets.css_compressor = :purger
@@ -46,8 +46,12 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
+  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
+  # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
+  config.assume_ssl = true
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
@@ -85,15 +89,10 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Use a different logger for distributed setups.
-  # require "syslog/logger"
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
+# Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+   .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+   .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -126,4 +125,11 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
+
+  # Enable DNS rebinding protection and other `Host` header attacks.
+  config.hosts = [
+      "survey.quicklabs.in",     # Allow requests from example.com      
+    ]
+    # Skip DNS rebinding protection for the default health check endpoint.
+    config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
