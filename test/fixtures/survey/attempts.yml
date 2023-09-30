@@ -1,9 +1,13 @@
-user:
-  participant: regular
-  survey: user
-  participant: regular
-
 one:
   participant: regular
-  survey: user
-  participant: actor
+  survey: one
+  participant: one
+  actor: member
+  account: crownstack
+
+two:
+  participant: regular
+  survey: one
+  participant: one
+  actor: member
+  account: crownstack

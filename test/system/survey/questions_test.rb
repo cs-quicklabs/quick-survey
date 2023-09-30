@@ -2,13 +2,15 @@ require "application_system_test_case"
 
 class QuestionsTest < ApplicationSystemTestCase
   setup do
-    @user = users(:regular)
-    @survey = survey_surveys(:user)
+    @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
+    @survey = survey_surveys(:one)
     sign_in @user
   end
 
   def page_url
-    survey_questions_url(survey_id: @survey.id)
+    survey_path(script_name: @account.id, id: @survey.id)
   end
 
   test "can show index if logged in" do
@@ -29,43 +31,47 @@ class QuestionsTest < ApplicationSystemTestCase
     visit page_url
     fill_in "survey_question_text", with: "This is a question"
     fill_in "survey_question_description", with: "This is a sample Question Description"
-    select survey_question_categories(:one).name, from: "survey_question_question_category_id"
     click_on "Add Question"
     assert_selector "p", text: "Question was added successfully."
     take_screenshot
   end
 
-  test "can not create question with empty Name category" do
+  test "can not create question with empty tet" do
     visit page_url
     click_on "Add Question"
     take_screenshot
-    assert_selector "h1", text: "Add New Question"
+    assert_selector "div#error_explanation", text: "Text can't be blank"
   end
 
   test "can edit a question" do
     visit page_url
     @question = @survey.questions.first
-    find("li", id: "#{@question.id}").click_link("Edit")
-    fill_in "survey_question_text", with: "question 1"
-    click_on "Save"
+    find("li", id: dom_id(@question)).click_link("Edit")
+    fill_in "survey_question_text", with: "question 1 new"
+    click_on "Edit Question"
     assert_text "Question 1"
     assert_no_text "Save"
     take_screenshot
   end
 
-  test "can not edit a survey with invalid name" do
+  test "can not edit a survey with invalid text" do
     visit page_url
     @question = @survey.questions.first
-    find("li", id: "#{@question.id}").click_link("Edit")
-    fill_in "survey_question_text", with: ""
-    click_on "Save"
+    find("li", id: dom_id(@question)).click_link("Edit")
+    within "turbo-frame##{dom_id(@question)}" do
+      fill_in "survey_question_text", with: ""
+      click_on "Edit Question"
+    end
+    assert_selector "div#error_explanation", text: "Text can't be blank"
     take_screenshot
   end
 
   test "can delete a question" do
     visit page_url
     @question = @survey.questions.first
-    find("li", id: "#{@question.id}").click_link("Delete")
+    page.accept_confirm do
+      find("li", id: dom_id(@question)).click_link("Delete")
+    end
     take_screenshot
     assert_no_text @question.decorate.display_text
   end

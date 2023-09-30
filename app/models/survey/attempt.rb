@@ -1,4 +1,5 @@
 class Survey::Attempt < ActiveRecord::Base
+  acts_as_tenant :account
   self.table_name = "survey_attempts"
 
   #   acceptable_attributes :winner, :survey, :survey_id,

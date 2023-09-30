@@ -1,0 +1,3 @@
+<p>Dear <%= @user.decorate.display_name %>!</p>
+<p> <%= @actor.decorate.display_name %> has created a  space titled "<%= @space.title.upcase_first %>" and you have been added to that. Please click link below to see more details:</p>
+<p><%= link_to "Show Space", space_folders_url(@space) %></p>

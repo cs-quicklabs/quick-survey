@@ -1,0 +1,3 @@
+<p>Dear <%= @user.decorate.display_name %>!</p>
+<p> <%= @actor.decorate.display_name %> added a new folder "<%= @folder.title.upcase_first %>" in Space "<%= @space.title %>". Please click link below to see more details:</p>
+<p><%= link_to "Show Folder", space_folder_url(@folder, @space) %></p>

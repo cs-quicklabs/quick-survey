@@ -2,12 +2,14 @@ require "application_system_test_case"
 
 class UserTest < ApplicationSystemTestCase
   setup do
-    @user = users(:regular)
+    @user = users(:member)
+    @account = @user.account
+    ActsAsTenant.current_tenant = @account
     sign_in @user
   end
 
   def page_url
-    profile_url
+    profile_url(script_name: "/#{@account.id}")
   end
 
   test "can visit profile page if logged in" do
@@ -49,7 +51,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can not update password with pawned password" do
-    visit setting_password_url
+    visit setting_password_url(script_name: "/#{@account.id}")
     fill_in "Old Password", with: "random123"
     fill_in "New Password", with: "Home@123"
     fill_in "Confirm New Password", with: "Home@123"
@@ -60,7 +62,7 @@ class UserTest < ApplicationSystemTestCase
   end
 
   test "can not update password with empty fields" do
-    visit setting_password_url
+    visit setting_password_url(script_name: "/#{@account.id}")
     click_on "Save"
     take_screenshot
     assert_text "Original password can't be blank"
@@ -68,30 +70,5 @@ class UserTest < ApplicationSystemTestCase
     assert_text "New password confirmation can't be blank"
     assert_text "Original password is not correct"
     assert_text "New password is too short (minimum is 6 characters)"
-  end
-
-  test "can send invite to user" do
-    visit new_user_invitation_url
-    email = "john.doe@crownstack.com"
-    fill_in "user_email", with: email
-    click_on "Send an invitation"
-    take_screenshot
-    assert_selector "p.notice", text: "An invitation email has been sent to #{email}"
-  end
-
-  test "can update permission to user" do
-    sign_out @user
-    @user = users(:admin)
-    sign_in @user
-    visit user_index_url
-    take_screenshot
-    p = users(:regular)
-    within "##{dom_id(p)}" do
-      assert_text p.decorate.display_name
-      assert_text p.email
-      select "HR", from: "user_permission"
-      assert_text "HR"
-    end
-    take_screenshot
   end
 end

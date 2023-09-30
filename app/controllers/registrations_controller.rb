@@ -24,7 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def registration_params
-    params.require(:user).permit(:first_name, :last_name, :email, :new_password, :new_password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :new_password, :new_password_confirmation, :company)
   end
 
   def build_form

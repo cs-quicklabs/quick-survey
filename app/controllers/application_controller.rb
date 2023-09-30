@@ -1,48 +1,14 @@
 class ApplicationController < ActionController::Base
-
-  include CableReady::Broadcaster
-  before_action :authenticate_user!
-
-  after_action :verify_authorized, only: [:home]
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  include Pagy::Backend
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
   rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-
-  LIMIT = 30
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
 
   before_action :set_redirect_path, unless: :user_signed_in?
-  etag {
-    if Rails.env == "production" or Rails.env == "staging"
-      heroku_version
-    else
-      "screener"
-    end
-  }
-
-  fragment_cache_key do
-    "screener"
-  end
-
-  def heroku_version
-    ENV["HEROKU_RELEASE_VERSION"] if Rails.env == "production" or Rails.env == "staging"
-  end
-
-  def render_partial(partial, collection:, cached: true)
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
-                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
-      }
-    end
-  end
 
   def set_redirect_path
     @redirect_path = request.path
@@ -68,39 +34,96 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  etag {
+    if Rails.env == "production" or Rails.env == "staging"
+      deployment_version
+    else
+      current_user.permission
+    end
+  }
+
+  fragment_cache_key do
+    current_user.permission
+  end
+
+  def deployment_version
+    ENV["LATEST_GITHUB_COMMIT"] if Rails.env == "production" or Rails.env == "staging"
+  end
+
   def after_sign_in_path_for(resource)
     if params[:redirect_to].present?
       store_location_for(resource, params[:redirect_to])
-    elsif request.referer == new_user_session_url
-      super
     else
       landing_path
     end
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    root_path(script_name: "")
   end
 
   def user_not_authorized
-    redirect_to(root_path)
+    redirect_to(request.referrer || landing_path)
   end
 
   def signed_in_root_path(resource)
-    root_path
+    landing_path
   end
 
   def record_not_found
     user_not_authorized
   end
 
-  def landing_path
-    root_path
-  end
-
   def invalid_token
     sign_out(current_user) if current_user
     redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
+  end
+
+  def landing_path
+    dashboard_path(script_name: script_name)
+  end
+
+  def script_name
+    "/#{current_user.account.id}"
+  end
+
+  def pagy_nil_safe(params, collection, vars = {})
+    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection
+  end
+
+  def render_partial(partial, collection:, cached: true)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+    end
+  end
+
+  def render_partial_as(partial, collection:, cached: true, as:)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, as: as, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+    end
+  end
+
+  def render_pdf(partial, collection:, cached: true)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        # here you call prawn pdf class (see below)
+        pdf =
+          send_data pdf.render, filename: "family.pdf",
+                                type: "application/pdf",
+                                disposition: "inline"
+      end
+    end
   end
 
   def render_timeline(partial, collection:, cached: true)
@@ -111,17 +134,5 @@ class ApplicationController < ActionController::Base
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
-  end
-
-  def pagy_nil_safe(params, collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
-    return pagy, collection
-  end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name])
   end
 end

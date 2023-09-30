@@ -1,5 +1,3 @@
-<h1 class="text-2xl px-4 py-2  font-bold leading-tight text-gray-900">
-  Interview Screening
-</h1>
-<%= render partial: "shared/tabs" %>
-<%= render partial: "shared/table", locals: { data: @data } %>
+<%= render partial: "/screening/title", locals: { title: "Interview" } %>
+<%= render partial: "/screening/tabs" %>
+<%= render partial: "/screening/table", locals: { data: @data } %>

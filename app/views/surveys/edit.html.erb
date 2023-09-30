@@ -1,25 +1,22 @@
 <div class="min-h-full flex  justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
-    <div>
-      <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Edit Survey
-      </h3>
-    </div>
     <%= form_with(model: @survey, id: dom_id(@survey), url: survey_path(@survey), method: :patch) do |form| %>
       <div class="mt-8 space-y-6">
+       <%= render "shared/form_messages", resource: @survey, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Edit Survey", subtitle: "Please update the survey details" %>
         <input type="hidden" name="remember" value="true">
         <div class=" -space-y-px">
           <div>
             <label for="first-name" class="block text-sm font-medium text-gray-700">
               Survey Name
             </label>
-            <%= form.text_field :name, required: true, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+            <%= form.text_field :name, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
           </div>
           <div class="sm:col-span-4 pt-6">
             <label for="first-name" class="block text-sm font-medium text-gray-700">
               Survey Description
             </label>
-            <%= form.text_area :description, required: true, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+            <%= form.text_area :description, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
           </div>
         </div>
         <div class="pt-5">

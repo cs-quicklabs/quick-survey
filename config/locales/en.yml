@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+
+
+en:
+  activerecord:
+    attributes:
+      survey_question:
+        text: 
+          one: Question Text
+

@@ -1,4 +1,4 @@
-class Screening::ResumeController < ApplicationController
+class Screening::ResumeController < BaseController
   def index
     authorize [:screening, :resume]
     file = File.read("./json/resume.json")

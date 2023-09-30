@@ -4,30 +4,22 @@ Rails.application.configure do
   config.action_controller.default_url_options = { host: "localhost", port: 3000 }
   config.session_store :cache_store
 
-  # StimulusReflex does not support :cookie_store, and we recommend switching to Redis.
-  # To use `redis-session-store`, make sure to add it to your Gemfile and run `bundle install`.
-
-  # config.session_store :redis_session_store,
-  #   serializer: :json,
-  #   on_redis_down: ->(*a) { Rails.logger.error("Redis down! #{a.inspect}") },
-  #   redis: {
-  #     expire_after: 120.minutes,
-  #     key_prefix: "session:",
-  #     url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
-  # }
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.enable_reloading = true
+
 
   # Do not eager load code on boot.
   config.eager_load = false
 
   # Show full error reports.
   config.consider_all_requests_local = true
+
+  # Enable server timing
+  config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -37,7 +29,7 @@ Rails.application.configure do
 
     config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}",
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -69,10 +61,17 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  #Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.active_job.verbose_enqueue_logs = true
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
@@ -90,15 +89,11 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  config.action_controller.raise_on_missing_callback_actions = true
+
+
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
-  #config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  #config.action_mailer.delivery_method = :smtp
-  #config.action_mailer.perform_deliveries = true
-  #config.action_mailer.raise_delivery_errors = true
-  #config.action_mailer.default :charset => "utf-8"
-
 end

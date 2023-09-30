@@ -1,0 +1,20 @@
+<% users = space.users %>
+<% presetable_users = users.first(5) %>
+<li class="col-span-1 rounded-lg bg-white shadow-sm hover:shadow-lg border-gray-100 group" id="<%= dom_id(space) %>">
+  <a href="<%= space_folders_path(space) %>">
+    <div class="flex-wrap py-6 px-6 text-gray-900 h-32">
+      <h1 id="message-heading" class="font-medium text-gray-900 line-clamp-2 group-hover:underline"><%= highlight_hashtag(space.title.upcase_first) %></h1>
+      <p class="font-normal text-sm text-gray-500 line-clamp-2 mt-2"> <%= highlight_hashtag(space.description.upcase_first) %></p>
+    </div>
+    <div class="flex  overflow-hidden  px-6 pb-6" title="<%= users.pluck(:first_name, :last_name).map { |names| names.join(" ") }.join(", ") %>">
+      <% presetable_users.each do |user| %>
+        <%= display_xsmall_avatar(user) %>
+      <% end %>
+      <% if users.size > 5 %>
+        <span class="inline-flex h-7 w-7 relative z-0 text-sm ml-1 text-gray-400 font-semibold"> + <%= users.size - 5 %>  </span>
+      <% elsif users.size == 0 %>
+        <span class="inline-flex h-6 w-6 whitespace-nowrap z-0 text-sm text-gray-400">No person added</span>
+      <% end %>
+    </div>
+  </a>
+</li>

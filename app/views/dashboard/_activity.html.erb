@@ -1,0 +1,25 @@
+<li>
+  <div class="relative pb-6">
+    <span class="absolute top-4 left-3 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+    <div class="relative flex space-x-3">
+      <div>
+        <span class="flex items-center justify-center w-7 h-7 bg-gray-200 rounded-full ring-2 ring-white">
+           <%= image_tag "male-placeholder-image.png", class: "w-6 h-6 rounded-full" %>
+        </span>
+      </div>
+      <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+        <div>
+          <p class="text-sm text-gray-500">
+          You have attempted a survey titled 
+            <a href="<%= survey_attempts_path(attempt.survey) %>" class="font-medium text-gray-900 hover:underline"><%= attempt.survey.name %></a>
+            for participant named
+          <%= attempt.participant.name.upcase_first %>
+          </p>
+        </div>
+        <div class="text-sm text-right text-gray-500 whitespace-nowrap">
+          <%= display_created_at(attempt) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

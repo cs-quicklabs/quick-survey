@@ -1,13 +1,12 @@
-class UserController < ApplicationController
-  before_action :set_user, only: [:update_password, :update, :profile, :password]
-  before_action :find_user, only: [:update_permission, :destroy]
+class UserController < BaseController
+  before_action :set_user, only: [:update_password, :update_profile, :profile, :password]
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
 
   def index
     authorize :User
     @title = "Users"
-    @users = User.all.order(:first_name).order(created_at: :desc)
+    @users = User.all.active.order(:first_name).order(created_at: :desc)
   end
 
   def update_permission
@@ -15,7 +14,7 @@ class UserController < ApplicationController
     redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)
   end
 
-  def update
+  def update_profile
     authorize @user
     respond_to do |format|
       if @user.update(user_params)
@@ -37,11 +36,6 @@ class UserController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    redirect_to user_index_path, status: 303, notice: "User has been deleted."
-  end
-
   def profile
     authorize @user
   end
@@ -54,10 +48,6 @@ class UserController < ApplicationController
 
   def set_user
     @user ||= current_user
-  end
-
-  def find_user
-    @user ||= User.find(params[:id])
   end
 
   def permission

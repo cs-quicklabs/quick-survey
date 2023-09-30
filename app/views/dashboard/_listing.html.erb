@@ -1,0 +1,15 @@
+
+<% if leaders.count > 0 %>
+<div>
+  <section aria-labelledby="leaderboard_section">
+    <div class="overflow-hidden bg-white pb-6 ">
+      <div class="flex flex-wrap ">
+        <p class=" text-sm font-medium text-gray-900 truncate"><%= title %></p>
+      </div>
+        <ul role="list" class="" id="side-menu">
+          <%= render partial: "survey", collection: leaders, as: :survey, cached: true %>
+        </ul>
+    </div>
+  </section>
+  </div>
+<% end %>

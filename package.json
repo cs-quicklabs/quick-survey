@@ -2,28 +2,32 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@hotwired/stimulus": "3.2.1",
+    "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo": "7.3.0",
-    "@rails/actiontext": "7.0.4",
-    "@tailwindcss/forms": "0.5.3",
-    "@tailwindcss/line-clamp": "0.4.2",
-    "autoprefixer": "10.4.14",
-    "esbuild": "0.17.12",
-    "postcss": "8.4.21",
-    "stimulus_reflex": "3.5.0-pre10",
-    "tailwindcss": "3.2.7",
-    "trix": "2.0.4",
-    "cable_ready": "5.0.0-pre10",
-    "esbuild-rails": "^1.0.4"
+    "esbuild-rails": "^1.0.4",
+    "@rails/request.js": "^0.0.9",
+    "@rails/actiontext": "7.0.8",
+    "@tailwindcss/forms": "0.5.6",
+    "@tailwindcss/line-clamp": "0.4.4",
+    "autoprefixer": "10.4.16",
+    "esbuild": "0.19.3",
+    "postcss": "8.4.30",
+    "slim-select": "2.6.0",
+    "tailwindcss": "3.3.3",
+    "trix": "2.0.6",
+    "prettier": "3.0.3"
+  },
+  "resolutions": {
+    "@hotwired/stimulus": "3.2.2"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
-    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
+    "build:default": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "format": "prettier --write app/javascript/**/*.js"
   },
   "engines": {
-    "node": "19.0.1",
-    "npm": "8.19.3",
+    "node": "20.6.0",
     "yarn": "1.22.19"
   },
   "comments": {

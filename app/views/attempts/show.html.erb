@@ -14,9 +14,9 @@
       </p>
     </div>
     <div class="">
-      <fieldset class="space-y-5">
+      <fieldset class="space-y-5" >
         <% survey.questions.each do |question| %>
-          <% if survey.survey_type == 0 %>
+          <% if survey.survey_type == "checklist" %>
             <%= render partial: "checklist_question", locals: { question: question, attempt: @attempt } %>
           <% else %>
             <%= render partial: "score_question", locals: { question: question, attempt: @attempt } %>
@@ -24,7 +24,7 @@
         <% end %>
       </fieldset>
       <div class=" flex justify-end py-12">
-        <%= link_to "Preview and Submit", submit_attempt_path, class: "bg-blue-600 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 no-underline" %>
+        <%= link_to "Preview and Submit", survey_submit_attempt_path(survey), class: "bg-blue-600 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 no-underline" %>
       </div>
     </div>
   </div>

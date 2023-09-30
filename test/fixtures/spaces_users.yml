@@ -1,0 +1,30 @@
+one:
+  space: pinned
+  user: admin
+
+two:
+  space: seven
+  user: member
+
+three:
+  space: eight
+  user: admin  
+
+four:
+  space: eight
+  user: member
+
+five:
+  space: pinned
+  user: member 
+
+six:
+  space: ten
+  user: member
+
+seven:
+  space: archived
+  user: member  
+
+
+

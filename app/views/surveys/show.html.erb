@@ -1,32 +1,21 @@
-<div class="px-2 py-2  sm:flex sm:items-center sm:justify-between sm:px-4 border-b border-gray-200" id="survey-header">
-  <div class="flex-wrap p-4 items-baseline -mt-2" >
-    <h3 class="text-2xl font-bold leading-tight text-gray-900">
-      <%= @survey.name.titleize %>
-    </h3>
-    <p class="mt-1 text-sm text-gray-500 truncate"><%= @survey.description %></p>
-  </div>
-  <div class="flex mt-2 sm:mt-0 sm:ml-4">
-    <div>
-      <%= confirm_button(clone_survey_path(@survey), "Clone", "Are you sure? This will create a new survey by copying everything from this survey?", "inline-block mr-2 text-left  btn-normal") %>
-      <%= link_to "Attempt", new_attempt_path(@survey), class: " ml-4 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" %>
-      <%= link_to "Edit", edit_survey_path(@survey), class: " ml-4 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" %>
-      <%= link_to "Delete", survey_path(@survey), data: { "turbo-method": :delete }, class: " ml-2 border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:order-1 sm:ml-3" %>
-    </div>
-  </div>
+<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header">
+<%= render partial: "surveys/title", locals: { survey: @survey } %>
+
 </div>
+  <%= render partial: "tabs", locals: { survey: @survey } %>
 <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
   <!-- Left column -->
   <div class="grid grid-cols-1 gap-4 lg:col-span-2">
     <section aria-labelledby="participants_section">
       <div class="overflow-hidden bg-white">
         <div class="w-full overflow-hidden" >
-          <div class="p-4">
+          <div class="p-4" data-controller="drag-item">
             <div class="flex flex-wrap">
-              <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Survey Questions (" + @survey.questions.load.size.to_s + ")" %></p>
+              <p class="pb-2 mt-1 text-sm pl-4 font-medium text-gray-900 truncate"><%= "Survey Questions (" + @survey.questions.load.size.to_s + ")" %></p>
             </div>
-            <ul class="space-y-6" id="questions">
-              <%= render partial: "surveys/questions/question", collection: @survey.questions.order(updated_at: :desc) %>
-            </ul>
+                   <div  id="survey_questions">
+              <%= render partial: "surveys/questions/questions", locals: { survey: @survey, questions: @survey.questions.order(:order) }, formats: [:turbo_stream] %>
+           </div>
           </div>
         </div>
       </section>
@@ -35,7 +24,7 @@
     <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
       <section aria-labelledby="add-participant-section">
         <div class="overflow-hidden bg-white">
-          <div class="px-4">
+          <div class="px-4 ">
             <%= render partial: "surveys/questions/form", locals: { survey: @survey, question: @question } %>
           </div>
         </div>

@@ -1,0 +1,29 @@
+<%= tailwind_form_with(model: space_folder, id: "folder_form", url: url, method: method, data: { slideover_target: "form", controller: "validate" }, html: { novalidate: true }) do |form| %>
+  <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: space_folder, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: title, subtitle: subtitle %>
+    <%= form.text_field :title, "Title", autocomplete: "off" %>
+    <input type="hidden" name="folder[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="folder[space_id]" value="<%= space.id %>">
+    <div class="relative flex items-start">
+      <div class="flex h-5 items-center">
+        <input id="send_email" aria-describedby="comments-description" name="send_email" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked="checked">
+      </div>
+      <div class="ml-4 text-sm flex">
+        <p class="block text-sm font-medium text-gray-700 " id="privacy-option-1-label">
+          Send email notification to all members
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <div class="flex justify-start inline-flex">
+        <%= link_to "Cancel", space_folders_path(@space), class: "btn-normal " %>
+      </div>
+      <div>
+      </div>
+      <div class="flex  inline-flex">
+        <%= form.submit "Save", class: "btn-blue", data: { disable_with: "Submit" } %>
+      </div>
+    </div>
+  </main>
+<% end %>
