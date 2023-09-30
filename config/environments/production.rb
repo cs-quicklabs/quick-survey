@@ -89,10 +89,10 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-# Log to STDOUT by default
+  # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
-   .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-   .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+    .tap { |logger| logger.formatter = ::Logger::Formatter.new }
+    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -128,8 +128,8 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-      "checklist.quicklabs.in",     # Allow requests from example.com      
-    ]
-    # Skip DNS rebinding protection for the default health check endpoint.
-    config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+    "checklist.quicklabs.in",     # Allow requests from example.com
+  ]
+  # Skip DNS rebinding protection for the default health check endpoint.
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

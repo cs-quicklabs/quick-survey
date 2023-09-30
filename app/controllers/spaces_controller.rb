@@ -1,6 +1,6 @@
 class SpacesController < BaseController
   include Pagy::Backend
-  before_action :set_space, only: %i[edit update destroy pin unpin archive unarchive ]
+  before_action :set_space, only: %i[edit update destroy pin unpin archive unarchive]
 
   def index
     authorize :spaces

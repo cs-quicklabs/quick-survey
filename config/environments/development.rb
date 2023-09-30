@@ -11,7 +11,6 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
 
-
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -29,7 +28,7 @@ Rails.application.configure do
 
     config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -63,7 +62,7 @@ Rails.application.configure do
 
   #Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+    .tap { |logger| logger.formatter = ::Logger::Formatter.new }
     .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Debug mode disables concatenation and preprocessing of assets.
@@ -90,7 +89,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_controller.raise_on_missing_callback_actions = true
-
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :letter_opener_web
