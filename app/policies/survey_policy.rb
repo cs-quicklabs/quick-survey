@@ -1,14 +1,14 @@
 class SurveyPolicy < ApplicationPolicy
   def index?
-    true
+    !user.member?
   end
 
   def edit?
-    index?
+    index? and survey.active
   end
 
   def new?
-    index?
+    !user.member?
   end
 
   def create?
@@ -16,27 +16,37 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def update?
-    index?
+    edit?
   end
 
   def clone?
-    index?
+    edit?
   end
 
   def destroy?
-    index?
+    index? and !survey.active
   end
 
   def show?
-    index?
+    if record.space
+      record.space.users.include?(user)
+    else
+      !user.member?
+    end
   end
 
   def pin?
-    index?
+    survey = record
+    users = survey.space.users
+    if users.include?(user) and !survey.archive
+      return true
+    else
+      return false
+    end
   end
 
   def unpin?
-    index?
+    pin? and user.pinned_spaces.include?(record) and !record.archive
   end
 
   def attempts?

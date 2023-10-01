@@ -27,12 +27,6 @@ class Survey::ReportsController < Survey::BaseController
     end
   end
 
-  def submit
-    authorize [:survey, :report]
-    @attempt.update_attribute("comment", params[:comment])
-    redirect_to attempts_path, notice: "Thank you for submitting your survey."
-  end
-
   private
 
   def attempt_params

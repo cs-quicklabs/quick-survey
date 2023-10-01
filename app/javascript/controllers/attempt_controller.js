@@ -7,7 +7,7 @@ export default class extends Controller {
     event.preventDefault();
 
     const url =
-      "/answer?question_id=" +
+    "/"+event.target.dataset.accountId+ "/answer/"+ event.target.dataset.attemptId+"?question_id=" +
       event.target.dataset.questionId +
       "&option_id=" +
       event.target.dataset.optionId +

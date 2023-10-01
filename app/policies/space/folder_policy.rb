@@ -17,7 +17,6 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   def show?
     space = record.first
     folder = record.last
-    folder.published? ? space.users.include?(user) : message.user == user
   end
 
   def edit?
@@ -34,7 +33,8 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def change
-    true
+    space = record.first
+    space.users.include?(user) || space.user == user
   end
 
   def change_folder?
@@ -43,5 +43,15 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
 
   def folders?
     true
+  end
+
+  def pin?
+    space = record.first
+    (space.users.include?(user) || space.user == user) && !space.archive
+  end
+
+  def unpin?
+    space = record.rist
+    (space.users.include?(user) || space.user == user) && !space.archive && user.pinned_spaces.include?(space)
   end
 end

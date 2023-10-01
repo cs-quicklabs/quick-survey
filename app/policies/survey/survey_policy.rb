@@ -42,4 +42,8 @@ class Survey::SurveyPolicy < ApplicationPolicy
   def attempts?
     index?
   end
+
+  def attempt?
+    show? and record.active
+  end
 end

@@ -2,6 +2,7 @@ class SurveysController < BaseController
   include Pagy::Backend
 
   before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
+  before_action :find_survey, only: [:attempts]
 
   def index
     authorize :Survey
@@ -18,7 +19,7 @@ class SurveysController < BaseController
   end
 
   def edit
-    authorize :Survey
+    authorize @survey
   end
 
   def destroy
@@ -60,7 +61,7 @@ class SurveysController < BaseController
   end
 
   def show
-    authorize :Survey
+    authorize @survey
     @question = Survey::Question.new
     if RecentSurvey.where(user: current_user, survey_surveys: @survey).exists?
       RecentSurvey.where(user: current_user, survey_surveys: @survey).first.increment!(:count)
@@ -70,7 +71,7 @@ class SurveysController < BaseController
   end
 
   def attempts
-    authorize :Survey
+    authorize @survey
     @survey = Survey::Survey.find(params[:survey_id])
     attempts = Survey::Attempt.where(survey_id: params[:survey_id]).includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
     @pagy, @attempts = pagy(attempts, items: 10)
@@ -136,6 +137,10 @@ class SurveysController < BaseController
   end
 
   private
+
+  def find_survey
+    @survey = Survey::Survey.find(params[:survey_id])
+  end
 
   def set_survey
     @survey = Survey::Survey.find(params[:id])
