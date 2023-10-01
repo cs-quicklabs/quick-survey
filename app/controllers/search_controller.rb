@@ -1,5 +1,6 @@
 class SearchController < BaseController
   def surveys
+    authorize :search
     like_keyword = "%#{params[:q]}%"
     if params[:folder_id].present?
       @surveys = Survey::Survey.active.where("name ILIKE ? AND folder_id = ?", like_keyword, params[:folder_id]).limit(10).order(:name)
@@ -10,6 +11,7 @@ class SearchController < BaseController
   end
 
   def spaces_surveys_and_folders
+    authorize :search
     like_keyword = "%#{params[:q]}%"
     @surveys = Survey::Survey.where("name ILIKE ?", like_keyword)
       .limit(10).order(:name).limit(4)
@@ -19,12 +21,14 @@ class SearchController < BaseController
   end
 
   def archived_surveys
+    authorize :search
     like_keyword = "%#{params[:q]}%"
     @surveys = Survey::Survey.inactive.where("name ILIKE ?", like_keyword).limit(10).order(:name)
     render layout: false
   end
 
   def archived_users
+    authorize :search
     like_keyword = "%#{params[:q]}%"
     @users = User.inactive.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(User.inactive.where("last_name iLIKE ANY ( array[?] )", like_keyword))
