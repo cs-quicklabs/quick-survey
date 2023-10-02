@@ -5,7 +5,9 @@ class UsersController < BaseController
     authorize :User
     @title = "Users"
 
-    @users = User.all.active.order(:first_name).order(created_at: :desc)
+    users = User.all.active.order(:first_name).order(created_at: :desc)
+    @pagy, @users = pagy_nil_safe(params, users, items: LIMIT)
+    render_partial("users/user", collection: @users, cached: true) if stale?(@users)
   end
 
   def edit

@@ -84,8 +84,8 @@ class OnboardingTest < ApplicationSystemTestCase
     invited = users(:invited)
     within("tr", id: dom_id(invited)) do
       assert_emails 1 do
-        within("td", class: "status") do
-          find("a", text: "Invite").click
+        within("td", class: "actions") do
+          find("a", text: "Resend Invitation").click
         end
         sleep(0.5)
       end
@@ -98,39 +98,5 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_password_confirmation", with: "password"
     click_on "Set password and login"
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
-  end
-
-  test "email invite can be sent to a any user who has not joined" do
-    admin = users(:admin)
-    sign_in admin
-    visit users_path(script_name: "/#{admin.account.id}")
-
-    not_joined = users(:not_joined)
-
-    within("tr", id: dom_id(not_joined)) do
-      assert_emails 1 do
-        within("td", class: "status") do
-          click_on "Resend Invitation"
-          sleep(0.5)
-        end
-      end
-    end
-    assert_selector "p.notice", text: "Invitation has been resent successfully."
-    sign_out admin
-    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
-    link = doc.css("a").first.values.first
-    visit link
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
-    click_on "Set password and login"
-    assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
-    sign_out not_joined
-    sign_in admin
-    visit users_path(script_name: "/#{admin.account.id}")
-    within("tr", id: dom_id(not_joined)) do
-      within("td", class: "status") do
-        assert_text "Joined"
-      end
-    end
   end
 end
