@@ -1,17 +1,17 @@
 class SearchPolicy < Struct.new(:user, :search)
   def surveys?
-    !user.member?
+    true
   end
 
   def spaces_surveys_and_folders?
-    !user.member?
+    true
   end
 
   def archived_surveys?
-    !user.member?
+    true
   end
 
   def archived_users?
-    !user.member?
+    true
   end
 end
