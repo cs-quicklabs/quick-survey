@@ -1,5 +1,5 @@
 class User::BaseUserPolicy < ApplicationPolicy
   def index?
-    !user.member?
+    true
   end
 end
