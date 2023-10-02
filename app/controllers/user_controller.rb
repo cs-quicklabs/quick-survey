@@ -3,12 +3,6 @@ class UserController < BaseController
   before_action :build_form, only: [:update_password, :password]
   respond_to :html, :json
 
-  def index
-    authorize :User
-    @title = "Users"
-    @users = User.all.active.order(:first_name).order(created_at: :desc)
-  end
-
   def update_permission
     authorize @user
     redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)

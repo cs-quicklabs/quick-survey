@@ -7,7 +7,6 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("connected");
     let elms = document.querySelectorAll(".field-preview");
     // assign a custom data-id to each element
     // this is only for use in the codepen because this is in place
