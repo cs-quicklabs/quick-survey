@@ -28,9 +28,9 @@ class AttemptsController < BaseController
   def submit
     authorize :Attempt
     if @attempt.survey.survey_type == 0
-      redirect_to survey_checklist_report_path(@attempt)
+      redirect_to survey_checklist_submit_path(@attempt)
     else
-      redirect_to survey_score_report_path(@attempt)
+      redirect_to survey_score_submit_path(@attempt)
     end
   end
 

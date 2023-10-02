@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
     get "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
     patch "/attempts/:id/submit", to: "survey/reports#submit", as: "submit_report"
+    get "/submit/checklist/:id", to: "submit#checklist", as: "checklist_submit"
+    get "/submit/score/:id", to: "submit#score", as: "score_submit"
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
