@@ -36,7 +36,7 @@ class SignUpForm
                      email: email,
                      password: new_password,
                      password_confirmation: new_password_confirmation)
-    @account = Account.new(name: company)
+    @account = Account.new(name: company, owner_id: @user.id)
   end
 
   def validate_children

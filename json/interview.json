@@ -73,8 +73,8 @@
         "name": "Project Manager",
         "roles": {
             "trainee": "/surveys/145/attempts/new",
-            "manager": "/surveys/127/attempts/new",
-            "senior": "/surveys/98/attempts/new",
+            "manager": "/surveys/174/attempts/new",
+            "senior": "/surveys/172/attempts/new",
             "associate": "/surveys/142/attempts/new",
             "Delivery": "/surveys/144/attempts/new"
         }
@@ -93,10 +93,10 @@
         "name": "Quality Analyst",
         "roles": {
             "trainee": "/surveys/93/attempts/new",
-            "qa": "/surveys/88/attempts/new",
-            "senior": "/surveys/1/attempts/new",
-            "associate": "/surveys/1/attempts/new",
-            "teamLead": "/surveys/1/attempts/new"
+            "qa": "/surveys/189/attempts/new",
+            "senior": "/surveys/186/attempts/new",
+            "associate": "/surveys/183/attempts/new",
+            "teamLead": "/surveys/183/attempts/new"
         }
     },
     {

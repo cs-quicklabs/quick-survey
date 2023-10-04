@@ -10,15 +10,15 @@
       }
   }
 </script>
-<nav class="bg-gray-800">
+<nav class="bg-gray-800 navbar">
   <div class="px-2 mx-auto sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-12">
       <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
         <div class="flex items-center flex-shrink-0">
           <a class="flex" href="<%= dashboard_path %>">
-            <img class="block w-auto h-8 lg:hidden" src="assets/quicklabs-logo-small-white.png" alt="Survey">
-            <img class="hidden w-auto h-8 lg:block" src="assets/quicklabs-logo-small-white.png" alt="Survey">
-            <span class="text-white  px-2 text-2xl font-extrabold tracking-tighter">CHECKLIST</span>
+            <img class="block w-auto h-8 lg:hidden" src="/assets/quicklabs-logo-small-white.png" alt="Survey">
+            <img class="hidden w-auto h-8 lg:block" src="/assets/quicklabs-logo-small-white.png" alt="Survey">
+            <span class="text-white  px-2 text-2xl font-extrabold tracking-tighter">SURVEY</span>
           </a>
         </div>
         <% if user_signed_in? %>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="search/spaces-surveys-and-folders">
+        <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%=current_user.account_id%>/search/spaces-surveys-and-folders">
           <div class="w-full max-w-xs lg:max-w-sm justify-end">
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >

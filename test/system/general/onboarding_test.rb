@@ -84,8 +84,8 @@ class OnboardingTest < ApplicationSystemTestCase
     invited = users(:invited)
     within("tr", id: dom_id(invited)) do
       assert_emails 1 do
-        within("td", class: "status") do
-          find("a", text: "Invite").click
+        within("td", class: "actions") do
+          find("a", text: "Resend Invitation").click
         end
         sleep(0.5)
       end
@@ -100,37 +100,69 @@ class OnboardingTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
   end
 
-  test "email invite can be sent to a any user who has not joined" do
-    admin = users(:admin)
-    sign_in admin
-    visit users_path(script_name: "/#{admin.account.id}")
-
-    not_joined = users(:not_joined)
-
-    within("tr", id: dom_id(not_joined)) do
-      assert_emails 1 do
-        within("td", class: "status") do
-          click_on "Resend Invitation"
-          sleep(0.5)
-        end
+  test "user can signup" do
+    visit new_user_registration_path
+    fill_in "user_first_name", with: "Aashish"
+    fill_in "user_last_name", with: "Dhawan"
+    fill_in "user_email", with: "awesome@crownstack.com"
+    fill_in "user_company", with: "Crownstack Technologies"
+    fill_in "user_new_password", with: "Awesome@2021!"
+    fill_in "user_new_password_confirmation", with: "Awesome@2021!"
+    assert_emails 1 do
+      within("form") do
+        click_on "Sign up"
       end
+      sleep(1.0)
     end
-    assert_selector "p.notice", text: "Invitation has been resent successfully."
-    sign_out admin
+
+    take_screenshot
+    assert_selector "p.notice", text: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
     link = doc.css("a").first.values.first
     visit link
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
-    click_on "Set password and login"
-    assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
-    sign_out not_joined
-    sign_in admin
-    visit users_path(script_name: "/#{admin.account.id}")
-    within("tr", id: dom_id(not_joined)) do
-      within("td", class: "status") do
-        assert_text "Joined"
-      end
+    assert_selector "p.notice", text: "Your email address has been successfully confirmed."
+    fill_in "user_email", with: "awesome@crownstack.com"
+    fill_in "user_password", with: "Awesome@2021!"
+    click_on "Log In"
+    assert_selector "p.notice", text: "Signed in successfully."
+  end
+
+  test "user can not signup with invalid params" do
+    visit new_user_registration_path
+    within("form") do
+      click_on "Sign up"
     end
+    assert_selector "div#error_explanation", text: "First name can't be blank"
+    assert_selector "div#error_explanation", text: "Last name can't be blank"
+    assert_selector "div#error_explanation", text: "Email can't be blank"
+    assert_selector "div#error_explanation", text: "Company can't be blank"
+    assert_selector "div#error_explanation", text: "New password can't be blank"
+    assert_selector "div#error_explanation", text: "New password confirmation can't be blank"
+  end
+
+  test "user can not signup with duplicate email" do
+    visit new_user_registration_path
+    fill_in "user_email", with: users(:admin).email
+    within("form") do
+      click_on "Sign up"
+    end
+    assert_selector "div#error_explanation", text: "Email has already been taken"
+  end
+
+  test "user can confirm email" do
+    visit new_user_session_path
+    click_on "Didn't receive email confirmation instructions?"
+    fill_in "user_email", with: users(:unconfirmed).email
+    assert_emails 1 do
+      click_on "Resend confirmation instructions"
+      sleep(0.5)
+    end
+    take_screenshot
+
+    assert_selector "p.notice", text: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
+    link = doc.css("a").first.values.first
+    visit link
+    assert_selector "p.notice", text: "Your email address has been successfully confirmed."
   end
 end
