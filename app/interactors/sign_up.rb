@@ -38,6 +38,7 @@ class SignUp < Patterns::Service
   def create_user
     ActsAsTenant.with_tenant(account) do
       user.account = account
+      user.role = 1
       user.save!
     end
 

@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_27_202951) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
