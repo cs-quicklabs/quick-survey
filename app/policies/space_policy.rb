@@ -28,14 +28,14 @@ class SpacePolicy < ApplicationPolicy
   end
 
   def unarchive?
-    edit?
+    new? and record.archive?
   end
 
   def pin?
-    record.users.include?(user) and user.pinned_spaces.include?(record) and !record.archive
+    (record.users.include?(user) or !user.member?) and !user.pinned_spaces.pluck(:space_id).include?(record.id) and !record.archive
   end
 
   def unpin?
-    user.pinned_spaces.include?(record) and record.users.include?(user) and !record.archive
+    (record.users.include?(user) or !user.member?) and user.pinned_spaces.pluck(:space_id).include?(record.id) and !record.archive
   end
 end

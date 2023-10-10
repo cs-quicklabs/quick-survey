@@ -2,7 +2,7 @@ class UsersController < BaseController
   before_action :set_user, only: %i[update destroy deactivate_user activate_user edit show resend_invitation]
 
   def index
-    authorize :User
+    authorize :users
     @title = "Users"
 
     users = User.all.active.order(:first_name).order(created_at: :desc)

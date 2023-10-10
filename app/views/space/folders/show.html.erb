@@ -66,9 +66,11 @@
       <% elsif users.size == 0 %>
         <span class="inline-flex whitespace-nowrap z-0 text-sm text-gray-400 items-center">No person added  </span>
       <% end %>
+    <% if policy(:Survey).new? %>
              <div class="flex " >
               <%= link_to "Add New Survey", new_survey_path(:folder_id => @folder.id), class: "btn-blue whitespace-nowrap " %>
           </div>
+     <%   end %>
     </div>
   </div>
 </div>

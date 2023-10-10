@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class QuestionsTest < ApplicationSystemTestCase
   setup do
-    @user = users(:member)
+    @user = users(:admin)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
     @survey = survey_surveys(:one)

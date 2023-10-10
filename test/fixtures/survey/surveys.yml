@@ -3,12 +3,15 @@ one:
   description: Survey Description
   survey_type: checklist
   account: crownstack
+  active: true
+  user: admin
 
 two: 
   name: Project Initiation Score
   description: Survey Description
   survey_type: score
   account: crownstack
+  user: admin
 
 archived: 
   name: Project Initiation Checklist Archived
@@ -17,30 +20,55 @@ archived:
   active: false
   archived_on: <%= Time.now %>
   account: crownstack
+  user: admin
 
 pinned: 
   name: Project Initiation Score
   description: Survey Description
   survey_type: score  
   pin: true
+  active: true
   account: crownstack
+  user: admin
 
 
 three: 
   name: Project Initiation Score Three
   description: Survey Description
   survey_type: score
-  user: member
+  user: admin
   folder: eight
+  active: true
   account: crownstack
 
 four:
   name: Project Initiation Score Four
   description: Survey Description
   survey_type: score
-  user: member
+  user: admin
   folder: eight 
   pin: true 
+  active: true
   account: crownstack
+
+five:
+  name: Project Initiation Score Four
+  description: Survey Description
+  survey_type: score
+  user: admin
+  folder: three
+  pin: true 
+  active: true
+  account: crownstack 
+
+six:
+  name: Project Initiation Score six
+  description: Survey Description
+  survey_type: score
+  user: admin
+  folder: three
+  pin: false
+  active: true
+  account: crownstack    
 
 

@@ -4,7 +4,7 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def edit?
-    index? and survey.active
+    index? and record.active
   end
 
   def new?
@@ -28,25 +28,39 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def show?
-    if record.space
-      record.space.users.include?(user)
+    if !user.member?
+      return true
+    elsif record.folder
+      record.folder.space.users.include?(user)
     else
-      !user.member?
+      false
     end
   end
 
   def pin?
     survey = record
-    users = survey.space.users
-    if users.include?(user) and !survey.archive
+    users = survey.folder.space.users
+    if users.include?(user) and !survey.active?
       return true
     else
       return false
     end
   end
 
+  def archived?
+    index?
+  end
+
+  def archive_survey?
+    index? and record.active
+  end
+
+  def unarchive_survey?
+    index? and !record.active
+  end
+
   def unpin?
-    pin? and user.pinned_spaces.include?(record) and !record.archive
+    pin? and user.pinned_spaces.include?(record) and !record.active?
   end
 
   def attempts?

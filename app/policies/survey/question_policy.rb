@@ -4,18 +4,18 @@ class Survey::QuestionPolicy < Survey::BaseSurveyPolicy
   end
 
   def edit?
-    index?
+    !user.member?
   end
 
   def new?
-    index?
+    edit?
   end
 
   def update?
-    index?
+    edit?
   end
 
   def destroy?
-    true
+    edit?
   end
 end

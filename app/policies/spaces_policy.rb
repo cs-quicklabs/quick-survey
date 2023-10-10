@@ -1,13 +1,13 @@
 class SpacesPolicy < Struct.new(:user, :spaces)
   def index?
-    !user.member?
+    true
   end
 
   def create?
-    index?
+    !user.member?
   end
 
   def new?
-    index?
+    !user.member?
   end
 end

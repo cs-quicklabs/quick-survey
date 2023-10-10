@@ -39,6 +39,7 @@
             </div>
           </div>
         </div>
+        <%if !current_user.member? %>
         <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%=current_user.account_id%>/search/spaces-surveys-and-folders">
           <div class="w-full max-w-xs lg:max-w-sm justify-end">
             <div class="relative">
@@ -52,12 +53,13 @@
             </div>
             <div class="relative">
               <div class="absolute left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <ul data-nav-search-target="results">
+                <ul data-nav-search-target="results" id="results">
                 </ul>
               </div>
             </div>
           </div>
         </div>
+        <% end %>
         <div data-reflex-permanent>
           <!-- This example requires Tailwind CSS v2.0+ -->
           <nav x-data="dropdowns()" @keydown.window.escape="open = false" class="bg-gray-800" id="menubar">

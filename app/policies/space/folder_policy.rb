@@ -5,9 +5,7 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def new?
-    space = record.first
-    return false if space.archive
-    space.users.include?(user)
+    !user.member?
   end
 
   def create?
@@ -15,13 +13,11 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def show?
-    space = record.first
-    folder = record.last
+    index?
   end
 
   def edit?
-    space = record.first
-    space.users.include?(user) && !space.archive
+    new?
   end
 
   def update?
@@ -33,16 +29,15 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def change
-    space = record.first
-    space.users.include?(user) || space.user == user
+    edit?
   end
 
   def change_folder?
-    true
+    edit?
   end
 
   def folders?
-    true
+    edit?
   end
 
   def pin?

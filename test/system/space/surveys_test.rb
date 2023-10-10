@@ -2,12 +2,12 @@ require "application_system_test_case"
 
 class SurveysTest < ApplicationSystemTestCase
   setup do
-    @user = users(:member)
+    @user = users(:admin)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
-    @space = @user.spaces.where(archive: false, user_id: @user.id).first
-    @folder = @space.folders.where(user_id: @user.id).first
-    @survey = @folder.survey_surveys.where(user_id: @user.id).first
+    @space = Space.all.active.includes(:folders).where.not(folders: { id: nil }).first
+    @folder = @space.folders.includes(:survey_surveys).where.not(survey_surveys: { id: nil }).first
+    @survey = @folder.survey_surveys.first
     sign_in @user
   end
 
@@ -61,6 +61,7 @@ class SurveysTest < ApplicationSystemTestCase
   end
 
   test "can pin a survey from space details" do
+    @survey = survey_surveys(:six)
     visit page_url
     within "tr##{dom_id(@survey)}" do
       find("button", id: "survey-menu").click
@@ -70,7 +71,7 @@ class SurveysTest < ApplicationSystemTestCase
   end
 
   test "can unpin a survey from space details" do
-    pinned = survey_surveys(:four)
+    pinned = survey_surveys(:five)
     visit page_url
     within "tr##{dom_id(pinned)}" do
       find("button", id: "survey-menu").click
