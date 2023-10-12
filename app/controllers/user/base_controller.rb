@@ -3,7 +3,7 @@ class User::BaseController < ApplicationController
   after_action :verify_authorized
   include Pagy::Backend
 
-  LIMIT = 10
+  LIMIT = 20
 
   def set_user
     @user = User.find(params[:user_id])

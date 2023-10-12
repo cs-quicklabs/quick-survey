@@ -23,6 +23,7 @@ class AttemptsController < BaseController
 
   def show
     authorize @attempt
+    @survey = @attempt.survey
   end
 
   def submit
@@ -44,7 +45,7 @@ class AttemptsController < BaseController
     else
       Survey::Answer.create(attempt: @attempt, question: question, option: option)
     end
-    partial = render_to_string(partial: "attempts/options", locals: { question: question, attempt: @attempt })
+    partial = render_to_string(partial: "attempts/options", locals: { question: question, attempt: @attempt, survey: @attempt.survey })
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.update("survey_question_#{question.id}", partial) }
     end

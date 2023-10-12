@@ -4,7 +4,9 @@
     <ul>
 
     <% @attempts.each do |attempt| %>
+    <% cache [attempt, attempt.survey] do %>
           <%= render partial: "activity", locals: { attempt: attempt } %>
+          <% end %>
       <% end %>
   </ul>
     <p class="pr-4 mt-2 text-sm text-right text-gray-500">Showing <%= 50.to_s %> recently done attempts only.</p>

@@ -5,7 +5,7 @@
   </div>
   <div class="flex justify-self-end ">
     <% question.options.each do |option| %>
-      <%= render partial: "option", locals: { option: option, question: question, attempt: attempt } %>
+      <%= render partial: "option", locals: { option: option, question: question, attempt: attempt}%>
     <% end %>
   </div>
 </div>

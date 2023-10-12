@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :users do
     get "/attempts", to: "user/attempts#index", as: "attempts"
     get "/surveys", to: "user/surveys#index", as: "surveys"
+    get "/spaces", to: "user/spaces#index", as: "spaces"
   end
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"
