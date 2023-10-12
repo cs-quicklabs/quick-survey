@@ -6,13 +6,12 @@ export default class extends Controller {
   checked(event) {
     event.preventDefault();
 
-    const url =
-      "/answer?question_id=" +
+    const url = "/"+
+    event.target.dataset.accountId+
+      "/answer/"+ event.target.dataset.attemptId+"?question_id=" +
       event.target.dataset.questionId +
       "&option_id=" +
-      event.target.dataset.optionId +
-      "&attempt_id=" +
-      event.target.dataset.attemptId;
+      event.target.dataset.optionId
     fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
       .then((response) => response.text())
       .then((html) => {

@@ -4,7 +4,7 @@
     <p id="comments-description" class="text-gray-500 overflow-y-auto"><%= question.description %></p>
   </div>
   <div class="flex justify-self-end " data-attempt-target="attempt" id="<%= dom_id(question) %>">
-      <%= render partial: "options", locals: { question: question, attempt: attempt }, formats: [:turbo_stream] %>
+      <%= render partial: "options", locals: { question: question, attempt: attempt, survey: survey }, formats: [:turbo_stream] %>
   </div>
 </div>
 

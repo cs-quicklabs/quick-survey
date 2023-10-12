@@ -43,6 +43,10 @@ class Survey::AttemptPolicy < Survey::BaseSurveyPolicy
     true
   end
 
+  def answer?
+    index?
+  end
+
   private
 
   def show_project_survey_attempt?
