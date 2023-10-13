@@ -3,14 +3,14 @@ class Survey::ReportPolicy < Survey::BaseSurveyPolicy
   # this should not be a problem as we are controlling who can see attempts in attempts policy
   # so if they can not see if they can not submit it
   def submit?
-    true
+    !user.member?
   end
 
   def score?
-    true
+    submit?
   end
 
   def checklist?
-    true
+    submit?
   end
 end

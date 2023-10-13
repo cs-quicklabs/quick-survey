@@ -24,7 +24,12 @@ six:
 
 seven:
   space: archived
-  user: member  
+  user: member 
+
+eight:
+  space: eleven
+  user: admin
+
 
 
 

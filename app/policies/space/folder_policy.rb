@@ -5,10 +5,7 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def new?
-    #space = record.first
-    #return false if space.archive
-    #space.users.include?(user)
-    true
+    !user.member?
   end
 
   def create?
@@ -16,21 +13,11 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def show?
-    #space = record.first
-    #message = record.last
-    #message.published? ? space.users.include?(user) : message.user == user
-    true
-  end
-
-  def comment?
-    #show? && !record.first.archive
-    true
+    index?
   end
 
   def edit?
-    #space = record.first
-    #space.users.include?(user) && !space.archive
-    true
+    new?
   end
 
   def update?
@@ -41,44 +28,25 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
     edit?
   end
 
-  def publish?
-    #space = record.first
-    #message = record.last
-    #space.users.include?(user) && !space.archive && !message.published?
-    true
-  end
-
-  def delete_draft?
-    message = record.last
-    message.user == user && !message.published?
-  end
-
-  def draft?
-    #space = record.first
-    #message = record.last
-    #space.users.include?(user) && !message.published?
-    true
-  end
-
-  def edit_comment?
-    #!record.first.archive?
-    true
-  end
-
-  def destroy_comment?
-    #!record.first.archive? and record.first.user == user
-    true
-  end
-
   def change
-    true
+    edit?
   end
 
   def change_folder?
-    true
+    edit?
   end
 
   def folders?
-    true
+    edit?
+  end
+
+  def pin?
+    space = record.first
+    (space.users.include?(user) || space.user == user) && !space.archive
+  end
+
+  def unpin?
+    space = record.rist
+    (space.users.include?(user) || space.user == user) && !space.archive && user.pinned_spaces.include?(space)
   end
 end

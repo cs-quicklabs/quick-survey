@@ -5,3 +5,7 @@ one:
 two:
   user: member
   space: pinned
+
+three:
+  user: admin
+  space: pinned 

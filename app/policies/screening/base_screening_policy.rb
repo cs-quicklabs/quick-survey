@@ -1,5 +1,5 @@
 class Screening::BaseScreeningPolicy < ApplicationPolicy
   def index?
-    true
+    !user.member?
   end
 end

@@ -3,8 +3,16 @@ class SpacePolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    !user.member?
+  end
+
+  def create?
+    new?
+  end
+
   def edit?
-    record.user == user && !record.archive
+    new? && !record.archive?
   end
 
   def update?
@@ -12,7 +20,7 @@ class SpacePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    new? and record.archive?
   end
 
   def archive?
@@ -20,14 +28,14 @@ class SpacePolicy < ApplicationPolicy
   end
 
   def unarchive?
-    record.user == user && record.archive
+    new? and record.archive?
   end
 
   def pin?
-    !record.archive?
+    (record.users.include?(user) or !user.member?) and !user.pinned_spaces.pluck(:space_id).include?(record.id) and !record.archive
   end
 
   def unpin?
-    user.pinned.include?(record)
+    (record.users.include?(user) or !user.member?) and user.pinned_spaces.pluck(:space_id).include?(record.id) and !record.archive
   end
 end

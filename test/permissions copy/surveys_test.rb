@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class SurveysTest < ApplicationSystemTestCase
   setup do
-    @user = users(:admin)
+    @user = users(:member)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
     @survey = survey_surveys(:one)
@@ -32,7 +32,7 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "can show survey detail page" do
     visit page_url
-    find("tr", id: dom_id(@survey)).click_link("Show")
+    find(id: dom_id(@survey)).click_link("Show")
     within "#survey-header" do
       assert_text @survey.name
       assert_text "Actions"

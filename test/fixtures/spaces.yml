@@ -3,20 +3,20 @@
 pinned:
   title: This is a pinned space
   description: This is pinned
-  user: member
+  user: admin
   account: crownstack
 
 eight:
   title: This is a eight space
   description: This is eight
-  user: member
+  user: admin
   archive: false
   account: crownstack
 
 ten:
   title: This is a ten space
   description: This is eight
-  user: member
+  user: admin
   archive: false 
   account: crownstack 
 
@@ -30,7 +30,7 @@ nine:
 archived:
   title: This is a archived space
   description: This is nine
-  user: member
+  user: admin
   archive: true
   archive_at: 2021-03-31
   account: crownstack
@@ -75,3 +75,15 @@ five:
   description: This is pinned
   user: admin
   account: crownstack
+
+eleven:
+  title: This is a space eleven
+  description: This is eleven
+  user: super_admin
+  account: crownstack  
+
+twelve:
+  title: This is a space twelve
+  description: This is twelve
+  user: super_admin
+  account: crownstack    

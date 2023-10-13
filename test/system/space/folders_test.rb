@@ -2,10 +2,10 @@ require "application_system_test_case"
 
 class FoldersTest < ApplicationSystemTestCase
   setup do
-    @user = users(:member)
+    @user = users(:admin)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
-    @space = @user.spaces.where(archive: false, user_id: @user.id).first
+    @space = Space.all.active.includes(:folders).where.not(folders: { id: nil }).first
     @folder = @space.folders.where(user_id: @user.id).first
     sign_in @user
   end

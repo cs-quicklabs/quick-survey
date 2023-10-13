@@ -3,19 +3,11 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
-  def update?
+  def update_password?
     true
   end
 
-  def create?
-    true
-  end
-
-  def index?
-    true
-  end
-
-  def show?
+  def update_permission?
     true
   end
 
@@ -27,27 +19,31 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
-  def preferences?
-    true
+  def update?
+    !user.member?
   end
 
-  def update_password?
-    true
+  def edit?
+    !user.member?
   end
 
-  def update_permission?
-    user.admin?
-  end
-
-  def deactivated?
-    user.admin?
-  end
-
-  def resend_invitation?
-    user.admin?
+  def show?
+    !user.member?
   end
 
   def destroy?
-    true
+    !user.member?
+  end
+
+  def deactivate_user?
+    !user.member?
+  end
+
+  def activate_user?
+    !user.member?
+  end
+
+  def resend_invitation?
+    !user.member?
   end
 end
