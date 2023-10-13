@@ -18,5 +18,3 @@ application.register("attempt", Attempt);
 import DragItem from "./drag_item_controller";
 application.register("drag-item", DragItem);
 
-import HideElement from "./hide_element_controller"
-application.register("hide-element",  HideElement)
