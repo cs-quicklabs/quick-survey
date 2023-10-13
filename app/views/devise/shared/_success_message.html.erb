@@ -1,6 +1,6 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+
 <% if message %>
-  <div class="p-4 rounded-md bg-green-50" x-data="{open: true}" x-show="open" x-init="setTimeout(function(){open = false; }, 2000);">
+  <div id="myElement" class="p-4 rounded-md bg-green-50" data-controller="hide-element">
     <div class="flex">
       <div class="flex-shrink-0">
         <!-- Heroicon name: solid/check-circle -->
@@ -27,3 +27,15 @@
     </div>
   </div>
 <% end %>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var myElement = document.getElementById("myElement");
+    if (myElement) {
+      setTimeout(function() {
+        myElement.style.display = "none";
+      }, 2000); // Hides the element after 2000 milliseconds (2 seconds)
+    }
+  });
+</script>
