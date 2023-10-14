@@ -1,6 +1,6 @@
 class AttemptsController < BaseController
   before_action :set_survey, only: [:new, :create]
-  before_action :set_attempt, only: [:show, :submit, :answer]
+  before_action :set_attempt, only: [:show, :submit, :answer, :score]
 
   def index
     authorize :Attempt
@@ -28,10 +28,11 @@ class AttemptsController < BaseController
 
   def submit
     authorize @attempt
-    if @attempt.survey.survey_type == 0
-      redirect_to survey_checklist_submit_path(@attempt)
+    @attempt.update_attribute("comment", params[:comment])
+    if @attempt.survey.survey_type == "checklist"
+      redirect_to survey_checklist_submit_path(@attempt.survey, @attempt)
     else
-      redirect_to survey_score_submit_path(@attempt)
+      redirect_to survey_score_submit_path(@attempt.survey, @attempt)
     end
   end
 
@@ -46,6 +47,23 @@ class AttemptsController < BaseController
       Survey::Answer.create(attempt: @attempt, question: question, option: option)
     end
     partial = render_to_string(partial: "attempts/options", locals: { question: question, attempt: @attempt, survey: @attempt.survey })
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update("survey_question_#{question.id}", partial) }
+    end
+  end
+
+  def score
+    authorize @attempt
+    question = Survey::Question.find(params[:question_id])
+    option = Survey::Option.find(params[:option_id])
+
+    answer = Survey::Answer.find_by(attempt: @attempt, question: question, option: option)
+    if answer
+      answer.update(score: params[:score].to_i)
+    else
+      Survey::Answer.create(attempt: @attempt, question: question, option: option, correct: true, score: params[:score].to_i)
+    end
+    partial = render_to_string(partial: "attempts/score", locals: { question: question, attempt: @attempt, survey: @attempt.survey })
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.update("survey_question_#{question.id}", partial) }
     end

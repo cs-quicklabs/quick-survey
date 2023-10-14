@@ -99,7 +99,10 @@ export default class extends Controller {
   drop(event) {
     let container = event.target.closest("ol");
     const newPosition = event.target.closest("li").dataset.index;
-    const url =
+    let element = document.querySelector("meta[name='current-account']");
+    if (element == null) return;
+    this.current_account = element.getAttribute("content");
+    const url ="/"+ this.current_account +
       "/questions/reorder?question_id=" +
       this.questionId +
       "&order=" +
@@ -107,7 +110,6 @@ export default class extends Controller {
       "&survey_id=" +
       event.target.closest("li").dataset.surveyId;
     //let elements = Array.from(container.children);
-
     fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
       .then((response) => response.text())
       .then((html) => {

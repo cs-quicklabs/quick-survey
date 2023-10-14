@@ -3,20 +3,19 @@
     <% questions.each_with_index do |question, index| %>
 <%= turbo_frame_tag dom_id(question) do %>
 
+ <% if policy(question.survey).update? %>
 <li class="py-4 flex border-b border-gray-200" data-question-id="<%= question.id %>" data-index="<%= index + 1 %>"
 data-survey-id="<%= survey.id %>" id= "<%= dom_id(question) %>"
 data-action="dragstart->drag-item#dragstart
                       dragleave->drag-item#dragleave
                       dragover->drag-item#dragover
                       drag->drag-item#drag"
-  <% policy(question.survey).update? ? draggable='true' : draggable='false' %>>
-         <% if policy(question.survey).update? %>
+  draggable="true">
            <p class="px-6 drag">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg>
   </p>
-  <% end %>
   <div class="ml-3 w-full">
     <p class="text-sm font-medium text-gray-900"><%= question.text.upcase_first %></p>
     <p class="text-sm text-gray-500"><%= question.description %></p>
@@ -37,6 +36,29 @@ data-action="dragstart->drag-item#dragstart
     </div>
   </div>
 </li>
+<% else %>
+<li class="py-4 flex border-b border-gray-200" >
+  <div class="ml-3 w-full">
+    <p class="text-sm font-medium text-gray-900"><%= question.text.upcase_first %></p>
+    <p class="text-sm text-gray-500"><%= question.description %></p>
+  </div>
+  <div class="flex align-right ">
+    <div class="px-6 whitespace-nowrap text-right text-sm font-medium">
+     <% if policy(question.survey).edit? %>
+      <%= link_to "Edit", edit_survey_question_path(survey, question), class: "text-indigo-600", onmouseover: "this.style.color='#312e81'", onmouseout: "this.style.color='#4f46e5'" %>
+      <% end %>
+       <% if policy(question.survey).edit? %>
+      <%= link_to "Delete", survey_question_path(survey, question), class: "ml-4", data: {
+                                                                      controller: "confirmation",
+                                                                      "turbo-method": :delete,
+                                                                      "confirmation-message-value": "Are you sure you want to delete this?",
+                                                                      action: "confirmation#confirm",
+                                                                    }, style: "color:#dc2626", onmouseover: "this.style.color='#7f1d1d'", onmouseout: "this.style.color='#dc2626'" %>
+   <% end %>
+    </div>
+  </div>
+</li>
+<% end %>
 <% end %>
 <% end %>
  </ol>
