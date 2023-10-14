@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"
     get "/reports/checklist/:id", to: "survey/reports#checklist", as: "checklist_report"
     get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
-    patch "/attempts/:id/submit", to: "attempts#submit", as: "submit_attempt"
+    patch "/attempts/:id/attempt", to: "attempts#submit", as: "submit_attempt"
     patch "/attempts/:id/submit", to: "submit#submit", as: "submit_report"
     get "/submit/checklist/:id", to: "submit#checklist", as: "checklist_submit"
     get "/submit/score/:id", to: "submit#score", as: "score_submit"

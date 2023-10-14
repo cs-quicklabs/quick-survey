@@ -29,10 +29,10 @@ class AttemptsController < BaseController
   def submit
     authorize @attempt
     @attempt.update_attribute("comment", params[:comment])
-    if @attempt.survey.survey_type == 0
-      redirect_to survey_checklist_submit_path(@attempt)
+    if @attempt.survey.survey_type == "checklist"
+      redirect_to survey_checklist_submit_path(@attempt.survey, @attempt)
     else
-      redirect_to survey_score_submit_path(@attempt)
+      redirect_to survey_score_submit_path(@attempt.survey, @attempt)
     end
   end
 
