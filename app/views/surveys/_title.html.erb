@@ -18,19 +18,27 @@
             </svg>
           </button>
           <div data-dropdown-target="menu" class="absolute right-0 z-10 w-56 mt-2 -mr-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-            <div class="py-1" role="none">
+            <div class="py-1" role="none" id="option-menu">
               <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-              <% if survey.pin? %>
+              <% if policy(@survey).unpin? %>
                 <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-              <% else %>
+              <% end %> 
+              <% if policy(@survey).pin? %>
                 <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
               <% end %>
+                <%if policy(@survey).clone? %>
               <%= confirm_button(clone_survey_path(@survey), "Clone", "Are you sure? This will create a new survey by copying everything from this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+             <% end %>
+              <%if policy(@survey).attempt? %>
               <%= link_to "Attempt", new_attempt_path(@survey), class: "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
+          <% end %>
+          <%if policy(@survey).edit? %>
               <%= link_to "Edit", edit_survey_path(@survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-              <% if @survey.active? %>
+           <% end %>
+              <% if policy(@survey).archive_survey? %>
                 <%= confirm_button(archive_survey_path(@survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-              <% else %>
+             <% end %>
+              <% if policy(@survey).unarchive_survey? %>
                 <%= confirm_button(unarchive_survey_path(@survey), "Unarchive", "Are you sure you want to activate this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
               <% end %>
             </div>

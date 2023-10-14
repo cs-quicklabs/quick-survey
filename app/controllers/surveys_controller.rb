@@ -2,6 +2,7 @@ class SurveysController < BaseController
   include Pagy::Backend
 
   before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
+  before_action :find_survey, only: [:attempts]
 
   def index
     authorize :Survey
@@ -18,7 +19,7 @@ class SurveysController < BaseController
   end
 
   def edit
-    authorize :Survey
+    authorize @survey
   end
 
   def destroy
@@ -30,7 +31,7 @@ class SurveysController < BaseController
   end
 
   def update
-    authorize :Survey
+    authorize @survey
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to survey_path(@survey), notice: "Survey was successfully updated." }
@@ -60,7 +61,7 @@ class SurveysController < BaseController
   end
 
   def show
-    authorize :Survey
+    authorize @survey
     @question = Survey::Question.new
     if RecentSurvey.where(user: current_user, survey_surveys: @survey).exists?
       RecentSurvey.where(user: current_user, survey_surveys: @survey).first.increment!(:count)
@@ -70,7 +71,7 @@ class SurveysController < BaseController
   end
 
   def attempts
-    authorize :Survey
+    authorize @survey
     @survey = Survey::Survey.find(params[:survey_id])
     attempts = Survey::Attempt.where(survey_id: params[:survey_id]).includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
     @pagy, @attempts = pagy(attempts, items: 10)
@@ -78,19 +79,19 @@ class SurveysController < BaseController
   end
 
   def pin
-    authorize :Survey
+    authorize @survey
     @survey.update(pin: true)
     redirect_to survey_path(@survey), notice: "Survey has been pinned."
   end
 
   def unpin
-    authorize :Survey
+    authorize @survey
     @survey.update(pin: false)
     redirect_to survey_path(@survey), notice: "Survey has been unpinned."
   end
 
   def clone
-    authorize :Survey
+    authorize @survey
 
     @clone = Survey::Survey.new
     @clone.name = @survey.name + " (Copy)"
@@ -114,7 +115,7 @@ class SurveysController < BaseController
   end
 
   def archived
-    authorize :survey, :index?
+    authorize :survey
 
     surveys = Survey::Survey.inactive.order(archived_on: :asc)
     @pagy, @surveys = pagy_nil_safe(params, surveys, items: LIMIT)
@@ -123,19 +124,23 @@ class SurveysController < BaseController
   end
 
   def archive_survey
-    authorize :survey, :update?
+    authorize @survey
 
     @survey.update(active: false, archived_on: DateTime.now.utc)
     redirect_to archived_surveys_path, notice: "Survey has been archived."
   end
 
   def unarchive_survey
-    authorize :survey, :update?
+    authorize @survey
     @survey.update(active: true, archived_on: nil)
     redirect_to survey_path(@survey), notice: "Survey has been restored."
   end
 
   private
+
+  def find_survey
+    @survey = Survey::Survey.find(params[:survey_id])
+  end
 
   def set_survey
     @survey = Survey::Survey.find(params[:id])

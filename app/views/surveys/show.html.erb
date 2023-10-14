@@ -22,6 +22,7 @@
     </div>
     <!-- Right column -->
     <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
+    <% if policy(@survey).update? %>
       <section aria-labelledby="add-participant-section">
         <div class="overflow-hidden bg-white">
           <div class="px-4 ">
@@ -29,5 +30,6 @@
           </div>
         </div>
       </section>
+      <% end %>
     </div>
   </div>

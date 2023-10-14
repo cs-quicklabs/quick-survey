@@ -10,12 +10,12 @@ class AttemptsController < BaseController
   end
 
   def new
-    authorize :Attempt
+    authorize @survey, :attempt?
     @attempt = Survey::Attempt.new
   end
 
   def create
-    authorize :Attempt
+    authorize @survey, :attempt?
     @participant = Survey::Participant.create(name: params[:name], email: params[:email])
     @attempt = Survey::Attempt.create(survey: @survey, participant: @participant, actor: current_user, created_at: DateTime.now)
     redirect_to new_survey_attempt_path(@attempt)

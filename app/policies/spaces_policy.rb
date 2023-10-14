@@ -4,10 +4,10 @@ class SpacesPolicy < Struct.new(:user, :spaces)
   end
 
   def create?
-    true
+    !user.member?
   end
 
   def new?
-    true
+    !user.member?
   end
 end

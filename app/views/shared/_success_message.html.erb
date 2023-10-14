@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <% if message %>
-  <div class="p-4 rounded-md bg-green-50" x-data="{open: true}" x-show="open" x-init="setTimeout(function(){open = false; }, 2000);">
+  <div class="p-4 rounded-md bg-green-50" data-controller="hide-element">
     <div class="flex">
       <div class="flex-shrink-0">
         <!-- Heroicon name: solid/check-circle -->

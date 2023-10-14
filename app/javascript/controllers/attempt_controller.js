@@ -6,9 +6,8 @@ export default class extends Controller {
   checked(event) {
     event.preventDefault();
 
-    const url = "/"+
-    event.target.dataset.accountId+
-      "/answer/"+ event.target.dataset.attemptId+"?question_id=" +
+    const url =
+    "/"+event.target.dataset.accountId+ "/answer/"+ event.target.dataset.attemptId+"?question_id=" +
       event.target.dataset.questionId +
       "&option_id=" +
       event.target.dataset.optionId

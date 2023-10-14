@@ -1,7 +1,16 @@
 one:
-  text: question 1
+  text: Question 1
   survey: one
 
 two:
-  text: question 2
+  text: Question 2
   survey: one
+
+three:
+  text: Question 2
+  survey: archived
+
+four:
+  text: Question 2
+  survey: five
+

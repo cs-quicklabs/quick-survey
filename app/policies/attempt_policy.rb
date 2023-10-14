@@ -1,29 +1,9 @@
 class AttemptPolicy < ApplicationPolicy
   def index?
-    true
-  end
-
-  def new?
-    index?
-  end
-
-  def create?
-    index?
+    !user.member?
   end
 
   def show?
-    index?
-  end
-
-  def submit?
-    index?
-  end
-
-  def answer?
-    index?
-  end
-
-  def submit?
-    index?
+    record.actor == user
   end
 end

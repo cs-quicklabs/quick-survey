@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class SpacesTest < ApplicationSystemTestCase
   setup do
-    @user = users(:admin)
+    @user = users(:member)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
     @space = @user.spaces.where(archive: false, user_id: @user.id).first
@@ -36,7 +36,7 @@ class SpacesTest < ApplicationSystemTestCase
 
   test "can show space detail page" do
     visit page_url
-    within "div#shared-spaces" do
+    within "div#created-spaces" do
       find("li", id: dom_id(@space)).click
     end
     within "#space-header" do
@@ -91,8 +91,7 @@ class SpacesTest < ApplicationSystemTestCase
     take_screenshot
   end
 
-  test "can delete  archived space" do
-    @space = spaces(:archived)
+  test "can delete space" do
     visit space_page_url
     within "#space-header" do
       find("button", id: "space-menu").click
