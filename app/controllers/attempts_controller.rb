@@ -22,11 +22,12 @@ class AttemptsController < BaseController
   end
 
   def show
-    authorize :Attempt
+    authorize @attempt
+    @survey = @attempt.survey
   end
 
   def submit
-    authorize :Attempt
+    authorize @attempt
     if @attempt.survey.survey_type == 0
       redirect_to survey_checklist_submit_path(@attempt)
     else
@@ -35,16 +36,16 @@ class AttemptsController < BaseController
   end
 
   def answer
-    authorize :Attempt
+    authorize @attempt
     question = Survey::Question.find(params[:question_id])
     option = Survey::Option.find(params[:option_id])
-    answer = Survey::Answer.find_by(attempt: attempt, question: question)
+    answer = Survey::Answer.find_by(attempt: @attempt, question: question)
     if answer
       answer.update_attribute(:option_id, option.id)
     else
-      Survey::Answer.create(attempt: attempt, question: question, option: option)
+      Survey::Answer.create(attempt: @attempt, question: question, option: option)
     end
-    partial = render_to_string(partial: "attempts/options", locals: { question: question, attempt: attempt })
+    partial = render_to_string(partial: "attempts/options", locals: { question: question, attempt: @attempt, survey: @attempt.survey })
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.update("survey_question_#{question.id}", partial) }
     end

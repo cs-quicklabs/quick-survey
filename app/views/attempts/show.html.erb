@@ -17,9 +17,9 @@
       <fieldset class="space-y-5" >
         <% survey.questions.each do |question| %>
           <% if survey.survey_type == "checklist" %>
-            <%= render partial: "checklist_question", locals: { question: question, attempt: @attempt } %>
+            <%= render partial: "checklist_question", locals: { question: question, attempt: @attempt, survey: @survey} %>
           <% else %>
-            <%= render partial: "score_question", locals: { question: question, attempt: @attempt } %>
+            <%= render partial: "score_question", locals: { question: question, attempt: @attempt, survey: @survey}%>
           <% end %>
         <% end %>
       </fieldset>
