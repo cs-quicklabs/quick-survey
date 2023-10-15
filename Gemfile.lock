@@ -208,6 +208,11 @@ GEM
     orm_adapter (0.5.0)
     pagy (6.1.0)
     pg (1.5.4)
+    propshaft (0.7.0)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     psych (5.1.1)
       stringio
     public_suffix (5.0.3)
@@ -303,13 +308,6 @@ GEM
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.1.0)
       tilt (~> 2.0)
-    sprockets (4.2.1)
-      concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.8)
@@ -370,6 +368,7 @@ DEPENDENCIES
   listen (~> 3.3)
   pagy
   pg
+  propshaft
   puma (= 6.4.0)
   rack-mini-profiler (~> 3.1)
   rails (= 7.1.1)
@@ -380,7 +379,6 @@ DEPENDENCIES
   sidekiq (= 7.1.4)
   sidekiq-scheduler (= 5.0.3)
   sinatra (>= 1.3.0)
-  sprockets-rails (= 3.4.2)
   stimulus-rails (= 1.2.2)
   turbo-rails (= 1.4.0)
   tzinfo-data
