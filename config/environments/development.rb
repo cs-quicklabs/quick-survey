@@ -71,6 +71,9 @@ Rails.application.configure do
   config.assets.debug = true
 
   config.active_job.verbose_enqueue_logs = true
+  config.active_job.queue_adapter = :good_job
+  config.good_job.execution_mode = :async
+
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true

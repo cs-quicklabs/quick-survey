@@ -78,3 +78,5 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "dalli", "~> 3.2"
+
+gem "good_job", "~> 3.19"
