@@ -21,6 +21,7 @@ archived:
   archived_on: <%= Time.now %>
   account: crownstack
   user: admin
+  folder: one
 
 pinned: 
   name: Project Initiation Score
@@ -62,7 +63,7 @@ five:
   account: crownstack 
 
 six:
-  name: Project Initiation Score six
+  name: Project Initiation Score Six
   description: Survey Description
   survey_type: score
   user: admin
@@ -70,5 +71,26 @@ six:
   pin: false
   active: true
   account: crownstack    
+
+
+seven:
+  name: Project Initiation Score Six
+  description: Survey Description
+  survey_type: score
+  user: admin
+  folder: eleven
+  pin: false
+  active: true
+  account: crownstack  
+
+eight:
+  name: Project Initiation Score Six
+  description: Survey Description
+  survey_type: score
+  user: admin
+  folder: one
+  pin: false
+  active: true
+  account: crownstack       
 
 

@@ -5,9 +5,11 @@
           <a href="<%= user_attempts_path(user) %>" class="<%= current_page?(user_attempts_path(user)) ? "selected-tab" : "unselected-tab" %>">
             Attempts
           </a>
+      <%if !user.member?%>
   <a href="<%= user_surveys_path(user) %>" class="<%= current_page?(user_surveys_path(user)) ? "selected-tab" : "unselected-tab" %>">
             Surveys
           </a>
+          <% end %>
            <a href="<%= user_spaces_path(user) %>" class="<%= current_page?(user_spaces_path(user)) ? "selected-tab" : "unselected-tab" %>">
             Spaces
           </a>
