@@ -42,15 +42,8 @@ gem "letter_opener_web", group: :development
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
-gem "hiredis"
-gem "redis", "5.0.7"
 gem "json"
 gem "pagy"
-
-# sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.1.4"
-gem "sidekiq-scheduler", "5.0.3"
-gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
