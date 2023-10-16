@@ -105,4 +105,19 @@ class UserTest < ApplicationSystemTestCase
       assert_text "Spaces"
     end
   end
+
+  test "admin can see archived surveys and spaces" do
+    @member = users(:admin)
+    visit users_page_url
+    within "#user-tabs" do
+      click_on "Spaces"
+    end
+    @archived_space = spaces(:archived)
+    assert_no_text @archived_space.title
+    within "#user-tabs" do
+      click_on "Surveys"
+    end
+    @archived_survey = survey_surveys(:archived)
+    assert_no_text @archived_survey.name
+  end
 end

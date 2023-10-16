@@ -36,7 +36,7 @@ class SpacesTest < ApplicationSystemTestCase
 
   test "can show space detail page" do
     visit page_url
-    within "div#shared-spaces" do
+    within "div#created-spaces" do
       find("li", id: dom_id(@space)).click
     end
     within "#space-header" do

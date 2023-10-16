@@ -53,7 +53,7 @@ four:
   account: crownstack
 
 five:
-  name: Project Initiation Score Four
+  name: Project Initiation Score Five
   description: Survey Description
   survey_type: score
   user: admin
