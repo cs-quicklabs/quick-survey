@@ -36,7 +36,6 @@ class AttemptsController < BaseController
     else
       redirect_to survey_yes_no_submit_path(@attempt.survey, @attempt)
     end
-    redirect_to s
   end
 
   def answer
@@ -78,9 +77,14 @@ class AttemptsController < BaseController
     option = Survey::Option.find(params[:option_id])
     answer = Survey::Answer.find_by(attempt: @attempt, question: question, option: option)
     if answer
-      answer.delete.where(attempt: @attempt, question: question, option: option)
+      answer.destroy
     else
       Survey::Answer.create(attempt: @attempt, question: question, option: option)
+    end
+
+    partial = render_to_string(partial: "attempts/check", locals: { question: question, attempt: @attempt, survey: @attempt.survey })
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update("survey_question_#{question.id}", partial) }
     end
   end
 
