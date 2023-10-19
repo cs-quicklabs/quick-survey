@@ -71,15 +71,6 @@ class QuestionsController < BaseController
 
   private
 
-  def add_options(question, survey)
-    if survey.survey_type == 0 #checklist
-      Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
-      Survey::Option.new(text: "No", question: question, correct: false, weight: 0).save
-    else
-      Survey::Option.new(text: "Score", question: question, correct: true, weight: 10).save
-    end
-  end
-
   def set_question
     @question = Survey::Question.find(params[:id])
   end

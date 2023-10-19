@@ -30,8 +30,10 @@ class AttemptsController < BaseController
     authorize @attempt
     if @attempt.survey.survey_type == 0
       redirect_to survey_checklist_submit_path(@attempt)
-    else
+    elsif @attempt.survey.survey_type == 1
       redirect_to survey_score_submit_path(@attempt)
+    else
+      redirect_to survey_mark_submit_path(@attempt)
     end
   end
 
