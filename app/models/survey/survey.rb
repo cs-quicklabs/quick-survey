@@ -12,7 +12,7 @@ class Survey::Survey < ActiveRecord::Base
 
   # relations
 
-  SURVEY_OPTIONS = [["Checklist or Todo list", 2], ["1-10 Score", 1], ["Yes/No", 0]]
+  SURVEY_OPTIONS = [["Checklist or Todo list", "checklist"], ["1-10 Score", "score"], ["Yes/No", "yes_no"]]
 
   has_many :attempts, :dependent => :destroy
   has_many :questions, :dependent => :destroy
