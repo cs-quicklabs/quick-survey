@@ -28,10 +28,8 @@ class SubmitController < BaseController
   end
 
   def submit
-    binding.irb
     authorize @attempt, :submit?
     @attempt.update_attribute("comment", params[:comment])
-    binding.irb
     redirect_to attempts_path, notice: "Thank you for submitting your survey."
   end
 
