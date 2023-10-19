@@ -1,0 +1,1 @@
+<input type="checkbox" class="h-8 w-8 mt-4  rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-account-id="<%=survey.account_id%>"  data-attempt-id="<%= attempt.id %>" data-question-id="<%= question.id %>" data-option-id="<%= option.first.id %>" data-action="change->attempt#check" <%= "checked" if question.attempt_checked?(attempt)%> >

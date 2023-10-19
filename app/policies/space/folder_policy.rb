@@ -5,7 +5,7 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def new?
-    !user.member?
+    !user.member? and !record.first.archive
   end
 
   def create?
