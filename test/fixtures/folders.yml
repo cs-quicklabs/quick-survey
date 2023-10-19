@@ -67,5 +67,10 @@ nine:
   title: This is a nines folder
   space: ten
   user: admin  
+
+eleven:
+  title: This is a eleven folder
+  space: archived
+  user: admin    
     
 

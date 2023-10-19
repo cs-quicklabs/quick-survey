@@ -39,7 +39,7 @@ class QuestionsController < BaseController
           question.update(order: question.order + 1)
       end : nil
 
-      partial = render_to_string(partial: "surveys/questions/question", locals: { questions: @survey.questions.order(:order), survey: @survey })
+      partial = render_to_string(partial: "surveys/questions/questions", locals: { questions: @survey.questions.order(:order), survey: @survey })
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(:survey_questions, partial)
@@ -70,6 +70,16 @@ class QuestionsController < BaseController
   end
 
   private
+
+  def add_options(question, survey)
+    if survey.survey_type == "checklist"
+      Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
+    elsif survey.survey_type == "score"
+      Survey::Option.new(text: "Score", question: question, correct: true, weight: 10).save
+    else survey.survey_type == "yes_no"
+      Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
+      Survey::Option.new(text: "No", question: question, correct: false, weight: 0).save     end
+  end
 
   def set_question
     @question = Survey::Question.find(params[:id])

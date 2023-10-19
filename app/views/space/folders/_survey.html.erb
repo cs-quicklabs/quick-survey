@@ -32,6 +32,7 @@
 
    </li>
    <% end %>
+   <% if policy([@space, @folder]).edit?%>
     <% if policy(survey).unpin?%>
                       <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
                   <% end %>
@@ -41,11 +42,13 @@
                    <% if policy(survey).edit?%>
   <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
    <% end %>
+   <% end %>
    <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
                     
                        <% if policy(survey).archive_survey?%>
                        <%= confirm_button(archive_survey_path(survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
 <% end %>
+
 </ul>
 </div>
 

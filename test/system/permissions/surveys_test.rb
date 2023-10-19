@@ -22,6 +22,7 @@ class SurveysTest < ApplicationSystemTestCase
     visit page_url
     assert_current_path(dashboard_path(script_name: "/#{@account.id}"))
     page.assert_no_selector "nav.navbar", text: "Surveys"
+
     take_screenshot
   end
 
@@ -32,6 +33,10 @@ class SurveysTest < ApplicationSystemTestCase
     assert_selector "nav.navbar", text: "Surveys"
     assert_selector "h1", text: "Select Survey"
     assert_text "Add New Survey"
+    folder_survey = survey_surveys(:five) # member survey
+    assert_no_text folder_survey.name
+    archived_survey = survey_surveys(:archived)
+    assert_no_text archived_survey.name
     take_screenshot
   end
 

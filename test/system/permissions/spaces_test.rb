@@ -91,8 +91,8 @@ class SpacesTest < ApplicationSystemTestCase
       click_on "survey-menu"
       assert_text "Edit"
       assert_text "Archive"
+      assert_text "Show"
       assert_text "Change Folder"
-      assert_text "Archive"
       assert_text "Pin Survey" or assert_text "Unpin Survey"
     end
     take_screenshot
@@ -110,7 +110,60 @@ class SpacesTest < ApplicationSystemTestCase
       assert_no_text "Archive"
       assert_no_text "Change Folder"
       assert_text "Pin Survey" or assert_text "Unpin Survey"
+      assert_text "Show"
     end
+    take_screenshot
+  end
+
+  test "admin can access archived spaces" do
+    @space = spaces(:archived)
+    visit space_page_url
+    within "#space-header" do
+      assert_no_text "Add New Folder"
+      click_on "space-menu"
+      assert_no_text "Edit"
+      assert_text "Unarchive"
+      assert_no_text(/Pin|Unpin/)
+    end
+    take_screenshot
+  end
+
+  test "admin can access folder of archived spaces" do
+    @space = spaces(:archived)
+    visit space_page_url
+    folder = @space.folders.first
+    page.execute_script("arguments[0].click();", find("a", text: @space.folders.first.title))
+    within "#folder-header" do
+      assert_no_text "Add New Survey"
+      assert_no_selector("#folder-menu")
+    end
+    take_screenshot
+  end
+
+  test "admin can access surveys of archived spaces" do
+    @space = spaces(:archived)
+    visit space_page_url
+    @folder = @space.folders.first
+    page.execute_script("arguments[0].click();", find("a", text: @folder.title))
+    @survey = @folder.survey_surveys.first
+    within "tr##{dom_id(@survey)}" do
+      click_on "survey-menu"
+      assert_no_text "Edit"
+      assert_no_text "Change Folder"
+      assert_text "Show"
+      assert_text "Archive"
+      assert_no_text "Pin Survey" or assert_text "Unpin Survey"
+    end
+    take_screenshot
+  end
+
+  test "admin cannot view archived survey in space" do
+    @folder = folders(:one)
+    @space = @folder.space
+    visit space_page_url
+    page.execute_script("arguments[0].click();", find("a", text: @folder.title))
+    assert_no_text "Project Initiation Checklist Archived"
+    assert_text @folder.survey_surveys.active.first.name
     take_screenshot
   end
 end
