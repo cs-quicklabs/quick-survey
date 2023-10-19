@@ -1,6 +1,0 @@
-send_weekly_activity_report:
-  cron: '0 10 * * MON'
-  class: WeeklyActivityCleanerAndMailerJob
-  queue: default
-  description: 'This job sends weekly report to employees every Monday 10:00 AM and cleans old attempts'
-
