@@ -3,7 +3,7 @@ class Survey::Survey < ActiveRecord::Base
   self.table_name = "survey_surveys"
   belongs_to :folder, optional: true
   belongs_to :user, optional: true
-  enum survey_type: { checklist: 0, score: 1 }
+  enum survey_type: { yes_no: 0, score: 1, checklist: 2 }
   #   acceptable_attributes :name, :description,
   #     :finished,
   #     :active,
@@ -11,6 +11,9 @@ class Survey::Survey < ActiveRecord::Base
   #     :questions_attributes => Survey::Question::AccessibleAttributes
 
   # relations
+
+  SURVEY_OPTIONS = [["Checklist or Todo list", "checklist"], ["1-10 Score", "score"], ["Yes/No", "yes_no"]]
+
   has_many :attempts, :dependent => :destroy
   has_many :questions, :dependent => :destroy
 

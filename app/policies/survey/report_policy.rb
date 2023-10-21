@@ -13,4 +13,8 @@ class Survey::ReportPolicy < Survey::BaseSurveyPolicy
   def checklist?
     submit?
   end
+
+  def yes_no?
+    submit?
+  end
 end

@@ -14,4 +14,8 @@ class Survey::AttemptPolicy < Survey::BaseSurveyPolicy
   def score?
     answer?
   end
+
+  def check?
+    answer?
+  end
 end

@@ -27,6 +27,19 @@ class SubmitController < BaseController
     end
   end
 
+  def yes_no
+    authorize @attempt, :submit?
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@attempt.participant.name}_#{@attempt.survey.name}",
+               template: "pdf/score",
+               layout: "pdf",
+               formats: [:html]
+      end
+    end
+  end
+
   def submit
     authorize @attempt, :submit?
     @attempt.update_attribute("comment", params[:comment])

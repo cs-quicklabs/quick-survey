@@ -16,11 +16,7 @@
     <div class="">
       <fieldset class="space-y-5" >
         <% survey.questions.each do |question| %>
-          <% if survey.survey_type == "checklist" %>
-            <%= render partial: "checklist_question", locals: { question: question, attempt: @attempt, survey: @survey} %>
-          <% else %>
-            <%= render partial: "score_question", locals: { question: question, attempt: @attempt, survey: @survey} %>
-          <% end %>
+            <%= render partial: "#{survey.survey_type}_question", locals: { question: question, attempt: @attempt, survey: @survey} %>
         <% end %>
       </fieldset>
 <div class="overflow-y-auto w-full py-6 ml-3">

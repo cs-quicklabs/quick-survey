@@ -17,12 +17,15 @@ Rails.application.routes.draw do
     resources :questions
     get "/pdf/checklist/:id", to: "survey/reports#checklist", as: "checklist_pdf"
     get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"
+    get "/pdf/yes_no/:id", to: "survey/reports#yes_no", as: "yes_no_pdf"
     get "/reports/checklist/:id", to: "survey/reports#checklist", as: "checklist_report"
+    get "/reports/yes_no/:id", to: "survey/reports#yes_no", as: "yes_no_report"
     get "/reports/score/:id", to: "survey/reports#score", as: "score_report"
     patch "/attempts/:id/attempt", to: "attempts#submit", as: "submit_attempt"
     patch "/attempts/:id/submit", to: "submit#submit", as: "submit_report"
     get "/submit/checklist/:id", to: "submit#checklist", as: "checklist_submit"
     get "/submit/score/:id", to: "submit#score", as: "score_submit"
+    get "/submit/yes_no/:id", to: "submit#yes_no", as: "yes_no_submit"
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
@@ -42,6 +45,7 @@ Rails.application.routes.draw do
   get "/surveys/:id/unpin", to: "surveys#unpin", as: "unpin_survey"
   get "/answer/:id", to: "attempts#answer", as: "answer_attempt"
   get "/score/:id", to: "attempts#score", as: "score_attempt"
+  get "/check/:id", to: "attempts#check", as: "check_attempt"
 
   get "/resume", to: "screening/resume#index", as: "resume"
   get "/telephonic", to: "screening/telephonic#index", as: "telephonic"

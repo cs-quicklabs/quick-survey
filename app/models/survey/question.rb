@@ -29,6 +29,10 @@ class Survey::Question < ActiveRecord::Base
     Survey::Option.find(option_id)
   end
 
+  def attempt_checked?(attempt)
+    attempted_answer(attempt).present?
+  end
+
   def attempted_answer(attempt)
     attempt.answers.select { |a| a.question_id == id }.first
   end
