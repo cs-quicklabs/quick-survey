@@ -11,8 +11,7 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "7.1.1"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails", "3.4.2"
+gem "propshaft"
 
 # Use postgresql as the database for Active Record
 gem "pg"
@@ -43,15 +42,8 @@ gem "letter_opener_web", group: :development
 # gem 'image_processing', '~> 1.2'
 gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
-gem "hiredis"
-gem "redis", "5.0.7"
 gem "json"
 gem "pagy"
-
-# sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.1.4"
-gem "sidekiq-scheduler", "5.0.3"
-gem "sinatra", ">= 1.3.0", require: nil
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
@@ -84,3 +76,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "good_job", "~> 3.19"

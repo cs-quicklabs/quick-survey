@@ -16,8 +16,8 @@
       <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
         <div class="flex items-center flex-shrink-0">
           <a class="flex" href="<%= dashboard_path %>">
-            <img class="block w-auto h-8 lg:hidden" src="/assets/quicklabs-logo-small-white.png" alt="Survey">
-            <img class="hidden w-auto h-8 lg:block" src="/assets/quicklabs-logo-small-white.png" alt="Survey">
+            <%=  image_tag "quicklabs-logo-small-white.png", class: "block w-auto h-8 lg:hidden" %>
+            <%=  image_tag "quicklabs-logo-small-white.png", class: "hidden w-auto h-8 lg:block" %>
             <span class="text-white  px-2 text-2xl font-extrabold tracking-tighter">SURVEY</span>
           </a>
         </div>
@@ -40,25 +40,25 @@
           </div>
         </div>
         <%if !current_user.member? %>
-        <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%=current_user.account_id%>/search/spaces-surveys-and-folders">
-          <div class="w-full max-w-xs lg:max-w-sm justify-end">
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
-                <!-- Heroicon name: solid/search -->
-                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                </svg>
+          <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%=current_user.account_id%>/search/spaces-surveys-and-folders">
+            <div class="w-full max-w-xs lg:max-w-sm justify-end">
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
+                  <!-- Heroicon name: solid/search -->
+                  <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <input id="search" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Surveys or Spaces or Folders" type="search" data-nav-search-target="input">
               </div>
-              <input id="search" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Surveys or Spaces or Folders" type="search" data-nav-search-target="input">
-            </div>
-            <div class="relative">
-              <div class="absolute left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <ul data-nav-search-target="results" id="results">
-                </ul>
+              <div class="relative">
+                <div class="absolute left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <ul data-nav-search-target="results" id="results">
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         <% end %>
         <div data-controller="nested-dropdown">
           <!-- This example requires Tailwind CSS v2.0+ -->
@@ -81,8 +81,8 @@
                       <div>
                         <a><%= link_to "Settings", profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                         <% if policy(:users).deactivated?%>
-                        <a><%= link_to "Archive", archived_surveys_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                       <% end %>
+                          <a><%= link_to "Archive", archived_surveys_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                        <% end %>
                         <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
                       </div>
                     </div>
