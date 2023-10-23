@@ -31,7 +31,7 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   def show?
     if !user.member?
       return true
-    elsif record.folder
+    elsif record.folder and record.active
       record.folder.space.users.include?(user)
     else
       false
@@ -55,7 +55,7 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   end
 
   def unpin?
-    record.active? and record.pin
+    show? and record.active? and record.pin
   end
 
   def attempts?
