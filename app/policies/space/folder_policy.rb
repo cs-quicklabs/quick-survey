@@ -5,7 +5,7 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def new?
-    !user.member?
+    !user.member? and !record.first.archive?
   end
 
   def create?
@@ -33,11 +33,11 @@ class Space::FolderPolicy < Space::BaseSpacePolicy
   end
 
   def change_folder?
-    edit?
+    !user.member?
   end
 
   def folders?
-    edit?
+    !user.member?
   end
 
   def pin?
