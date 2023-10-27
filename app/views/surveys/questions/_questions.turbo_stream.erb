@@ -1,27 +1,27 @@
-     <ol class="space-y-6 pl-1 drag-zone" id="questions" 
+     <ol class="space-y-6 pl-1 drag-zone  px-6 ml-3" id="questions" 
     data-target="drag-item.sortContainer" data-action="drop->drag-item#drop">
     <% questions.each_with_index do |question, index| %>
 <%= turbo_frame_tag dom_id(question) do %>
 
  <% if policy(question.survey).update? %>
-<li class="py-4 flex border-b border-gray-200" data-question-id="<%= question.id %>" data-index="<%= index + 1 %>"
+<li class="py-4 flex border-b border-gray-200   " data-question-id="<%= question.id %>" data-index="<%= index + 1 %>"
 data-survey-id="<%= survey.id %>" id= "<%= dom_id(question) %>"
 data-action="dragstart->drag-item#dragstart
                       dragleave->drag-item#dragleave
                       dragover->drag-item#dragover
                       drag->drag-item#drag"
   draggable="true">
-           <p class="px-6 drag">
+           <p class="  drag">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg>
   </p>
-  <div class="ml-3 w-full">
+  <div class="ml-4 w-full">
     <p class="text-sm font-medium text-gray-900"><%= question.text.upcase_first %></p>
     <p class="text-sm text-gray-500"><%= question.description %></p>
   </div>
   <div class="flex align-right ">
-    <div class="px-6 whitespace-nowrap text-right text-sm font-medium">
+    <div class="whitespace-nowrap text-right text-sm font-medium">
      <% if policy(question.survey).edit? %>
       <%= link_to "Edit", edit_survey_question_path(survey, question), class: "text-indigo-600", onmouseover: "this.style.color='#312e81'", onmouseout: "this.style.color='#4f46e5'" %>
       <% end %>

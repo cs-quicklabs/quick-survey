@@ -55,7 +55,7 @@ export default class extends Controller {
           return response.json();
         } else {
           console.error("An error occurred during the POST request.");
-          const location = response.headers.get("Location");
+         const location = response.headers.get("Location");
           window.location.href = location;
         }
       })

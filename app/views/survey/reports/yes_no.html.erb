@@ -20,23 +20,23 @@
     <div class="">
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
-          <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <tr class="">
+            <th scope="col" class=" pl-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               #</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verdict</th>
+            <th scope="col" class=" py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
+            <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+            <th scope="col" class=" py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verdict</th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
           <% @attempt.survey.questions.each_with_index do |question, index| %>
-            <tr class="bg-white ">
-              <td class="py-3  px-6 text-sm font-medium text-gray-900">
+            <tr class="bg-white  ">
+              <td class="py-3  pl-6 text-sm font-medium text-gray-900">
                 <%= index + 1 %></td>
-              <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
+              <td class="py-3  text-sm font-medium text-gray-900"><%= question.text %></td>
               <% attempted_option = question.attempted_option(@attempt) %>
-              <td class="py-3 px-6 text-sm font-medium text-gray-900"><%= attempted_option.nil? ? "" : attempted_option.text %></td>
-              <td class="py-3  px-6 text-sm font-medium text-gray-900">
+              <td class="py-3  text-sm font-medium text-gray-900 text-left"><%= attempted_option.nil? ? "" : attempted_option.text %></td>
+              <td class="py-3   text-sm font-medium text-gray-900 text-left">
                 <% if question.attempted_answer(@attempt).nil? %>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>

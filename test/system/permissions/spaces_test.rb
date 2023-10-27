@@ -109,7 +109,7 @@ class SpacesTest < ApplicationSystemTestCase
       assert_no_text "Edit"
       assert_no_text "Archive"
       assert_no_text "Change Folder"
-      assert_text "Pin Survey" or assert_text "Unpin Survey"
+      assert_text (/Pin Survey|Unpin Survey/)
       assert_text "Show"
     end
     take_screenshot
@@ -149,7 +149,7 @@ class SpacesTest < ApplicationSystemTestCase
     within "tr##{dom_id(@survey)}" do
       click_on "survey-menu"
       assert_no_text "Edit"
-      assert_no_text "Change Folder"
+      assert_text "Change Folder"
       assert_text "Show"
       assert_text "Archive"
       assert_no_text "Pin Survey" or assert_text "Unpin Survey"

@@ -27,7 +27,7 @@ class AttemptsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Sign in to your account"
   end
 
-  test "can attempt a survey and view the attempt" do
+  test "can attempt a survey and view the attempt " do
     visit page_url
     within "#survey-header" do
       click_on "Actions"

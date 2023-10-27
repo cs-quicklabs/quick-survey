@@ -1,5 +1,5 @@
 class SubmitController < BaseController
-  before_action :set_attempt, only: [:checklist, :score, :submit]
+  before_action :set_attempt, only: [:checklist, :score, :submit, :yes_no]
 
   def checklist
     authorize @attempt, :submit?

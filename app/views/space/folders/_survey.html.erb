@@ -32,16 +32,16 @@
 
    </li>
    <% end %>
-   <% if policy([@space, @folder]).edit?%>
+   <% if policy([@space, @folder]).index? && !@space.archive?%>
     <% if policy(survey).unpin?%>
                       <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
                   <% end %>
               <% if policy(survey).pin?%>
                   <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
                   <% end %>
-                   <% if policy(survey).edit?%>
+                  <% end %>
+                   <% if policy(survey).edit? && policy([@space, @folder]).edit?%>
   <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
-   <% end %>
    <% end %>
    <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
                     
