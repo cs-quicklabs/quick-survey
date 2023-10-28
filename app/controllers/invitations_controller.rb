@@ -11,7 +11,17 @@ class InvitationsController < Devise::InvitationsController
     end
   end
 
+  def update
+    user = User.find_by_invitation_token(params[:user][:invitation_token], true)
+    user.update(accept_invitation_params)
+    super
+  end
+
   def invitation_params
     params.require(:user).permit(:email, :account_id)
+  end
+
+  def accept_invitation_params
+    params.require(:user).permit(:first_name, :last_name)
   end
 end
