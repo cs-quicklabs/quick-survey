@@ -10,7 +10,7 @@ class SpacesController < BaseController
     @archived_spaces = @all_spaces.select { |space| space.archive == true }
     @shared_spaces = @all_spaces - @my_spaces - @archived_spaces
 
-    render_partial("spaces/space", collection: @all_spaces, cached: true) if stale?(@all_spaces)
+    render_partial("spaces/space", collection: @all_spaces, cached: true) if stale?(@all_spaces + @pinned_spaces)
   end
 
   def new
