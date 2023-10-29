@@ -26,7 +26,7 @@ class SurveysController < BaseController
     authorize @survey
 
     if DestroySurvey.call(@survey).result
-      redirect_to surveys_path, status: 303, notice: "Survey has been deleted."
+      redirect_to archived_surveys_path, notice: "Survey was successfully deleted."
     end
   end
 
@@ -119,9 +119,9 @@ class SurveysController < BaseController
 
   def archive_survey
     authorize @survey
-
-    @survey.update(active: false, archived_on: DateTime.now.utc)
-    redirect_to archived_surveys_path, notice: "Survey has been archived."
+    if ArchiveSurvey.call(@survey).result
+      redirect_to archived_surveys_path, notice: "Survey has been archived."
+    end
   end
 
   def unarchive_survey
