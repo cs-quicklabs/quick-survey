@@ -4,8 +4,9 @@ one:
   text: yes
   correct: true
 
-one:
-  question: one
+two:
+  question: two
   weight: 0
   text: no
   correct: false
+

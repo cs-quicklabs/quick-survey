@@ -34,7 +34,7 @@ class UsersController < BaseController
   def destroy
     authorize @user
     if DestroyUser.call(@user).result
-      redirect_to users_path, status: 303, notice: "User has been deleted."
+      redirect_to deactivated_users_path, notice: "User has been deleted successfully."
     end
   end
 

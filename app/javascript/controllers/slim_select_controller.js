@@ -7,6 +7,7 @@ export default class extends Controller {
   };
 
   connect() {
+    console.log("SlimSelect connected");
     this.slimselect = new SlimSelect({
       select: this.element,
       settings: {
