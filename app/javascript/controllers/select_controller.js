@@ -17,15 +17,13 @@ export default class extends Controller {
 
   change(event) {
     let params = new URLSearchParams();
-
     const spaceId = event.target.selectedOptions[0].value;
-
     get(`${this.urlValue}&space=${spaceId}`, {
       responseKind: "turbo-stream",
     })
-      .then((response) => response.text)
+      .then((response) => response.text) 
       .then((html) => {
-        this.selectTarget.innerHTML = html;
+ 
       });
   }
 

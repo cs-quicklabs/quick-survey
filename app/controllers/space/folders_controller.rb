@@ -62,11 +62,10 @@ class Space::FoldersController < Space::BaseController
 
   def folders
     authorize [Space, Folder]
-
     @space = Space.find(params[:space])
     @folders = @space.folders.order("title asc")
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "space/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id", selected_folder_id: params[:folder_id] }) }
+    if params[:folder_id]
+      selected_folder_id = params[:folder_id]
     end
   end
 
@@ -77,7 +76,6 @@ class Space::FoldersController < Space::BaseController
     respond_to do |format|
       if @survey.update(folder_id: @folder.id)
         flash[:notice] = "Folder was changed successfully."
-
         format.json { render json: { success: true, notice: flash[:notice], location: space_folder_path(@folder.space, @folder) } }
       else
         render json: { success: false }, status: :unprocessable_entity
