@@ -1239,10 +1239,6 @@ select {
   margin-top: -0.5rem;
 }
 
-.-mt-3 {
-  margin-top: -0.75rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1267,20 +1263,12 @@ select {
   margin-left: 0.75rem;
 }
 
-.ml-36 {
-  margin-left: 9rem;
-}
-
 .ml-4 {
   margin-left: 1rem;
 }
 
 .ml-6 {
   margin-left: 1.5rem;
-}
-
-.ml-60 {
-  margin-left: 15rem;
 }
 
 .ml-8 {
@@ -1531,6 +1519,10 @@ select {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-80 {
+  width: 20rem;
 }
 
 .w-auto {

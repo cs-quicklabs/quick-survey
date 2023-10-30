@@ -1,6 +1,6 @@
 
 <tr class="bg-white" id="<%= dom_id(survey) %>">
-  <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900">
+  <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900 w-80">
     <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
       <%= survey.name.titleize %>
     </a>
@@ -15,7 +15,7 @@
 </svg>
 
   </button>
-  <div class="absolute ml-60  z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="menu">
+  <div class="absolute  z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="menu">
     <!-- Dropdown menu items -->
 <ul class="list-none">
  <% if policy([@space, @folder]).change_folder?%>
@@ -25,10 +25,7 @@
   <span>
   <svg aria-hidden="true" class="w-4 h-4 mt-1 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
  <span></p>
-  <div class="absolute z-10  -mt-3 ml-36  w-36 origin-top-right bg-white rounded-lg shadow ring-black ring-opacity-5 focus:outline-none" data-nested-dropdown-target="submenu">
-    <!-- Submenu items will be dynamically populated here -->
 
-  </div>
 
    </li>
    <% end %>
