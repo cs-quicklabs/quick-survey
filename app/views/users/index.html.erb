@@ -43,7 +43,7 @@
                 <% end %>
               </thead>
               <tbody class="table-body"  data-infinite-scroll-target="entries">
-                <%= render partial: "users/user", collection: @users, as: :user, cached: false %>
+                <%= render partial: "users/user", collection: @users, as: :user, cached: true %>
               </tbody>
             </table>
                <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">

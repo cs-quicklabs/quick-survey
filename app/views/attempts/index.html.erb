@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody class="table-body" id="attempts" data-infinite-scroll-target="entries">
-        <%= render partial: "attempt", collection: @attempts, as: :attempt, cached: false %>
+        <%= render partial: "attempt", collection: @attempts, as: :attempt, cached: true %>
       </tbody>
     </table>
     <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">

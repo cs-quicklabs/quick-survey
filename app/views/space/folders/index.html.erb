@@ -91,7 +91,7 @@
     <div class="relative py-4 " id="folders">
       <% if @folders.size > 0 %>
         <ul role="list ">
-          <%= render partial: "folder", collection: @folders, as: :folder, cached: false %>
+          <%= render partial: "folder", collection: @folders, as: :folder, cached: true %>
         </ul>
       <% else %>
         <div class="flex justify-center items-center h-28">

@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200" id="surveys" data-infinite-scroll-target="entries">
-            <%= render partial: "attempt", collection: @attempts, as: :attempt, cached: false %>
+            <%= render partial: "attempt", collection: @attempts, as: :attempt, cached: true %>
           </tbody>
         </table>
         <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
