@@ -78,7 +78,7 @@ class Space::FoldersController < Space::BaseController
         flash[:notice] = "Folder was changed successfully."
         format.json { render json: { success: true, notice: flash[:notice], location: space_folder_path(@folder.space, @folder) } }
       else
-        render json: { success: false }, status: :unprocessable_entity
+        format.json { render json: { success: false }, status: :unprocessable_entity }
       end
     end
   end

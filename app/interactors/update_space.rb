@@ -25,6 +25,7 @@ class UpdateSpace < Patterns::Service
     space.users.clear
     space.users << User.where("id IN (?)", users)
     space.users << space.user unless space.users.include?(space.user)
+    space.touch
   end
 
   def send_email

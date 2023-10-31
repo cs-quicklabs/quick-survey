@@ -40,11 +40,9 @@ class UsersController < BaseController
 
   def deactivate_user
     authorize @user, :update?
-    @user.active = false
-    @user.deactivated_on = DateTime.now.utc
-    @user.save!
-
-    redirect_to deactivated_users_path, notice: "User has been deactivated."
+    if DeactivateUser.call(@user).result
+      redirect_to deactivated_users_path, notice: "User has been deactivated."
+    end
   end
 
   def activate_user
