@@ -8,7 +8,7 @@ class SpacesController < BaseController
     @pinned_spaces = current_user.pinned.order(created_at: :desc)
     @my_spaces = @all_spaces.select { |space| space.user_id == current_user.id && space.archive == false } - @pinned_spaces
     @archived_spaces = @all_spaces.select { |space| space.archive == true }
-    @shared_spaces = @all_spaces - @my_spaces - @archived_spaces
+    @shared_spaces = @all_spaces - @my_spaces - @archived_spaces - @pinned_spaces
 
     render_partial("spaces/space", collection: @all_spaces, cached: true) if stale?(@all_spaces + @pinned_spaces)
   end
