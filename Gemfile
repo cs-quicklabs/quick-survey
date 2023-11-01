@@ -32,7 +32,7 @@ gem "turbo-rails", "1.4.0"
 gem "stimulus-rails", "1.2.2"
 
 gem "devise"
-gem "devise_invitable", "~> 2.0.0"
+gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
 
 gem "draper"
