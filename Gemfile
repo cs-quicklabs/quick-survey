@@ -47,7 +47,7 @@ gem "pagy"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
-gem "bootsnap", "1.16.0", require: false
+gem "bootsnap", "1.17.0", require: false
 gem "rails-patterns"
 gem "rexml"
 group :development, :test do
