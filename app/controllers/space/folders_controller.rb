@@ -75,6 +75,7 @@ class Space::FoldersController < Space::BaseController
     @folder = Folder.find(params[:folder_id])
     respond_to do |format|
       if @survey.update(folder_id: @folder.id)
+        @folder.touch
         flash[:notice] = "Folder was changed successfully."
         format.json { render json: { success: true, notice: flash[:notice], location: space_folder_path(@folder.space, @folder) } }
       else
