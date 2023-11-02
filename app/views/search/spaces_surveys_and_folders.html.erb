@@ -1,47 +1,64 @@
+<div class="py-2 mb-1">
+<% if @surveys.size > 0 %>
 <div class="mb-2">
 <% @surveys.each do |result| %>
   <a href="<%= survey_path(result) %>">
-    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-      <%= result.name %>
+    <li role="option" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= result.name.upcase_first %>
     </li>
   </a>
 <% end %>
 </div>
+<% end %>
+  <div class=" ">
 <% if @surveys.size > 0 && @spaces.size > 0 %>
-  <div class=" mb-6">
+  <div class="my-1 mt-2 ">
+  <div class="pb-4">
     <div class="absolute inset-x-0 flex items-center" aria-hidden="true">
       <div class="w-full border-t border-gray-300"></div>
     </div>
-    <div class="flex justify-start absolute inset-x-0  items-center">
-      <span class="  px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white" role="option">
+    <div class="flex justify-start absolute inset-x-0  pb-2 items-center">
+      <span class=" -mt-2 px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white" role="option">
         Spaces
       </span>
     </div>
-  </div>
-<% end %>
+    </div>
+  <% end %>  
 <% @spaces.each do |result| %>
   <a href="<%= space_folders_path(result) %>">
-    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+    <li role="option" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
       <%= result.title.upcase_first %>
     </li>
   </a>
+    
+
 <% end %>
+
+</div>
+
 <% if (@surveys.size > 0 or @spaces.size > 0) && @folders.size > 0 %>
-  <div class="mb-6 mt-2">
+  <div class="my-1 mt-2 ">
+  <div class="pb-4">
     <div class="absolute inset-x-0 flex items-center" aria-hidden="true">
       <div class="w-full border-t border-gray-300"></div>
     </div>
-    <div class="flex justify-start absolute inset-x-0  items-center">
-      <span class="  px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white" role="option">
+    <div class="flex justify-start absolute inset-x-0 mb-2 items-center">
+      <span class=" -mt-2   px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white" role="option">
         Folders
       </span>
     </div>
-  </div>
-<% end %>
+    </div>
+    </div>
+    <% end %>
 <% @folders.each do |result| %>
   <a href="<%= space_folder_path(result.space, result) %>">
-    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+    <li role="option" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
       <%= result.title.upcase_first %>
     </li>
   </a>
+   
+
+
 <% end %>
+
+ </div>
