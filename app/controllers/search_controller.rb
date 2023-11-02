@@ -13,7 +13,7 @@ class SearchController < BaseController
   def spaces_surveys_and_folders
     authorize :search
     like_keyword = "%#{params[:q]}%"
-    @surveys = Survey::Survey.where("name ILIKE ?", like_keyword)
+    @surveys = Survey::Survey.all.active.where("name ILIKE ?", like_keyword)
       .limit(10).order(:name).limit(4)
     @spaces = Space.where("title ILIKE ?", like_keyword).limit(4)
     @folders = Folder.where("title ILIKE ?", like_keyword).limit(4)
