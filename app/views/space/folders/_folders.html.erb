@@ -1,0 +1,15 @@
+<%= turbo_stream.update target do %>
+  <option value="">Select Folder</option>
+
+  <% space_folders.each do |space_folder| %>
+  <% if !@selected_folder_id.nil? %>
+  <% if space_folder.id.to_s == @selected_folder_id.to_s %>
+
+  <% else %>
+      <option value="<%= space_folder.id %>"><%= space_folder.title %></option>
+      <% end %>
+<% else %>
+ <option value="<%= space_folder.id %>"><%= space_folder.title %></option>
+ <% end %>
+      <% end %>
+<% end %>
