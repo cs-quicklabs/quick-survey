@@ -1,5 +1,5 @@
  <%= turbo_frame_tag "change_folder_modal" %>
-<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header">
+<div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header"data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
 <%= render partial: "surveys/title", locals: { survey: @survey } %>
 
 </div>
