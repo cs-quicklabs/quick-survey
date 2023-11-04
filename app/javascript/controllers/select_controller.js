@@ -23,7 +23,19 @@ export default class extends Controller {
     })
       .then((response) => response.text) 
       .then((html) => {
- 
+        this.selectTarget.innerHTML = html;
+      });
+  }
+
+  move(event) {
+    let params = new URLSearchParams();
+    const spaceId = event.target.selectedOptions[0].value;
+    get(`${this.urlValue}?space=${spaceId}`, {
+      responseKind: "turbo-stream",
+    })
+      .then((response) => response.text) 
+      .then((html) => {
+        this.selectTarget.innerHTML = html;
       });
   }
 
