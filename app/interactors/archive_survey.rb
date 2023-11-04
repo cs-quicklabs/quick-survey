@@ -8,7 +8,7 @@ class ArchiveSurvey < Patterns::Service
       remove_survey_from_folders
       delete_attempts
       delete_recent_surveys
-      survey.destroy
+      archive_survey
     rescue Exception => e
       return false
     end
@@ -27,6 +27,10 @@ class ArchiveSurvey < Patterns::Service
 
   def delete_recent_surveys
     RecentSurvey.where(survey_surveys_id: survey.id).delete_all
+  end
+
+  def archive_survey
+    @survey.update(active: false, archived_on: DateTime.now.utc)
   end
 
   attr_reader :survey
