@@ -64,8 +64,12 @@ class Space::FoldersController < Space::BaseController
     authorize [Space, Folder]
     @space = Space.find(params[:space])
     @folders = @space.folders.order("title asc")
-    if params[:folder_id]
-      selected_folder_id = params[:folder_id]
+    respond_to do |format|
+      if params[:folder_id]
+        format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "space/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id", selected_folder_id: params[:folder_id] }) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "space/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id" }) }
+      end
     end
   end
 
