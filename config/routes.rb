@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :surveys do
     get "/attempts", to: "surveys#attempts", as: "attempts"
-    get "/folder_form", to: "surveys#folder_form", as: "folder_form"
     resources :questions
     get "/pdf/checklist/:id", to: "survey/reports#checklist", as: "checklist_pdf"
     get "/pdf/score/:id", to: "survey/reports#score", as: "score_pdf"

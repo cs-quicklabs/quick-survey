@@ -18,19 +18,6 @@ class SurveysController < BaseController
     @survey = Survey::Survey.new
   end
 
-  def folder_form
-    authorize [Space, Folder]
-    @space = Space.find(params[:space])
-    @folders = @space.folders.order("title asc")
-    respond_to do |format|
-      if params[:folder_id]
-        format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "space/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id", selected_folder_id: params[:folder_id] }) }
-      else
-        format.turbo_stream { render turbo_stream: turbo_stream.update("folder_id", partial: "s pace/folders/folders", locals: { space: @space, space_folders: @folders, target: "folder_id" }) }
-      end
-    end
-  end
-
   def edit
     authorize @survey
   end
