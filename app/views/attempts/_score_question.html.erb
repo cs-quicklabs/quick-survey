@@ -3,5 +3,5 @@
     <label for="comments" class="font-medium text-gray-700 overflow-y-auto"><%= question.text %></label>
     <p id="comments-description" class="text-gray-500 overflow-y-auto"><%= question.description %></p>
   </div>
-     <%= render partial: "score", locals: { question: question, attempt: @attempt, survey: @survey}, formats: [:turbo_stream] %> 
+     <%= render partial: "score", locals: { question: question, attempt: @attempt, survey: @survey }, formats: [:turbo_stream] %> 
 </div>

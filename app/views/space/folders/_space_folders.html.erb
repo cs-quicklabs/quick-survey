@@ -3,7 +3,7 @@ data-action="click->slideover#closeBackground keyup@window->slideover#closeWithK
   <div class="max-w-lg max-h-screen w-full  bg-white transition-all transform shadow-xl rounded-lg relative ">
     <div class="m-1 bg-white rounded  ">
       <form id="change_folder_form"  >
-  <%if defined?(selected_folder) %>
+  <% if defined?(selected_folder) %>
   <%= render partial: "folder_form", locals: { selected_folder: selected_folder } %>
   <% else %>
    <%= render partial: "folder_form" %>

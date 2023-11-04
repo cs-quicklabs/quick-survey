@@ -17,7 +17,7 @@
     <p> <%= attempt.created_at.to_date.to_formatted_s(:long) %></p>
   </td>
   <td class="table-cell whitespace-nowrap space-x-6">
-<a target="_blank" href="pdf/<%= survey.survey_type %>/<%=attempt.id%>.pdf"  class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<a target="_blank" href="pdf/<%= survey.survey_type %>/<%= attempt.id %>.pdf"  class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Download PDF
     </a>
         <a href="<%= user_attempts_path(user) %>" class="text-indigo-600 hover:text-indigo-900">

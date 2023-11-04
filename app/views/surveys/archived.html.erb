@@ -8,7 +8,7 @@
         </div>
         <% if @surveys.load.size > 0 %>
           <div class=" flex space-x-4 ml-4">
-            <div class="flex-1 min-w-0 "  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%=current_user.account_id%>/search/archived_surveys" >
+            <div class="flex-1 min-w-0 "  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%= current_user.account_id %>/search/archived_surveys" >
               <label for="search" class="sr-only">Search</label>
               <div class="relative rounded-md shadow-sm"   >
                 <div class="absolute inset-y-0 left-0 pl-3 pr-4 flex items-center pointer-events-none">
