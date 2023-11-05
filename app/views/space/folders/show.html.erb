@@ -14,16 +14,16 @@
         <%= highlight_hashtag(@folder.title.upcase_first) %>
       </h1>
     </div>
-    <div   class="relative  "  data-controller="nested-dropdown">
+    <div   class="relative  "  data-controller="dropdown">
       <% if policy([@space, @folder]).edit? || policy([@space, @folder]).destroy? %>
         <div>
-          <button data-action="click->nested-dropdown#toggle" id="folder-menu" class=" flex-auto mt-1 ml-4 border border-gray-400 text-sm rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
+          <button data-action="click->dropdown#toggle click@window->dropdown#hide id="folder-menu" class=" flex-auto mt-1 ml-4 border border-gray-400 text-sm rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
               <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
             </svg>
           </button>
         </div>
-        <div data-nested-dropdown-target="menu" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+        <div data-dropdown-target="menu" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
           <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
             <div data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
               <% if policy([@space, @folder]).edit? %>

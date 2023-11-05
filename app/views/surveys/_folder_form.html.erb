@@ -17,7 +17,6 @@
     <label for="folders" class="text-sm font-medium text-gray-900  text-left">Select Folder</label>
     <select name="folder_id" id="folder_id"  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-1"
       data-select-target="select" >
-      <option value="">Select Folder</option>
       <% folders.each do |folder| %>
 
         <option value="<%= folder.id %>"><%= folder.title %></option>

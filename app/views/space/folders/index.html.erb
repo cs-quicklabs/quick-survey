@@ -16,19 +16,19 @@
               <h1 id="folder-heading" class="font-bold line-clamp-1 text-2xl leading-tight text-align-center"><%= highlight_hashtag(@space.title.upcase_first) %></h1>
             </a>
           </div>
-          <div class="flex justify-end" data-controller="nested-dropdown">
+          <div class="flex justify-end" data-controller="dropdown">
             <div  class="relative  " >
               <div>
                 <% if policy(@space).edit? || policy(@space).unpin? || policy(@space).pin? || policy(@space).destroy? %>
-                  <button data-action="click->nested-dropdown#toggle" id="space-menu" class=" flex-end mt-1 ml-4 border border-gray-600 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
+                  <button data-action="click->dropdown#toggle click@window->dropdown#hide" id="space-menu" class=" flex-end mt-1 ml-4 border border-gray-600 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-500 focus:ring-white" id="user-menu" aria-haspopup="true">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                       <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
                     </svg>
                   </button>
                 <% end %>
               </div>
-              <div   data-nested-dropdown-target="menu" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+              <div   data-dropdown-target="menu"  class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+                <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
                   <div>
                     <% if policy(@space).unpin? %>
                       <a><%= link_to "Unpin", space_unpin_path(@space), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
