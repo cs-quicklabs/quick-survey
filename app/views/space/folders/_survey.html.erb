@@ -1,4 +1,3 @@
-
 <tr class="bg-white" id="<%= dom_id(survey) %>">
   <td class="py-3 flex whitespace-nowrap text-sm font-medium text-gray-900 w-80">
     <a href="<%= survey_path(survey.id) %>" class="bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:underline focus:outline-none">
@@ -6,52 +5,41 @@
     </a>
   </td>
   <td class=" px-6 whitespace-nowrap  text-sm font-medium text-right ">
-
-<div class="relative"  data-controller="dropdown"> 
- 
-  <button type="button" class="btn" data-action="click->dropdown#toggle click@window->dropdown#hide id="survey-menu">
- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-</svg>
-
-  </button>
-  <div class="absolute right-0 z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1" data-dropdown-target="menu">
-    <!-- Dropdown menu items -->
-<ul class="list-none">
- <% if policy([@space, @folder]).change_folder?%>
-    <li  data-action= "click->slideover#open click->dropdown#toggle", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>"  data-account-id="<%= survey.account_id %>"  >
-  <p class="inline-flex" id="change-folder"><span>
-  Change Folder</span>
-  <span>
-  <svg aria-hidden="true" class="w-4 h-4 mt-1 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
- <span></p>
-
-
-   </li>
-   <% end %>
-   <% if policy([@space, @folder]).index? && !@space.archive? %>
-    <% if policy(survey).unpin? %>
-                      <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-                  <% end %>
-              <% if policy(survey).pin? %>
+    <div class="relative"  data-controller="dropdown">
+      <button type="button" class="btn" data-action="click->dropdown#toggle click@window->dropdown#hide id="survey-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+        </svg>
+      </button>
+      <div class="absolute right-0 z-10 w-36 mt-2 -mr-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1" data-dropdown-target="menu">
+        <!-- Dropdown menu items -->
+        <ul class="list-none">
+          <% if policy([@space, @folder]).change_folder? %>
+            <li  data-action= "click->slideover#open click->dropdown#toggle", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>"  data-account-id="<%= survey.account_id %>"  >
+              <p class="inline-flex" id="change-folder"><span>
+                  Change Folder</span>
+                <span>
+                  <svg aria-hidden="true" class="w-4 h-4 mt-1 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                  <span></p>
+                </li>
+              <% end %>
+              <% if policy([@space, @folder]).index? && !@space.archive? %>
+                <% if policy(survey).unpin? %>
+                  <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
+                <% end %>
+                <% if policy(survey).pin? %>
                   <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-                  <% end %>
-                  <% end %>
-                   <% if policy(survey).edit? && policy([@space, @folder]).edit? %>
-  <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
-   <% end %>
-   <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
-                    
-                       <% if policy(survey).archive_survey? %>
-                       <%= confirm_button(archive_survey_path(survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-<% end %>
-
-</ul>
-</div>
-
-  
-</div>
-  </td>
-</tr>
-
-
+                <% end %>
+              <% end %>
+              <% if policy(survey).edit? && policy([@space, @folder]).edit? %>
+                <li>  <%= link_to "Edit", edit_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+              <% end %>
+              <li> <%= link_to "Show", survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %></li>
+              <% if policy(survey).archive_survey? %>
+                <%= confirm_button(archive_survey_path(survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>

@@ -1,15 +1,12 @@
-
 <tr class="bg-white " id="<%= dom_id(space) %>">
   <td class=" whitespace-nowrap  table-cell">
-<a href="<%= space_folders_path(space) %>" class="hover:underline">
+    <a href="<%= space_folders_path(space) %>" class="hover:underline">
       <p> <%= space.title.upcase_first %></p>
     </a>
   </td>
   <td class=" whitespace-nowrap  table-cell">
-  <a href="<%= user_attempts_path(space.user) %>" class="hover:underline">
-    
-    <p> <%= space.user.decorate.display_name %></p>
-  </a>
+    <a href="<%= user_attempts_path(space.user) %>" class="hover:underline">
+      <p> <%= space.user.decorate.display_name %></p>
+    </a>
   </td>
- 
 </tr>

@@ -1,11 +1,9 @@
 <div class="relative flex items-start w-full pt-2"   data-controller="attempt">
-    <div class="flex  h-6 items-center " data-attempt-target="attempt" id="<%= dom_id(question) %>">
-      <%= render partial: "check", locals: { question: question, attempt: attempt, survey: survey }, formats: [:turbo_stream] %>
+  <div class="flex  h-6 items-center " data-attempt-target="attempt" id="<%= dom_id(question) %>">
+    <%= render partial: "check", locals: { question: question, attempt: attempt, survey: survey }, formats: [:turbo_stream] %>
   </div>
-  <div class="ml-6 text-sm w-full" > 
+  <div class="ml-6 text-sm w-full" >
     <label for="comments" class="font-medium text-gray-700 overflow-y-auto"><%= question.text %></label>
     <p id="comments-description" class="text-gray-500 overflow-y-auto"><%= question.description %></p>
   </div>
-
 </div>
-

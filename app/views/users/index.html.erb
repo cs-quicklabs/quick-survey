@@ -8,13 +8,13 @@
         Users
       </h1>
     </div>
-  <% if policy(:users).create? %>
+    <% if policy(:users).create? %>
       <div class="flex mt-4 sm:mt-0 sm:ml-4"  >
-      <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <%= render "modal" %>
+        <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <%= render "modal" %>
+        </div>
+        <%= link_to "Invite New User", new_user_invitation_path, data: { action: "click->slideover#open", 'turbo-frame': "create_user_modal" }, class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       </div>
-      <%= link_to "Invite New User", new_user_invitation_path, data: { action: "click->slideover#open", 'turbo-frame': "create_user_modal" }, class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    </div>
     <% end %>
   </div>
   <div class="flex flex-col" data-controller="infinite-scroll">
@@ -46,9 +46,9 @@
                 <%= render partial: "users/user", collection: @users, as: :user, cached: false %>
               </tbody>
             </table>
-               <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
-      <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
-    </div>
+            <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+              <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+            </div>
           </div>
         </div>
       </div>

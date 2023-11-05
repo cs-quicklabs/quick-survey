@@ -5,11 +5,12 @@
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
       <h4 class="text-sm  leading-tight text-gray-400"><%= @attempt.participant.email %></h4>
-       <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-gray-400 hover:underline">
-      <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4></a>
+      <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-gray-400 hover:underline">
+        <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name.titleize %></h4>
+      </a>
       <h4 class="text-sm leading-tight text-gray-400">Submitted By: 
         <a href="<%= user_attempts_path(@attempt.actor) %>" class="hover:underline">
-      <%= @attempt.actor.decorate.display_name %> </a>on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
+          <%= @attempt.actor.decorate.display_name %> </a>on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
     </div>
     <div class="">
       <h4 class="text-2xl font-bold leading-tight text-gray-900 ">
@@ -35,7 +36,6 @@
                 <%= index + 1 %></td>
               <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
               <% attempted_option = question.attempted_option(@attempt) %>
-
               <td class="py-3 px-6 text-sm font-medium text-gray-900"><%= attempted_option.nil? ? "" : attempted_option.text %></td>
               <td class="py-3  px-6 text-sm font-medium text-gray-900">
                 <% if question.attempted_answer(@attempt).nil? %>

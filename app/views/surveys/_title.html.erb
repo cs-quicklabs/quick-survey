@@ -29,7 +29,7 @@
           <%= render "folder_form_modal", survey: @survey %>                
             </div>
     <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-     <% if current_user.admin?%>
+     <% if current_user.admin? %>
 <li  data-action= "click->slideover#open click->dropdown#toggle", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>" data-account-id="<%= survey.account_id %>">
 <p class="inline-flex" id="change-folder"><span>
 Move To Folder</span></p>

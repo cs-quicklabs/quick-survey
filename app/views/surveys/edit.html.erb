@@ -2,8 +2,8 @@
   <div class="max-w-md w-full space-y-8">
     <%= form_with(model: @survey, id: dom_id(@survey), url: survey_path(@survey), method: :patch) do |form| %>
       <div class="mt-8 space-y-6">
-       <%= render "shared/form_messages", resource: @survey, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Edit Survey", subtitle: "Please update the survey details" %>
+        <%= render "shared/form_messages", resource: @survey, message: local_assigns[:message] %>
+        <%= render "shared/form_header", title: "Edit Survey", subtitle: "Please update the survey details" %>
         <input type="hidden" name="remember" value="true">
         <div class=" -space-y-px">
           <div>

@@ -7,10 +7,10 @@
   <td class="table-cell ">
     <%= user.email %>
   </td>
-   <td class="table-cell ">
+  <td class="table-cell ">
     <%= display_created_at(user) %>
   </td>
-   <td class="table-cell status ">
+  <td class="table-cell status ">
     <div class="text-sm text-gray-500"><%= user.role %></div>
     <% if user.sign_in_count > 0 %>
       <p class="flex items-center text-sm text-gray-500">
@@ -21,7 +21,7 @@
         </svg>
       </p>
     <% else %>
-       <p class="flex items-center text-sm text-gray-500 ">
+      <p class="flex items-center text-sm text-gray-500 ">
         Invited
         <!-- Heroicon name: solid/check-circle -->
         <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -29,14 +29,12 @@
         </svg>      </p>
     <% end %>
   </td>
-    <td class="table-cell space-x-6 actions">
-
+  <td class="table-cell space-x-6 actions">
     <%= link_to "View", user_attempts_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
-        <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
-
-          <%= link_to "Deactivate", deactivate_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
-                  <% if user.sign_in_count == 0 %>
-           <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
-           <% end %>
-    </td>
+    <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+    <%= link_to "Deactivate", deactivate_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+    <% if user.sign_in_count == 0 %>
+      <%= link_to "Resend Invitation", resend_invitation_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+    <% end %>
+  </td>
 </tr>

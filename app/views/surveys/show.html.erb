@@ -1,9 +1,8 @@
  <%= turbo_frame_tag "change_folder_modal" %>
 <div class="px-2   sm:flex sm:items-center sm:justify-between sm:px-4 " id="survey-header"data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
-<%= render partial: "surveys/title", locals: { survey: @survey } %>
-
+  <%= render partial: "surveys/title", locals: { survey: @survey } %>
 </div>
-  <%= render partial: "tabs", locals: { survey: @survey } %>
+<%= render partial: "tabs", locals: { survey: @survey } %>
 <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
   <!-- Left column -->
   <div class="grid grid-cols-1 gap-4 lg:col-span-2">
@@ -14,23 +13,23 @@
             <div class="flex flex-wrap">
               <p class="pb-2 mt-1 text-sm pl-4 font-medium text-gray-900 truncate"><%= "Survey Questions (" + @survey.questions.load.size.to_s + ")" %></p>
             </div>
-                   <div  id="survey_questions">
+            <div  id="survey_questions">
               <%= render partial: "surveys/questions/questions", locals: { survey: @survey, questions: @survey.questions.order(:order) }, formats: [:turbo_stream] %>
-           </div>
+            </div>
           </div>
         </div>
       </section>
     </div>
     <!-- Right column -->
     <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
-    <% if policy(@survey).update? %>
-      <section aria-labelledby="add-participant-section">
-        <div class="overflow-hidden bg-white">
-          <div class="px-4 ">
-            <%= render partial: "surveys/questions/form", locals: { survey: @survey, question: @question } %>
+      <% if policy(@survey).update? %>
+        <section aria-labelledby="add-participant-section">
+          <div class="overflow-hidden bg-white">
+            <div class="px-4 ">
+              <%= render partial: "surveys/questions/form", locals: { survey: @survey, question: @question } %>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       <% end %>
     </div>
   </div>
