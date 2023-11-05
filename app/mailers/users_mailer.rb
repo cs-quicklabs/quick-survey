@@ -2,7 +2,7 @@ class UsersMailer < ApplicationMailer
   def invitation_email
     @resource = params[:user]
     @token = params[:token]
-    mail(to: @resource.email, subject: "Invitation Instructions", template_path: "devise/mailer", template_name: "invitation_instructions")
+    mail(to: @resource.email, subject: "Quick Survey: Invitation Instructions", template_path: "devise/mailer", template_name: "invitation_instructions")
   end
 end
 

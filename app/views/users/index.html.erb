@@ -8,7 +8,7 @@
         Users
       </h1>
     </div>
-  <%if policy(:users).create? %>
+  <% if policy(:users).create? %>
       <div class="flex mt-4 sm:mt-0 sm:ml-4"  >
       <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <%= render "modal" %>

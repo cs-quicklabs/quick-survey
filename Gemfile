@@ -26,13 +26,13 @@ gem "jsbundling-rails", "1.2.1"
 gem "cssbundling-rails", "1.3.3"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.4.0"
+gem "turbo-rails", "1.5.0"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.2.2"
+gem "stimulus-rails", "1.3.0"
 
 gem "devise"
-gem "devise_invitable", "~> 2.0.0"
+gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
 
 gem "draper"
@@ -47,7 +47,7 @@ gem "pagy"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
-gem "bootsnap", "1.16.0", require: false
+gem "bootsnap", "1.17.0", require: false
 gem "rails-patterns"
 gem "rexml"
 group :development, :test do

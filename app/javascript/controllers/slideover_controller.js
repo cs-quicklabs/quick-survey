@@ -13,12 +13,7 @@ export default class extends Controller {
   }
 
   open(e) {
-    const button = document.getElementById("option-menu-button")  
-if (button)
-{
-  button.disabled = true;
-  button.classList.remove("border", "border-gray-300");
-}
+
     if (e.target.closest("li")) {
       const id = e.target.closest("li").dataset.surveyId;
       const account = e.target.closest("li").dataset.accountId;

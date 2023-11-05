@@ -4,7 +4,7 @@ class FoldersMailer < ApplicationMailer
     @user = params[:user]
     @folder = params[:folder]
     @space = params[:space]
-    mail(to: @user.email, subject: "New folder added into space", template_path: "mailers/folders_mailer")
+    mail(to: @user.email, subject: "Quick Survey: New folder added into space", template_path: "mailers/folders_mailer")
   end
 
   def update_folder_email
@@ -12,6 +12,6 @@ class FoldersMailer < ApplicationMailer
     @user = params[:user]
     @folder = params[:folder]
     @space = params[:space]
-    mail(to: @user.email, subject: "Updated folder into space", template_path: "mailers/folders_mailer")
+    mail(to: @user.email, subject: "Quick Survey: Updated folder into space", template_path: "mailers/folders_mailer")
   end
 end

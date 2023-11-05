@@ -47,11 +47,6 @@ Rails.application.routes.draw do
   get "/score/:id", to: "attempts#score", as: "score_attempt"
   get "/check/:id", to: "attempts#check", as: "check_attempt"
 
-  get "/resume", to: "screening/resume#index", as: "resume"
-  get "/telephonic", to: "screening/telephonic#index", as: "telephonic"
-  get "/interview", to: "screening/interview#index", as: "interview"
-  get "/hr", to: "screening/hr#index", as: "hr"
-  get "/vendor", to: "screening/vendor#index", as: "vendor"
   post "/change_folder/:id", to: "space/folders#change_folder", as: "change_folder"
 
   post "/surveys/:id/attempts/new", to: "attempts#create"

@@ -1,7 +1,0 @@
-class Screening::TelephonicController < BaseController
-  def index
-    authorize [:screening, :telephonic]
-    file = File.read("./json/telephonic.json")
-    @data = JSON.parse(file, object_class: Job)
-  end
-end

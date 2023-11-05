@@ -7,6 +7,7 @@ class DestroyUser < Patterns::Service
     begin
       delete_folders
       delete_spaces
+      remove_from_spaces
       delete_surveys
       delete_attempts
       user.destroy
@@ -24,6 +25,12 @@ class DestroyUser < Patterns::Service
 
   def delete_spaces
     Space.where(user_id: @user.id).destroy_all
+  end
+
+  def remove_from_spaces
+    user.spaces.each do |space|
+      space.users.destroy user
+    end
   end
 
   def delete_surveys
