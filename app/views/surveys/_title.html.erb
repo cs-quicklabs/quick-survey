@@ -26,10 +26,10 @@
 
   <div class="py-1" role="none" id="option-menu">
                    <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-          <%= render "folder_form_modal", survey:@survey%>                
+          <%= render "folder_form_modal", survey: @survey %>                
             </div>
     <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-     <% if current_user.admin?%>
+     <% if current_user.admin? %>
 <li  data-action= "click->slideover#open click->nested-dropdown#close", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>" data-account-id="<%= survey.account_id %>">
 <p class="inline-flex" id="change-folder"><span>
 Move To Folder</span></p>
@@ -41,13 +41,13 @@ Move To Folder</span></p>
     <% if policy(@survey).pin? %>
       <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
     <% end %>
-      <%if policy(@survey).clone? %>
+      <% if policy(@survey).clone? %>
     <%= confirm_button(clone_survey_path(@survey), "Clone", "Are you sure? This will create a new survey by copying everything from this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
    <% end %>
-    <%if policy(@survey).attempt? %>
+    <% if policy(@survey).attempt? %>
     <%= link_to "Attempt", new_attempt_path(@survey), class: "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
 <% end %>
-<%if policy(@survey).edit? %>
+<% if policy(@survey).edit? %>
     <%= link_to "Edit", edit_survey_path(@survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
  <% end %>
     <% if policy(@survey).archive_survey? %>
