@@ -77,6 +77,7 @@ class Space::FoldersController < Space::BaseController
     authorize [Space, Folder]
     @survey = Survey::Survey.find(params[:id])
     @folder = Folder.find(params[:folder_id])
+
     respond_to do |format|
       if @survey.update(folder_id: @folder.id)
         @folder.touch

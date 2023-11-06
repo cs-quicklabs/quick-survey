@@ -7,9 +7,9 @@
       <p class="mt-1 ml-1 text-sm text-gray-500 truncate"><%= "(" + (@my_spaces.size + @shared_spaces.size).to_s + " spaces)" %></p>
     </div>
     <% if policy(Space).new? %>
-    <div class="flex mt-4 sm:mt-0 sm:ml-4">
-      <%= link_to "Add New Space", new_space_path, class: "btn-blue  " %>
-    </div>
+      <div class="flex mt-4 sm:mt-0 sm:ml-4">
+        <%= link_to "Add New Space", new_space_path, class: "btn-blue  " %>
+      </div>
     <% end %>
   </div>
   <div class="relative px-6 grid  gap-10 pb-16" id="release_notes">

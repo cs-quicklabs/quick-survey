@@ -23,10 +23,9 @@
           <section aria-labelledby="add-participant-section">
             <div class="overflow-hidden bg-white">
               <div class="p-4">
-
                 <%= render partial: "listing", locals: { leaders: @pinned_surveys, title: "Pinned Surveys" } %>
-<%= render partial: "listing", locals: { leaders: @recent_surveys, title: "Recent Surveys" } %>
-</div>
+                <%= render partial: "listing", locals: { leaders: @recent_surveys, title: "Recent Surveys" } %>
+              </div>
             </div>
           </section>
         </div>

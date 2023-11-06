@@ -15,6 +15,8 @@ export default class extends Controller {
     this.menuTarget.classList.add("hidden");
   }
 
+  
+
   generateSubmenu(event) {
     //this.submenuTarget.classList.toggle('hidden');
     const url =

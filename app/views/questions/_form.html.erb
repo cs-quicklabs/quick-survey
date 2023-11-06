@@ -1,10 +1,10 @@
-      <div class="min-h-full flex  justify-center ">
-     <div class=" w-full space-y-4 ">
+      
+<div class="min-h-full flex  justify-center ">
+  <div class=" w-full space-y-4 ">
     <%= form_with(model: @question, id: dom_id(@question), url: survey_question_path(@survey, @question), method: :patch) do |form| %>
-            <div class=" space-y-6 py-4 ">
-       <%= render "shared/form_messages", resource: question, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Edit Question", subtitle: "Please edit detail of question" %>
-
+      <div class=" space-y-6 py-4 ">
+        <%= render "shared/form_messages", resource: question, message: local_assigns[:message] %>
+        <%= render "shared/form_header", title: "Edit Question", subtitle: "Please edit detail of question" %>
         <input type="hidden" name="remember" value="true">
         <div class=" -space-y-px">
           <div>
@@ -30,5 +30,5 @@
         </div>
       </div>
     <% end %>
-    </div>
-    </div>
+  </div>
+</div>

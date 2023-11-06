@@ -59,19 +59,19 @@
             </div>
           </div>
         <% end %>
-        <div data-controller="nested-dropdown">
+        <div data-controller="dropdown">
           <!-- This example requires Tailwind CSS v2.0+ -->
           <nav class="bg-gray-800" id="menubar">
             <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <!-- Profile dropdown -->
               <div  class="relative z-10 ml-3">
                 <div>
-                  <button data-action="click->nested-dropdown#toggle" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                  <button data-action="click->dropdown#toggle click@window->dropdown#hide" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
                     <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
                   </button>
                 </div>
                 <div  class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                  <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" data-nested-dropdown-target="menu">
+                  <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" data-dropdown-target="menu">
                     <div class= "px-4 py-3">
                       <p class="text-sm">Signed in as</p>
                       <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.email %></p>

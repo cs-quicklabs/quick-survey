@@ -1,17 +1,16 @@
 <% if policy([folder.space, folder]).show? %>
- <li class="relative py-5 hover:bg-gray-50 border-b border-gray-200" id="<%= dom_id(folder) %>">
+  <li class="relative py-5 hover:bg-gray-50 border-b border-gray-200" id="<%= dom_id(folder) %>">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="mx-auto flex max-w-4xl justify-between gap-x-6">
         <div class="flex gap-x-4">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-</svg>
-
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+          </svg>
           <div class="min-w-0 flex-auto">
             <p class="text-sm font-semibold leading-6 text-gray-900">
-               <a href="<%= space_folder_path(folder.space, folder) %>" class=" focus:outline-none">
+              <a href="<%= space_folder_path(folder.space, folder) %>" class=" focus:outline-none">
                 <span class="absolute inset-x-0 -top-px bottom-0"></span>
-              <%= highlight_hashtag(folder.title.upcase_first) %>
+                <%= highlight_hashtag(folder.title.upcase_first) %>
               </a>
             </p>
             <p class="mt-1 flex text-xs leading-5 text-gray-500">
@@ -22,16 +21,16 @@
         <div class="flex items-center gap-x-4">
           <div class="hidden sm:flex sm:flex-col sm:items-end">
             <p class="text-sm leading-6 text-gray-900">
-                <a href="<%= space_folder_path(folder.space, folder) %>" class=" focus:outline-none">
+              <a href="<%= space_folder_path(folder.space, folder) %>" class=" focus:outline-none">
                 <span class="absolute inset-x-0 -top-px bottom-0"></span>
-              <%= folder.survey_surveys.count > 1 ? "#{folder.survey_surveys.count} Items" : "#{folder.survey_surveys.count} Item" %>
+                <%= folder.survey_surveys.count > 1 ? "#{folder.survey_surveys.count} Items" : "#{folder.survey_surveys.count} Item" %>
               </a>
+            </div>
+            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
           </div>
-          <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
         </div>
       </div>
-    </div>
-  </li>
+    </li>
   <% end %>

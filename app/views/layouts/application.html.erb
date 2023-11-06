@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
       <meta name="current-account", content="<%= Current.account.id %>">
       <meta name="current-user", content="<%= current_user.id %>">
     <% end %>

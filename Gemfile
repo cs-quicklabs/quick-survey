@@ -44,6 +44,7 @@ gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "json"
 gem "pagy"
+gem "htmlbeautifier"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
