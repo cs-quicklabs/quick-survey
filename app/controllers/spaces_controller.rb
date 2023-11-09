@@ -16,12 +16,12 @@ class SpacesController < BaseController
   def new
     authorize :spaces
     @space = Space.new(user_id: current_user.id)
-    @users = User.all
+    @users = User.all.active.where("sign_in_count > 0")
   end
 
   def edit
     authorize @space
-    @users = User.all
+    @users = User.active.where("sign_in_count > 0")
     @space_users = @space.users.pluck(:user_id)
   end
 

@@ -1,5 +1,5 @@
    <%= turbo_frame_tag "form_modal" %>
-<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto  lg:pb-16"  data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto  lg:pb-16"  >
   <div class="h-full">
     <div class="flex justify-center">
       <% if @space.archive? %>
@@ -78,11 +78,13 @@
               </select>
             <% end %>
             <% if policy([@space, Folder]).new? %>
-              <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                <%= render "modal" %>
-              </div>
-              <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
-            <% end %>
+              <div data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+                <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                  <%= render "modal" %>
+                </div>
+                <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
