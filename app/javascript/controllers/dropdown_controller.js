@@ -5,6 +5,7 @@ export default class extends Controller {
   static values = { open: Boolean };
 
   connect() {
+
     this.toggleClass = this.data.get("class") || "hidden";
     this.visibleClass = this.data.get("visibleClass") || null;
     this.invisibleClass = this.data.get("invisibleClass") || null;

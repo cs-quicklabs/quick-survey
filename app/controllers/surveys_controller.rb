@@ -2,7 +2,7 @@ class SurveysController < BaseController
   include Pagy::Backend
 
   before_action :set_survey, only: [:edit, :update, :destroy, :show, :clone, :archive_survey, :unarchive_survey, :pin, :unpin]
-  before_action :find_survey, only: [:attempts]
+  before_action :find_survey, only: [:attempts, :delete_attempts]
 
   def index
     authorize :Survey
@@ -76,6 +76,12 @@ class SurveysController < BaseController
     attempts = Survey::Attempt.where(survey_id: params[:survey_id]).includes(:participant, :survey, :actor).order(updated_at: :desc).order(created_at: :desc).all
     @pagy, @attempts = pagy(attempts, items: 10)
     render_partial("surveys/attempt", collection: @attempts, cached: true) if stale?(@attempts)
+  end
+
+  def delete_attempts
+    authorize @survey
+    Survey::Attempt.where(survey_id: params[:survey_id]).delete_all
+    redirect_to survey_path(@survey), notice: "Survey attempts has been deleted successfully"
   end
 
   def pin

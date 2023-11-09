@@ -10,12 +10,15 @@
     <% end %>
   </div>
   <div>
+  <div class="flex space-x-6">
+   <%= confirm_button(user_delete_attempts_path(@user), "Delete All Attempts", "Are you sure you want to delete all attempts for this survey?", "btn-normal") %>
     <%= link_to "Edit", edit_user_path(@user), class: " btn-normal" %>
     <% if @user.active %>
-      <%= confirm_button(deactivate_user_path(@user), "Deactivate", "Are you sure?", "ml-4 btn-normal") %>
+      <%= confirm_button(deactivate_user_path(@user), "Deactivate", "Are you sure?", "btn-normal") %>
     <% else %>
-      <%= confirm_button(activate_user_path(@user), "Activate", "Are you sure?", "ml-4  btn-normal") %>
+      <%= confirm_button(activate_user_path(@user), "Activate", "Are you sure?", "  btn-normal") %>
     <% end %>
+      </div>
   </div>
 </div>
 <%= render partial: "user/tabs", locals: { user: @user } %>
