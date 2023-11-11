@@ -65,4 +65,8 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   def attempt?
     show? and record.active?
   end
+
+  def delete_attempts?
+    attempt?
+  end
 end

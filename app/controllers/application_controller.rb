@@ -37,8 +37,6 @@ class ApplicationController < ActionController::Base
   etag {
     if Rails.env == "production" or Rails.env == "staging"
       deployment_version
-    else
-      current_user.permission
     end
   }
 

@@ -1,5 +1,5 @@
    <%= turbo_frame_tag "form_modal" %>
-<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto  lg:pb-16"  data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto  lg:pb-16"  >
   <div class="h-full">
     <div class="flex justify-center">
       <% if @space.archive? %>
@@ -26,7 +26,7 @@
                   </button>
                 <% end %>
               </div>
-              <div   data-dropdown-target="menu"  class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+              <div   data-dropdown-target="menu"  class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
                 <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
                   <div>
                     <% if policy(@space).unpin? %>
@@ -78,11 +78,13 @@
               </select>
             <% end %>
             <% if policy([@space, Folder]).new? %>
-              <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                <%= render "modal" %>
-              </div>
-              <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
-            <% end %>
+              <div data-controller="slideover" data-slideover-prevent-default-action-opening="false">
+                <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                  <%= render "modal" %>
+                </div>
+                <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

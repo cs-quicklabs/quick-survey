@@ -6,8 +6,8 @@ class ArchiveSurvey < Patterns::Service
   def call
     begin
       remove_survey_from_folders
-      delete_attempts
       delete_recent_surveys
+      remove_from_pinned
       archive_survey
     rescue Exception => e
       return false
@@ -21,12 +21,12 @@ class ArchiveSurvey < Patterns::Service
     survey.update(folder_id: nil)
   end
 
-  def delete_attempts
-    Survey::Attempt.where(survey_id: survey.id).delete_all
-  end
-
   def delete_recent_surveys
     RecentSurvey.where(survey_surveys_id: survey.id).delete_all
+  end
+
+  def remove_from_pinned
+    survey.update(pin: false)
   end
 
   def archive_survey

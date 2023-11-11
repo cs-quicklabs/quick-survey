@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get "/submit/checklist/:id", to: "submit#checklist", as: "checklist_submit"
     get "/submit/score/:id", to: "submit#score", as: "score_submit"
     get "/submit/yes_no/:id", to: "submit#yes_no", as: "yes_no_submit"
+    get "delete_attempts", to: "surveys#delete_attempts", as: "delete_attempts"
   end
 
   get "/dashboard", to: "dashboard#index", as: "dashboard"
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
     get "/attempts", to: "user/attempts#index", as: "attempts"
     get "/surveys", to: "user/surveys#index", as: "surveys"
     get "/spaces", to: "user/spaces#index", as: "spaces"
+    get "delete_attempts", to: "user/attempts#delete_attempts", as: "delete_attempts"
   end
 
   get "/surveys/:id/attempts/new", to: "attempts#new", as: "new_attempt"

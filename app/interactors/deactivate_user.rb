@@ -5,11 +5,7 @@ class DeactivateUser < Patterns::Service
 
   def call
     begin
-      delete_folders
-      delete_spaces
-      delete_surveys
       remove_from_spaces
-      delete_attempts
       deactivate
     rescue Exception => e
       return false
@@ -19,26 +15,10 @@ class DeactivateUser < Patterns::Service
 
   private
 
-  def delete_folders
-    Folder.where(user_id: @user.id).destroy_all
-  end
-
-  def delete_spaces
-    Space.where(user_id: @user.id).destroy_all
-  end
-
   def remove_from_spaces
     user.spaces.each do |space|
       space.users.destroy user
     end
-  end
-
-  def delete_surveys
-    Survey::Survey.where(user_id: @user.id).delete_all
-  end
-
-  def delete_attempts
-    Survey::Attempt.where(actor_id: @user.id).delete_all
   end
 
   def deactivate

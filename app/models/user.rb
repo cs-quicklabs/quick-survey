@@ -19,10 +19,13 @@ class User < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   has_many :survey_attempts
-
   has_many :pinned_spaces, dependent: :destroy
   has_many :pinned, through: :pinned_spaces, source: :space
   has_many :RecentSurveys, :dependent => :destroy
   has_many :recent, through: :RecentSurveys, source: :survey_surveys
   has_and_belongs_to_many :spaces
+
+  def active_for_authentication?
+    super and active
+  end
 end

@@ -1,5 +1,5 @@
 class User::BaseController < ApplicationController
-  before_action :set_user, only: %i[ index ]
+  before_action :set_user, only: [:index, :delete_attempts]
   after_action :verify_authorized
   include Pagy::Backend
 
