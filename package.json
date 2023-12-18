@@ -7,7 +7,7 @@
     "esbuild-rails": "^1.0.4",
     "@rails/request.js": "^0.0.9",
     "@rails/actiontext": "7.1.2",
-    "@tailwindcss/forms": "0.5.6",
+    "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/line-clamp": "0.4.4",
     "autoprefixer": "10.4.16",
     "esbuild": "0.19.8",
