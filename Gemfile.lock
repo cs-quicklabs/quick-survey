@@ -170,7 +170,7 @@ GEM
       reline (>= 0.3.8)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
-    json (2.7.0)
+    json (2.7.1)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
