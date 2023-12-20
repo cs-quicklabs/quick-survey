@@ -87,9 +87,8 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    acts_as_tenant (0.6.1)
-      rails (>= 5.2)
-      request_store (>= 1.0.5)
+    acts_as_tenant (1.0.1)
+      rails (>= 6.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     axiom-types (0.1.1)
@@ -197,7 +196,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.2.0)
-    net-imap (0.4.7)
+    net-imap (0.4.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -219,7 +218,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.1.1.1)
+    psych (5.1.2)
       stringio
     public_suffix (5.0.3)
     puma (6.4.0)
