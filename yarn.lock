@@ -738,10 +738,10 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
-slim-select@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.7.1.tgz#f67c5698f50a621a277d7bed0d12ff71e6c4edbd"
-  integrity sha512-oUZo7rpuCQ+7bbMDPepQJYV8mOBSTAxGQ4CaWMwR0e/Vw0GSI6F3TBf+Ayr+aKXoEIW9/hmGz6LWQ1zERuIFdg==
+slim-select@2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.8.0.tgz#86e9571966f488d7325589e76ec43f1b53543f2e"
+  integrity sha512-+xKD9+uaDnLHac7dIMHq1Qy5yMCNPyunxFp7N2eMxShe2Zn6kEoUTBmGqRfCFjqU4H4ZSA60WVU1MHm24dZrFA==
   dependencies:
     react "^18.2.0"
     react-dom "^18.2.0"
