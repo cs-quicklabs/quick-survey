@@ -2,7 +2,7 @@
   <a href="<%= user_attempts_path(user) %>">
     <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
       <%= !user.first_name.blank? ?
-             user.decorate.display_name : user.email %>
+            user.decorate.display_name : user.email %>
     </li>
   </a>
 <% end %>

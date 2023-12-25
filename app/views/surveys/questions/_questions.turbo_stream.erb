@@ -27,11 +27,11 @@ data-action="dragstart->drag-item#dragstart
               <% end %>
               <% if policy(question.survey).edit? %>
                 <%= link_to "Delete", survey_question_path(survey, question), class: "ml-4", data: {
-                                                                      controller: "confirmation",
-                                                                      "turbo-method": :delete,
-                                                                      "confirmation-message-value": "Are you sure you want to delete this?",
-                                                                      action: "confirmation#confirm",
-                                                                    }, style: "color:#dc2626", onmouseover: "this.style.color='#7f1d1d'", onmouseout: "this.style.color='#dc2626'" %>
+                                                                                controller: "confirmation",
+                                                                                "turbo-method": :delete,
+                                                                                "confirmation-message-value": "Are you sure you want to delete this?",
+                                                                                action: "confirmation#confirm",
+                                                                              }, style: "color:#dc2626", onmouseover: "this.style.color='#7f1d1d'", onmouseout: "this.style.color='#dc2626'" %>
               <% end %>
             </div>
           </div>
@@ -49,11 +49,11 @@ data-action="dragstart->drag-item#dragstart
               <% end %>
               <% if policy(question.survey).edit? %>
                 <%= link_to "Delete", survey_question_path(survey, question), class: "ml-4", data: {
-                                                                      controller: "confirmation",
-                                                                      "turbo-method": :delete,
-                                                                      "confirmation-message-value": "Are you sure you want to delete this?",
-                                                                      action: "confirmation#confirm",
-                                                                    }, style: "color:#dc2626", onmouseover: "this.style.color='#7f1d1d'", onmouseout: "this.style.color='#dc2626'" %>
+                                                                                controller: "confirmation",
+                                                                                "turbo-method": :delete,
+                                                                                "confirmation-message-value": "Are you sure you want to delete this?",
+                                                                                action: "confirmation#confirm",
+                                                                              }, style: "color:#dc2626", onmouseover: "this.style.color='#7f1d1d'", onmouseout: "this.style.color='#dc2626'" %>
               <% end %>
             </div>
           </div>
