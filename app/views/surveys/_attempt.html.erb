@@ -4,9 +4,17 @@
 <tr class="bg-white " id="<%= dom_id(attempt) %>">
   <td class=" whitespace-nowrap  table-cell">
     <a href="reports/<%= attempt.survey.survey_type %>/<%= attempt.id %>" class="hover:underline">
-      <p> <% if user %><%= user.decorate.display_name %><% end %></p>
+        <p> See Survey Result</p>
+
     </a>
   </td>
+    <td class=" whitespace-nowrap  table-cell">
+        <a href="<%= user_attempts_path(user) %>" class="hover:underline text-indigo-600 hover:text-indigo-900">
+
+      <p> <% if user %><%= user.decorate.display_name %><% end %></p>
+      </a>
+  </td>
+
   <td class=" whitespace-nowrap  table-cell">
     <p> <%= participant.name.upcase_first %></p>
   </td>
@@ -19,9 +27,6 @@
   <td class="table-cell whitespace-nowrap space-x-6">
     <a target="_blank" href="pdf/<%= survey.survey_type %>/<%= attempt.id %>.pdf"  class="inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Download PDF
-    </a>
-    <a href="<%= user_attempts_path(user) %>" class="text-indigo-600 hover:text-indigo-900">
-      View User Details
     </a>
   </td>
 </tr>
