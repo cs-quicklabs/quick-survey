@@ -221,7 +221,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     pwned (2.0.2)
     raabro (1.4.0)
@@ -347,7 +347,7 @@ DEPENDENCIES
   pagy
   pg
   propshaft
-  puma (= 6.4.0)
+  puma (= 6.4.2)
   rack-mini-profiler (~> 3.3)
   rails (= 7.1.2)
   rails-patterns
