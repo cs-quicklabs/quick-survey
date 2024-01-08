@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
       # Add or replace dependency steps here
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@52b8784594ec115fd17094752708121dc5dabb47 # v1.154.0
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
           bundler-cache: true
