@@ -20,7 +20,7 @@ gem "pg"
 gem "puma", "6.4.2"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.2.1"
+gem "jsbundling-rails", "1.2.2"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.3.3"
