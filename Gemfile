@@ -77,4 +77,4 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Active job backedn [https://github.com/bensheldon/good_job]
-gem "good_job", "~> 3.21"
+gem "good_job", "~> 3.22"
