@@ -59,7 +59,7 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   end
 
   def attempts?
-    index?
+    true
   end
 
   def attempt?

@@ -1,6 +1,6 @@
 class AttemptPolicy < ApplicationPolicy
   def index?
-    !user.member?
+    true
   end
 
   def show?
