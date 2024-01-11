@@ -4,11 +4,11 @@ class Survey::AttemptPolicy < Survey::BaseSurveyPolicy
   end
 
   def submit?
-    user.member?
+    true
   end
 
   def report?
-    user.member?
+    true
   end
 
   def score?
