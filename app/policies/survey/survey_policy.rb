@@ -1,15 +1,18 @@
 class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   def index?
-    !user.member?
+    #!user.member?
+    true
   end
 
   def edit?
-    survey = record
-    index? and survey.active
+    #survey = record
+    #index? and survey.active
+    true
   end
 
   def new?
-    !user.member?
+    #!user.member?
+    true
   end
 
   def create?
@@ -29,13 +32,14 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   end
 
   def show?
-    if !user.member?
-      return true
-    elsif record.folder and record.active
-      record.folder.space.users.include?(user)
-    else
-      false
-    end
+    # if !user.member?
+    #   return true
+    # elsif record.folder and record.active
+    #   record.folder.space.users.include?(user)
+    # else
+    #   false
+    # end
+    true
   end
 
   def pin?
@@ -63,7 +67,8 @@ class Survey::SurveyPolicy < Survey::BaseSurveyPolicy
   end
 
   def attempt?
-    show? and record.active?
+    #show? and record.active?
+    true
   end
 
   def delete_attempts?

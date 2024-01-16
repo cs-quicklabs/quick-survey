@@ -1,6 +1,7 @@
 class Survey::AttemptPolicy < Survey::BaseSurveyPolicy
   def answer?
-    record.actor == user
+    #record.actor == user
+    true
   end
 
   def submit?

@@ -1,5 +1,6 @@
 class User::AttemptPolicy < User::BaseUserPolicy
   def delete_attempts?
-    !user.member?
+    #!user.member?
+    true
   end
 end

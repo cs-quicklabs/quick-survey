@@ -1,10 +1,12 @@
 class Survey::QuestionPolicy < Survey::BaseSurveyPolicy
   def index?
-    !user.member?
+    #!user.member?
+    true
   end
 
   def edit?
-    !user.member?
+    #!user.member?
+    true
   end
 
   def new?
