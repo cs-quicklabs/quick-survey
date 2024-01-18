@@ -1,9 +1,9 @@
 class QuestionPolicy < ApplicationPolicy
   def create?
-    !user.member?
+    true
   end
 
   def reorder?
-    !user.member?
+    true
   end
 end
