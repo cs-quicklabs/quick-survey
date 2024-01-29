@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mileszs/wicked_pdf.git
-  revision: 0d056eac6c1dcb1d7902bae6648e881cceebf243
+  revision: fbf504b6c29515d17b3724425f9a27775a390b65
   branch: master
   specs:
     wicked_pdf (2.7.0)
@@ -97,7 +97,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    bigdecimal (3.1.5)
+    bigdecimal (3.1.6)
     bindex (0.8.1)
     bootsnap (1.17.1)
       msgpack (~> 1.2)
@@ -114,7 +114,7 @@ GEM
       xpath (~> 3.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.3.3)
@@ -194,7 +194,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.20.0)
+    minitest (5.21.2)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.9)
