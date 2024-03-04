@@ -213,7 +213,7 @@ GEM
     nokogiri (1.16.0-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (6.4.1)
+    pagy (7.0.8)
     pg (1.5.4)
     propshaft (0.8.0)
       actionpack (>= 7.0.0)
