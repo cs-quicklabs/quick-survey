@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.1.3"
+gem "rails", "7.1.3.1"
 
 gem "propshaft"
 
