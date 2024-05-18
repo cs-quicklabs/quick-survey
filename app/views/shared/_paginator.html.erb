@@ -1,15 +1,17 @@
-<% link = pagy_link_proc(pagy) -%>
+<% link = pagy_anchor(pagy) -%>
 <nav aria-label="pager" class="inline-flex border border-gray-200 rounded-sm shadow-md pagy_nav pagination" role="navigation">
-  <% if pagy.prev -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page prev hover:text-gray-900 hover:bg-gray-100"><%== link.call(pagy.prev, pagy_t("pagy.nav.prev"), 'aria-label="previous"') %></span>
-  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page prev hover:bg-gray-100 disabled"><%== pagy_t("pagy.nav.prev") %></span>
+  <% if pagy.prev -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page prev hover:text-gray-900 hover:bg-gray-100"><%== link.(pagy.prev, "&lt;", aria_label: "Previous") %></span>
+  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page prev hover:bg-gray-100 disabled">    <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
+    </span>
   <% end -%>
   <% pagy.series.each do |item| -%>
-    <% if item.is_a?(Integer) -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page hover:text-gray-900 hover:bg-gray-100"><%== link.call(item) %></span>
+    <% if item.is_a?(Integer) -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page hover:text-gray-900 hover:bg-gray-100"><%== link.(item) %></span>
     <% elsif item.is_a?(String) -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 text-blue-600 bg-gray-100 border-r border-gray-200 page current hover:text-gray-900 hover:bg-gray-100"><%= item %></span>
-    <% elsif item == :gap -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page gap hover:bg-gray-100"><%== pagy_t("pagy.nav.gap") %></span>
+    <% elsif item == :gap -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page gap hover:bg-gray-100"><%== "&hellip;" %></span>
     <% end -%>
   <% end -%>
-  <% if pagy.next -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 text-gray-900 border-r border-transparent border-gray-200 page hover:text-gray-900 next hover:bg-gray-100"><%== link.call(pagy.next, pagy_t("pagy.nav.next"), 'aria-label="next"') %></span>
-  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page next disabled hover:bg-gray-100"><%== pagy_t("pagy.nav.next") %></span>
+  <% if pagy.next -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 text-gray-900 border-r border-transparent border-gray-200 page hover:text-gray-900 next hover:bg-gray-100">    <a href="<%== pagy_url_for(pagy, pagy.next) %>" rel="next" aria-disabled="true" aria-label="Next">&gt;</a>
+    </span>
+  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page next disabled hover:bg-gray-100"><a role="link" aria-disabled="true" aria-label="Next">&gt;</a></span>
   <% end -%>
 </nav>
