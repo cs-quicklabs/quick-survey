@@ -3,17 +3,17 @@
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "3.2.2",
-    "@hotwired/turbo": "7.3.0",
+    "@hotwired/turbo": "8.0.4",
     "esbuild-rails": "^1.0.4",
     "@rails/request.js": "^0.0.9",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/line-clamp": "0.4.4",
-    "autoprefixer": "10.4.16",
-    "esbuild": "0.19.11",
-    "postcss": "8.4.33",
+    "autoprefixer": "10.4.19",
+    "esbuild": "0.21.2",
+    "postcss": "8.4.38",
     "slim-select": "2.8.1",
-    "tailwindcss": "3.4.1",
-    "trix": "2.0.8",
+    "tailwindcss": "3.4.3",
+    "trix": "2.1.0",
     "prettier": "3.2.2"
   },
   "resolutions": {
