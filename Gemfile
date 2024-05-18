@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.1.3.1"
+gem "rails", "7.1.3.3"
 
 gem "propshaft"
 
@@ -23,10 +23,10 @@ gem "puma", "6.4.2"
 gem "jsbundling-rails", "1.3.0"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.3.3"
+gem "cssbundling-rails", "1.4.0"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.5.0"
+gem "turbo-rails", "2.0.5"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.3.3"
@@ -36,7 +36,6 @@ gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
 
 gem "draper"
-gem "letter_opener_web", group: :development
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -44,13 +43,13 @@ gem "wicked_pdf", github: "mileszs/wicked_pdf", branch: "master"
 gem "wkhtmltopdf-binary"
 gem "json"
 gem "pagy"
-gem "htmlbeautifier"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
 gem "bootsnap", "1.17.1", require: false
 gem "rails-patterns"
 gem "rexml"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -63,8 +62,8 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem "rack-mini-profiler", "~> 3.3"
   gem "listen", "~> 3.3"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  #   gem "spring"
+  gem "letter_opener_web"
+  gem "htmlbeautifier"
 end
 
 group :test do
