@@ -57,6 +57,7 @@ class AttemptsTest < ApplicationSystemTestCase
 
   test "can attempt a score survey and view the attempt " do
     @survey = survey_surveys(:five)
+    @attempt = survey_attempts(:five)
 
     visit page_url
     within "#survey-header" do
@@ -70,8 +71,10 @@ class AttemptsTest < ApplicationSystemTestCase
     within "div##{dom_id(question1)}" do
       click_on "7"
     end
+    fill_in "comment", with: "This is a comment"
+
     click_on "Preview and Submit"
-    within "div##{dom_id(@attempt.survey.questions.first)}" do
+    within "tr##{dom_id(@attempt.survey.questions.first)}" do
       assert_selector "svg#tick"
     end
     take_screenshot

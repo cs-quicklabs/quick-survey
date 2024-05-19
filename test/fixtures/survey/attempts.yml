@@ -11,3 +11,10 @@ two:
   participant: one
   actor: member
   account: crownstack
+
+five:
+  participant: regular
+  survey: five
+  participant: one
+  actor: member
+  account: crownstack
