@@ -10,3 +10,15 @@ two:
   text: no
   correct: false
 
+three:
+  question: three
+  weight: 0
+  text: no
+  correct: false
+
+
+four:
+  question: four
+  weight: 0
+  text: no
+  correct: false
