@@ -31,6 +31,9 @@ gem "turbo-rails", "2.0.5"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.3.3"
 
+# Database-backed Active Job backend [https://github.com/rails/solid_queue]
+gem "solid_queue"
+
 gem "devise"
 gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
@@ -59,7 +62,7 @@ group :development do
   gem "web-console", ">= 4.1.0"
   gem "rack-mini-profiler", "~> 3.3"
   gem "listen", "~> 3.3"
-  gem "letter_opener_web"
+  gem "letter_opener"
   gem "htmlbeautifier"
 end
 

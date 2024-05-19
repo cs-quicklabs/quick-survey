@@ -1,3 +1,4 @@
 web: bin/rails server -p 3000
 js: yarn build --watch
 css: yarn build:css --watchcss: yarn build:css --watch
+queue: bin/rails solid_queue:start

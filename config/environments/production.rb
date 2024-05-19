@@ -41,6 +41,9 @@ Rails.application.configure do
   config.active_storage.service = :local
   Rails.application.config.active_storage.variant_processor = :mini_magick
 
+  # Use a real queuing backend for Active Job (and separate queues per environment).
+  config.active_job.queue_adapter = :solid_queue
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
