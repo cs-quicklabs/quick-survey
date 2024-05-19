@@ -35,7 +35,7 @@ gem "stimulus-rails", "1.3.3"
 gem "solid_queue"
 
 gem "devise"
-gem "devise_invitable", "~> 2.0.9"
+gem "devise_invitable"
 gem "devise-pwned_password"
 
 gem "draper"
@@ -68,7 +68,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 3.38"
+  gem "capybara"
   gem "selenium-webdriver"
 end
 

@@ -332,11 +332,11 @@ DEPENDENCIES
   acts_as_tenant
   bootsnap (= 1.17.1)
   byebug
-  capybara (>= 3.38)
+  capybara
   cssbundling-rails (= 1.4.0)
   devise
   devise-pwned_password
-  devise_invitable (~> 2.0.9)
+  devise_invitable
   draper
   htmlbeautifier
   jsbundling-rails (= 1.3.0)
