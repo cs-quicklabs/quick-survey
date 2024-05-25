@@ -73,7 +73,7 @@
           </div>
           <div class="flex ">
             <% if @folders.load.size > 0 %>
-              <select class="cursor-pointer appearance-none w-full block pl-6 pr-8 ml-4 py-1 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-base " name="direction" id="sort" onchange="window.location.href = '<%= space_folders_path(@space) %>?direction=' + this.value;">
+              <select class="hidden sm:flex cursor-pointer appearance-none w-full block pl-6 pr-8 ml-4 py-1 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-base " name="direction" id="sort" onchange="window.location.href = '<%= space_folders_path(@space) %>?direction=' + this.value;">
                 <%= options_for_select([["Sort Folders By Newest", "DESC"], ["Sort Folders By Oldest", "ASC"]], prompt: "DESC", :selected => (params["direction"] if !params["direction"].blank?)) %>
               </select>
             <% end %>
@@ -82,7 +82,7 @@
                 <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                   <%= render "modal" %>
                 </div>
-                <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
+                <%= link_to "Add New Folder", new_space_folder_path(@space.id), class: "ml-2 btn-blue whitespace-nowrap ", data: { action: "click->slideover#open", 'turbo-frame': "form_modal" } %>
               <% end %>
             </div>
           </div>
