@@ -1,1 +1,2 @@
-web: bundle exec puma -p $PORT -C ./config/puma.rb
+web: bin/rails server
+queue: bin/rails solid_queue:start
