@@ -22,7 +22,7 @@
                 </svg>
               </button>
             </div>
-            <div data-dropdown-target="menu" class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+            <div data-turbo-prefetch="false" data-dropdown-target="menu" class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
               <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                 <div data-controller="slideover" data-slideover-target-prevent-default-action-opening="false">
                   <% if policy([@space, @folder]).edit? %>

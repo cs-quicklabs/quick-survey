@@ -3,67 +3,64 @@
     <%= @survey.name.titleize %>
   </h1>
   <p class="px-4 text-sm -mt-2 text-gray-500 truncate"><%= @survey.description %></p>
-
 </div>
-        <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <%= render "folder_form_modal", survey: @survey %>
-                  </div>
+<div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <%= render "folder_form_modal", survey: @survey %>
+</div>
 <div class="flex sm:mt-0 sm:ml-4 " >
-<div class="flex space-x-6">
-        <% if policy(@survey).attempt? %>
-    <%= link_to "Attempt", new_attempt_path(@survey), class: "py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" %>
-<% end %>  
+  <div class="flex space-x-6">
+    <% if policy(@survey).attempt? %>
+      <%= link_to "Attempt", new_attempt_path(@survey), class: "py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" %>
+    <% end %>
     <div   class="flex items-center justify-between ">
       <!-- This example requires Tailwind CSS v2.0+ -->
-       
       <div class="relative z-0 inline-flex rounded-md shadow-sm" >
-   <div class="relative block -ml-px" data-controller="dropdown">
-<button data-action="click->dropdown#toggle click@window->dropdown#hide"  type="button"  value="Submit" class="inline-flex py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" id="option-menu-button" >
-  <span>Actions</span>
-  <!-- Heroicon name: solid/chevron-down -->
-  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-  </svg>
-</button>
-<div  data-dropdown-target="menu" class="hidden absolute right-0 z-10 w-56 mt-2 -mr-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-
-  <div class="py-1" role="none" id="option-menu">
-                   <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-          <%= render "folder_form_modal", survey: @survey %>                
+        <div class="relative block -ml-px" data-controller="dropdown">
+          <button data-action="click->dropdown#toggle click@window->dropdown#hide"  type="button"  value="Submit" class="inline-flex py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" id="option-menu-button" >
+            <span>Actions</span>
+            <!-- Heroicon name: solid/chevron-down -->
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div  data-turbo-prefetch="false" data-dropdown-target="menu" class="hidden absolute right-0 z-10 w-56 mt-2 -mr-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+            <div class="py-1" role="none" id="option-menu">
+              <div class="" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <%= render "folder_form_modal", survey: @survey %>
+              </div>
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+              <% if current_user.admin? %>
+                <li  data-action= "click->slideover#open click->dropdown#toggle", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>" data-account-id="<%= survey.account_id %>">
+                  <p class="inline-flex" id="change-folder"><span>
+                      Move To Folder</span></p>
+                </li>
+              <% end %>
+              <% if policy(@survey).unpin? %>
+                <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
+              <% end %>
+              <% if policy(@survey).pin? %>
+                <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
+              <% end %>
+              <% if policy(@survey).clone? %>
+                <%= confirm_button(clone_survey_path(@survey), "Clone", "Are you sure? This will create a new survey by copying everything from this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+              <% end %>
+              <% if policy(@survey).delete_attempts? %>
+                <%= confirm_button(survey_delete_attempts_path(@survey), "Delete All Attempts", "Are you sure you want to delete all attempts for this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+              <% end %>
+              <% if policy(@survey).edit? %>
+                <%= link_to "Edit", edit_survey_path(@survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
+              <% end %>
+              <% if policy(@survey).archive_survey? %>
+                <%= confirm_button(archive_survey_path(@survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+              <% end %>
+              <% if policy(@survey).unarchive_survey? %>
+                <%= confirm_button(unarchive_survey_path(@survey), "Unarchive", "Are you sure you want to activate this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
+              <% end %>
             </div>
-    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-     <% if current_user.admin? %>
-<li  data-action= "click->slideover#open click->dropdown#toggle", data-turbo-frame= "change_folder_modal"  class=" cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 inline-flex" data-survey-id="<%= survey.id %>" data-account-id="<%= survey.account_id %>">
-<p class="inline-flex" id="change-folder"><span>
-Move To Folder</span></p>
-</li>
-<% end %>
-    <% if policy(@survey).unpin? %>
-      <%= link_to "Unpin Survey", unpin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-    <% end %> 
-    <% if policy(@survey).pin? %>
-      <%= link_to "Pin Survey", pin_survey_path(survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
-    <% end %>
-      <% if policy(@survey).clone? %>
-    <%= confirm_button(clone_survey_path(@survey), "Clone", "Are you sure? This will create a new survey by copying everything from this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-   <% end %>
-       <% if policy(@survey).delete_attempts? %>
-    <%= confirm_button(survey_delete_attempts_path(@survey), "Delete All Attempts", "Are you sure you want to delete all attempts for this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-   <% end %>
-<% if policy(@survey).edit? %>
-    <%= link_to "Edit", edit_survey_path(@survey), class: " cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50" %>
- <% end %>
-    <% if policy(@survey).archive_survey? %>
-      <%= confirm_button(archive_survey_path(@survey), "Archive", "Are you sure you want to archive this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-   <% end %>
-    <% if policy(@survey).unarchive_survey? %>
-      <%= confirm_button(unarchive_survey_path(@survey), "Unarchive", "Are you sure you want to activate this survey?", "cursor-pointer bg-white block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50") %>
-    <% end %>
-  </div>
-  </div>
-</div>
-</div>
-</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+</div>
