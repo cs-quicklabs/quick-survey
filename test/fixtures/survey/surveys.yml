@@ -84,7 +84,7 @@ seven:
   account: crownstack  
 
 eight:
-  name: Project Initiation Score eight
+  name: Project Initiation Score Eight
   description: Survey Description
   survey_type: score
   user: admin
