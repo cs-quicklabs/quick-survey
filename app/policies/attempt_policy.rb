@@ -4,7 +4,6 @@ class AttemptPolicy < ApplicationPolicy
   end
 
   def show?
-    #record.actor == user
-    true
+    record.actor == user
   end
 end

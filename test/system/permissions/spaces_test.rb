@@ -35,6 +35,7 @@ class SpacesTest < ApplicationSystemTestCase
   end
 
   test "admin can create new folder or edit archive space" do
+    sign_in users(:admin)
     visit space_page_url
     within "#space-header" do
       assert_text "Add New Folder"
@@ -83,6 +84,7 @@ class SpacesTest < ApplicationSystemTestCase
   end
 
   test "admin can edit clone archive change folder of survey" do
+    sign_in users(:admin)
     visit space_page_url
     @folder = @space.folders.first
     page.execute_script("arguments[0].click();", find("a", text: @folder.title))
