@@ -1,16 +1,13 @@
 class UsersPolicy < ApplicationPolicy
   def create?
-    #!user.member?
-    true
+    !user.member?
   end
 
   def index?
-    #!user.member?
-    true
+    !user.member?
   end
 
   def deactivated?
-    #!user.member?
-    true
+    !user.member?
   end
 end

@@ -1,17 +1,14 @@
 class SurveyPolicy < ApplicationPolicy
   def index?
-    #!user.member?
-    true
+    !user.member?
   end
 
   def edit?
-    #index? and record.active
-    true
+    index? and record.active
   end
 
   def new?
-    #!user.member?
-    true
+    !user.member?
   end
 
   def create?
@@ -31,14 +28,13 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def show?
-    # if !user.member?
-    #   return true
-    # elsif record.folder
-    #   record.folder.space.users.include?(user)
-    # else
-    #   false
-    # end
-    true
+    if !user.member?
+      return true
+    elsif record.folder
+      record.folder.space.users.include?(user)
+    else
+      false
+    end
   end
 
   def pin?
