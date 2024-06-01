@@ -150,7 +150,7 @@ class SurveysTest < ApplicationSystemTestCase
         click_on "Delete"
       end
     end
-    assert_text "Survey has been deleted."
+    assert_text "Survey was successfully deleted."
     take_screenshot
   end
 end

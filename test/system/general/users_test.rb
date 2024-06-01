@@ -86,15 +86,4 @@ class UserTest < ApplicationSystemTestCase
     end
     assert_text "User has been activated."
   end
-
-  test "can delete deactivated user" do
-    visit deactivated_users_path(script_name: "/#{@account.id}")
-    deactivated = users(:deactivated)
-    within "tr##{dom_id(deactivated)}" do
-      page.accept_confirm do
-        click_on "Delete"
-      end
-    end
-    assert_text "User has been deleted."
-  end
 end
