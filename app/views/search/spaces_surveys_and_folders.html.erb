@@ -1,6 +1,16 @@
 <div class="py-2 mb-1">
   <% if @surveys.size > 0 %>
-    <div class="mb-2">
+    <div class="my-1 mt-2 ">
+      <div class="pb-4">
+        <div class="absolute inset-x-0 flex items-center" aria-hidden="true">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="flex justify-start absolute inset-x-0  pb-2 items-center">
+          <span class=" -mt-2 px-4 pr-2 text-sm italic font-bold text-gray-500 bg-white" role="option">
+            Surveys
+          </span>
+        </div>
+      </div>
       <% @surveys.each do |result| %>
         <a href="<%= survey_path(result) %>">
           <li role="option" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
@@ -10,7 +20,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class=" ">
+  <div class="">
     <% if @surveys.size > 0 && @spaces.size > 0 %>
       <div class="my-1 mt-2 ">
         <div class="pb-4">

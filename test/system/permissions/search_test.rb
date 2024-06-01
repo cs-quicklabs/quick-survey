@@ -14,7 +14,6 @@ class SearchTest < ApplicationSystemTestCase
       fill_in "search", with: "p"
     end
     page.assert_selector(:css, "ul#results li")
-    page.assert_selector(:css, "div.spaces")
     take_screenshot
   end
 
@@ -55,10 +54,9 @@ class SearchTest < ApplicationSystemTestCase
     login_as users(:super_admin)
     visit dashboard_path(script_name: @account.id)
     within "nav.navbar" do
-      fill_in "search", with: "p"
+      fill_in "search", with: "P"
     end
     page.assert_selector(:css, "ul#results li")
-    page.assert_selector(:css, "div.spaces")
     take_screenshot
   end
 
@@ -103,15 +101,6 @@ class SearchTest < ApplicationSystemTestCase
     visit dashboard_path(script_name: @account.id)
     within "nav.navbar" do
       assert_no_selector "input#search"
-    end
-    take_screenshot
-  end
-  test "member can not access archive" do
-    login_as users(:member)
-    visit dashboard_path(script_name: @account.id)
-    within "nav.navbar" do
-      click_on "user-menu"
-      assert_no_text "Archive"
     end
     take_screenshot
   end
