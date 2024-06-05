@@ -7,6 +7,6 @@ class DashboardController < BaseController
 
   def activities
     authorize :dashboard, :index?
-    @attempts = Survey::Attempt.all.includes(:participant, :survey, :actor).where(actor_id: current_user.id).order("created_at DESC")
+    @attempts = Survey::Attempt.all.includes(:participant, :survey, :actor).order("created_at DESC")
   end
 end

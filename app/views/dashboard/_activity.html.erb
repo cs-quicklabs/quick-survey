@@ -10,7 +10,7 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-            You have attempted a survey titled 
+            <%= attempt.actor.decorate.name %> attempted a survey titled 
             <a href="<%= survey_attempts_path(attempt.survey) %>" class="font-medium text-gray-900 hover:underline"><%= attempt.survey.name %></a>
             for participant named
             <%= attempt.participant.name.upcase_first %>
