@@ -12,13 +12,12 @@ class BaseController < ApplicationController
   private
 
   def add_options(question, survey)
-    if survey.survey_type == 0 #checklist
+    if survey.survey_type == "checklist"
       Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
-      Survey::Option.new(text: "No", question: question, correct: false, weight: 0).save
-    elsif survey.survey_type == 1 #score
+    elsif survey.survey_type == "score"
       Survey::Option.new(text: "Score", question: question, correct: true, weight: 10).save
-    elsif survey.survey_type == 2 #mark
+    else survey.survey_type == "yes_no"
       Survey::Option.new(text: "Yes", question: question, correct: true, weight: 1).save
-    end
+      Survey::Option.new(text: "No", question: question, correct: false, weight: 0).save     end
   end
 end

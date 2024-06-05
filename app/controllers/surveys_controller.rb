@@ -106,9 +106,11 @@ class SurveysController < BaseController
     @clone.save
 
     @survey.questions.each do |question|
-      q = Survey::Question.new(text: question.text, description: question.description, survey_id: @clone.id)
-      q.save
-      add_options(question, @survey)
+      cloned_question = Survey::Question.new(text: question.text, description: question.description, survey_id: @clone.id)
+      cloned_question.save
+      if cloned_question.persisted?
+        add_options(cloned_question, @clone)
+      end
     end
 
     redirect_to survey_path(@clone)
