@@ -12,6 +12,10 @@ class AttemptsController < BaseController
   def new
     authorize @survey, :attempt?
     @attempt = Survey::Attempt.new
+
+    if params[:email].present? and params[:name].present?
+      create_survey_attempt_and_redirect
+    end
   end
 
   def create
@@ -45,6 +49,7 @@ class AttemptsController < BaseController
     answer = Survey::Answer.find_by(attempt: @attempt, question: question)
     if answer
       answer.update_attribute(:option_id, option.id)
+      answer.update_attribute(:correct, option.correct?)
     else
       Survey::Answer.create(attempt: @attempt, question: question, option: option)
     end
@@ -89,6 +94,12 @@ class AttemptsController < BaseController
   end
 
   private
+
+  def create_survey_attempt_and_redirect
+    @participant = Survey::Participant.create(name: params[:name], email: params[:email])
+    @attempt = Survey::Attempt.create(survey: @survey, participant: @participant, actor: current_user, created_at: DateTime.now)
+    redirect_to new_survey_attempt_path(@attempt)
+  end
 
   def set_attempt
     @attempt ||= Survey::Attempt.find(params[:id])
