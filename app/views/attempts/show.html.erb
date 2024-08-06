@@ -16,22 +16,22 @@
     <div class="">
       <fieldset class="space-y-5" >
         <% survey.questions.each do |question| %>
-            <%= render partial: "#{survey.survey_type}_question", locals: { question: question, attempt: @attempt, survey: @survey } %>
+          <%= render partial: "#{survey.survey_type}_question", locals: { question: question, attempt: @attempt, survey: @survey } %>
         <% end %>
       </fieldset>
-<div class="overflow-y-auto w-full py-6 ml-3">
-  <%= form_with(url: survey_submit_attempt_path(@survey), model: @survey) do |form| %>
-    <div class="pt-4">
-      <label for="comment" class="block text-sm font-medium text-gray-700">
-        Comments (optional)
-      </label>
-      <h4 class="text-sm leading-tight text-gray-400 pb-4">Please explain in detail why this candidate should move to next round or what is your general feedback or why candidate should be rejected or what is your comments based on questions answered above etc etc.</h4>
-      <textarea  id="comment" name="comment"  required="required" rows="6" autocomplete="off" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"><%= @attempt.comment %></textarea>
-    </div>
-      <div class=" flex justify-end py-12">
-          <%= form.submit "Preview and Submit", class: "cursor-pointer  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      </div>
-      <% end %>
+      <div class="overflow-y-auto w-full py-6 ml-3">
+        <%= form_with(url: survey_submit_attempt_path(@survey), model: @survey) do |form| %>
+          <div class="pt-4">
+            <label for="comment" class="block text-sm font-medium text-gray-700">
+              Comments (optional)
+            </label>
+            <h4 class="text-sm leading-tight text-gray-400 pb-4">Please add a note if you want to add anything about this survey</h4>
+            <textarea  id="comment" name="comment"  required="required" rows="6" autocomplete="off" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"><%= @attempt.comment %></textarea>
+          </div>
+          <div class=" flex justify-end py-12">
+            <%= form.submit "Preview and Submit", class: "cursor-pointer  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
