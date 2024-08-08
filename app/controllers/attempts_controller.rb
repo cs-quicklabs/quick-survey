@@ -32,17 +32,30 @@ class AttemptsController < BaseController
 
   def submit
     authorize @attempt
-    @attempt.update_attribute("comment", params[:comment])
-    if @attempt.survey.survey_type == "checklist"
-      redirect_to survey_checklist_submit_path(@attempt.survey, @attempt)
-    elsif @attempt.survey.survey_type == "score"
-      redirect_to survey_score_submit_path(@attempt.survey, @attempt)
+    if params[:commit] == "Preview then Submit"
+      preview_then_submit @attempt
+    else params[:commit] == "Submit without Preview"
+      submit_without_preview @attempt     end
+  end
+
+  def preview_then_submit(attempt)
+    attempt.update_attribute("comment", params[:comment])
+    if attempt.survey.survey_type == "checklist"
+      redirect_to survey_checklist_submit_path(attempt.survey, attempt)
+    elsif attempt.survey.survey_type == "score"
+      redirect_to survey_score_submit_path(attempt.survey, attempt)
     else
-      redirect_to survey_yes_no_submit_path(@attempt.survey, @attempt)
+      redirect_to survey_yes_no_submit_path(attempt.survey, attempt)
     end
   end
 
-  def answer
+  def submit_without_preview(attempt)
+    @attempt.update_attribute("comment", params[:comment])
+
+    redirect_to "/#{current_user.account.id}/surveys/#{attempt.survey.id}/reports/#{attempt.survey.survey_type}/#{attempt.id}", notice: "Thank you for submitting your survey."
+  end
+
+  def def(answer)
     authorize @attempt
     question = Survey::Question.find(params[:question_id])
     option = Survey::Option.find(params[:option_id])
