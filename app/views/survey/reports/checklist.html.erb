@@ -32,7 +32,7 @@
           <% @attempt.survey.questions.each_with_index do |question, index| %>
             <tr class="bg-white ">
               <td class="py-3  px-6 text-sm font-medium text-gray-900">
-                <input type="checkbox" class="h-5 w-5  rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"  <%= "checked" if question.attempt_checked?(@attempt) %> >
+                <input disabled type="checkbox" class="h-5 w-5  bg-gray-100 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"  <%= "checked" if question.attempt_checked?(@attempt) %> >
               </td>
               <td class="py-3  px-6 text-sm font-medium text-gray-900">
                 <%= index + 1 %></td>
