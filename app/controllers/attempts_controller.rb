@@ -55,7 +55,7 @@ class AttemptsController < BaseController
     redirect_to "/#{current_user.account.id}/surveys/#{attempt.survey.id}/reports/#{attempt.survey.survey_type}/#{attempt.id}", notice: "Thank you for submitting your survey."
   end
 
-  def def(answer)
+  def answer
     authorize @attempt
     question = Survey::Question.find(params[:question_id])
     option = Survey::Option.find(params[:option_id])
