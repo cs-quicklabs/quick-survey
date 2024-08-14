@@ -32,9 +32,14 @@
         <tbody class="bg-white divide-y divide-gray-200">
           <% @attempt.survey.questions.each_with_index do |question, index| %>
             <tr class="bg-white  ">
-              <td class="py-3  pl-6 text-sm font-medium text-gray-900">
+              <td class="py-3  pl-6 text-sm font-medium text-gray-900 align-top">
                 <%= index + 1 %></td>
-              <td class="py-3  text-sm font-medium text-gray-900"><%= question.text %></td>
+              <td class="py-3  text-sm font-medium text-gray-900">
+                <div>
+                  <p><%= question.text %></p>
+                  <p class="font-normal text-xs text-gray-400"><%= question.description %></p>
+                </div>
+              </td>
               <% attempted_option = question.attempted_option(@attempt) %>
               <td class="py-3  text-sm font-medium text-gray-900 text-left"><%= attempted_option.nil? ? "" : attempted_option.text %></td>
               <td class="py-3   text-sm font-medium text-gray-900 text-left">

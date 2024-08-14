@@ -34,9 +34,14 @@
               <td class="py-3  px-6 text-sm font-medium text-gray-900">
                 <input disabled type="checkbox" class="h-5 w-5  bg-gray-100 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"  <%= "checked" if question.attempt_checked?(@attempt) %> >
               </td>
-              <td class="py-3  px-6 text-sm font-medium text-gray-900">
+              <td class="py-3  px-6 text-sm font-medium text-gray-900 align-top">
                 <%= index + 1 %></td>
-              <td class="py-3 px-6  text-sm font-medium text-gray-900"><%= question.text %></td>
+              <td class="py-3 px-6  text-sm font-medium text-gray-900">
+                <div>
+                  <p><%= question.text %></p>
+                  <p class="font-normal text-xs text-gray-400"><%= question.description %></p>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>
