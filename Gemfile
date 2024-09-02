@@ -29,7 +29,7 @@ gem "cssbundling-rails", "1.4.0"
 gem "turbo-rails", "2.0.5"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.3.3"
+gem "stimulus-rails", "1.3.4"
 
 # Database-backed Active Job backend [https://github.com/rails/solid_queue]
 gem "solid_queue"
