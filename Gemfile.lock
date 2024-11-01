@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/mileszs/wicked_pdf.git
-  revision: 26bc41431140512b6cb1b86c377147b69b8f39d7
+  revision: 5a4c76a3d87dc4d78e89f6db630c6f6acbb1f45d
   branch: master
   specs:
-    wicked_pdf (2.8.0)
+    wicked_pdf (2.8.1)
       activesupport
+      ostruct
 
 GEM
   remote: https://rubygems.org/
@@ -115,7 +116,7 @@ GEM
     childprocess (5.0.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.3.3)
+    concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.4.0)
@@ -153,7 +154,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     htmlbeautifier (1.4.3)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     io-console (0.7.2)
@@ -184,7 +185,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-    minitest (5.24.1)
+    minitest (5.25.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.14)
@@ -203,6 +204,7 @@ GEM
     nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    ostruct (0.6.0)
     pagy (8.4.0)
     pg (1.5.6)
     propshaft (0.9.0)
