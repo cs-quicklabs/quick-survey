@@ -33,7 +33,7 @@ class UpdateSpace < Patterns::Service
       @space_users = User.where("id IN (?)", users)
       @space_users.each do |user|
         if deliver_email?(user)
-          SpacesMailer.with(actor: actor, user: user, space: space).space_email.deliver_later
+          SpacesMailer.with(actor: actor, user: user, space: space).update_space_email.deliver_later
         end
       end
     end

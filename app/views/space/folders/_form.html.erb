@@ -3,7 +3,7 @@
     <%= render "shared/form_messages", resource: space_folder, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: title, subtitle: subtitle %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
-    <input type="hidden" name="folder[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="folder[user_id]" value="<%= @space.user_id %>">
     <input type="hidden" name="folder[space_id]" value="<%= space.id %>">
     <div class="relative flex items-start">
       <div class="flex h-5 items-center">
