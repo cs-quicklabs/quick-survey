@@ -1,6 +1,6 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none px-32">
   <!-- Page title & actions -->
-  <div class="py-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+  <div class="pt-8 sm:flex sm:items-center sm:justify-between">
     <div class=" items-baseline">
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
@@ -23,6 +23,8 @@
     </div>
   </div>
   <div class=" w-full ">
+      <%= render partial: "toolbar", locals: { attempt: @attempt } %>
+
     <div class="">
       <table class="min-w-full divide-y divide-gray-200 pb-8">
         <thead class="bg-gray-50">
@@ -70,6 +72,6 @@
         </tbody>
       </table>
     </div>
-    <%= render partial: "download_pdf", locals: { attempt: @attempt } %>
+    <%= render partial: "comments", locals: { attempt: @attempt } %>
   </div>
 </main>

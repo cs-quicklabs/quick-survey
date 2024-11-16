@@ -1374,6 +1374,10 @@ select {
   margin-top: 2rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .line-clamp-1 {
   overflow: hidden;
   display: -webkit-box;

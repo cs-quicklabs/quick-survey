@@ -1,6 +1,6 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none px-32">
   <!-- Page title & actions -->
-  <div class="py-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+  <div class="pt-8 sm:flex sm:items-center sm:justify-between">
     <div class=" items-baseline px-12">
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
@@ -47,6 +47,6 @@
         </tbody>
       </table>
     </div>
-    <%= render partial: "download_pdf", locals: { attempt: @attempt } %>
+    <%= render partial: "comments", locals: { attempt: @attempt } %>
   </div>
 </main>
