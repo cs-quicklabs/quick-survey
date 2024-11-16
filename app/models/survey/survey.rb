@@ -3,7 +3,8 @@ class Survey::Survey < ActiveRecord::Base
   self.table_name = "survey_surveys"
   belongs_to :folder, optional: true
   belongs_to :user, optional: true
-  enum survey_type: { yes_no: 0, score: 1, checklist: 2 }
+
+  enum :survey_type, yes_no: 0, score: 1, checklist: 2
   #   acceptable_attributes :name, :description,
   #     :finished,
   #     :active,

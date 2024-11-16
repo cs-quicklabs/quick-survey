@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
 
-  enum role: [:member, :admin, :superadmin]
+  enum :role, [:member, :admin, :superadmin]
   validates_presence_of :first_name, :last_name, on: :create
 
   ROLES = [

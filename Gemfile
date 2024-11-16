@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.1.3.4"
+gem "rails", "8.0.0"
 
 gem "propshaft"
 
@@ -17,19 +17,19 @@ gem "propshaft"
 gem "pg"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.4.2"
+gem "puma"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.3.0"
+gem "jsbundling-rails"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.4.0"
+gem "cssbundling-rails"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "2.0.5"
+gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.3.3"
+gem "stimulus-rails"
 
 # Database-backed Active Job backend [https://github.com/rails/solid_queue]
 gem "solid_queue"
