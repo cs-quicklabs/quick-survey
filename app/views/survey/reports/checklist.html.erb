@@ -1,15 +1,15 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none px-32">
   <!-- Page title & actions -->
   <div class="pt-8 sm:flex sm:items-center sm:justify-between">
-    <div class=" items-baseline px-12">
+    <div class=" items-baseline">
       <h1 class="text-lg leading-tight text-gray-900 font-bold">
         <%= @attempt.participant.name.titleize %></h1>
       <h4 class="text-sm  leading-tight text-gray-400"><%= @attempt.participant.email %></h4>
-      <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-gray-400 hover:underline">
-        <h4 class="text-sm leading-tight text-gray-400"><%= @attempt.survey.name %></h4>
+      <a href="<%= survey_path(@attempt.survey) %>" class="text-sm leading-tight text-indigo-700 hover:underline ">
+        <h4 class="text-sm leading-tight text-indigo-700"><%= @attempt.survey.name %></h4>
       </a>
       <h4 class="text-sm leading-tight text-gray-400">Submitted By: 
-        <a href="<%= user_attempts_path(@attempt.actor) %>" class="hover:underline">
+        <a href="<%= user_attempts_path(@attempt.actor) %>" class="hover:underline text-indigo-700">
           <%= @attempt.actor.decorate.display_name %> </a>on <%= @attempt.created_at.to_date.to_formatted_s(:long) %></h4>
     </div>
     <div class="">
