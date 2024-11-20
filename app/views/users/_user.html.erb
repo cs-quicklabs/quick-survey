@@ -30,7 +30,7 @@
     <% end %>
   </td>
   <% if !current_user.member? %>
-    <td class="table-cell space-x-6 actions">
+    <td class="table-cell space-x-6 actions" data-turbo-prefetch="false">
       <%= link_to "View", user_attempts_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
       <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
       <%= link_to "Deactivate", deactivate_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
