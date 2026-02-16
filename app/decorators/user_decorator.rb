@@ -16,7 +16,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def display_deactivated_on
-    "#{deactivated_on.to_formatted_s(:long)}"
+    "#{deactivated_on.to_formatted_s(:long)}" unless deactivated_on.nil?
   end
 
   def name
